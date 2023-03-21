@@ -8,7 +8,7 @@ export default function Header() {
   const router = useRouter()
 
   return (
-    <header className="py-4 border-b border-black fixed top-0 left-0 right-0 backdrop-blur-[2px] z-[50]">
+    <header className="py-4 border-b border-black fixed top-0 left-0 right-0 backdrop-blur-[2px] z-[50] bg-white/20">
       <Container>
         <nav className="flex flex-wrap space-x-3 items-center uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none">
 
