@@ -1,6 +1,3 @@
-/* Webfonts */
-@import '_fonts.css';
-
 /* Tailwind base/components */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';

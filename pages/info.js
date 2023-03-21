@@ -6,10 +6,10 @@ import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 
-export default function About() {
+export default function Info() {
   return (
     <Layout>
-      <NextSeo title="About" />
+      <NextSeo title="Info" />
 
       <Header />
 
@@ -22,7 +22,7 @@ export default function About() {
           <main className="mb-12 md:mb-16 xl:mb-24">
             <Container>
               <m.div variants={fade}>
-                <h1 className="text-[10vw] md:text-[7.5vw] lg:text-[5vw] mb-4 leading-none md:leading-none lg:leading-none">About</h1>
+                <h1 className="text-[10vw] md:text-[7.5vw] lg:text-[5vw] mb-4 leading-none md:leading-none lg:leading-none">Info</h1>
                 <div className="content max-w-3xl mb-4">
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
 
