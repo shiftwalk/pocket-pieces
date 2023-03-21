@@ -19,24 +19,27 @@ export default function About() {
           initial="initial"
           animate="enter"
           exit="exit"
-          className="mb-12 md:mb-16 xl:mb-24"
         >
-          <Container>
-            <m.div variants={fade}>
-              <h1 className="font-bold text-2xl md:text-3xl xl:text-4xl mb-4">About Page</h1>
-              <div className="content max-w-3xl mb-4">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
+          <main className="mb-12 md:mb-16 xl:mb-24">
+            <Container>
+              <m.div variants={fade}>
+                <h1 className="font-bold text-[10vw] md:text-[7.5vw] lg:text-[5vw] mb-4 leading-none md:leading-none lg:leading-none">About Page</h1>
+                <div className="content max-w-3xl mb-4">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
 
-                <p>Velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              </div>
-              
-              <FancyLink destination="/" a11yText="Navigate to the home page" label="Home Page" />
-            </m.div>
-          </Container>
+                  <p>Velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                
+                <FancyLink destination="/" a11yText="Navigate to the home page" label="Home Page" />
+              </m.div>
+            </Container>
+          </main>
+
+          <m.div variants={fade}>
+            <Footer />
+          </m.div>
         </m.div>
       </LazyMotion>
-
-      <Footer />
     </Layout>
   )
 }

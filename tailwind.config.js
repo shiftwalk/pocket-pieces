@@ -1,13 +1,11 @@
+const { fontFamily } = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    fontFamily: {
-      'sans': ['Arial', 'sans-serif'],
-      'mono': ['Lucida Console', 'Courier', 'monospace'],
-    },
     screens: {
       sm: "640px",
       md: "768px",
@@ -25,7 +23,11 @@ module.exports = {
           DEFAULT: '#d18d67',
           dark: '#ce8860',
         },
-      }
+      },
+      fontFamily: {
+        display: ['var(--font-GrifinitoL)', ...fontFamily.sans],
+        mono: ['var(--font-IBMPlexMono)', ...fontFamily.mono],
+      },
     },
   },
   plugins: []

@@ -14,5 +14,5 @@
 
 /* Simple defaults */
 body {
-  @apply font-sans antialiased text-black bg-white;
+  @apply font-sans antialiased text-black bg-white selection:bg-black selection:text-white;
 }
