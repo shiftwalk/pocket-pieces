@@ -1,12 +1,12 @@
 export default {
-  defaultTitle: 'Boilerplate | Next x Tailwind x Motion',
-  description: 'A simple Next.js starter kit with Tailwind and Framer Motion.',
-  titleTemplate: '%s | Next x Tailwind x Motion',
+  defaultTitle: 'Boilerplate | Pocket Pieces',
+  description: 'Lovingly curated vintage & designer resale from around the world 🌏 New drops weekly 💧 DM for pulls styling rental 💌 World wide shipping from UK 🇬🇧.',
+  titleTemplate: '%s | Pocket Pieces',
   openGraph: {
     type: 'website',
     locale: 'en_GB',
-    url: 'https://sg-next-tailwind-motion.vercel.app/',
-    site_name: 'Next x Tailwind x Motion',
+    url: 'https://pocket-pieces.vercel.app/',
+    site_name: 'Pocket Pieces',
   },
   twitter: {
     handle: '@samuelgoddard',
