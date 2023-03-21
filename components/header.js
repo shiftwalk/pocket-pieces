@@ -18,15 +18,26 @@ export default function Header() {
           </div>
 
           <div className="flex flex-1 lg:flex-none lg:w-32">
-            <Link href="/" className="w-24 lg:w-full mx-auto hover:opacity-50 focus-visible:opacity-50">
+            <Link href="/" className="w-24 lg:w-full mx-auto relative overflow-hidden group">
               <Image
                 priority
                 src="/icons/logo.svg"
                 height={224}
                 width={908}
                 alt="Pocket Pieces Logo"
-                className="w-full"
+                className="w-full lg:group-hover:translate-y-[-103%] will-change-transform transition-translate ease-in-out duration-[300ms]"
               />
+
+              <div className="w-[28px] mx-auto absolute top-0 left-0 right-0 translate-y-[105%] lg:group-hover:translate-y-0 will-change-transform transition-translate ease-in-out duration-[300ms]">
+                <Image
+                  priority
+                  src="/icons/logomark.svg"
+                  height={553}
+                  width={503}
+                  alt="Pocket Pieces Logomark"
+                  className="w-full"
+                />
+              </div>
             </Link>
           </div>
 
