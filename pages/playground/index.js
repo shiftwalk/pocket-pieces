@@ -4,11 +4,12 @@ import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
+import Link from 'next/link'
 
-export default function About() {
+export default function Playground() {
   return (
     <Layout>
-      <NextSeo title="About" />
+      <NextSeo title="Playground" />
 
       <LazyMotion features={domAnimation}>
         <m.div
@@ -19,11 +20,16 @@ export default function About() {
           <main className="mb-12 md:mb-16 xl:mb-24 pt-14 lg:pt-16">
             <Container>
               <m.div variants={fade}>
-                <h1 className="text-[15vw] md:text-[12.5vw] lg:text-[10vw] mb-4 leading-none md:leading-none lg:leading-none">About</h1>
+                <h1 className="text-[15vw] md:text-[12.5vw] lg:text-[10vw] mb-4 leading-none md:leading-none lg:leading-none">Development Playground</h1>
                 <div className="content max-w-3xl mb-4">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
-
-                  <p>Velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  <ul className="uppercase border-t border-black">
+                    <li>
+                      <Link href="/playground/polaroids" className="block border-b border-black py-3">Polaroids</Link>
+                    </li>
+                    <li>
+                      <Link href="/" className="block border-b border-black py-3">Test</Link>
+                    </li>
+                  </ul>
                 </div>
               </m.div>
             </Container>
