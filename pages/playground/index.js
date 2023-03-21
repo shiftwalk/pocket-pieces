@@ -5,6 +5,7 @@ import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import Link from 'next/link'
+import FancyLink from '@/components/fancyLink'
 
 export default function Playground() {
   return (
@@ -24,7 +25,10 @@ export default function Playground() {
                 <div className="content max-w-3xl mb-4">
                   <ul className="uppercase border-t border-black">
                     <li>
-                      <Link href="/playground/polaroids" className="block border-b border-black py-3">Polaroids</Link>
+                      <FancyLink nav destination="/playground/polaroids" className="block border-b border-black py-3" label="Polaroids" />
+                    </li>
+                    <li>
+                      <FancyLink nav destination="/playground/buttons" className="block border-b border-black py-3" label="Buttons" />
                     </li>
                   </ul>
                 </div>
