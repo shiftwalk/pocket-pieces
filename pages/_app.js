@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }) {
 
       <Header />
 
-      <FancyLink nav active={ router.asPath == '/playground' ? true : false } destination="/playground" className="fixed z-[100] bottom-0 right-0 block bg-black text-white uppercase p-3 m-3 text-sm" label="Dev Playground" />
+      <FancyLink nav active={ router.asPath.includes('/playground') ? true : false } destination="/playground" className="fixed z-[100] bottom-0 right-0 block bg-black text-white uppercase p-3 m-3 text-sm" label="Dev Playground" />
 
       <div className={`${IBMPlexMono.variable} ${GrifinitoL.variable} font-mono`}>
         <AnimatePresence mode="wait" initial={true}>

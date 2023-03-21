@@ -26,9 +26,6 @@ export default function Playground() {
                     <li>
                       <Link href="/playground/polaroids" className="block border-b border-black py-3">Polaroids</Link>
                     </li>
-                    <li>
-                      <Link href="/" className="block border-b border-black py-3">Test</Link>
-                    </li>
                   </ul>
                 </div>
               </m.div>
