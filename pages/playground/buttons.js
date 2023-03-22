@@ -24,11 +24,9 @@ export default function Buttons() {
                 <div className="max-w-3xl mb-4">
                   <p className="mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
 
-                  <div>
+                  <div className="flex space-x-3">
                     <Button href="#" label="Add To Bag" />
-                  </div>
 
-                  <div>
                     <Button href="#" label="Size Guide" outline />
                   </div>
                 </div>
