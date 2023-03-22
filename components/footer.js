@@ -1,18 +1,13 @@
 import Container from '@/components/container'
-import Image from 'next/image'
+import LogoIcon from '@/icons/logo.svg'
 
-export default function Footer() {
+export default function Footer({ invert, noLogo }) {
   return (
     <footer className="pb-4 mt-[50vw]">
       <Container>
-        <Image
-          priority
-          src="/icons/logo.svg"
-          height={224}
-          width={908}
-          alt="Pocket Pieces Logo"
-          className="w-full mb-5"
-        />
+        {!noLogo && (
+          <LogoIcon className={`w-full mb-5 text-current`} />
+        )}
 
         <div className="flex flex-wrap">
           <div className="mb-2">

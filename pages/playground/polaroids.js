@@ -24,7 +24,6 @@ export default function Polaroids() {
         >
           <div className="bg-white pt-[78px] lg:pt-[90px] overflow-hidden">
             <div className="fixed inset-0 pointer-events-none scale-[1.15]"></div>
-            <div className="grain fixed inset-0 z-[10]"></div>
             <main className="mb-12 md:mb-16 xl:mb-24 relative z-[20]">
               <Container>
                 <m.div variants={fade} ref={constraintsRef}>

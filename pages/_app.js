@@ -14,8 +14,10 @@ export default function App({ Component, pageProps }) {
     <>
       <DefaultSeo {...SEO} /> 
 
+      <div className={`grain fixed inset-0 z-[1000] pointer-events-none transition-opacity ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${router.asPath == '/info' ? 'delay-[100ms] opacity-0' : 'opacity-100'}`}></div>
+
       <div className={`${IBMPlexMono.variable} ${GrifinitoL.variable} font-mono`}>
-        <Header />
+        <Header dark={router.asPath == '/info' ? true : false} />
 
         <FancyLink nav active={ router.asPath.includes('/playground') ? true : false } destination="/playground" className="fixed z-[100] bottom-0 right-0 block bg-black text-white uppercase p-3 m-3 text-sm" label="Dev Playground" />
 

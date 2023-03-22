@@ -18,11 +18,7 @@ module.exports = {
       colors: {
         'black': '#171717',
         'white': '#FFF',
-        'example-color': {
-          light: '#ffb288',
-          DEFAULT: '#d18d67',
-          dark: '#ce8860',
-        },
+        'off-white': '#E3DCD7',
       },
       fontFamily: {
         display: ['var(--font-GrifinitoL)', ...fontFamily.sans],

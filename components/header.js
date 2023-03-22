@@ -3,14 +3,16 @@ import Container from '@/components/container'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import LogoIcon from "@/icons/logo.svg";
+import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 
-export default function Header() {
+export default function Header({ dark }) {
   const router = useRouter()
 
   return (
-    <header className="py-4 border-b border-black fixed top-0 left-0 right-0 backdrop-blur-[4px] z-[50] bg-white/20">
+    <header className={`py-4 border-b transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark ? 'border-off-white' : 'border-black' } fixed top-0 left-0 right-0 backdrop-blur-[4px] z-[50] bg-opacity-20`}>
       <Container>
-        <nav className="flex flex-wrap space-x-3 items-center uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none">
+        <nav className={`flex flex-wrap space-x-3 items-center uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none transition-colors ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark && 'text-off-white' }`}>
 
           <div className="ml-auto text-base block lg:hidden w-auto">
             <FancyLink destination="/" a11yText="Navigate to the menu" label="Menu" />
@@ -24,24 +26,14 @@ export default function Header() {
 
           <div className="flex flex-1 lg:flex-none lg:w-32">
             <Link href="/" className="w-24 lg:w-full mx-auto relative overflow-hidden group">
-              <Image
-                priority
-                src="/icons/logo.svg"
-                height={224}
-                width={908}
-                alt="Pocket Pieces Logo"
-                className="w-full lg:group-hover:translate-y-[-103%] will-change-transform transition-translate ease-in-out duration-[300ms]"
-              />
+              <div className="lg:group-hover:translate-y-[-103%] will-change-transform transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms]">
+                <LogoIcon className="w-full"/>
+              </div>
 
-              <div className="w-[58px] mx-auto absolute top-0 left-0 right-0 translate-y-[105%] lg:group-hover:translate-y-0 will-change-transform transition-translate ease-in-out duration-[300ms]">
-                <Image
-                  priority
-                  src="/icons/logomark-outlined.svg"
-                  height={366}
-                  width={657}
-                  alt="Pocket Pieces Logomark"
-                  className="w-full"
-                />
+              <div className="w-[58px] mx-auto absolute top-0 left-0 right-0">
+                <div className="translate-y-[105%] lg:group-hover:translate-y-0 will-change-transform transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms]">
+                  <LogoMarkOutlinedIcon className="w-full" />
+                </div>
               </div>
             </Link>
           </div>
