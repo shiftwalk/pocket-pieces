@@ -16,7 +16,7 @@ export default function Info() {
           animate="enter"
           exit="exit"
         >
-          <m.div variants={fade} className="bg-black text-[#E3DCD7] dark">
+          <m.div variants={fade} className="bg-black text-[#E3DCD7]">
             <main className="mb-12 md:mb-16 xl:mb-24 pt-14 lg:pt-16">
               <Container>
                 <m.div variants={fade}>

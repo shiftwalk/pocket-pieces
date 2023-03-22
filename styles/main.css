@@ -18,7 +18,7 @@ html {
   @apply scroll-smooth !important;
 }
 
-.dark {
+.bg-black {
   @apply selection:bg-off-white selection:text-black;
 }
 
@@ -37,4 +37,8 @@ html {
 
 .font-mono {
   @apply tracking-tight;
+}
+
+.overflow-y-scroll::-webkit-scrollbar {
+  @apply hidden;
 }
