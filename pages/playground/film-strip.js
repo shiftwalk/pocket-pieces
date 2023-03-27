@@ -2,13 +2,31 @@ import Layout from '@/components/layout'
 import Footer from '@/components/footer'
 import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
-import { LazyMotion, domAnimation, m } from 'framer-motion'
+import { LazyMotion, domAnimation, m, useScroll, useMotionValueEvent } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import CrosshairIcon from '@/icons/crosshair.svg'
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 import Image from 'next/image'
+import { useEffect, useRef } from 'react'
 
 export default function FilmStrip() {
+  const { scrollY } = useScroll()
+  const horiScroller = useRef(null)
+  const horiScrollerItem1 = useRef(null)
+  const horiScrollerItem2 = useRef(null)
+  const horiScrollerItem3 = useRef(null)
+  
+  useEffect(() => {
+    horiScroller.current.style.transform = `translateX(-20vw)`
+  });
+  
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    horiScroller.current.style.transform = `translateX(-${(20) + latest / 100}vw)`;
+    horiScrollerItem1.current.style.transform = `rotate(${(latest - 100) / 1000}deg), translateY(-20px)`;
+    horiScrollerItem2.current.style.transform = `rotate(${(latest - 50) / 1000}deg)`;
+    horiScrollerItem3.current.style.transform = `rotate(${latest / 1000}deg), translateY(20px)`;
+  })
+  
   return (
     <Layout>
       <NextSeo title="Film Strip Playground" />
@@ -45,13 +63,13 @@ export default function FilmStrip() {
                 </div>
 
                 <div className="w-full overflow-hidden">
-                  <div className="whitespace-nowrap py-8 lg:py-12 translate-x-[-33.3vw] lg:translate-x-[-25vw]">
-                    <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-2 blur-[2px] translate-y-[-20px] relative">
+                  <m.div className="whitespace-nowrap py-8 lg:py-12 will-change-transform" ref={horiScroller}>
+                    <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-2 blur-[2px] relative will-change-transform" ref={horiScrollerItem1}>
                       <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
                       <Image src="https://placedog.net/700/940" width={700} height={940} className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" priority />
                     </div>
 
-                    <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block relative group">
+                    <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block relative group will-change-transform" ref={horiScrollerItem2}>
                       <div className="inner-shadow absolute inset-0 w-full h-full z-[3]"></div>
                       <Image src="https://placedog.net/700/940" width={700} height={940}  className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" priority />
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity ease-in-out duration-[330ms] z-[2]">
@@ -67,11 +85,11 @@ export default function FilmStrip() {
                       </div>
                     </div>
 
-                    <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-1 blur-[2px] translate-y-[20px] relative">
+                    <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-1 blur-[2px] relative will-change-transform" ref={horiScrollerItem3}>
                       <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
                         <Image src="https://placedog.net/700/940" width={700} height={940} className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" priority />
                     </div>
-                  </div>
+                  </m.div>
                 </div>
                 
                 <div className="px-4 lg:px-6 pt-3 lg:pt-5 pb-3 lg:pb-6">
@@ -83,7 +101,9 @@ export default function FilmStrip() {
             </main>
 
             <m.div variants={fade}>
-              <Footer />
+              <div className="mt-[200vw]">
+                <Footer />
+              </div>
             </m.div>
           </m.div>
         </m.div>
