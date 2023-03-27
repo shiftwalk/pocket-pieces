@@ -37,10 +37,10 @@ export default function Buttons() {
                   <div className="flex flex-wrap w-full items-center px-[5vw]">
                     <div className="relative block">
                       <span className="block scale-y-[50%] scale-x-[120%] text-4xl leading-none opacity-10 blur-[2px]" role="presentation" aria-hidden="true">►</span>
-                      <span className="block scale-y-[50%] scale-x-[120%] text-4xl leading-none opacity-30 blur-[2px] absolute inset-0 translate-y-[3px] translate-x-[-3px]" role="presentation" aria-hidden="true">►</span>
+                      <span className="block scale-y-[50%] scale-x-[120%] text-4xl leading-none opacity-30 blur-[2px] absolute inset-0 translate-y-[3px] translate-x-[-3px]" role="presentation" aria-hidden="true" tabindex="-1">►</span>
                     </div>
 
-                    <span className="block opacity-30 font-bold mx-auto pl-[20vw] text-sm lg:text-lg blur-[1px]" role="presentation" aria-hidden="true">KODAK FILM 400</span>
+                    <span className="block opacity-30 font-bold mx-auto pl-[20vw] text-sm lg:text-lg blur-[1px]" role="presentation" aria-hidden="true" tabindex="-1">KODAK FILM 400</span>
                   </div>
                 </div>
 
@@ -76,7 +76,7 @@ export default function Buttons() {
                 
                 <div className="px-4 lg:px-6 pt-3 lg:pt-5 pb-3 lg:pb-6">
                   <div className="px-[10vw]">
-                    <span className="block opacity-30 font-bold blur-[1px] text-sm lg:text-lg" role="presentation" aria-hidden="true">FF 1 2010 TX</span>
+                    <span className="block opacity-30 font-bold blur-[1px] text-sm lg:text-lg" role="presentation" aria-hidden="true" tabindex="-1">FF 1 2010 TX</span>
                   </div>
                 </div>
               </m.div>
