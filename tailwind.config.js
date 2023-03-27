@@ -5,6 +5,10 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: [
+    'camera-focus-hover',
+    'camera-focus-hover--image'
+  ],
   theme: {
     screens: {
       sm: "640px",
