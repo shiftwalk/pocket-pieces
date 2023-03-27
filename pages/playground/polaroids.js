@@ -35,7 +35,7 @@ export default function Polaroids() {
                     </div>
 
                     <div className="w-full lg:w-1/2">
-                      <Image src="https://placedog.net/720/820" width={720} height={820} className="block w-full" alt="placeholder" />
+                      <Image src="https://placedog.net/720/820" width={720} height={820} className="block w-full" alt="placeholder" priority />
                     </div>
 
                     <m.div 
