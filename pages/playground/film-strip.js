@@ -63,7 +63,7 @@ export default function FilmStrip() {
                 </div>
 
                 <div className="w-full overflow-hidden">
-                  <m.div className="whitespace-nowrap py-8 lg:py-12 will-change-transform" ref={horiScroller}>
+                  <div className="whitespace-nowrap py-8 lg:py-12 will-change-transform" ref={horiScroller}>
                     <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-2 blur-[2px] relative will-change-transform" ref={horiScrollerItem1}>
                       <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
                       <Image src="https://placedog.net/700/940" width={700} height={940} className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" priority />
@@ -89,7 +89,7 @@ export default function FilmStrip() {
                       <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
                         <Image src="https://placedog.net/700/940" width={700} height={940} className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" priority />
                     </div>
-                  </m.div>
+                  </div>
                 </div>
                 
                 <div className="px-4 lg:px-6 pt-3 lg:pt-5 pb-3 lg:pb-6">
