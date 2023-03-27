@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }) {
     <>
       <DefaultSeo {...SEO} /> 
 
-      <div className={`grain fixed inset-0 z-[1000] pointer-events-none transition-opacity ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${router.asPath == '/info' ? 'delay-[100ms] opacity-0' : 'opacity-100'}`}></div>
+      <div className={`grain fixed inset-0 z-[1000] pointer-events-none transition-opacity ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] mix-blend-multiply`}></div>
 
       <div className={`${IBMPlexMono.variable} ${GrifinitoL.variable} font-mono`}>
         <Header dark={router.asPath == '/info' ? true : false} />

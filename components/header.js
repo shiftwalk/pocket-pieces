@@ -6,7 +6,6 @@ import { AnimatePresence, domAnimation, LazyMotion, m } from 'framer-motion';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import LogoIcon from "@/icons/logo.svg";
-
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 
 export default function Header({ dark }) {
