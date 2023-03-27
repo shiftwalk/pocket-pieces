@@ -38,50 +38,50 @@ export default function Polaroids() {
                     </div>
 
                     <div className="w-full lg:w-1/2">
-                      <img src="https://placedog.net/720/820" className="block w-full" />
+                      <img src="https://placedog.net/720/820" className="block w-full" alt="placeholder" />
                     </div>
 
-                    <m.button 
+                    <m.div 
                       initial={{ rotate: 12, scale: 1 }}
                       whileHover={{ rotate: 9.75, scale: 1.02, transition: { duration: 0.2 } }}
                       drag
                       dragMomentum={false}
                       whileDrag={{ scale: 0.95, rotate: 2 }} 
-                      className="absolute bottom-[-22vw] left-[-15vw] w-[35vw]"
+                      className="absolute bottom-[-22vw] left-[-15vw] w-[35vw] cursor-move"
                     >
                       <Polaroid
                         image="https://placedog.net/900/900"
                         hoverImage="https://placedog.net/920/920"
                       />
-                    </m.button>
+                    </m.div>
 
-                    <m.button 
+                    <m.div 
                       initial={{ rotate: 13, scale: 1 }}
                       whileHover={{ rotate: 10.75, scale: 1.02, transition: { duration: 0.2 } }}
                       drag
                       dragMomentum={false}
                       whileDrag={{ scale: 0.95, rotate: -2 }} 
-                      className="absolute bottom-[-15vw] lg:bottom-auto lg:top-[8vw] right-[-12vw] w-[33vw] lg:w-[20vw]"
+                      className="absolute bottom-[-15vw] lg:bottom-auto lg:top-[8vw] right-[-12vw] w-[33vw] lg:w-[20vw] cursor-move"
                     >
                       <Polaroid
                         image="https://placedog.net/800/800"
                         hoverImage="https://placedog.net/920/920"
                       />
-                    </m.button>
+                    </m.div>
 
-                    <m.button 
+                    <m.div 
                       initial={{ rotate: -13, scale: 1 }}
                       whileHover={{ rotate: -7.75, scale: 1.02, transition: { duration: 0.2 } }}
                       drag
                       dragMomentum={false}
                       whileDrag={{ scale: 0.95, rotate: -2 }} 
-                      className="absolute bottom-[-12vw] lg:bottom-auto lg:top-[22vw] right-[33vw] lg:right-[40vw] w-[25vw]"
+                      className="absolute bottom-[-12vw] lg:bottom-auto lg:top-[22vw] right-[33vw] lg:right-[40vw] w-[25vw] cursor-move"
                     >
                       <Polaroid
                         image="https://placedog.net/620/620"
                         hoverImage="https://placedog.net/920/920"
                       />
-                    </m.button>
+                    </m.div>
                   </div>
 
                   <div className="flex flex-wrap justify-center">
@@ -102,7 +102,7 @@ export default function Polaroids() {
                   </div>
                   
                   <div className="flex flex-wrap items-start p-10">
-                    <m.button
+                    <m.div
                       initial={{
                         rotate: 1.25,
                         scale: 1
@@ -118,7 +118,7 @@ export default function Polaroids() {
                         scale: 0.95,
                         rotate: 1.025,
                       }} 
-                      className="w-[65%] lg:w-[40%]"
+                      className="w-[65%] lg:w-[40%] cursor-move"
                     >
                       <Polaroid
                         metaText="Pocket Piece #01"
@@ -126,9 +126,9 @@ export default function Polaroids() {
                         image="https://placedog.net/720/720"
                         hoverImage="https://placedog.net/700/700"
                       />
-                    </m.button>
+                    </m.div>
 
-                    <m.button
+                    <m.div
                       initial={{
                         rotate: -1.25,
                         scale: 1
@@ -144,7 +144,7 @@ export default function Polaroids() {
                         scale: 0.95,
                         rotate: -1.025,
                       }} 
-                      className="w-[65%] lg:w-[40%] ml-auto mt-[7vw]"
+                      className="w-[65%] lg:w-[40%] ml-auto mt-[7vw] cursor-move"
                     >
                       <Polaroid
                         metaText="Pocket Piece #02"
@@ -152,9 +152,9 @@ export default function Polaroids() {
                         image="https://placedog.net/780/780"
                         hoverImage="https://placedog.net/800/800"
                         />
-                    </m.button>
+                    </m.div>
 
-                    <m.button 
+                    <m.div 
                       initial={{
                         rotate: -1.25,
                         scale: 1
@@ -170,7 +170,7 @@ export default function Polaroids() {
                         scale: 0.95,
                         rotate: -1.025,
                       }} 
-                      className="mx-auto w-[65%] lg:w-[40%] mt-[7vw]"
+                      className="mx-auto w-[65%] lg:w-[40%] mt-[7vw] cursor-move"
                     >
                       <Polaroid
                         metaText="Pocket Piece #03"
@@ -178,7 +178,7 @@ export default function Polaroids() {
                         image="https://placedog.net/900/900"
                         hoverImage="https://placedog.net/920/920"
                       />
-                    </m.button>
+                    </m.div>
                   </div>
                 </m.div>
               </Container>

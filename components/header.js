@@ -38,7 +38,7 @@ export default function Header({ dark }) {
             </div>
 
             <div className="flex flex-1 lg:flex-none lg:w-32">
-              <Link href="/" className="w-24 lg:w-full mx-auto relative overflow-hidden group">
+              <Link href="/" className="w-24 lg:w-full mx-auto relative overflow-hidden group" aria-label="Navigate to the home page">
                 <div className="lg:group-hover:translate-y-[-103%] will-change-transform transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms]">
                   <LogoIcon className="w-full"/>
                 </div>
@@ -56,11 +56,11 @@ export default function Header({ dark }) {
 
               <FancyLink active={router.asPath == '/info' ? true : false} nav className="flex-1 text-right justify-end" destination="/info" a11yText="Navigate to the info page" label="Info" />
 
-              <button className="flex-1 text-right justify-end" onClick={cartToggle} aria-label="Open Bag">Bag (0)</button>
+              <button className="flex-1 text-right justify-end" onClick={cartToggle} aria-label={`${cartIsOpen ? 'Close' : 'Open'} Bag`}>Bag (0)</button>
             </div>
 
             <div className="ml-auto text-base block lg:hidden w-auto">
-              <button onClick={cartToggle} aria-label="Open Bag">Bag (0)</button>
+              <button onClick={cartToggle} aria-label={`${cartIsOpen ? 'Close' : 'Open'} Bag`}>Bag (0)</button>
             </div>
           </nav>
         </Container>
@@ -77,6 +77,7 @@ export default function Header({ dark }) {
                 transition={{ duration: 0.66, ease: [0.83, 0, 0.17, 1] }}
                 onClick={() => setCartIsOpen(false)}
                 className="fixed w-full h-screen bg-black/60 z-[51] block"
+                aria-label="Close Bag"
               >  
               </m.button>
               <m.div
