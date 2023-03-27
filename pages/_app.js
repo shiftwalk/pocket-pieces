@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }) {
 
         <FancyLink nav active={ router.asPath.includes('/playground') ? true : false } destination="/playground" a11yText="Navigate to dev playground" className="fixed z-[100] bottom-0 right-0 block bg-black text-white uppercase p-3 m-3 text-sm" label="Dev Playground" />
 
-        <AnimatePresence mode="wait" initial={true}>
+        <AnimatePresence mode="wait" initial={false}>
           <Component {...pageProps} key={router.asPath} />
         </AnimatePresence>
       </div>
