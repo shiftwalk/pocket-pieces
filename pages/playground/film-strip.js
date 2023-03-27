@@ -10,18 +10,23 @@ import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 
 export default function FilmStrip() {
-  const { scrollY } = useScroll()
+  const horiScrollerWrapper = useRef(null)
   const horiScroller = useRef(null)
   const horiScrollerItem1 = useRef(null)
   const horiScrollerItem2 = useRef(null)
   const horiScrollerItem3 = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: horiScrollerWrapper,
+    offset: ["start end", "end start"]
+  })
   
   useEffect(() => {
-    horiScroller.current.style.transform = `translateX(-20vw)`
+    horiScroller.current.style.transform = `translateX(-${(20) + scrollYProgress * 20}vw)`
   });
   
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    horiScroller.current.style.transform = `translateX(-${(20) + latest / 100}vw)`;
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    horiScroller.current.style.transform = `translateX(-${(20) + latest * 20}vw)`;
     horiScrollerItem1.current.style.transform = `rotate(${(latest - 100) / 1000}deg), translateY(-20px)`;
     horiScrollerItem2.current.style.transform = `rotate(${(latest - 50) / 1000}deg)`;
     horiScrollerItem3.current.style.transform = `rotate(${latest / 1000}deg), translateY(20px)`;
@@ -62,7 +67,7 @@ export default function FilmStrip() {
                   </div>
                 </div>
 
-                <div className="w-full overflow-hidden">
+                <div className="w-full overflow-hidden" ref={horiScrollerWrapper}>
                   <div className="whitespace-nowrap py-8 lg:py-12 will-change-transform" ref={horiScroller}>
                     <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-2 blur-[2px] relative will-change-transform" ref={horiScrollerItem1}>
                       <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
