@@ -16,7 +16,7 @@ export default function About() {
           animate="enter"
           exit="exit"
         >
-          <m.div variants={fade} className="bg-[#E3DCD7]">
+          <m.div variants={fade} className="bg-off-white">
             <main className="mb-12 md:mb-16 xl:mb-24 pt-14 lg:pt-16">
               <Container>
                 <m.div variants={fade}>

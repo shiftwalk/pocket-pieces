@@ -1,10 +1,20 @@
 import CrosshairIcon from '@/icons/crosshair.svg'
+import { useState } from 'react';
 
 export default function Polaroid({ image, hoverImage, metaHeading, metaText }) {
+  const [shouldTransition, setShouldTransition] = useState(false);
+  function handleHover() {
+    setShouldTransition(true);
+  }
+
+  function handleHoverOut() {
+    setShouldTransition(false);
+  }
+
   return (
-    <div className="bg-white w-auto p-[9%] pb-0 relative z-[20] shadow-lg shadow-black/01 group">
-      <div className="block relative aspect-square">
-        <img src={image ? image : 'https://placedog.net/720/720'} className="block w-full relative z-[10]" />
+    <div className="bg-white w-auto p-[9%] pb-0 relative z-[20] shadow-lg shadow-black/01 group camera-focus-hover" onMouseEnter={handleHover} onMouseLeave={handleHoverOut}>
+      <div className="block relative aspect-square overflow-hidden">
+        <img src={image ? image : 'https://placedog.net/720/720'} className="block w-full relative z-[10] " />
 
         {hoverImage && (
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity ease-in-out duration-[330ms] z-[20]">
@@ -15,7 +25,7 @@ export default function Polaroid({ image, hoverImage, metaHeading, metaText }) {
             </div>
 
             <div className="absolute inset-0 object-cover object-center z-[10]">
-              <img src={hoverImage ? hoverImage : 'https://placedog.net/720/720'} className="block w-full pointer-events-none" />
+              <img src={hoverImage ? hoverImage : 'https://placedog.net/720/720'} className={`block w-full pointer-events-none ${ shouldTransition && 'camera-focus-hover--image' }`} />
             </div>
           </div>
         )}

@@ -18,6 +18,10 @@ html {
   @apply scroll-smooth !important;
 }
 
+.bg-off-white {
+  @apply selection:bg-black selection:text-off-white;
+}
+
 .bg-black {
   @apply selection:bg-off-white selection:text-black;
 }
@@ -45,4 +49,38 @@ html {
 
 .inner-shadow {
   box-shadow: inset 0 0 5vw rgba(0,0,0, 0.5);
+}
+
+.camera-focus-hover {
+  &:hover {
+    .camera-focus-hover--image {
+      animation-play-state: running;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+.camera-focus-hover--image {
+  animation: cameraFocus 0.8s ease-in-out 0s;
+  animation-fill-mode: unset;
+  animation-play-state: paused; 
+}
+
+@keyframes cameraFocus {
+  0%  {
+    filter: blur(18px);
+    transform: scale(1.075);
+  }
+  25% {
+    filter: blur(5px);
+    transform: scale(1.015);
+  }
+  50% {
+    filter: blur(12px);
+    transform: scale(1.04);
+  }
+  100% {
+    filter: blur(0px);
+    transform: scale(1);
+  }
 }

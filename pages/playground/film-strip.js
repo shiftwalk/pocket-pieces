@@ -19,7 +19,7 @@ export default function Buttons() {
           animate="enter"
           exit="exit"
         >
-          <m.div variants={fade} className="bg-[#E3DCD7]">
+          <m.div variants={fade} className="bg-off-white">
             <main className="mb-12 md:mb-16 xl:mb-24 pt-14 lg:pt-16">
               <Container>
                 <m.div variants={fade}>
@@ -45,13 +45,13 @@ export default function Buttons() {
                 </div>
 
                 <div className="w-full overflow-hidden">
-                  <div className="whitespace-nowrap py-8 lg:py-12 translate-x-[-25vw]">
-                    <div className="w-[35vw] h-[50vw] mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-2 blur-[2px] translate-y-[-20px] relative">
+                  <div className="whitespace-nowrap py-8 lg:py-12 translate-x-[-33.3vw] lg:translate-x-[-25vw]">
+                    <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-2 blur-[2px] translate-y-[-20px] relative">
                       <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
                       <img src="https://placedog.net/700/940" className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" />
                     </div>
 
-                    <div className="w-[35vw] h-[50vw] mx-[7.5vw] overflow-hidden rounded-3xl inline-block relative group">
+                    <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block relative group">
                       <div className="inner-shadow absolute inset-0 w-full h-full z-[3]"></div>
                       <img src="https://placedog.net/700/940" className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" />
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity ease-in-out duration-[330ms] z-[2]">
@@ -67,7 +67,7 @@ export default function Buttons() {
                       </div>
                     </div>
 
-                    <div className="w-[35vw] h-[50vw] mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-1 blur-[2px] translate-y-[20px] relative">
+                    <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-1 blur-[2px] translate-y-[20px] relative">
                       <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
                       <img src="https://placedog.net/700/940" className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" />
                     </div>
