@@ -40,7 +40,7 @@ export default function Buttons() {
                       <span className="block scale-y-[50%] scale-x-[120%] text-4xl leading-none opacity-30 blur-[2px] absolute inset-0 translate-y-[3px] translate-x-[-3px]" role="presentation" aria-hidden="true">►</span>
                     </div>
 
-                    <span className="block opacity-30 font-bold mx-auto pl-[20vw] text-sm lg:text-lg blur-[1px]" aria-hidden="true">KODAK FILM 400</span>
+                    <span className="block opacity-30 font-bold mx-auto pl-[20vw] text-sm lg:text-lg blur-[1px]" role="presentation" aria-hidden="true">KODAK FILM 400</span>
                   </div>
                 </div>
 

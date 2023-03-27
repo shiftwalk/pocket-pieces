@@ -38,16 +38,18 @@ export default function Header({ dark }) {
             </div>
 
             <div className="flex flex-1 lg:flex-none lg:w-32">
-              <Link href="/" className="w-24 lg:w-full mx-auto relative overflow-hidden group" aria-label="Navigate to the home page">
-                <div className="lg:group-hover:translate-y-[-103%] will-change-transform transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms]">
-                  <LogoIcon className="w-full"/>
-                </div>
-
-                <div className="w-[58px] mx-auto absolute top-0 left-0 right-0">
-                  <div className="translate-y-[105%] lg:group-hover:translate-y-0 will-change-transform transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms]">
-                    <LogoMarkOutlinedIcon className="w-full" />
+              <Link href="/" legacyBehavior>
+                <a className="w-24 lg:w-full mx-auto relative overflow-hidden group" aria-label="Navigate to the home page" aria-current={router.asPath == '/' ? true : false}>
+                  <div className="lg:group-hover:translate-y-[-103%] will-change-transform transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms]">
+                    <LogoIcon className="w-full"/>
                   </div>
-                </div>
+
+                  <div className="w-[58px] mx-auto absolute top-0 left-0 right-0">
+                    <div className="translate-y-[105%] lg:group-hover:translate-y-0 will-change-transform transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms]">
+                      <LogoMarkOutlinedIcon className="w-full" />
+                    </div>
+                  </div>
+                </a>
               </Link>
             </div>
 
