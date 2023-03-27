@@ -4,14 +4,14 @@ import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-import Button from '@/components/button'
 import CrosshairIcon from '@/icons/crosshair.svg'
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
+import Image from 'next/image'
 
-export default function Buttons() {
+export default function FilmStrip() {
   return (
     <Layout>
-      <NextSeo title="Buttons Playground" />
+      <NextSeo title="Film Strip Playground" />
 
       <LazyMotion features={domAnimation}>
         <m.div
@@ -37,10 +37,10 @@ export default function Buttons() {
                   <div className="flex flex-wrap w-full items-center px-[5vw]">
                     <div className="relative block">
                       <span className="block scale-y-[50%] scale-x-[120%] text-4xl leading-none opacity-10 blur-[2px]" role="presentation" aria-hidden="true">►</span>
-                      <span className="block scale-y-[50%] scale-x-[120%] text-4xl leading-none opacity-30 blur-[2px] absolute inset-0 translate-y-[3px] translate-x-[-3px]" role="presentation" aria-hidden="true" tabindex="-1">►</span>
+                      <span className="block scale-y-[50%] scale-x-[120%] text-4xl leading-none opacity-30 blur-[2px] absolute inset-0 translate-y-[3px] translate-x-[-3px] select-none" role="presentation" aria-hidden="true" tabIndex="-1">►</span>
                     </div>
 
-                    <span className="block opacity-30 font-bold mx-auto pl-[20vw] text-sm lg:text-lg blur-[1px]" role="presentation" aria-hidden="true" tabindex="-1">KODAK FILM 400</span>
+                    <span className="block opacity-30 font-bold mx-auto pl-[20vw] text-sm lg:text-lg blur-[1px] select-none" role="presentation" aria-hidden="true" tabIndex="-1">KODAK FILM 400</span>
                   </div>
                 </div>
 
@@ -48,12 +48,12 @@ export default function Buttons() {
                   <div className="whitespace-nowrap py-8 lg:py-12 translate-x-[-33.3vw] lg:translate-x-[-25vw]">
                     <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-2 blur-[2px] translate-y-[-20px] relative">
                       <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
-                      <img src="https://placedog.net/700/940" className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" />
+                      <Image src="https://placedog.net/700/940" width={700} height={940} className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" />
                     </div>
 
                     <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block relative group">
                       <div className="inner-shadow absolute inset-0 w-full h-full z-[3]"></div>
-                      <img src="https://placedog.net/700/940" className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" />
+                      <Image src="https://placedog.net/700/940" width={700} height={940}  className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" />
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity ease-in-out duration-[330ms] z-[2]">
                         <div className="absolute inset-y-[6%] inset-x-[7%] border-white border flex items-center justify-center z-[2]">
                           <div className="w-[20%] lg:w-[10%] text-white">
@@ -62,21 +62,21 @@ export default function Buttons() {
                         </div>
 
                         <div className="absolute inset-0 z-[1]">
-                          <img src="https://placedog.net/700/900" className="block w-full h-full pointer-events-none object-cover object-center" alt="placeholder" />
+                          <Image src="https://placedog.net/700/900" width={700} height={900}  className="block w-full h-full pointer-events-none object-cover object-center" alt="placeholder" />
                         </div>
                       </div>
                     </div>
 
                     <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-1 blur-[2px] translate-y-[20px] relative">
                       <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
-                      <img src="https://placedog.net/700/940" className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" />
+                        <Image src="https://placedog.net/700/940" width={700} height={940} className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" />
                     </div>
                   </div>
                 </div>
                 
                 <div className="px-4 lg:px-6 pt-3 lg:pt-5 pb-3 lg:pb-6">
                   <div className="px-[10vw]">
-                    <span className="block opacity-30 font-bold blur-[1px] text-sm lg:text-lg" role="presentation" aria-hidden="true" tabindex="-1">FF 1 2010 TX</span>
+                    <span className="block opacity-30 font-bold blur-[1px] text-sm lg:text-lg select-none" role="presentation" aria-hidden="true" tabIndex="-1">FF 1 2010 TX</span>
                   </div>
                 </div>
               </m.div>

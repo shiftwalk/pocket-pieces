@@ -4,13 +4,10 @@ import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domMax, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-import Link from 'next/link'
-import Polaroid from '@/components/polaroid'
-import { useRef } from 'react'
 import Image from 'next/image'
+import Polaroid from '@/components/polaroid'
 
 export default function Polaroids() {
-  const constraintsRef = useRef(null)
 
   return (
     <Layout>
@@ -26,7 +23,7 @@ export default function Polaroids() {
             <div className="fixed inset-0 pointer-events-none scale-[1.15]"></div>
             <main className="mb-12 md:mb-16 xl:mb-24 relative z-[20]">
               <Container>
-                <m.div variants={fade} ref={constraintsRef}>
+                <m.div variants={fade}>
 
                   <div className="flex flex-wrap mb-[20vw] lg:mb-[15vw] xl:mb-[12.5vw] relative">
                     <div className="w-full lg:w-1/2 relative z-[20] pointer-events-none">
@@ -38,7 +35,7 @@ export default function Polaroids() {
                     </div>
 
                     <div className="w-full lg:w-1/2">
-                      <img src="https://placedog.net/720/820" className="block w-full" alt="placeholder" />
+                      <Image src="https://placedog.net/720/820" width={720} height={820} className="block w-full" alt="placeholder" />
                     </div>
 
                     <m.div 

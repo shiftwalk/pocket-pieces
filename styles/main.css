@@ -61,22 +61,22 @@ html {
 }
 
 .camera-focus-hover--image {
-  animation: cameraFocus 0.8s ease-in-out 0s;
+  animation: cameraFocus 0.66s ease-in-out;
   animation-fill-mode: unset;
   animation-play-state: paused; 
 }
 
 @keyframes cameraFocus {
   0%  {
-    filter: blur(18px);
-    transform: scale(1.075);
-  }
-  25% {
-    filter: blur(5px);
+    filter: blur(8px);
     transform: scale(1.015);
   }
+  25% {
+    filter: blur(2px);
+    transform: scale(1.08);
+  }
   50% {
-    filter: blur(12px);
+    filter: blur(5px);
     transform: scale(1.04);
   }
   100% {

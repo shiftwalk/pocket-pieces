@@ -1,7 +1,7 @@
 import Container from '@/components/container'
 import LogoIcon from '@/icons/logo.svg'
 
-export default function Footer({ invert, noLogo }) {
+export default function Footer({ noLogo }) {
   return (
     <footer className="pb-4 mt-[50vw]">
       <Container>

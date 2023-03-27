@@ -4,7 +4,6 @@ import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-import Link from 'next/link'
 import FancyLink from '@/components/fancyLink'
 
 export default function Playground() {
