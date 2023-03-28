@@ -2,10 +2,25 @@ import Layout from '@/components/layout'
 import Footer from '@/components/footer'
 import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
-import { LazyMotion, domAnimation, m } from 'framer-motion'
+import { LazyMotion, domAnimation, m, useScroll, useMotionValueEvent } from 'framer-motion'
 import { NextSeo } from 'next-seo'
+import Polaroid from '@/components/polaroid'
+import { useEffect, useRef } from 'react'
 
 export default function Shop() {
+  const scrollWrapper = useRef(null)
+  const textRoller = useRef(null)
+
+  const { scrollYProgress } = useScroll()
+  
+  useEffect(() => {
+    textRoller.current.style.transform = `translateY(0)`
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    textRoller.current.style.transform = `translateY(-${latest * 93}%)`;
+  })
+
   return (
     <Layout>
       <NextSeo title="Shop" />
@@ -16,14 +31,44 @@ export default function Shop() {
           animate="enter"
           exit="exit"
         >
-          <main className="mb-12 md:mb-16 xl:mb-24 pt-14 lg:pt-16">
+          <main className="mb-12 md:mb-16 xl:mb-24 pt-28 lg:pt-32">
             <Container>
               <m.div variants={fade}>
-                <h1 className="text-[15vw] md:text-[12.5vw] lg:text-[10vw] mb-4 leading-none md:leading-none lg:leading-none">Shop</h1>
-                <div className="content max-w-3xl mb-4">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
-
-                  <p>Velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div className="fixed top-0 left-0 pt-[70px] lg:pt-[85px] px-4 lg:px-6">
+                  <span className="block uppercase text-sm mb-2">Reel / Gallery</span>
+                  <span className="text-[12vw] lg:text-[5vw] font-display leading-[0.65] lg:leading-[0.65] flex">
+                    <span className="block tabular-nums">
+                      <span className="block overflow-hidden relative">
+                        <span className="opacity-0">01</span>
+                        <span className="block absolute top-0 left-0" ref={textRoller}>
+                          {Array.from(Array(14), (e, i) => {
+                            return (
+                              <span key={i} className="block">{i+1 < 10 ? '0' : ''}{i + 1}</span>
+                            )
+                          })}
+                        </span>
+                      </span>
+                    </span>
+                    <span className="block">/14</span>
+                  </span>
+                </div>
+                <div className="w-5/12 mx-auto" ref={scrollWrapper}>
+                  {Array.from(Array(14), (e, i) => {
+                    return (
+                      <Polaroid
+                        key={i}
+                        className=" mb-[12vw]"
+                        metaText="Some Meta Info"
+                        metaHeading="Product Name"
+                        image="/images/easy-rider.jpg"
+                        imageWidth={1087}
+                        imageHeight={1087}
+                        hoverImage="/images/easy-rider.jpg"
+                        hoverImageWidth={1087}
+                        hoverImageHeight={1087}
+                      />
+                    )
+                  })}
                 </div>
               </m.div>
             </Container>

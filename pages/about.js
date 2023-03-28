@@ -29,7 +29,7 @@ export default function About() {
                   <div className="w-[60px] lg:w-[6vw] mx-auto mb-5">
                     <LogoMarkOutlinedIcon />
                   </div>
-                  <h1 className="text-[15vw] md:text-[11vw] lg:text-[9.5vw] mb-4 leading-[0.75] md:leading-[0.75] lg:leading-[0.75] text-center px-[10vw]">Prestige, one-of-a-kind pieces to sustainably style out your wardrobe.</h1>
+                  <h1 className="text-[18vw] md:text-[11vw] lg:text-[9.5vw] mb-4 leading-[0.75] md:leading-[0.75] lg:leading-[0.75] text-center px-[3vw] lg:px-[10vw]">Prestige, one-of-a-kind pieces to sustainably style out your wardrobe.</h1>
                 </div>
               </Container>
 
@@ -39,7 +39,7 @@ export default function About() {
                 <div className="">
                   <Container className="relative z-[10]">
                     <MetaText text="About P.P" />
-                    <h2 className="text-[13vw] md:text-[9vw] lg:text-[7.7vw] mb-4 leading-[0.75] md:leading-[0.75] lg:leading-[0.75] text-left max-w-[90%] lg:max-w-[85%]">Think scene-stealing, prestige, designer vintage pieces sourced from around the globe, in a range of sizes, for all genders, so keep an eye for a piece to pocket.</h2>
+                    <h2 className="text-[15vw] md:text-[9vw] lg:text-[7.7vw] mb-4 leading-[0.75] md:leading-[0.75] lg:leading-[0.75] text-left max-w-[90%] lg:max-w-[85%]">Think scene-stealing, prestige, designer vintage pieces sourced from around the globe, in a range of sizes, for all genders, so keep an eye for a piece to pocket.</h2>
                   </Container>
 
                   <div className="flex flex-wrap mt-[12vw] lg:mt-[7.5vw]">
@@ -115,7 +115,7 @@ export default function About() {
               <Container className="mt-[12vw] lg:mt-[10.25vw]">
                 <div className="flex flex-wrap lg:justify-center">
                   <MetaText text="Kind Words" className="w-full lg:text-center order-1 lg:order-1" />
-                  <blockquote className="font-display text-[13vw] md:text-[9vw] lg:text-[7.7vw] mb-[6vw] lg:mb-[4vw] leading-[0.75] md:leading-[0.75] lg:leading-[0.75] max-w-[90%] lg:max-w-[75%] lg:text-center w-full order-3 lg:order-2">“Love it! The perfect party blazer. Pocket Pieces is my go-to when I need something a little unusual.”</blockquote>
+                  <blockquote className="font-display text-[15vw] md:text-[9vw] lg:text-[7.7vw] mb-[6vw] lg:mb-[4vw] leading-[0.8] md:leading-[0.8] lg:leading-[0.8] max-w-[90%] lg:max-w-[80%] lg:text-center w-full order-3 lg:order-2">“Love it! The perfect party blazer. Pocket Pieces is my go-to when I need something a little unusual.”</blockquote>
 
                   <div className="bg-black w-full max-w-[70%] lg:max-w-[75%] p-[3vw] mb-[6vw] lg:mb-[2vw] order-2 lg:order-3">
                     <div className="flex space-x-[3vw]">

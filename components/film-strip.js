@@ -22,7 +22,7 @@ export default function FilmStrip() {
   })
   
   useEffect(() => {
-    horiScroller.current.style.transform = `translateX(-${(25) + scrollYProgress * 10}vw)`
+    horiScroller.current.style.transform = `translateX(-${(16) + scrollYProgress * 10}vw)`
     horiScrollerMeta.current.style.transform = `translateX(-${(-2) + scrollYProgress * 10}vw)`
     horiScrollerMeta2.current.style.transform = `translateX(-${(-2) + scrollYProgress * 10}vw)`
 
@@ -32,7 +32,7 @@ export default function FilmStrip() {
   });
   
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    horiScroller.current.style.transform = `translateX(-${(25) + latest * 10}vw)`;
+    horiScroller.current.style.transform = `translateX(-${(16) + latest * 10}vw)`;
     horiScrollerMeta.current.style.transform = `translateX(-${ (-2) + latest * 10}vw)`;
     horiScrollerMeta2.current.style.transform = `translateX(-${ (-2) + latest * 10}vw)`;
 
@@ -50,8 +50,8 @@ export default function FilmStrip() {
       <div className="px-4 lg:px-6 pt-3 lg:pt-5 pb-3 lg:pb-6">
         <div className="flex flex-wrap w-full items-center px-[5vw] will-change-transform" ref={horiScrollerMeta}>
           <div className="relative block">
-            <span className="block scale-y-[50%] scale-x-[120%] text-4xl leading-none opacity-10 blur-[2px]" role="presentation" aria-hidden="true">►</span>
-            <span className="block scale-y-[50%] scale-x-[120%] text-4xl leading-none opacity-30 blur-[2px] absolute inset-0 translate-y-[3px] translate-x-[-3px] select-none" role="presentation" aria-hidden="true" tabIndex="-1">►</span>
+            <span className="block scale-y-[50%] scale-x-[150%] text-4xl leading-none opacity-10 blur-[2px]" role="presentation" aria-hidden="true">►</span>
+            <span className="block scale-y-[50%] scale-x-[150%] text-4xl leading-none opacity-30 blur-[2px] absolute inset-0 translate-y-[3px] translate-x-[-3px] select-none" role="presentation" aria-hidden="true" tabIndex="-1">►</span>
           </div>
 
           <span className="block opacity-30 font-bold mx-auto pl-[20vw] text-sm lg:text-lg blur-[1px] select-none" role="presentation" aria-hidden="true" tabIndex="-1">KODAK FILM 400</span>
@@ -59,13 +59,13 @@ export default function FilmStrip() {
       </div>
 
       <div className="w-full overflow-hidden" ref={horiScrollerWrapper}>
-        <div className="whitespace-nowrap py-8 lg:py-12 will-change-transform" ref={horiScroller}>
-          <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-2 blur-[2px] relative will-change-transform" ref={horiScrollerItem1}>
+        <div className="whitespace-nowrap py-2 will-change-transform" ref={horiScroller}>
+          <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[45vw] mx-[5.5vw] lg:mx-[5.5vw] overflow-hidden rounded-3xl inline-block rotate-2 blur-[2px] relative will-change-transform" ref={horiScrollerItem1}>
             <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
             <Image src="/images/strip-01.jpg" width={1106} height={1480} className="block absolute inset-0 w-full h-full object-cover object-center z-[-1] opacity-90 will-change-transform" alt="placeholder" ref={horiScrollerImage1} />
           </div>
 
-          <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block relative group will-change-transform" ref={horiScrollerItem2}>
+          <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[45vw] mx-[5.5vw] lg:mx-[5.5vw] overflow-hidden rounded-3xl inline-block relative group will-change-transform" ref={horiScrollerItem2}>
             <div className="inner-shadow absolute inset-0 w-full h-full z-[3]"></div>
             
             <div className="absolute inset-0 transition-opacity ease-in-out duration-[330ms] z-[2]">
@@ -81,7 +81,7 @@ export default function FilmStrip() {
             </div>
           </div>
 
-          <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[50vw] mx-[5.5vw] lg:mx-[7.5vw] overflow-hidden rounded-3xl inline-block rotate-1 blur-[2px] relative will-change-transform" ref={horiScrollerItem3}>
+          <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[45vw] mx-[5.5vw] lg:mx-[5.5vw] overflow-hidden rounded-3xl inline-block rotate-1 blur-[2px] relative will-change-transform" ref={horiScrollerItem3}>
             <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
             <Image src="/images/strip-03.jpg" width={1106} height={1480} className="block absolute inset-0 w-full h-full object-cover object-center z-[-1] opacity-90 will-change-transform" alt="placeholder" ref={horiScrollerImage3} />
           </div>
