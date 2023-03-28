@@ -97,9 +97,9 @@ export default function About() {
                       <MetaText text="Bio" />
                       
                       <div className="content lg:text-xl w-11/12 lg:w-10/12">
-                        <p>Hello you! I'm Phoebe, founder of Pocket Pieces, here to fill you in on what to expect with this online store specialising in prestige vintage pieces. I love the hunt - the finds that catch you off guard, the unpredictability, the chance encounters. I've shopped vintage for years - for myself and for friends - between film production jobs, which is what I do by day.</p>
+                        <p>Hello you! I&apos;m Phoebe, founder of Pocket Pieces, here to fill you in on what to expect with this online store specialising in prestige vintage pieces. I love the hunt - the finds that catch you off guard, the unpredictability, the chance encounters. I&apos;ve shopped vintage for years - for myself and for friends - between film production jobs, which is what I do by day.</p>
                         
-                        <p>You're here because you love a good vintage find, especially if it's pre-loved, designer, or something extra special. That's what Pocket Pieces is dedicated to - in the name of polka dots, leopard print and sequins. Bookmark us for one-of-a-kind to-die-for items too good to not pocket. Welcome to our slice of screen-worthy on the gram. I've personally sourced all the pieces you'll see here, not just in London, but all over the globe, wherever my work (and play!) takes me.</p>
+                        <p>You&apos;re here because you love a good vintage find, especially if it&apos;s pre-loved, designer, or something extra special. That&apos;s what Pocket Pieces is dedicated to - in the name of polka dots, leopard print and sequins. Bookmark us for one-of-a-kind to-die-for items too good to not pocket. Welcome to our slice of screen-worthy on the gram. I&apos;ve personally sourced all the pieces you&apos;ll see here, not just in London, but all over the globe, wherever my work (and play!) takes me.</p>
                         
                         <span className="block w-4/12 max-w-[200px] mb-6">
                           <SignatureIcon />
