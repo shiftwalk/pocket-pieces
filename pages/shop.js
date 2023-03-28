@@ -35,8 +35,8 @@ export default function Shop() {
           animate="enter"
           exit="exit"
         >
-          <main className="">
-            <m.div variants={fade} className="bg-gray-100 relative  pb-12 md:pb-16 xl:pb-24">
+          <main className="pb-12 md:pb-16 xl:pb-24">
+            <m.div variants={fade}>
               <div className="fixed top-0 left-0 pt-[70px] lg:pt-[85px] px-4 lg:px-6 z-[100]">
                 <span className="block uppercase text-sm mb-2">Reel / Gallery</span>
                 <span className="text-[12vw] lg:text-[5vw] font-display leading-[0.65] lg:leading-[0.65] flex">
@@ -80,7 +80,7 @@ export default function Shop() {
 
               <div className={`fixed bottom-0 w-full z-[51] hidden lg:flex justify-center transition-transform ease-in-out duration-[450ms] ${filtersHidden ? 'translate-y-[100%]' : '' }`}>
                 <div className="mx-auto w-auto relative inline-block pt-16 lg:pt-16 p-3 lg:p-6">
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-100 via-gray-100 to-transparent z-[20]"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-100 via-neutral-100 to-transparent z-[20]"></div>
                   <span className="text-[12vw] lg:text-[6vw] font-display leading-[0.65] lg:leading-[0.65] flex justify-center relative z-[21]">
                     <span className="block line-through">All,</span>
                     <span className="block">Showstoppers,</span>
@@ -94,7 +94,7 @@ export default function Shop() {
           </main>
 
           <m.div variants={fade}>
-            <Footer className="bg-gray-100" />
+            <Footer />
           </m.div>
         </m.div>
       </LazyMotion>

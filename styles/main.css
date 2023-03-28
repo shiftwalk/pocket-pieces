@@ -11,7 +11,7 @@
 
 /* Simple defaults */
 body {
-  @apply font-sans antialiased text-off-black bg-white selection:bg-off-black selection:text-white;
+  @apply font-sans antialiased text-off-black selection:bg-off-black selection:text-white bg-neutral-100;
 }
 
 html {
