@@ -36,7 +36,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
       
       <div className={`${metaText || metaHeading ? 'py-[10%]' : 'py-[15%]'} text-center`}>
         {metaText && (
-          <span className="block uppercase text-xs lg:text-sm">"{metaText ? metaText : 'Pocket Piece'}"</span>
+          <span className="block uppercase text-xs lg:text-sm">&quot;{metaText ? metaText : 'Pocket Piece'}&quot;</span>
         )}
         { metaHeading && (
           <span className="block uppercase text-sm md:text-base lg:text-lg">{metaHeading ? metaHeading : 'Heading'}</span>
