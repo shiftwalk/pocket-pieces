@@ -58,11 +58,10 @@ export default function Shop() {
               <div className="w-9/12 md:w-7/12 lg:w-5/12 mx-auto relative z-[50]" ref={scrollWrapper}>
                 {Array.from(Array(16), (e, i) => {
                   return (
-                    <div className="min-h-screen flex items-center py-28 lg:py-32">
+                    <div className="min-h-screen flex items-center py-28 lg:py-32" key={i}>
                       <Polaroid
                         noShadow
                         product
-                        key={i}
                         className="lg:mb-16 max-w-[55vh] mx-auto"
                         metaText="Some Meta Info"
                         metaHeading="Vintage Burberry Black Heels"
