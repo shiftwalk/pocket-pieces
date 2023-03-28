@@ -28,6 +28,7 @@ module.exports = {
       fontFamily: {
         display: ['var(--font-GrifinitoL)', ...fontFamily.sans],
         mono: ['var(--font-IBMPlexMono)', ...fontFamily.mono],
+        credits: ['var(--font-FTCalhern)', ...fontFamily.sans]
       },
     },
   },

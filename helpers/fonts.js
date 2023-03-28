@@ -28,3 +28,15 @@ export const GrifinitoL = localFont({
   subsets: ['latin'],
   variable: '--font-GrifinitoL',
 })
+
+export const FTCalhern = localFont({
+  src: [
+    {
+      path: '../public/fonts/FTCalhernTrial-CondensedLight.woff2',
+      weight: '400',
+      style: 'normal',
+    }
+  ],
+  subsets: ['latin'],
+  variable: '--font-FTCalhern',
+})
