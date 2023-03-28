@@ -3,7 +3,7 @@ import LogoIcon from '@/icons/logo.svg'
 
 export default function Footer({ noLogo }) {
   return (
-    <footer className="pb-4 mt-[50vw]">
+    <footer className="pb-4 mt-[33vw] lg:mt-[13vw]">
       <Container>
         {!noLogo && (
           <LogoIcon className={`w-full mb-5 text-current`} />

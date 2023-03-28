@@ -84,3 +84,13 @@ html {
     transform: scale(1);
   }
 }
+
+.animate-blink {
+  animation: opacityDouble 0.8s steps(1) infinite;
+}
+
+@keyframes opacityDouble {
+  0% {@apply opacity-100;}
+  50% {@apply opacity-0;}
+  100% {@apply opacity-100;}
+}

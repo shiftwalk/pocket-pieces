@@ -29,9 +29,6 @@ export default function Playground() {
                     <li>
                       <FancyLink nav destination="/playground/buttons" className="block border-b border-black py-3" label="Buttons" />
                     </li>
-                    <li>
-                      <FancyLink nav destination="/playground/film-strip" className="block border-b border-black py-3" label="Film Strip" />
-                    </li>
                   </ul>
                 </div>
               </m.div>

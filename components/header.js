@@ -23,7 +23,7 @@ export default function Header({ dark }) {
 
   return (
     <>
-      <header className={`py-4 border-b transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark ? 'border-off-white' : 'border-black' } fixed top-0 left-0 right-0 backdrop-blur-[4px] z-[50] bg-opacity-20`}>
+      <header className={`py-4 border-b transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark ? 'border-off-white' : 'border-black' } fixed top-0 left-0 right-0 backdrop-blur-[4px] z-[50] bg-white/10`}>
         <Container>
           <nav className={`flex flex-wrap space-x-3 items-center uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none transition-colors ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark && 'text-off-white' }`}>
 

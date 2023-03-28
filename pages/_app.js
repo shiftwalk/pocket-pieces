@@ -15,20 +15,20 @@ export default function App({ Component, pageProps }) {
     <>
       <DefaultSeo {...SEO} /> 
       <FPSStats bottom={10} left={10} top="auto" />
-      <div className={`grain fixed inset-0 z-[1000] pointer-events-none mix-blend-darken`}></div>
+      {/* <div className={`grain fixed inset-0 z-[1000] pointer-events-none mix-blend-darken`}></div> */}
 
-      {/* <svg viewBox='0 0 350 350' xmlns='http://www.w3.org/2000/svg' className="fixed inset-0 z-[1000] pointer-events-none invert opacity-[0.1]">
+      <svg xmlns='http://www.w3.org/2000/svg' className="fixed inset-0 z-[1000] pointer-events-none invert w-full h-screen object-cover opacity-[0.15]">
         <filter id='noiseFilter'>
           <feTurbulence 
             type='fractalNoise' 
-            baseFrequency='2.59' 
-            numOctaves='3' 
+            baseFrequency='2.52' 
+            numOctaves='2' 
             stitchTiles='stitch'
           />
         </filter>
         
         <rect width='100%' height='100%' filter='url(#noiseFilter)' />
-      </svg> */}
+      </svg>
 
       <div className={`${IBMPlexMono.variable} ${GrifinitoL.variable} font-mono`}>
         <Header dark={router.asPath == '/info' ? true : false} />
