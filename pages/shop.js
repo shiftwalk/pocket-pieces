@@ -5,11 +5,12 @@ import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m, useScroll, useMotionValueEvent } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import Polaroid from '@/components/polaroid'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Shop() {
   const scrollWrapper = useRef(null)
   const textRoller = useRef(null)
+  const [filtersHidden, setFiltersHidden] = useState(false)
 
   const { scrollYProgress } = useScroll()
   
@@ -19,6 +20,9 @@ export default function Shop() {
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     textRoller.current.style.transform = `translateY(-${latest * 93}%)`;
+    console.log(latest)
+
+    setFiltersHidden(latest > 0.98)
   })
 
   return (
@@ -41,7 +45,7 @@ export default function Shop() {
                       <span className="block overflow-hidden relative">
                         <span className="opacity-0">01</span>
                         <span className="block absolute top-0 left-0" ref={textRoller}>
-                          {Array.from(Array(14), (e, i) => {
+                          {Array.from(Array(16), (e, i) => {
                             return (
                               <span key={i} className="block">{i+1 < 10 ? '0' : ''}{i + 1}</span>
                             )
@@ -49,11 +53,11 @@ export default function Shop() {
                         </span>
                       </span>
                     </span>
-                    <span className="block">/14</span>
+                    <span className="block">/16</span>
                   </span>
                 </div>
-                <div className="w-5/12 mx-auto" ref={scrollWrapper}>
-                  {Array.from(Array(14), (e, i) => {
+                <div className="w-5/12 mx-auto relateive" ref={scrollWrapper}>
+                  {Array.from(Array(16), (e, i) => {
                     return (
                       <Polaroid
                         key={i}
@@ -69,6 +73,19 @@ export default function Shop() {
                       />
                     )
                   })}
+                </div>
+
+                <div className={`fixed bottom-0 w-full z-[20] hidden lg:flex justify-center transition-transform ease-in-out duration-[450ms] ${filtersHidden ? 'translate-y-[100%]' : '' }`}>
+                  <div className="mx-auto w-auto relative inline-block pt-16 lg:pt-16 p-3 lg:p-6">
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white to-transparent z-[20]"></div>
+                    <span className="text-[12vw] lg:text-[6vw] font-display leading-[0.8] lg:leading-[0.8] flex justify-center relative z-[21]">
+                      <span className="block line-through">All,</span>
+                      <span className="block">Showstoppers,</span>
+                      <span className="block line-through">Accessories,</span>
+                      <span className="block line-through">Clothing,</span>
+                      <span className="block line-through">Last Look</span>
+                    </span>
+                  </div>
                 </div>
               </m.div>
             </Container>
