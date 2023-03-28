@@ -23,7 +23,7 @@ export default function Header({ dark }) {
 
   return (
     <>
-      <header className={`py-4 border-b transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark ? 'border-off-white' : 'border-black' } fixed top-0 left-0 right-0 backdrop-blur-[4px] z-[50]`}>
+      <header className={`py-4 border-b transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark ? 'border-off-white' : 'border-black' } fixed top-0 left-0 right-0 backdrop-blur-[4px] z-[500]`}>
         <Container>
           <nav className={`flex flex-wrap space-x-3 items-center uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none transition-colors ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark && 'text-off-white' }`}>
 
@@ -78,7 +78,7 @@ export default function Header({ dark }) {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.66, ease: [0.83, 0, 0.17, 1] }}
                 onClick={() => setCartIsOpen(false)}
-                className="fixed w-full h-screen bg-black/60 z-[51] block"
+                className="fixed w-full h-screen bg-black/60 z-[400] block"
                 aria-label="Close Bag"
               >  
               </m.button>
@@ -87,7 +87,7 @@ export default function Header({ dark }) {
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ duration: 0.66, ease: [0.83, 0, 0.17, 1] }}
-                className={`fixed w-[90%] md:max-w-[45vw] lg:w-[550px] h-screen top-0 right-0 bottom-0 z-[1000] flex flex-col p-4 lg:p-6 will-change-transform ${dark ? 'bg-off-white text-off-black' : 'bg-black text-off-white' }`}
+                className={`fixed w-[90%] md:max-w-[45vw] lg:w-[550px] h-screen top-0 right-0 bottom-0 z-[500] flex flex-col p-4 lg:p-6 will-change-transform ${dark ? 'bg-off-white text-off-black' : 'bg-black text-off-white' }`}
               >
                 <div className="">
                   <span className="h2 block text-[22vw] md:text-[15vw] lg:text-[10vw] uppercase leading-[0.8] md:leading-[0.8] lg:leading-[0.8] text-center py-[3vh]">Bag</span>

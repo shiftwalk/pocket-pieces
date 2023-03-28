@@ -1,9 +1,9 @@
 import Container from '@/components/container'
 import LogoIcon from '@/icons/logo.svg'
 
-export default function Footer({ noLogo }) {
+export default function Footer({ noLogo, className }) {
   return (
-    <footer className="pb-4 mt-[33vw] lg:mt-[13vw]">
+    <footer className={`pb-4 pt-[33vw] lg:pt-[13vw] ${className}`}>
       <Container>
         {!noLogo && (
           <LogoIcon className={`w-full mb-5 text-current`} />

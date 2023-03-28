@@ -2,7 +2,7 @@ import CrosshairIcon from '@/icons/crosshair.svg'
 import Image from 'next/image';
 import { useState } from 'react';
 
-export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText }) {
+export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, noShadow, product, price }) {
   const [shouldTransition, setShouldTransition] = useState(false);
   function handleHover() {
     setShouldTransition(true);
@@ -13,7 +13,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
   }
 
   return (
-    <div className={`bg-white w-auto p-[9%] pb-0 relative z-[20] shadow-lg shadow-black/01 group camera-focus-hover ${className}`} onMouseEnter={handleHover} onMouseLeave={handleHoverOut}>
+    <div className={`bg-white w-auto p-[9%] pb-0 relative group camera-focus-hover ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`} onMouseEnter={handleHover} onMouseLeave={handleHoverOut}>
       <div className="block relative aspect-square overflow-hidden">
         <Image src={image ? image : 'https://placedog.net/720/720'} width={imageWidth ? imageWidth : 720} height={imageHeight ? imageHeight : 720} className="block w-full relative z-[10]" alt="placeholder" />
 
@@ -39,7 +39,10 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
           <span className="block uppercase text-xs lg:text-sm">&quot;{metaText ? metaText : 'Pocket Piece'}&quot;</span>
         )}
         { metaHeading && (
-          <span className="block uppercase text-sm md:text-base lg:text-lg">{metaHeading ? metaHeading : 'Heading'}</span>
+          <span className={`block ${product ? 'mt-1 lg:mt-0 font-display text-[10vw] md:text-[6.5vw] lg:text-[4.25vw] 2xl:text-[70px] leading-[0.85] md:leading-[0.85] lg:leading-[0.85] 2xl:leading-[0.85]' : 'uppercase text-sm md:text-base lg:text-lg' }`}>{metaHeading ? metaHeading : 'Heading'}</span>
+        )}
+        {price && (
+          <span className="block uppercase text-base lg:text-lg mt-[6px] lg:mt-[10px]">${price ? price : 'Sold Out'}</span>
         )}
       </div>
     </div>

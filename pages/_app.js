@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }) {
       {/* <FPSStats bottom={10} left={10} top="auto" /> */}
       {/* <div className={`grain fixed inset-0 z-[1000] pointer-events-none mix-blend-darken`}></div> */}
 
-      <svg xmlns='http://www.w3.org/2000/svg' className="fixed inset-0 z-[500] pointer-events-none invert w-full h-screen object-cover opacity-[0.225]">
+      <svg xmlns='http://www.w3.org/2000/svg' className="fixed inset-0 z-[1000] pointer-events-none invert w-full h-screen object-cover opacity-[0.14]">
         <filter id='noiseFilter'>
           <feTurbulence 
             type='fractalNoise' 

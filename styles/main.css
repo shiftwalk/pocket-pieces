@@ -26,6 +26,7 @@ html {
   @apply selection:bg-off-white selection:text-black;
 }
 
+
 .grain:after {
   @apply pointer-events-none;
   content:" ";
