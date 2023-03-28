@@ -15,9 +15,9 @@ export default function App({ Component, pageProps }) {
     <>
       <DefaultSeo {...SEO} /> 
       <FPSStats bottom={10} left={10} top="auto" />
-      {/* <div className={`grain fixed inset-0 z-[1000] pointer-events-none mix-blend-darken`}></div> */}
+      <div className={`grain fixed inset-0 z-[1000] pointer-events-none mix-blend-darken`}></div>
 
-      <svg viewBox='0 0 350 350' xmlns='http://www.w3.org/2000/svg' className="fixed inset-0 z-[1000] pointer-events-none invert opacity-[0.1]">
+      {/* <svg viewBox='0 0 350 350' xmlns='http://www.w3.org/2000/svg' className="fixed inset-0 z-[1000] pointer-events-none invert opacity-[0.1]">
         <filter id='noiseFilter'>
           <feTurbulence 
             type='fractalNoise' 
@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }) {
         </filter>
         
         <rect width='100%' height='100%' filter='url(#noiseFilter)' />
-      </svg>
+      </svg> */}
 
       <div className={`${IBMPlexMono.variable} ${GrifinitoL.variable} font-mono`}>
         <Header dark={router.asPath == '/info' ? true : false} />
