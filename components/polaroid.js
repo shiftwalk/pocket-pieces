@@ -6,7 +6,7 @@ import StarIcon from '@/icons/star.svg';
 export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, noShadow, product, price }) {
 
   const imageVariants = {
-    initial: { scale: 1, filter: "blur(10px)" },
+    initial: { scale: 1, filter: "blur(0px)" },
     hover: {
       scale: [1, 1.03, 1.08],
       filter: "blur(10px)",
@@ -44,7 +44,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
     <m.div initial="initial" whileHover="hover" className={`bg-white w-auto p-[9%] pb-0 relative group ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`}>
       <div className="block relative aspect-square overflow-hidden">
         <m.div
-          className="w-full h-full"
+          className="w-full h-full scale-1 blur-0"
           variants={imageVariants}
         >
           <Image src={image ? image : 'https://placedog.net/720/720'} width={imageWidth ? imageWidth : 720} height={imageHeight ? imageHeight : 720} className={`block w-full relative z-[10]`} alt="placeholder" />
@@ -66,7 +66,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
               </m.div>
             </m.div>
 
-            <m.div variants={backImageVariants} className="absolute inset-0 object-cover object-center z-[10] opacity-0">
+            <m.div variants={backImageVariants} className="absolute inset-0 object-cover object-center z-[10] opacity-0 scale-1 blur-0">
               <Image src={hoverImage ? hoverImage : 'https://placedog.net/720/720'} width={hoverImageWidth ? hoverImageWidth : 720} height={hoverImageHeight ? hoverImageHeight : 720} className={`block w-full pointer-events-none`} alt="placeholder" />
             </m.div>
           </div>
