@@ -28,7 +28,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
     initial: { opacity: 0 },
     hover: {
       opacity: [0, 1, 0, 1, 0, 1],
-      transition: { duration: 0.93, ease: "linear" }
+      transition: { duration: 0.8, ease: "linear" }
     }
   }
 
