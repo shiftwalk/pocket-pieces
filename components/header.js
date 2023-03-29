@@ -23,9 +23,9 @@ export default function Header({ dark }) {
 
   return (
     <>
-      <header className={`py-4 border-b transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark ? 'border-neutral-100' : 'border-black' } fixed top-0 left-0 right-0 backdrop-blur-[4px] z-[500]`}>
+      <header className={`py-4 border-b transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark ? 'border-zinc-100' : 'border-black' } fixed top-0 left-0 right-0 backdrop-blur-[4px] z-[500]`}>
         <Container>
-          <nav className={`flex flex-wrap space-x-3 items-center uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none transition-colors ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark && 'text-neutral-100' }`}>
+          <nav className={`flex flex-wrap space-x-3 items-center uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none transition-colors ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark && 'text-zinc-100' }`}>
 
             <div className="ml-auto text-base block lg:hidden w-auto">
               <FancyLink destination="/" a11yText="Navigate to the menu" label="Menu" />
@@ -54,9 +54,9 @@ export default function Header({ dark }) {
             </div>
 
             <div className="ml-auto space-x-3 items-center w-full hidden lg:flex lg:flex-1 justify-end">
-              <FancyLink active={router.asPath == '/contact' ? true : false} nav className="flex-1 text-right justify-end" destination="/contact" a11yText="Navigate to the contact page" label="Contact" />
-
               <FancyLink active={router.asPath == '/info' ? true : false} nav className="flex-1 text-right justify-end" destination="/info" a11yText="Navigate to the info page" label="Info" />
+              
+              <FancyLink active={router.asPath == '/contact' ? true : false} nav className="flex-1 text-right justify-end" destination="/contact" a11yText="Navigate to the contact page" label="Contact" />
 
               <button className="flex-1 text-right justify-end" onClick={cartToggle} aria-label={`${cartIsOpen ? 'Close' : 'Open'} Bag`}>Bag (0)</button>
             </div>
@@ -87,7 +87,7 @@ export default function Header({ dark }) {
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ duration: 0.66, ease: [0.83, 0, 0.17, 1] }}
-                className={`fixed w-[90%] md:max-w-[45vw] lg:w-[550px] h-screen top-0 right-0 bottom-0 z-[500] flex flex-col p-4 lg:p-6 will-change-transform ${dark ? 'bg-off-white text-off-black' : 'bg-black text-neutral-100' }`}
+                className={`fixed w-[90%] md:max-w-[45vw] lg:w-[550px] h-screen top-0 right-0 bottom-0 z-[500] flex flex-col p-4 lg:p-6 will-change-transform ${dark ? 'bg-off-white text-off-black' : 'bg-black text-zinc-100' }`}
               >
                 <div className="">
                   <span className="h2 block text-[22vw] md:text-[15vw] lg:text-[10vw] uppercase leading-[0.8] md:leading-[0.8] lg:leading-[0.8] text-center py-[3vh]">Bag</span>

@@ -11,7 +11,7 @@
 
 /* Simple defaults */
 body {
-  @apply font-sans antialiased text-off-black selection:bg-off-black selection:text-white bg-neutral-100;
+  @apply font-sans antialiased text-off-black selection:bg-off-black selection:text-white bg-zinc-100;
 }
 
 html {
@@ -58,27 +58,53 @@ html {
       animation-play-state: running;
       animation-fill-mode: forwards;
     }
+
+    .camera-focus-hover--image--back {
+      animation-play-state: running;
+      animation-fill-mode: forwards;
+      animation-delay: 0.2s;
+    }
   }
 }
 
 .camera-focus-hover--image {
-  animation: cameraFocus 0.66s ease-in-out;
+  animation: cameraFocus 0.2s ease-in-out;
   animation-fill-mode: unset;
   animation-play-state: paused; 
 }
 
+.camera-focus-hover--image--back {
+  animation: cameraFocusBack 0.5s ease-in-out;
+  animation-fill-mode: unset;
+  animation-play-state: paused; 
+
+  filter: blur(5px);
+  transform: scale(1.04);
+}
+
 @keyframes cameraFocus {
   0%  {
-    filter: blur(8px);
-    transform: scale(1.015);
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  100% {
+    filter: blur(5px);
+    transform: scale(1.04);
+  }
+}
+
+@keyframes cameraFocusBack {
+  0%  {
+    filter: blur(5px);
+    transform: scale(1.04);
   }
   25% {
     filter: blur(2px);
     transform: scale(1.08);
   }
   50% {
-    filter: blur(5px);
-    transform: scale(1.04);
+    filter: blur(7px);
+    transform: scale(1.06);
   }
   100% {
     filter: blur(0px);
@@ -87,12 +113,14 @@ html {
 }
 
 .animate-blink {
-  animation: opacityDouble 0.8s steps(1) infinite;
+  animation: opacityDouble 0.75s steps(1) forwards;
 }
 
 @keyframes opacityDouble {
   0% {@apply opacity-100;}
-  50% {@apply opacity-0;}
+  25% {@apply opacity-0;}
+  50% {@apply opacity-100;}
+  75% {@apply opacity-0;}
   100% {@apply opacity-100;}
 }
 

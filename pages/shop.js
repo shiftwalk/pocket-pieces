@@ -66,10 +66,10 @@ export default function Shop() {
                         metaText="Some Meta Info"
                         metaHeading="Vintage Burberry Black Heels"
                         price={500}
-                        image="/images/easy-rider.jpg"
+                        image="/images/testimonial-01.jpg"
                         imageWidth={1087}
                         imageHeight={1087}
-                        hoverImage="/images/easy-rider.jpg"
+                        hoverImage="/images/testimonial-02.jpg"
                         hoverImageWidth={1087}
                         hoverImageHeight={1087}
                       />
@@ -80,7 +80,7 @@ export default function Shop() {
 
               <div className={`fixed bottom-0 w-full z-[51] hidden lg:flex justify-center transition-transform ease-in-out duration-[450ms] ${filtersHidden ? 'translate-y-[100%]' : '' }`}>
                 <div className="mx-auto w-auto relative inline-block pt-16 lg:pt-16 p-3 lg:p-6">
-                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-100 via-neutral-100 to-transparent z-[20]"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-100 via-zinc-100 to-transparent z-[20]"></div>
                   <span className="text-[12vw] lg:text-[6vw] font-display leading-[0.65] lg:leading-[0.65] flex justify-center relative z-[21]">
                     <span className="block line-through">All,</span>
                     <span className="block">Showstoppers,</span>

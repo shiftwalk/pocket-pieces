@@ -29,16 +29,16 @@ export default function Home() {
                       <div className="w-full mt-auto">
                         <div className="mx-auto max-w-[700px]">
                           <div className="w-9/12 lg:w-10/12 mx-auto">
-                            <LogoIcon className={`w-full mb-8 text-neutral-100`} />
+                            <LogoIcon className={`w-full mb-8 text-zinc-100`} />
                           </div>
 
                           <div className="w-10/12 lg:w-full mx-auto">
-                            <p className="text-base lg:text-xl xl:text-2xl text-neutral-100 text-center">Prestige, one-of-a-kind pieces to sustainably style out your wardrobe.</p>
+                            <p className="text-base lg:text-xl xl:text-2xl text-zinc-100 text-center">Prestige, one-of-a-kind pieces to sustainably style out your wardrobe.</p>
                           </div>
                         </div>
                       </div>
 
-                      <div className="mt-auto text-neutral-100/90 w-full text-center uppercase leading-none lg:leading-none font-credits tracking-normal">
+                      <div className="mt-auto text-zinc-100/90 w-full text-center uppercase leading-none lg:leading-none font-credits tracking-normal">
                         <div>
                           <span className="inline-block px-[2px] text-[22px] md:text-[30px] lg:text-[36px] 2xl:text-[42px]">Phoebe Pocket</span>
                           <span className="inline-block px-[2px] text-[16px] md:text-[20px] lg:text-[22px] 2xl:text-[28px]">Presents A</span>
