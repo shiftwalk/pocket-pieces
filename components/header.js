@@ -6,6 +6,7 @@ import { AnimatePresence, domAnimation, LazyMotion, m } from 'framer-motion';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import LogoIcon from "@/icons/logo.svg";
+import BagIcon from "@/icons/bag.svg";
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 
 export default function Header({ dark }) {
@@ -23,12 +24,15 @@ export default function Header({ dark }) {
 
   return (
     <>
-      <header className={`py-4 border-b transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark ? 'border-[#C1C1C1]' : 'border-black' } fixed top-0 left-0 right-0 backdrop-blur-[4px] z-[500]`}>
+      <header className={`fixed top-0 left-0 right-0 backdrop-blur-[4px] z-[500]`}>
         <Container>
-          <nav className={`flex flex-wrap space-x-3 items-center uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none transition-colors ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] ${dark && 'text-[#C1C1C1]' }`}>
+          <nav className={`flex flex-wrap space-x-3 items-center uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] py-4 ${dark && 'text-[#C1C1C1]' } border-b ${dark ? 'border-[#C1C1C1]' : 'border-black' }`}>
 
             <div className="ml-auto text-base block lg:hidden w-auto">
-              <FancyLink destination="/" a11yText="Navigate to the menu" label="Menu" />
+              <Link href="/menu" aria-label="Navigate to the menu" className="block w-6">
+                <span className="block w-full h-[2px] mb-[3px] bg-current"></span>
+                <span className="block w-full h-[2px] bg-current"></span>
+              </Link>
             </div>
 
             <div className="mr-auto space-x-3 items-center w-full hidden lg:flex lg:flex-1">
@@ -61,8 +65,13 @@ export default function Header({ dark }) {
               <button className="flex-1 text-right justify-end" onClick={cartToggle} aria-label={`${cartIsOpen ? 'Close' : 'Open'} Bag`}>Bag (0)</button>
             </div>
 
-            <div className="ml-auto text-base block lg:hidden w-auto">
-              <button onClick={cartToggle} aria-label={`${cartIsOpen ? 'Close' : 'Open'} Bag`}>Bag (0)</button>
+            <div className="ml-auto block lg:hidden w-auto leading-none text-[11px]">
+              <button onClick={cartToggle} aria-label={`${cartIsOpen ? 'Close' : 'Open'} Bag`} className="block relative w-5">
+                <span className={`absolute inset-0 flex items-center justify-center text-center ${!dark ? 'text-[#C1C1C1]' : 'text-off-black' }`}>
+                  <span className="block translate-y-[4px]">0</span>
+                </span>
+                <BagIcon className="w-full block" />
+              </button>
             </div>
           </nav>
         </Container>
