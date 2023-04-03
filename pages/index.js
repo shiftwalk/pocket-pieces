@@ -38,7 +38,7 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <div className="mt-auto text-zinc-100/90 w-full text-center uppercase leading-none lg:leading-none font-credits tracking-normal">
+                      <div className="mt-auto text-zinc-100/80 w-full text-center uppercase leading-none lg:leading-none font-credits tracking-normal">
                         <div>
                           <span className="inline-block px-[2px] text-[22px] md:text-[30px] lg:text-[36px] 2xl:text-[42px]">Phoebe Pocket</span>
                           <span className="inline-block px-[2px] text-[16px] md:text-[20px] lg:text-[22px] 2xl:text-[28px]">Presents A</span>

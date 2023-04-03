@@ -10,16 +10,20 @@ export default function Footer({ noLogo, className }) {
         )}
 
         <div className="flex flex-wrap">
-          <div className="mb-2">
-            <span className="block uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none">&copy; All rights reserved, Pocket Pieces Ltd ({new Date().getFullYear()})</span>
+          <div className="mb-2 lg:mb-0">
+            <span className="block uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none">&copy; All rights reserved, Pocket Pieces Ltd ({new Date().getFullYear()})</span>
           </div>
 
-          <div className="mb-2 block w-full lg:w-auto lg:ml-auto">
-            <span className="block uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none">Instagram, Email</span>
+          <div className="mb-2 lg:mb-0 block w-full lg:w-auto lg:ml-auto">
+            <span className="block uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none">Instagram, Email, Contact</span>
           </div>
           
-          <div className="block w-full lg:w-auto lg:ml-auto">
-            <span className="block uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none">Privacy Policy</span>
+          <div className="mb-2 lg:mb-0 w-full lg:w-auto lg:ml-auto block">
+            <span className="block uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none">Privacy Policy</span>
+          </div>
+
+          <div className="w-full lg:w-auto lg:ml-auto block">
+          <span className="block uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none">Site By ShiftWalk</span>
           </div>
         </div>
       </Container>

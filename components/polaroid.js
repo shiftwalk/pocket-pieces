@@ -15,12 +15,12 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
   }
 
   const backImageVariants = {
-    initial: { scale: 1, filter: "blur(10px)", opacity: 0 },
+    initial: { scale: 1.08, filter: "blur(10px)", opacity: 0 },
     hover: {
       opacity: 1,
-      scale: [1.08, 1],
+      scale: [1.08, 1.08, 1.06, 1],
       filter: "blur(0px)",
-      transition: { duration: 0.55, delay: 0.35, ease: [0.83, 0, 0.17, 1] }
+      transition: { duration: 0.7, delay: 0.35, ease: [0.83, 0, 0.17, 1] }
     }
   }
 
