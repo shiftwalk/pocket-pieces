@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { m } from 'framer-motion';
 import StarIcon from '@/icons/star.svg';
 
-export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, noShadow, product, price }) {
+export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, noShadow, product, price, thin }) {
 
   const imageVariants = {
     initial: { scale: 1, filter: "blur(0px)" },
@@ -41,7 +41,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
   }
 
   return (
-    <m.div initial="initial" whileHover="hover" className={`bg-white w-auto p-[9%] pb-0 relative group ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`}>
+    <m.div initial="initial" whileHover="hover" className={`bg-white w-auto ${thin ? 'p-[6.5%]' : 'p-[9%]' } pb-0 relative group ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`}>
       <div className="block relative aspect-square overflow-hidden">
         <m.div
           className="w-full h-full scale-1 blur-0"
@@ -73,7 +73,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
         )}
       </div>
       
-      <div className={`${metaText || metaHeading ? 'py-[10%]' : 'py-[15%]'} text-center`}>
+      <div className={`${metaText || metaHeading ? 'py-[7.5%]' : 'py-[15%]'} text-center`}>
         {metaText && (
           <span className="block uppercase text-xs lg:text-sm">&quot;{metaText ? metaText : 'Pocket Piece'}&quot;</span>
         )}

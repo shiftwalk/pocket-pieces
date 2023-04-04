@@ -21,7 +21,7 @@ export default function Home() {
           <main className="mb-12 md:mb-16 xl:mb-24 pt-14 lg:pt-16">
             <Container>
               <m.article variants={fade}>
-                <div className="absolute inset-0 h-screen">
+                <div className="absolute inset-0 h-[100dvh]">
                   <div className="cover-image">
                     <Image src="/images/home-hero.jpg" fill className="w-full h-full" alt="Placeholder" />
                     <div className="absolute inset-0 z-10 bg-black/20"></div>

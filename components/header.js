@@ -87,7 +87,7 @@ export default function Header({ dark }) {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.66, ease: [0.83, 0, 0.17, 1] }}
                 onClick={() => setCartIsOpen(false)}
-                className="fixed w-full h-screen bg-black/60 z-[400] block"
+                className="fixed w-full h-[100dvh] bg-black/60 z-[400] block"
                 aria-label="Close Bag"
               >  
               </m.button>
@@ -96,7 +96,7 @@ export default function Header({ dark }) {
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ duration: 0.66, ease: [0.83, 0, 0.17, 1] }}
-                className={`fixed w-[90%] md:max-w-[45vw] lg:w-[550px] h-screen top-0 right-0 bottom-0 z-[500] flex flex-col p-4 lg:p-6 will-change-transform ${dark ? 'bg-off-white text-off-black' : 'bg-black text-[#C1C1C1]' }`}
+                className={`fixed w-[90%] md:max-w-[45vw] lg:w-[550px] h-[100dvh] top-0 right-0 bottom-0 z-[500] flex flex-col p-4 lg:p-6 will-change-transform ${dark ? 'bg-off-white text-off-black' : 'bg-black text-[#C1C1C1]' }`}
               >
                 <div className="">
                   <span className="h2 block text-[22vw] md:text-[15vw] lg:text-[10vw] uppercase leading-[0.8] md:leading-[0.8] lg:leading-[0.8] text-center py-[3vh]">Bag</span>

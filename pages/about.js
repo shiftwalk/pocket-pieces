@@ -14,7 +14,7 @@ import Polaroid from '@/components/polaroid'
 export default function About() {
   return (
     <Layout>
-      <NextSeo title="Film Strip Playground" />
+      <NextSeo title="About" />
 
       <LazyMotion features={domMax}>
         <m.div
