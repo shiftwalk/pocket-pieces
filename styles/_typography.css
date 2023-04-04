@@ -1,7 +1,11 @@
 /* Content Stylings */
 .content {
   & > p {
-    @apply mb-6 lg:mb-8 last-of-type:mb-0 lg:last-of-type:mb-0;
+    @apply mb-6 lg:mb-8 font-light;
+  }
+
+  strong {
+    @apply font-semibold !important;
   }
 
   & > p > a {

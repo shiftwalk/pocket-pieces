@@ -78,7 +78,7 @@ export default function Shop(initialData) {
 
               <div className="w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50]" ref={scrollWrapper}>
                 {products.map((e, i) => {
-                  return (
+                  return e.node.availableForSale && (
                     <div className="flex items-center pb-16 md:pb-20 lg:pb-32" key={i}>
                       <Link href={`shop/${e.node.handle}`}>
                         <Polaroid
@@ -90,11 +90,11 @@ export default function Shop(initialData) {
                           metaHeading={e.node.title}
                           price={e.node.variants.edges[0].node.price.amount}
                           image={e.node.images.edges[0].node.originalSrc}
-                          imageWidth={1087}
-                          imageHeight={1087}
+                          imageWidth={e.node.images.edges[0].node.width}
+                          imageHeight={e.node.images.edges[0].node.height}
                           hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : false}
-                          hoverImageWidth={1087}
-                          hoverImageHeight={1087}
+                          hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : false}
+                          hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : false}
                         />
                       </Link>
                     </div>

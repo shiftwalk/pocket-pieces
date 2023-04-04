@@ -33,6 +33,7 @@ export async function getAllProductsInCollection() {
         edges {
           node {
             id
+            availableForSale
             handle
             title
             description
@@ -107,7 +108,15 @@ export async function getProduct(handle) {
         id
         title
         handle
+        availableForSale
         description
+        descriptionHtml
+        metaTitle: metafield(
+          key:"meta_title",
+          namespace:"custom"
+        ) {
+          value
+        }
         images(first: 20) {
           edges {
             node {

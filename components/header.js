@@ -54,7 +54,7 @@ export default function Header({ dark }) {
             </div>
 
             <div className="mr-auto space-x-3 items-center w-full hidden lg:flex lg:flex-1">
-              <FancyLink active={router.asPath == '/shop' ? true : false} nav className="flex-1" destination="/shop" a11yText="Navigate to the home page" label="RE:Shop" />
+              <FancyLink active={router.asPath.includes('/shop') ? true : false} nav className="flex-1" destination="/shop" a11yText="Navigate to the home page" label="RE:Shop" />
               <FancyLink active={router.asPath == '/about' ? true : false} nav className="flex-1" destination="/about" a11yText="Navigate to the about page" label="About" />
               <FancyLink active={router.asPath == '/credits' ? true : false} nav className="flex-1" destination="/credits" a11yText="Navigate to the credits page" label="Credits" />
             </div>
