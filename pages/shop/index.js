@@ -80,12 +80,12 @@ export default function Shop(initialData) {
                 {products.map((e, i) => {
                   return e.node.availableForSale && (
                     <div className="flex items-center pb-16 md:pb-20 lg:pb-32" key={i}>
-                      <Link href={`shop/${e.node.handle}`}>
+                      <Link href={`shop/${e.node.handle}`} className="max-w-[55vh] mx-auto block">
                         <Polaroid
                           noShadow
                           thin
                           product
-                          className="max-w-[55vh] mx-auto"
+                          className="w-full"
                           metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                           metaHeading={e.node.title}
                           price={e.node.variants.edges[0].node.price.amount}

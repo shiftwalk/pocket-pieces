@@ -69,11 +69,11 @@ export default function ShopSlug(initialData) {
                 <div className="flex flex-wrap h-full lg:min-h-[calc(100dvh-150px)]">
                   <div className="w-full lg:w-7/12 lg:pr-12 order-2 lg:order-1 flex flex-wrap h-full lg:min-h-[calc(100dvh-150px)]">
                     <div className="mb-12 w-full">
-                      <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[12vw] 2xl:text-[200px] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-4">{productData.title}</h1>
+                      <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-4">{productData.title}</h1>
                       <span className="block text-2xl font-light">&pound;{productData.variants.edges[0].node.price.amount}</span>
                     </div>
                     
-                    <div className="mb-4 w-full mt-auto">
+                    <div className="w-full mt-auto">
                       <div className="content max-w-3xl mb-10" dangerouslySetInnerHTML={{ __html: productData.descriptionHtml }}></div>
 
                       {productData.availableForSale ? (
