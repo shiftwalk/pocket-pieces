@@ -81,7 +81,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
           <span className={`block ${product ? 'mt-1 lg:mt-0 font-display text-[10vw] md:text-[6.5vw] lg:text-[4.25vw] 2xl:text-[70px] leading-[0.85] md:leading-[0.85] lg:leading-[0.85] 2xl:leading-[0.85]' : 'uppercase text-sm md:text-base lg:text-lg' }`}>{metaHeading ? metaHeading : 'Heading'}</span>
         )}
         {price && (
-          <span className="block uppercase text-base lg:text-lg mt-[6px] lg:mt-[10px]">${price ? price : 'Sold Out'}</span>
+          <span className="block uppercase text-base lg:text-lg mt-[6px] lg:mt-[10px]">&pound;{price ? price : 'Sold Out'}</span>
         )}
       </div>
     </m.div>

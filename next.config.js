@@ -5,7 +5,10 @@ module.exports = {
       {
         protocol: 'https',
         hostname: 'placedog.net',
-      },
+      }, {
+        protocol: 'https',
+        hostname: 'cdn.shopify.com',
+      }
     ],
   },
   webpack(config) {
