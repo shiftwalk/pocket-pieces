@@ -48,6 +48,10 @@ html {
   @apply hidden;
 }
 
+.overflow-x-scroll::-webkit-scrollbar {
+  @apply hidden;
+}
+
 .inner-shadow {
   box-shadow: inset 0 0 5vw rgba(0,0,0, 0.5);
 }

@@ -80,7 +80,7 @@ export default function Shop(initialData) {
                 {products.map((e, i) => {
                   return e.node.availableForSale && (
                     <div className="flex items-center pb-16 md:pb-20 lg:pb-32" key={i}>
-                      <Link href={`shop/${e.node.handle}`} className="max-w-[55vh] mx-auto block">
+                      <Link href={`shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
                         <Polaroid
                           noShadow
                           thin
@@ -92,9 +92,9 @@ export default function Shop(initialData) {
                           image={e.node.images.edges[0].node.originalSrc}
                           imageWidth={e.node.images.edges[0].node.width}
                           imageHeight={e.node.images.edges[0].node.height}
-                          hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : false}
-                          hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : false}
-                          hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : false}
+                          hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0].node.originalSrc}
+                          hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0].node.width}
+                          hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0].node.height}
                         />
                       </Link>
                     </div>
