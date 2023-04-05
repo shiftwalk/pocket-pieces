@@ -51,7 +51,7 @@ export default function Shop(initialData) {
           animate="enter"
           exit="exit"
         >
-          <main className="pb-12 md:pb-16 xl:pb-24">
+          <main className="pb-[55vw] md:pb-[20vw] xl:pb-[20vw]">
             <m.div variants={fade}>
               <div className="fixed top-0 left-0 pt-[70px] lg:pt-[85px] px-4 lg:px-6 z-[100]">
                 <span className="block uppercase text-xs md:text-sm leading-none md:leading-none mb-2">Reel / Gallery</span>
@@ -78,10 +78,10 @@ export default function Shop(initialData) {
                 </div>
               </div>
               
-              <h1 className="text-[22vw] md:text-[36vw] lg:text-[30vw] leading-[0.65] md:leading-[0.65] lg:leading-[0.65] 2xl:leading-[0.65] 2xl:text-[35vw]  text-center mb-10 md:mb-12 lg:mb-28 fixed inset-0 flex items-center justify-center">
+              <h1 className="text-[40vw] md:text-[38vw] lg:text-[36vw] leading-[0.65] md:leading-[0.65] lg:leading-[0.65] 2xl:leading-[0.65] 2xl:text-[42vw] text-center mb-10 md:mb-12 lg:mb-28 fixed inset-0 flex items-center justify-center opacity-[0.1]">
               <span className="block">The Pieces</span></h1>
 
-              <div className="w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50] pt-[50dvh]" ref={scrollWrapper}>
+              <div className="w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50] pt-[45dvh]" ref={scrollWrapper}>
                 {products.map((e, i) => {
                   return e.node.availableForSale && (
                     <div className="flex items-center pb-16 md:pb-20 lg:pb-32" key={i}>
@@ -123,7 +123,7 @@ export default function Shop(initialData) {
           </main>
 
           <m.div variants={fade}>
-            <Footer />
+            <Footer noLogo />
           </m.div>
         </m.div>
       </LazyMotion>
