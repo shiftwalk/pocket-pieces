@@ -78,9 +78,10 @@ export default function Shop(initialData) {
                 </div>
               </div>
               
-              <h1 className="text-[22vw] md:text-[23vw] lg:text-[24vw] leading-[0.65] pt-[120px] md:pt-[150px] lg:pt-[87px] 2xl:text-[360px] text-center mb-10 md:mb-12 lg:mb-28">The Pieces</h1>
+              <h1 className="text-[22vw] md:text-[36vw] lg:text-[30vw] leading-[0.65] md:leading-[0.65] lg:leading-[0.65] 2xl:leading-[0.65] 2xl:text-[35vw]  text-center mb-10 md:mb-12 lg:mb-28 fixed inset-0 flex items-center justify-center">
+              <span className="block">The Pieces</span></h1>
 
-              <div className="w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50]" ref={scrollWrapper}>
+              <div className="w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50] pt-[50dvh]" ref={scrollWrapper}>
                 {products.map((e, i) => {
                   return e.node.availableForSale && (
                     <div className="flex items-center pb-16 md:pb-20 lg:pb-32" key={i}>
