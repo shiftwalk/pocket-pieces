@@ -2,17 +2,19 @@ import Layout from '@/components/layout'
 import Footer from '@/components/footer'
 import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
-import { getProductSlugs, getProduct } from '@/helpers/shopify'
+import { getProductSlugs, getProduct, getAllProductsInCollection } from '@/helpers/shopify'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-import { useState } from 'react'
-import {PortableText} from '@portabletext/react'
+import { useContext, useState } from 'react'
 import SanityPageService from '@/helpers/sanity-page-service'
 import { useAddToCartContext, useCartContext } from '@/context/store'
-import Image from 'next/image'
+import { CartOpenContext } from '@/context/cart'
+import EyesIcon from '@/icons/eyes.svg'
 import Polaroid from '@/components/polaroid'
 import MetaText from '@/components/meta-text'
 import Link from 'next/link'
+import Button from '@/components/button'
+import StarIcon from '@/icons/star.svg'
 
 const query = `{
   "musicVideos": *[_type == "musicVideos"] | order(date desc) {
@@ -23,7 +25,8 @@ const query = `{
 const pageService = new SanityPageService(query)
 
 export default function ShopSlug(initialData) {
-  const { data: { productData } } = pageService.getPreviewHook(initialData)()
+  const { data: { productData, products } } = pageService.getPreviewHook(initialData)()
+  const [cartIsOpenContext, setCartIsOpenContext] = useContext(CartOpenContext);
   const [variantPrice, setVariantPrice] = useState(productData.variants.edges[0].node.price.amount)
   const [quantity, setQuantity] = useState(1)
   const [variantId, setVariantId] = useState(productData.variants.edges[0].node.id)
@@ -33,6 +36,7 @@ export default function ShopSlug(initialData) {
 
   async function handleAddToCart() {
     const varId = variant.node.id
+    
     // update store context
     if (quantity !== '') {
       addToCart({
@@ -47,6 +51,19 @@ export default function ShopSlug(initialData) {
     }
   }
 
+  const addToBag = () => {
+    productData.availableForSale ? handleAddToCart() : null
+    setTimeout(() => {
+      cartIsOpenContext ? setCartIsOpenContext(false) : setCartIsOpenContext(true)
+    }, 400);
+  }
+
+  let moneyUkLocale = Intl.NumberFormat('en-UK', {
+    style: "currency",
+    currency: "GBP",
+    useGrouping: true,
+  });
+
   return (
     <Layout>
       <NextSeo title={productData.title} />
@@ -57,29 +74,43 @@ export default function ShopSlug(initialData) {
           animate="enter"
           exit="exit"
         >
-          <main className="mb-12 md:mb-16 xl:mb-24 pt-[70px] lg:pt-[85px]">
+          <main className="pt-[70px] lg:pt-[85px]">
             {/* {JSON.stringify(productData)} */}
             <Container>
               <m.div variants={fade}>
                 <div className="w-full mb-3 lg:mb-4 flex text-xs lg:text-sm uppercase relative z-10">
-                  <Link href="/shop" className="block">Back to shop</Link>
-                  <span className="ml-auto hidden lg:block">Sizing Guide &bull; Hire This Piece &bull; Ask A Question</span>
+                  <Link href="/shop" className="block underline">Back to shop</Link>
+                  <span className="ml-auto hidden underline lg:flex">
+                    <StarIcon className="w-6 mr-1" />
+                    Got a question about this piece?
+                  </span>
                 </div>
 
                 <div className="flex flex-wrap h-full lg:min-h-[calc(100dvh-150px)]">
                   <div className="w-full lg:w-7/12 lg:pr-12 order-2 lg:order-1 flex flex-wrap h-full lg:min-h-[calc(100dvh-150px)]">
                     <div className="mb-12 w-full">
                       <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-4">{productData.title}</h1>
-                      <span className="block text-2xl font-light">&pound;{productData.variants.edges[0].node.price.amount}</span>
+                      <span className="block text-2xl font-light">{moneyUkLocale.format(productData.variants.edges[0].node.price.amount)}</span>
                     </div>
                     
                     <div className="w-full mt-auto">
-                      <div className="content max-w-3xl mb-10" dangerouslySetInnerHTML={{ __html: productData.descriptionHtml }}></div>
+                      <div className="content max-w-3xl mb-5" dangerouslySetInnerHTML={{ __html: productData.descriptionHtml }}></div>
+
+                      <span className="block underline mb-10">The Pocket Pieces Sizing &amp; Condition Guide</span>
 
                       {productData.availableForSale ? (
-                        <button onClick={productData.availableForSale ? handleAddToCart : null} className={`uppercase rounded-[50%] px-5 lg:px-8 py-6 lg:py-8 text-center lg:text-lg lg:leading-none bg-black text-off-white ${ isLoading ? 'cursor-disabled' : ''}`}>
-                          { isLoading ? 'Added to bag' : 'Buy Piece'}
-                        </button>
+                        <div className="flex space-x-3">
+                          <button onClick={addToBag} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-black text-off-white ${ isLoading ? 'cursor-disabled' : ''}`}>
+                            <span className="block relative">
+                              <span className={`absolute inset-0 text-center mx-auto flex items-center justify-center transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-100' : 'opacity-0'}`}><StarIcon className={`w-[50px] ${isLoading && 'animate-blink'}`} /></span>
+                              <span className={`transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-0' : 'opacity-100'}`}>Buy Piece</span>
+                            </span>
+                          </button>
+                          
+                          <a href="mailto:hello@pocketpieces.com" className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none text-off-black border border-off-black hover:bg-off-black hover:text-off-white`}>
+                            Hire Piece
+                          </a>
+                        </div>
                       ) : (
                         <span className="block line-through">Sold Out</span>
                       )}
@@ -92,6 +123,8 @@ export default function ShopSlug(initialData) {
                       thin
                       product
                       metaText={productData.metaTitle ? productData.metaTitle.value : null}
+                      bigMeta
+                      number={232}
                       image={productData.images.edges[0].node.originalSrc}
                       imageWidth={1087}
                       imageHeight={1087}
@@ -99,19 +132,115 @@ export default function ShopSlug(initialData) {
                       hoverImageWidth={1087}
                       hoverImageHeight={1087}
                     />
-                    <span className="block lg:hidden text-xs uppercase pt-5">Sizing Guide &bull; Hire This Piece &bull; Ask A Question</span>
+                    <span className="block lg:hidden text-xs uppercase pt-5 underline">Got a question about this piece?</span>
                   </div>
                 </div>
                 
-                <div className="flex flex-wrap lg:justify-center mt-[12vw] lg:mt-[10.25vw]">
+                <div className="flex flex-wrap lg:justify-center my-[14vw] lg:my-[15vw]">
                   <MetaText text="Phoebe Says" className="w-full lg:text-center order-1 lg:order-1" />
                   <blockquote className="font-display text-[15vw] md:text-[9vw] lg:text-[7.7vw] mb-[6vw] lg:mb-[4vw] leading-[0.8] md:leading-[0.8] lg:leading-[0.8] max-w-[90%] lg:max-w-[80%] lg:text-center w-full order-3 lg:order-2">“True A-lister jacket — this badboy piece will certainly draw eyes & sizzle at any party, any time.”</blockquote>
                 </div>
               </m.div>
             </Container>
+            
+            {/* SECOND LOOK SECTION */}
+            <m.div variants={fade}>
+              <div className="bg-off-black text-off-white">
+                <div class="relative flex overflow-x-hidden opacity-100 text-sm leading-none">
+                  <div class="animate-marquee whitespace-nowrap py-2 will-change-transform">
+                    {Array.from(Array(40), (e, i) => {
+                      return (
+                        <span class="mx-1 inline-block" key={i}><EyesIcon className="w-5 lg:w-6" /></span>
+                      )
+                    })}
+                  </div>
+
+                  <div class="absolute top-0 animate-marquee2 whitespace-nowrap py-2 will-change-transform">
+                    {Array.from(Array(40), (e, i) => {
+                      return (
+                        <span class="mx-1 inline-block" key={i}><EyesIcon className="w-5 lg:w-6" /></span>
+                      )
+                    })}
+                  </div>
+                </div>
+                
+                <div className="py-[16vw] lg:py-[12vw] 2xl:py-40">
+                  <Container>
+                    <div className="mb-20 md:mb-24 lg:mb-32 2xl:mb-48">
+                      <h2 className="text-[22vw] lg:text-[17vw] mb-4 leading-[0.8] lg:leading-[0.8] text-center mx-auto">Second Look</h2>
+                      <p className="w-10/12 lg:w-1/2 max-w-[620px] mx-auto text-center text-base lg:text-lg">Lorem ipsum dolor sit amet consectetuer adipicising elit aram et al lorem ipsum dolor sit amet.</p>
+                    </div>
+                  </Container>
+
+                    <div class="relative flex overflow-x-hidden mb-20 md:mb-24 lg:mb-32 2xl:mb-40 overflow-y-hidden">
+                      <div class="animate-marqueeSlow whitespace-nowrap will-change-transform">
+                        {products.map((e, i) => {
+                          return (
+                            <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
+                              <span class="inline-block w-[65vw] md:w-[45vw] lg:w-[33vw] relative">
+                                <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
+                                  <Polaroid
+                                    thin
+                                    noShadow
+                                    product
+                                    className="w-full text-off-black"
+                                    metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
+                                    metaHeading={e.node.title}
+                                    price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
+                                    image={e.node.images.edges[0].node.originalSrc}
+                                    imageWidth={e.node.images.edges[0].node.width}
+                                    imageHeight={e.node.images.edges[0].node.height}
+                                    hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0].node.originalSrc}
+                                    hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0].node.width}
+                                    hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0].node.height}
+                                  />
+                                </Link>
+                              </span>
+                            </span>
+                          )
+                        })}
+                      </div>
+
+                      <div class="absolute top-0 animate-marqueeSlow2 whitespace-nowrap will-change-transform">
+                        {products.map((e, i) => {
+                          return (
+                            <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
+                              <span class="inline-block w-[65vw] md:w-[45vw] lg:w-[33vw] relative">
+                                <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
+                                  <Polaroid
+                                    thin
+                                    noShadow
+                                    product
+                                    className="w-full text-off-black"
+                                    metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
+                                    metaHeading={e.node.title}
+                                    price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
+                                    image={e.node.images.edges[0].node.originalSrc}
+                                    imageWidth={e.node.images.edges[0].node.width}
+                                    imageHeight={e.node.images.edges[0].node.height}
+                                    hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0].node.originalSrc}
+                                    hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0].node.width}
+                                    hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0].node.height}
+                                  />
+                                </Link>
+                              </span>
+                            </span>
+                          )
+                        })}
+                      </div>
+                    </div>
+
+                    <Container>
+                    <div className="flex justify-center">
+                      <Button href="/shop" label="See all pieces" outlineWhite className="block" />
+                    </div>
+                  </Container>
+                </div>
+              </div>
+            </m.div>
           </main>
 
-          <m.div variants={fade}>
+          <m.div variants={fade} className="bg-off-black text-off-white">
             <Footer />
           </m.div>
         </m.div>
@@ -141,8 +270,9 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   // const cms = await pageService.fetchQuery(context)
   const productData = await getProduct(context.params.slug)
+  const products = await getAllProductsInCollection()
 
   return {
-    props: { productData }
+    props: { productData, products }
   }
 }

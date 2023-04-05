@@ -117,7 +117,7 @@ html {
 }
 
 .animate-blink {
-  animation: opacityDouble 0.75s steps(1) forwards;
+  animation: opacityDouble 0.65s steps(1) infinite;
 }
 
 @keyframes opacityDouble {

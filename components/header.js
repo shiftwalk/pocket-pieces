@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import FancyLink from '@/components/fancyLink'
 import Container from '@/components/container'
 import Button from '@/components/button';
@@ -7,15 +7,17 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import LogoIcon from "@/icons/logo.svg";
 import BagIcon from "@/icons/bag.svg";
+import BinIcon from "@/icons/bin.svg";
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 import { useCartContext, useUpdateCartQuantityContext } from '@/context/store'
+import { CartOpenContext } from '@/context/cart'
 import { getCartSubTotal } from '@/helpers/shopify'
 import Image from 'next/image';
 
 export default function Header({ dark }) {
   const router = useRouter()
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false)
-  const [cartIsOpen, setCartIsOpen] = useState(false)
+  const [cartIsOpenContext, setCartIsOpenContext] = useContext(CartOpenContext);
 
   // Cart Stuff
   const [cart, checkoutUrl] = useCartContext()
@@ -28,12 +30,18 @@ export default function Header({ dark }) {
   }
 
   const cartToggle = () => {
-    cartIsOpen ? setCartIsOpen(false) : setCartIsOpen(true)
+    cartIsOpenContext ? setCartIsOpenContext(false) : setCartIsOpenContext(true)
   }
 
   function updateItem(id, quantity) {
     updateCartQuantity(id, quantity)
   }
+  
+  let moneyUkLocale = Intl.NumberFormat('en-UK', {
+    style: "currency",
+    currency: "GBP",
+    useGrouping: true,
+  });
 
   useEffect(() => {
     setCartItems(cart)
@@ -80,11 +88,11 @@ export default function Header({ dark }) {
 
               <FancyLink active={router.asPath == '/contact' ? true : false} nav className="flex-1 text-right justify-end" destination="/contact" a11yText="Navigate to the contact page" label="Contact" />
 
-              <button className="flex-1 text-right justify-end" onClick={cartToggle} aria-label={`${cartIsOpen ? 'Close' : 'Open'} Bag`}>Bag ({cart?.length})</button>
+              <button className="flex-1 text-right justify-end" onClick={cartToggle} aria-label={`${cartIsOpenContext ? 'Close' : 'Open'} Bag`}>Bag ({cart?.length})</button>
             </div>
 
             <div className="ml-auto block lg:hidden w-auto leading-none text-[11px]">
-              <button onClick={cartToggle} aria-label={`${cartIsOpen ? 'Close' : 'Open'} Bag`} className="block relative w-5">
+              <button onClick={cartToggle} aria-label={`${cartIsOpenContext ? 'Close' : 'Open'} Bag`} className="block relative w-5">
                 <span className={`absolute inset-0 flex items-center justify-center text-center ${!dark ? 'text-[#C1C1C1]' : 'text-off-black' }`}>
                   <span className="block translate-y-[4px]">{cart?.length}</span>
                 </span>
@@ -97,14 +105,14 @@ export default function Header({ dark }) {
 
       <LazyMotion features={domAnimation}>
         <AnimatePresence>
-          {cartIsOpen && (
+          {cartIsOpenContext && (
             <>
               <m.button
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.66, ease: [0.83, 0, 0.17, 1] }}
-                onClick={() => setCartIsOpen(false)}
+                onClick={() => setCartIsOpenContext(false)}
                 className="fixed w-full h-[100dvh] bg-black/60 z-[400] block"
                 aria-label="Close Bag"
               >  
@@ -128,29 +136,32 @@ export default function Header({ dark }) {
                     <>
                       {cartItems.map((e, i) => {
                         return (
-                          <div className="w-full flex flex-wrap mb-6" key={i}>
-                            <div className="w-1/3">
+                          <div className="w-full flex flex-wrap mb-6 items-center" key={i}>
+                            <Link onClick={()=> setCartIsOpenContext(false)} href={`/shop/${e.productHandle}`} className="w-1/3">
                               <Image
                                 src={e.productImage.originalSrc}
                                 alt={e.productTitle}
-                                className="w-full aspect-square object-cover object-center"
+                                className="w-full aspect-[10/11] object-cover object-center"
                                 height={e.productImage.height}
                                 width={e.productImage.width}
                               />
-                            </div>
-                            <div className="flex-1 pl-3">
-                              <span className="block font-display text-5xl lg:text-6xl leading-[0.75] lg:leading-[0.75] mb-2">{e.productTitle}</span>
+                            </Link>
+                            <div className="flex-1 pl-3 translate-y-[-8px]">
+                              <Link onClick={()=> setCartIsOpenContext(false)} href={`/shop/${e.productHandle}`} className="block font-display text-4xl lg:text-5xl leading-[0.75] lg:leading-[0.75] mb-2 lg:w-[80%]">{e.productTitle}</Link>
+
                               {/* INTEGRATE */}
                               <span className="block text-sm opacity-80 font-light mb-1">Size 38 (UK10)</span>
-                              <span className="block mb-5">&pound;{e.variantPrice}</span>
+                              <div className="flex space-x-3 w-full">
+                                <span className="block flex-1 mr-auto">{moneyUkLocale.format(e.variantPrice)}</span>
 
-                              <button
-                                aria-label={`Remove ${e.productTitle} from your bag`}
-                                className="underline text-sm"
-                                onClick={() => updateItem(e.variantId, 0)}
-                              >
-                                Remove
-                              </button>
+                                <button
+                                  aria-label={`Remove ${e.productTitle} from your bag`}
+                                  className="block ml-auto"
+                                  onClick={() => updateItem(e.variantId, 0)}
+                                >
+                                  <BinIcon className="w-4" />
+                                </button>
+                              </div>
                             </div>
                           </div>
                         )

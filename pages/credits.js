@@ -9,7 +9,6 @@ import Polaroid from '@/components/polaroid'
 import Button from '@/components/button'
 
 export default function Credits() {
-
   const tickerItems = ['#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113', '#84', '#43', '#29', '#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113', '#84', '#43', '#29', '#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113' ]
 
   return (

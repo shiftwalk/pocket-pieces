@@ -5,7 +5,7 @@
   }
 
   strong {
-    @apply font-semibold !important;
+    @apply font-medium !important;
   }
 
   & > p > a {

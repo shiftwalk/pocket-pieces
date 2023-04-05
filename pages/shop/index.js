@@ -32,10 +32,14 @@ export default function Shop(initialData) {
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     textRoller.current.style.transform = `translateY(-${latest * 93.75}%)`;
-    console.log(latest)
-
     setFiltersHidden(latest > 0.98)
   })
+
+  let moneyUkLocale = Intl.NumberFormat('en-UK', {
+    style: "currency",
+    currency: "GBP",
+    useGrouping: true,
+  });
 
   return (
     <Layout>
@@ -88,7 +92,7 @@ export default function Shop(initialData) {
                           className="w-full"
                           metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                           metaHeading={e.node.title}
-                          price={e.node.variants.edges[0].node.price.amount}
+                          price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
                           image={e.node.images.edges[0].node.originalSrc}
                           imageWidth={e.node.images.edges[0].node.width}
                           imageHeight={e.node.images.edges[0].node.height}
