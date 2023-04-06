@@ -150,19 +150,19 @@ export default function Credits() {
 
               <m.div variants={fade}>
                 <div className="bg-off-black text-off-white">
-                  <div class="relative flex overflow-x-hidden opacity-75 text-sm leading-none">
-                    <div class="animate-marquee whitespace-nowrap py-2 will-change-transform">
+                  <div className="relative flex overflow-x-hidden opacity-75 text-sm leading-none">
+                    <div className="animate-marquee whitespace-nowrap py-2 will-change-transform">
                       {tickerItems.map((e, i) => {
                         return (
-                          <span class="mx-1" key={i}>{e},</span>
+                          <span className="mx-1" key={i}>{e},</span>
                         )
                       })}
                     </div>
 
-                    <div class="absolute top-0 animate-marquee2 whitespace-nowrap py-2 will-change-transform">
+                    <div className="absolute top-0 animate-marquee2 whitespace-nowrap py-2 will-change-transform">
                       {tickerItems.map((e, i) => {
                         return (
-                          <span class="mx-1" key={i}>{e},</span>
+                          <span className="mx-1" key={i}>{e},</span>
                         )
                       })}
                     </div>
@@ -176,12 +176,12 @@ export default function Credits() {
                       </div>
                     </Container>
 
-                      <div class="relative flex overflow-x-hidden mb-20 md:mb-24 lg:mb-32 2xl:mb-40 overflow-y-hidden">
-                        <div class="animate-marqueeSlow whitespace-nowrap will-change-transform">
+                      <div className="relative flex overflow-x-hidden mb-20 md:mb-24 lg:mb-32 2xl:mb-40 overflow-y-hidden">
+                        <div className="animate-marqueeSlow whitespace-nowrap will-change-transform">
                           {Array.from(Array(6), (e, i) => {
                             return (
                               <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
-                                <span class="inline-block bg-red-600 w-[50vw] md:w-[38vw] lg:w-[25vw] h-[66vw] md:h-[52vw] lg:h-[33vw] relative"><Image src="/images/strip-01.jpg" fill className="absolute inset-0 block w-full cover-image border-[2vw] border-white" alt="placeholder" /></span>
+                                <span className="inline-block bg-red-600 w-[50vw] md:w-[38vw] lg:w-[25vw] h-[66vw] md:h-[52vw] lg:h-[33vw] relative"><Image src="/images/strip-01.jpg" fill className="absolute inset-0 block w-full cover-image border-[2vw] border-white" alt="placeholder" /></span>
                                 
                                 <span className="block mt-2">
                                   <span className="block uppercase text-xs lg:text-sm">&quot;Easy Rider&quot;</span>
@@ -193,11 +193,11 @@ export default function Credits() {
                           })}
                         </div>
 
-                        <div class="absolute top-0 animate-marqueeSlow2 whitespace-nowrap will-change-transform">
+                        <div className="absolute top-0 animate-marqueeSlow2 whitespace-nowrap will-change-transform">
                           {Array.from(Array(6), (e, i) => {
                             return (
                               <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
-                                <span class="inline-block bg-red-600 w-[50vw] md:w-[38vw] lg:w-[25vw] h-[66vw] md:h-[52vw] lg:h-[33vw] relative"><Image src="/images/strip-01.jpg" fill className="absolute inset-0 block w-full cover-image border-[2vw] border-white" alt="placeholder" /></span>
+                                <span className="inline-block bg-red-600 w-[50vw] md:w-[38vw] lg:w-[25vw] h-[66vw] md:h-[52vw] lg:h-[33vw] relative"><Image src="/images/strip-01.jpg" fill className="absolute inset-0 block w-full cover-image border-[2vw] border-white" alt="placeholder" /></span>
                                 
                                 <span className="block mt-2">
                                   <span className="block uppercase text-xs lg:text-sm">&quot;Easy Rider&quot;</span>

@@ -3,7 +3,7 @@ import Footer from '@/components/footer'
 import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
 import { getProductSlugs, getProduct, getAllProductsInCollection } from '@/helpers/shopify'
-import { LazyMotion, domAnimation, m } from 'framer-motion'
+import { LazyMotion, domMax, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import { useContext, useState } from 'react'
 import SanityPageService from '@/helpers/sanity-page-service'
@@ -68,7 +68,7 @@ export default function ShopSlug(initialData) {
     <Layout>
       <NextSeo title={productData.title} />
 
-      <LazyMotion features={domAnimation}>
+      <LazyMotion features={domMax}>
         <m.div
           initial="initial"
           animate="enter"
@@ -86,21 +86,26 @@ export default function ShopSlug(initialData) {
                   </span>
                 </div>
 
+                <div className="mb-8 w-full block lg:hidden">
+                  <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-4">{productData.title}</h1>
+                  <span className="block text-xl lg:text-2xl font-light">{moneyUkLocale.format(productData.variants.edges[0].node.price.amount)}</span>
+                </div>
+
                 <div className="flex flex-wrap h-full lg:min-h-[calc(100dvh-150px)]">
                   <div className="w-full lg:w-7/12 lg:pr-12 order-2 lg:order-1 flex flex-wrap h-full lg:min-h-[calc(100dvh-150px)]">
-                    <div className="mb-12 w-full">
+                    <div className="mb-12 w-full hidden lg:block">
                       <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-4">{productData.title}</h1>
                       <span className="block text-2xl font-light">{moneyUkLocale.format(productData.variants.edges[0].node.price.amount)}</span>
                     </div>
                     
                     <div className="w-full mt-auto">
-                      <div className="content max-w-3xl mb-5" dangerouslySetInnerHTML={{ __html: productData.descriptionHtml }}></div>
+                      <div className="content max-w-3xl mb-5 text-sm lg:text-base" dangerouslySetInnerHTML={{ __html: productData.descriptionHtml }}></div>
 
-                      <span className="block underline mb-10">The Pocket Pieces Sizing &amp; Condition Guide</span>
+                      <span className="block underline mb-8 lg:mb-10 text-sm lg:text-base">The Pocket Pieces Sizing &amp; Condition Guide</span>
 
                       {productData.availableForSale ? (
                         <div className="flex space-x-3">
-                          <button onClick={addToBag} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-black text-off-white ${ isLoading ? 'cursor-disabled' : ''}`}>
+                          <button onClick={addToBag} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-off-black text-off-white border border-off-black hover:bg-transparent hover:text-off-black ${ isLoading ? 'cursor-disabled' : ''}`}>
                             <span className="block relative">
                               <span className={`absolute inset-0 text-center mx-auto flex items-center justify-center transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-100' : 'opacity-0'}`}><StarIcon className={`w-[50px] ${isLoading && 'animate-blink'}`} /></span>
                               <span className={`transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-0' : 'opacity-100'}`}>Buy Piece</span>
@@ -126,39 +131,102 @@ export default function ShopSlug(initialData) {
                       bigMeta
                       number={232}
                       image={productData.images.edges[0].node.originalSrc}
-                      imageWidth={1087}
-                      imageHeight={1087}
-                      hoverImage={productData.images.edges[1] ? productData.images.edges[1].node.originalSrc : false}
-                      hoverImageWidth={1087}
-                      hoverImageHeight={1087}
+                      imageWidth={productData.images.edges[0].node.width}
+                      imageHeight={productData.images.edges[0].node.height}
+                      hoverImage={productData.images.edges[1] ? productData.images.edges[1].node.originalSrc : productData.images.edges[0].node.originalSrc}
+                      hoverImageWidth={productData.images.edges[1] ? productData.images.edges[1].node.width : productData.images.edges[0].node.width}
+                      hoverImageHeight={productData.images.edges[1] ? productData.images.edges[1].node.height : productData.images.edges[0].node.height}
                     />
-                    <span className="block lg:hidden text-xs uppercase pt-5 underline">Got a question about this piece?</span>
+                    {/* <span className="block lg:hidden text-xs uppercase pt-5 underline">Got a question about this piece?</span> */}
                   </div>
                 </div>
                 
-                <div className="flex flex-wrap lg:justify-center my-[14vw] lg:my-[15vw]">
+                <div className={`flex flex-wrap lg:justify-center ${productData.images.edges.length > 2 ? 'mt-[14vw] lg:mt-[15vw] mb-[5vw] lg:mb-[5vw]' : 'my-[14vw] lg:my-[15vw]' }`}>
                   <MetaText text="Phoebe Says" className="w-full lg:text-center order-1 lg:order-1" />
                   <blockquote className="font-display text-[15vw] md:text-[9vw] lg:text-[7.7vw] mb-[6vw] lg:mb-[4vw] leading-[0.8] md:leading-[0.8] lg:leading-[0.8] max-w-[90%] lg:max-w-[80%] lg:text-center w-full order-3 lg:order-2">“True A-lister jacket — this badboy piece will certainly draw eyes & sizzle at any party, any time.”</blockquote>
                 </div>
               </m.div>
             </Container>
             
+            {productData.images.edges.length > 2 && (
+              <div className="pb-[14vw] lg:pb-[15vw]">
+                <div className="flex flex-wrap items-start p-10">
+                  {productData.images.edges[1] && (
+                    <m.div
+                      drag
+                      dragMomentum={false}
+                      className="w-[85%] lg:w-[40%] cursor-grab lg:mt-[7vw]"
+                    >
+                      <Polaroid
+                        thin
+                        noShadow
+                        image={productData.images.edges[1].node.originalSrc}
+                        imageWidth={productData.images.edges[1].node.width}
+                        imageHeight={productData.images.edges[1].node.height}
+                        hoverImage={productData.images.edges[1].node.originalSrc}
+                        hoverImageWidth={productData.images.edges[1].node.width}
+                        hoverImageHeight={productData.images.edges[1].node.height}
+                      />
+                    </m.div>
+                  )}
+                  
+                  {productData.images.edges[1] && (
+                    <m.div
+                      drag
+                      dragMomentum={false}
+                      className="w-[85%] lg:w-[50%] ml-auto mt-16 lg:mt-[3vw] cursor-grab"
+                    >
+                      <Polaroid
+                        thin
+                        noShadow
+                        image={productData.images.edges[2].node.originalSrc}
+                        imageWidth={productData.images.edges[2].node.width}
+                        imageHeight={productData.images.edges[2].node.height}
+                        hoverImage={productData.images.edges[2].node.originalSrc}
+                        hoverImageWidth={productData.images.edges[2].node.width}
+                        hoverImageHeight={productData.images.edges[2].node.height}
+                      />
+                    </m.div>
+                  )}
+
+                  {productData.images.edges[3] && (
+                    <m.div 
+                      drag
+                      dragMomentum={false}
+                      className="mx-auto w-[85%] lg:w-[40%] mt-16 lg:mt-[3vw] cursor-grab"
+                    >
+                      <Polaroid
+                        thin
+                        noShadow
+                        image={productData.images.edges[3].node.originalSrc}
+                        imageWidth={productData.images.edges[3].node.width}
+                        imageHeight={productData.images.edges[3].node.height}
+                        hoverImage={productData.images.edges[3].node.originalSrc}
+                        hoverImageWidth={productData.images.edges[3].node.width}
+                        hoverImageHeight={productData.images.edges[3].node.height}
+                      />
+                    </m.div>
+                  )}
+                </div>
+              </div>
+            )}
+            
             {/* SECOND LOOK SECTION */}
             <m.div variants={fade}>
               <div className="bg-off-black text-off-white">
-                <div class="relative flex overflow-x-hidden opacity-100 text-sm leading-none">
-                  <div class="animate-marquee whitespace-nowrap py-2 will-change-transform">
+                <div className="relative flex overflow-x-hidden opacity-100 text-sm leading-none">
+                  <div className="animate-marquee whitespace-nowrap py-2 will-change-transform">
                     {Array.from(Array(40), (e, i) => {
                       return (
-                        <span class="mx-1 inline-block" key={i}><EyesIcon className="w-5 lg:w-6" /></span>
+                        <span className="mx-1 inline-block" key={i}><EyesIcon className="w-5 lg:w-6" /></span>
                       )
                     })}
                   </div>
 
-                  <div class="absolute top-0 animate-marquee2 whitespace-nowrap py-2 will-change-transform">
+                  <div className="absolute top-0 animate-marquee2 whitespace-nowrap py-2 will-change-transform">
                     {Array.from(Array(40), (e, i) => {
                       return (
-                        <span class="mx-1 inline-block" key={i}><EyesIcon className="w-5 lg:w-6" /></span>
+                        <span className="mx-1 inline-block" key={i}><EyesIcon className="w-5 lg:w-6" /></span>
                       )
                     })}
                   </div>
@@ -172,18 +240,19 @@ export default function ShopSlug(initialData) {
                     </div>
                   </Container>
 
-                    <div class="relative flex overflow-x-hidden mb-20 md:mb-24 lg:mb-32 2xl:mb-40 overflow-y-hidden">
-                      <div class="animate-marqueeSlow whitespace-nowrap will-change-transform">
+                    <div className="relative flex overflow-x-hidden mb-16 md:mb-20 lg:mb-24 2xl:mb-32 overflow-y-hidden">
+                      <div className="animate-marqueeSlow whitespace-nowrap will-change-transform">
                         {products.map((e, i) => {
                           return (
                             <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
-                              <span class="inline-block w-[65vw] md:w-[45vw] lg:w-[33vw] relative">
-                                <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
+                              <span className="inline-block w-[80vw] md:w-[45vw] lg:w-[36vw] relative">
+                                <Link href={`/shop/${e.node.handle}`} className="w-full mx-auto block">
                                   <Polaroid
                                     thin
                                     noShadow
                                     product
                                     className="w-full text-off-black"
+                                    collection={e.node.collections.edges[0].node.title}
                                     metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                                     metaHeading={e.node.title}
                                     price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
@@ -201,17 +270,18 @@ export default function ShopSlug(initialData) {
                         })}
                       </div>
 
-                      <div class="absolute top-0 animate-marqueeSlow2 whitespace-nowrap will-change-transform">
+                      <div className="absolute top-0 animate-marqueeSlow2 whitespace-nowrap will-change-transform">
                         {products.map((e, i) => {
                           return (
                             <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
-                              <span class="inline-block w-[65vw] md:w-[45vw] lg:w-[33vw] relative">
-                                <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
+                              <span className="inline-block w-[80vw] md:w-[45vw] lg:w-[36vw] relative">
+                                <Link href={`/shop/${e.node.handle}`} className="w-full mx-auto block">
                                   <Polaroid
                                     thin
                                     noShadow
                                     product
                                     className="w-full text-off-black"
+                                    collection={e.node.collections.edges[0].node.title}
                                     metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                                     metaHeading={e.node.title}
                                     price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
@@ -231,10 +301,10 @@ export default function ShopSlug(initialData) {
                     </div>
 
                     <Container>
-                    <div className="flex justify-center">
-                      <Button href="/shop" label="See all pieces" outlineWhite className="block" />
-                    </div>
-                  </Container>
+                      <div className="flex justify-center">
+                        <Button href="/shop" label="See all pieces" outlineWhite className="block" />
+                      </div>
+                    </Container>
                 </div>
               </div>
             </m.div>

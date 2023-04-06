@@ -54,6 +54,14 @@ export async function getAllProductsInCollection() {
                 }
               }
             }
+            collections(first:5) {
+              edges {
+                node {
+                  title
+                  handle
+                }
+              }
+            }
             variants(first: 1) {
               edges {
                 node {

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { m } from 'framer-motion';
 import StarIcon from '@/icons/star.svg';
 
-export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, thin }) {
+export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin }) {
 
   const imageVariants = {
     initial: { scale: 1, filter: "blur(0px)" },
@@ -40,8 +40,27 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
     }
   }
 
+  let padding = 'p-[9%]'
+
+  if (thin) { 
+    padding = 'p-[6.5%]'
+  }
+
+  if (collection && thin) {
+    padding = 'pt-3 p-[6.5%]'
+  }
+
+  if (collection && !thin) {
+    padding = 'pt-3 p-[9%]'
+  }
+
   return (
-    <m.div initial="initial" whileHover="hover" className={`bg-white w-auto ${thin ? 'p-[6.5%]' : 'p-[9%]' } pb-0 relative group ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`}>
+    <m.div initial="initial" whileHover="hover" className={`bg-white w-auto ${padding} pb-0 relative group ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`}>
+      {collection && (
+        <div className={`text-center ${thin ? 'pb-3' : 'pb-2' }`}>
+          <span className={`block uppercase text-xs lg:text-sm`}>&quot;{collection}&quot;</span>        
+        </div>
+      )}
       <div className="block relative aspect-square overflow-hidden">
         <m.div
           className="w-full h-full scale-1 blur-0"

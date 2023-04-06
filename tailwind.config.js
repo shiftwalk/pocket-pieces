@@ -24,6 +24,8 @@ module.exports = {
         marquee2: 'marquee2 25s linear infinite',
         marqueeSlow: 'marquee 50s linear infinite',
         marqueeSlow2: 'marquee2 50s linear infinite',
+        marqueeDoubleSlow: 'marquee 100s linear infinite',
+        marqueeDoubleSlow2: 'marquee2 100s linear infinite',
       },
       keyframes: {
         marquee: {
@@ -31,14 +33,6 @@ module.exports = {
           '100%': { transform: 'translateX(-100%)' },
         },
         marquee2: {
-          '0%': { transform: 'translateX(100%)' },
-          '100%': { transform: 'translateX(0%)' },
-        },
-        marqueeSlow: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-100%)' },
-        },
-        marqueeSlow2: {
           '0%': { transform: 'translateX(100%)' },
           '100%': { transform: 'translateX(0%)' },
         },
