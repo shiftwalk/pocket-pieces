@@ -3,7 +3,7 @@ import Footer from '@/components/footer'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m, useScroll, useMotionValueEvent } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-import { getAllCollections, getAllProducts } from '@/helpers/shopify'
+import { getAllCollections, getAllProductsInCollection, getCollection, getCollectionSlugs, getProductSlugs } from '@/helpers/shopify'
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 import Polaroid from '@/components/polaroid'
 import { useEffect, useRef, useState } from 'react'
@@ -19,12 +19,11 @@ const query = `{
 
 const pageService = new SanityPageService(query)
 
-export default function Shop(initialData) {
-  const { data: { products, collections } } = pageService.getPreviewHook(initialData)()
+export default function CollectionSlug(initialData) {
+  const { data: { collectionData, collections, products } } = pageService.getPreviewHook(initialData)()
   const scrollWrapper = useRef(null)
   const textRoller = useRef(null)
   const [filtersHidden, setFiltersHidden] = useState(false)
-
   const { scrollYProgress } = useScroll()
   
   useEffect(() => {
@@ -85,7 +84,7 @@ export default function Shop(initialData) {
                     {Array.from(Array(4), (e, i) => {
                       return (
                         <h1 key={i} className="inline-block text-[40vw] md:text-[38vw] lg:text-[36vw] leading-[0.65] md:leading-[0.65] lg:leading-[0.65] 2xl:leading-[0.65] 2xl:text-[42vw] text-center text-black text-opacity-[0.075] mx-[2.5vw]">
-                          <span className="inline-block">All Pieces</span>
+                          <span className="inline-block">{collectionData.title}</span>
                           <StarIcon className="inline-block ml-[6vw] w-[15vw] translate-y-[-1.5vw]" />
                         </h1>
                       )
@@ -96,7 +95,7 @@ export default function Shop(initialData) {
                     {Array.from(Array(4), (e, i) => {
                       return (
                         <h1 key={i} className="inline-block text-[40vw] md:text-[38vw] lg:text-[36vw] leading-[0.65] md:leading-[0.65] lg:leading-[0.65] 2xl:leading-[0.65] 2xl:text-[42vw] text-center text-black text-opacity-[0.075] mx-[2.5vw]">
-                          <span className="inline-block">All Pieces</span>
+                          <span className="inline-block">{collectionData.title}</span>
                           <StarIcon className="inline-block ml-[6vw] w-[15vw] translate-y-[-1.5vw]" />
                         </h1>
                       )
@@ -136,10 +135,10 @@ export default function Shop(initialData) {
                 <div className="mx-auto w-auto relative inline-block pt-16 lg:pt-16 p-3 lg:p-6">
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-100 via-zinc-100 to-transparent z-[20]"></div>
                   <span className="text-[12vw] lg:text-[6.25vw] 2xl:text-[100px] font-display leading-[0.65] lg:leading-[0.65] flex justify-center relative z-[21]">
-                    <Link href="/shop" className={`block line-through`}>All,</Link>
+                    <Link href="/shop" className={`block`}>All,</Link>
                     {collections.map((e, i) => {
                       return (
-                        <Link href={`/shop/collections/${e.node.handle}`} className={`block`} key={i}>{e.node.title}{(i+1) !== collections.length ? ',' : ''}</Link>
+                        <Link href={`/shop/collections/${e.node.handle}`} className={`block ${collectionData.handle == e.node.handle ? 'line-through' : '' }`} key={i}>{e.node.title}{(i+1) !== collections.length ? ',' : ''}</Link>
                       )
                     })}
                   </span>
@@ -157,12 +156,31 @@ export default function Shop(initialData) {
   )
 }
 
+
+export async function getStaticPaths() {
+  const collectionSlugs = await getCollectionSlugs()
+
+  const paths = collectionSlugs.map((slug) => {
+    const collectionSlug = String(slug.node.handle)
+    
+    return {
+      params: { slug: collectionSlug }
+    }
+  })
+
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
 export async function getStaticProps(context) {
   // const cms = await pageService.fetchQuery(context)
-  const products = await getAllProducts()
+  const collectionData = await getCollection(context.params.slug)
+  const products = await getAllProductsInCollection(context.params.slug)
   const collections = await getAllCollections()
 
   return {
-    props: { products, collections }
+    props: { collectionData, collections, products }
   }
 }

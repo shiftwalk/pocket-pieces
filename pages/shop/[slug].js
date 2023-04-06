@@ -2,7 +2,7 @@ import Layout from '@/components/layout'
 import Footer from '@/components/footer'
 import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
-import { getProductSlugs, getProduct, getAllProductsInCollection } from '@/helpers/shopify'
+import { getProductSlugs, getProduct, getAllProducts } from '@/helpers/shopify'
 import { LazyMotion, domMax, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import { useContext, useState } from 'react'
@@ -340,7 +340,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   // const cms = await pageService.fetchQuery(context)
   const productData = await getProduct(context.params.slug)
-  const products = await getAllProductsInCollection()
+  const products = await getAllProducts()
 
   return {
     props: { productData, products }

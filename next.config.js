@@ -18,5 +18,14 @@ module.exports = {
     });
 
     return config;
-  }
+  },
+  async redirects() {
+    return [
+      {
+        source: '/shop/collections',
+        destination: '/shop',
+        permanent: true,
+      },
+    ]
+  },
 };

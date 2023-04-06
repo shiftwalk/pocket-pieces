@@ -26,7 +26,7 @@ async function callShopify(query) {
   }
 }
 
-export async function getAllProductsInCollection() {
+export async function getAllProducts() {
   const query =
     `{
       products (first: 50) {
@@ -86,6 +86,91 @@ export async function getAllProductsInCollection() {
   return allProducts;
 }
 
+export async function getAllCollections() {
+  const query =
+    `{
+      collections(first: 50) {
+        edges {
+          node {
+            title
+            handle              
+          }
+        }
+      }
+    }`
+  ;
+
+  const response = await callShopify(query);
+
+  const allCollections = response.data?.collections.edges
+    ? response.data.collections.edges
+    : [];
+
+  return allCollections;
+}
+
+export async function getAllProductsInCollection(handle) {
+  const query =
+    `{
+      collection(handle: "${handle}") {
+        products (first: 50) {
+          edges {
+            node {
+              id
+              availableForSale
+              handle
+              title
+              description
+              metaTitle: metafield(
+                key:"meta_title",
+                namespace:"custom"
+              ) {
+                value
+              }
+              images(first: 20) {
+                edges {
+                  node {
+                    id
+                    originalSrc
+                    height
+                    width     
+                    altText             
+                  }
+                }
+              }
+              collections(first:5) {
+                edges {
+                  node {
+                    title
+                    handle
+                  }
+                }
+              }
+              variants(first: 1) {
+                edges {
+                  node {
+                    price {
+                      amount
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }`
+  ;
+
+  const response = await callShopify(query);
+
+  const allProducts = response.data?.collection.products.edges
+    ? response.data.collection.products.edges
+    : [];
+
+  return allProducts;
+}
+
 
 export async function getProductSlugs() {
   const query =
@@ -109,10 +194,32 @@ export async function getProductSlugs() {
   return slugs;
 }
 
+export async function getCollectionSlugs() {
+  const query =
+    `{
+      collections(first: 50) {
+        edges {
+          node {
+            handle              
+          }
+        }
+      }
+    }`
+  ;
+
+  const response = await callShopify(query);
+
+  const slugs = response.data.collections.edges
+    ? response.data.collections.edges
+    : [];
+
+  return slugs;
+}
+
 export async function getProduct(handle) {
   const query =
     `{
-      productByHandle(handle: "${handle}") {
+      product(handle: "${handle}") {
         id
         title
         handle
@@ -154,8 +261,28 @@ export async function getProduct(handle) {
 
   const response = await callShopify(query);
 
-  const product = response.data.productByHandle
-    ? response.data.productByHandle
+  const product = response.data.product
+    ? response.data.product
+    : [];
+
+  return product;
+}
+
+export async function getCollection(handle) {
+  const query =
+    `{
+      collection(handle: "${handle}") {
+        id
+        title
+        handle
+      }
+    }`
+  ;
+
+  const response = await callShopify(query);
+
+  const product = response.data.collection
+    ? response.data.collection
     : [];
 
   return product;
