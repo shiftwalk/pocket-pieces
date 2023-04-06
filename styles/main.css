@@ -12,6 +12,7 @@
 /* Simple defaults */
 body {
   @apply font-sans antialiased text-off-black selection:bg-off-black selection:text-white bg-zinc-100;
+  overscroll-behavior: none!important;
 }
 
 html {
