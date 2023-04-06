@@ -24,6 +24,7 @@ export default function CollectionSlug(initialData) {
   const scrollWrapper = useRef(null)
   const textRoller = useRef(null)
   const [filtersHidden, setFiltersHidden] = useState(false)
+  const [currentView, setCurrentView] = useState('reel')
   const { scrollYProgress } = useScroll()
   
   useEffect(() => {
@@ -31,8 +32,11 @@ export default function CollectionSlug(initialData) {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    textRoller.current.style.transform = `translateY(-${latest * 93.75}%)`;
-    setFiltersHidden(latest > 0.98)
+    textRoller.current.style.transform = `translateY(-${(latest * ((products.length - 1) * 100))}%)`;
+  })
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setFiltersHidden(latest > 0.975)
   })
 
   let moneyUkLocale = Intl.NumberFormat('en-UK', {
@@ -40,6 +44,14 @@ export default function CollectionSlug(initialData) {
     currency: "GBP",
     useGrouping: true,
   });
+
+  let viewLayoutContainer = 'w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px]' 
+  let viewLayoutChildren = 'flex items-center pb-16 md:pb-20 lg:pb-32' 
+
+  if (currentView == 'gallery') {
+    viewLayoutContainer = 'w-11/12 md:w-11/12 lg:w-11/12 flex flex-wrap justify-center items-start' 
+    viewLayoutChildren = 'flex items-center w-full lg:w-1/3 pb-[8vw] px-[2vw]'
+  }
 
   return (
     <Layout>
@@ -54,12 +66,14 @@ export default function CollectionSlug(initialData) {
           <main className="pb-[10vw]">
             <m.div variants={fade}>
               <div className="fixed top-0 left-0 pt-[70px] lg:pt-[85px] px-4 lg:px-6 z-[100]">
-                <span className="block uppercase text-xs md:text-sm leading-none md:leading-none mb-2">Reel / Gallery</span>
+                <span className="mb-2 relative z-10 hidden lg:block">
+                  <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'reel' && 'line-through'}`} onClick={()=> setCurrentView('reel')}>Reel</button> / <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'gallery' && 'line-through'}`} onClick={()=> setCurrentView('gallery')}>Gallery</button>
+                </span>
                 <span className="text-5xl lg:text-[5vw] font-display leading-[0.65] lg:leading-[0.65] flex">
                   <span className="block tabular-nums">
                     <span className="block overflow-hidden relative">
                       <span className="opacity-0">01</span>
-                      <span className="block absolute top-0 left-0" ref={textRoller}>
+                      <span className="block absolute inset-0" ref={textRoller}>
                         {products.map((e, i) => {
                           return (
                             <span key={i} className="block">{i+1 < 10 ? '0' : ''}{i + 1}</span>
@@ -83,7 +97,7 @@ export default function CollectionSlug(initialData) {
                   <div className="animate-marqueeDoubleSlow whitespace-nowrap will-change-transform">
                     {Array.from(Array(4), (e, i) => {
                       return (
-                        <h1 key={i} className="inline-block text-[40vw] md:text-[38vw] lg:text-[36vw] leading-[0.65] md:leading-[0.65] lg:leading-[0.65] 2xl:leading-[0.65] 2xl:text-[42vw] text-center text-black text-opacity-[0.075] mx-[2.5vw]">
+                        <h1 key={i} className="inline-block text-[40vw] md:text-[38vw] lg:text-[36vw] leading-[1] md:leading-[1] lg:leading-[1] 2xl:leading-[1] 2xl:text-[42vw] text-center text-black text-opacity-[0.075] mx-[2.5vw] translate-y-[-2vw]">
                           <span className="inline-block">{collectionData.title}</span>
                           <StarIcon className="inline-block ml-[6vw] w-[15vw] translate-y-[-1.5vw]" />
                         </h1>
@@ -94,7 +108,7 @@ export default function CollectionSlug(initialData) {
                   <div className="absolute top-0 animate-marqueeDoubleSlow2 whitespace-nowrap will-change-transform">
                     {Array.from(Array(4), (e, i) => {
                       return (
-                        <h1 key={i} className="inline-block text-[40vw] md:text-[38vw] lg:text-[36vw] leading-[0.65] md:leading-[0.65] lg:leading-[0.65] 2xl:leading-[0.65] 2xl:text-[42vw] text-center text-black text-opacity-[0.075] mx-[2.5vw]">
+                        <h1 key={i} className="inline-block text-[40vw] md:text-[38vw] lg:text-[36vw] leading-[1] md:leading-[1] lg:leading-[1] 2xl:leading-[1] 2xl:text-[42vw] text-center text-black text-opacity-[0.075] mx-[2.5vw] translate-y-[-2vw]">
                           <span className="inline-block">{collectionData.title}</span>
                           <StarIcon className="inline-block ml-[6vw] w-[15vw] translate-y-[-1.5vw]" />
                         </h1>
@@ -104,11 +118,11 @@ export default function CollectionSlug(initialData) {
                 </div>
               </div>
 
-              <div className="w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50] pt-[25dvh] lg:pt-[15dvh]" ref={scrollWrapper}>
+              <div className={`${viewLayoutContainer} mx-auto relative z-[50] pt-[25dvh] ${currentView == 'reel' ? 'lg:pt-[15dvh]' : 'lg:pt-[20dvh]' }`} ref={scrollWrapper}>
                 {products.map((e, i) => {
                   return e.node.availableForSale && (
-                    <div className="flex items-center pb-16 md:pb-20 lg:pb-32" key={i}>
-                      <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
+                    <div className={viewLayoutChildren} key={i}>
+                      <Link href={`/shop/${e.node.handle}`} className="w-full mx-auto block">
                         <Polaroid
                           noShadow
                           thin
