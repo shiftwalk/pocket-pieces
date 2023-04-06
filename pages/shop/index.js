@@ -136,10 +136,10 @@ export default function Shop(initialData) {
                 <div className="mx-auto w-auto relative inline-block pt-16 lg:pt-16 p-3 lg:p-6">
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-100 via-zinc-100 to-transparent z-[20]"></div>
                   <span className="text-[12vw] lg:text-[6.25vw] 2xl:text-[100px] font-display leading-[0.65] lg:leading-[0.65] flex justify-center relative z-[21]">
-                    <Link href="/shop" className={`block line-through`}>All,</Link>
+                    <Link href="/shop" className={`block`}><span className="line-through">All</span>,&nbsp;</Link>
                     {collections.map((e, i) => {
                       return (
-                        <Link href={`/shop/collections/${e.node.handle}`} className={`block`} key={i}>{e.node.title}{(i+1) !== collections.length ? ',' : ''}</Link>
+                        <Link href={`/shop/collections/${e.node.handle}`} className={`block`} key={i}>{e.node.title}{(i+1) !== collections.length ? ',' : ''}&nbsp;</Link>
                       )
                     })}
                   </span>
