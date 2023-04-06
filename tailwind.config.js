@@ -24,8 +24,8 @@ module.exports = {
         marquee2: 'marquee2 25s linear infinite',
         marqueeSlow: 'marquee 50s linear infinite',
         marqueeSlow2: 'marquee2 50s linear infinite',
-        marqueeDoubleSlow: 'marquee 100s linear infinite',
-        marqueeDoubleSlow2: 'marquee2 100s linear infinite',
+        marqueeDoubleSlow: 'marquee 250s linear infinite',
+        marqueeDoubleSlow2: 'marquee2 250s linear infinite',
       },
       keyframes: {
         marquee: {

@@ -84,8 +84,8 @@ export default function Shop(initialData) {
                   <div className="animate-marqueeDoubleSlow whitespace-nowrap will-change-transform">
                     {Array.from(Array(4), (e, i) => {
                       return (
-                        <h1 key={i} className="inline-block text-[40vw] md:text-[38vw] lg:text-[36vw] leading-[0.65] md:leading-[0.65] lg:leading-[0.65] 2xl:leading-[0.65] 2xl:text-[42vw] text-center text-black text-opacity-[0.1] mx-[2.5vw]">
-                          <span className="inline-block">The Pieces</span>
+                        <h1 key={i} className="inline-block text-[40vw] md:text-[38vw] lg:text-[36vw] leading-[0.65] md:leading-[0.65] lg:leading-[0.65] 2xl:leading-[0.65] 2xl:text-[42vw] text-center text-black text-opacity-[0.075] mx-[2.5vw]">
+                          <span className="inline-block">All Pieces</span>
                           <StarIcon className="inline-block ml-[6vw] w-[15vw] translate-y-[-1.5vw]" />
                         </h1>
                       )
@@ -95,8 +95,8 @@ export default function Shop(initialData) {
                   <div className="absolute top-0 animate-marqueeDoubleSlow2 whitespace-nowrap will-change-transform">
                     {Array.from(Array(4), (e, i) => {
                       return (
-                        <h1 key={i} className="inline-block text-[40vw] md:text-[38vw] lg:text-[36vw] leading-[0.65] md:leading-[0.65] lg:leading-[0.65] 2xl:leading-[0.65] 2xl:text-[42vw] text-center text-black text-opacity-[0.1] mx-[2.5vw]">
-                          <span className="inline-block">The Pieces</span>
+                        <h1 key={i} className="inline-block text-[40vw] md:text-[38vw] lg:text-[36vw] leading-[0.65] md:leading-[0.65] lg:leading-[0.65] 2xl:leading-[0.65] 2xl:text-[42vw] text-center text-black text-opacity-[0.075] mx-[2.5vw]">
+                          <span className="inline-block">All Pieces</span>
                           <StarIcon className="inline-block ml-[6vw] w-[15vw] translate-y-[-1.5vw]" />
                         </h1>
                       )
@@ -105,7 +105,7 @@ export default function Shop(initialData) {
                 </div>
               </div>
 
-              <div className="w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50] pt-[20dvh]" ref={scrollWrapper}>
+              <div className="w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50] pt-[25dvh] lg:pt-[15dvh]" ref={scrollWrapper}>
                 {products.map((e, i) => {
                   return e.node.availableForSale && (
                     <div className="flex items-center pb-16 md:pb-20 lg:pb-32" key={i}>

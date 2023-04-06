@@ -88,7 +88,7 @@ export default function Header({ dark }) {
 
               <FancyLink active={router.asPath == '/contact' ? true : false} nav className="flex-1 text-right justify-end" destination="/contact" a11yText="Navigate to the contact page" label="Contact" />
 
-              <button className="flex-1 text-right justify-end" onClick={cartToggle} aria-label={`${cartIsOpenContext ? 'Close' : 'Open'} Bag`}>Bag ({cart?.length})</button>
+              <button className="flex-1 text-right justify-end" onClick={cartToggle} aria-label={`${cartIsOpenContext ? 'Close' : 'Open'} Bag`}>Bag({cart?.length})</button>
             </div>
 
             <div className="ml-auto block lg:hidden w-auto leading-none text-[11px]">
