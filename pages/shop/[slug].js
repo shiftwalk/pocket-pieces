@@ -149,7 +149,7 @@ export default function ShopSlug(initialData) {
             </Container>
             
             {productData.images.edges.length > 2 && (
-              <div className="pb-[14vw] lg:pb-[15vw]">
+              <m.div variants={fade} className="pb-[14vw] lg:pb-[15vw]">
                 <div className="flex flex-wrap items-start p-10">
                   {productData.images.edges[1] && (
                     <m.div
@@ -208,7 +208,7 @@ export default function ShopSlug(initialData) {
                     </m.div>
                   )}
                 </div>
-              </div>
+              </m.div>
             )}
             
             {/* SECOND LOOK SECTION */}
