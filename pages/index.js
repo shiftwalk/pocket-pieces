@@ -103,7 +103,7 @@ export default function Home() {
                   {/* <div className="fixed top-0 left-0 right-0 w-full bg-red-500 h-[65px] z-[100]"></div> */}
                   
                   <div className={`fixed z-50 transition-opacity pointer-events-none rounded-[50%] backdrop-blur-[4px] ${hovering ? 'opacity-100' : 'opacity-0' }`} style={{ top: `${mousePosition.y - 25 }px`, left: `${mousePosition.x - 75 }px` }}>
-                    <div className="uppercase rounded-[50%] px-5 lg:px-5 py-6 lg:py-6 text-center text-sm lg:text-base leading-none lg:leading-none text-black border border-black block w-[150px]">Let's Shop!</div>
+                    <div className="uppercase rounded-[50%] px-5 lg:px-5 py-6 lg:py-6 text-center text-sm lg:text-base leading-none lg:leading-none text-black border border-black block w-[150px]">Let&apos;s Shop!</div>
                 </div>
                   
                   <Link href="/shop" className="block absolute inset-0 z-0" onMouseEnter={()=>setHovering(true)}>
