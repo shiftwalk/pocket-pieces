@@ -181,7 +181,7 @@ export default function Credits() {
                           {Array.from(Array(6), (e, i) => {
                             return (
                               <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
-                                <span className="inline-block bg-red-600 w-[50vw] md:w-[38vw] lg:w-[25vw] h-[66vw] md:h-[52vw] lg:h-[33vw] relative"><Image src="/images/strip-01.jpg" fill className="absolute inset-0 block w-full cover-image border-[2vw] border-white" alt="placeholder" /></span>
+                                <span className="inline-block w-[50vw] md:w-[38vw] lg:w-[25vw] h-[66vw] md:h-[52vw] lg:h-[33vw] relative"><Image src="/images/strip-01.jpg" fill className="absolute inset-0 block w-full cover-image border-[2vw] border-white" alt="placeholder" /></span>
                                 
                                 <span className="block mt-2">
                                   <span className="block uppercase text-xs lg:text-sm">&quot;Easy Rider&quot;</span>
@@ -197,7 +197,7 @@ export default function Credits() {
                           {Array.from(Array(6), (e, i) => {
                             return (
                               <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
-                                <span className="inline-block bg-red-600 w-[50vw] md:w-[38vw] lg:w-[25vw] h-[66vw] md:h-[52vw] lg:h-[33vw] relative"><Image src="/images/strip-01.jpg" fill className="absolute inset-0 block w-full cover-image border-[2vw] border-white" alt="placeholder" /></span>
+                                <span className="inline-block w-[50vw] md:w-[38vw] lg:w-[25vw] h-[66vw] md:h-[52vw] lg:h-[33vw] relative"><Image src="/images/strip-01.jpg" fill className="absolute inset-0 block w-full cover-image border-[2vw] border-white" alt="placeholder" /></span>
                                 
                                 <span className="block mt-2">
                                   <span className="block uppercase text-xs lg:text-sm">&quot;Easy Rider&quot;</span>

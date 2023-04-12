@@ -21,7 +21,7 @@ export default function Info() {
           animate="enter"
           exit="exit"
         >
-          <m.div variants={fade} className="bg-black text-[#C1C1C1] h-[100dvh]">
+          <m.div variants={fade} className="bg-black text-[#C1C1C1] h-screen">
             <main className="flex flex-wrap items-center justify-center h-full">
               <Container className="mt-auto w-full">
                 <MetaText sm text="Where to?" className="opacity-75" />

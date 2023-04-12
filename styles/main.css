@@ -28,6 +28,13 @@ html {
 }
 
 
+.grainn {
+@apply fixed inset-0 w-full h-full overflow-hidden z-[99999] opacity-[0.04] bg-repeat pointer-events-none;
+  background-image: url("/images/grain.gif");
+  background-position: 50% 50%;
+  background-size: 480px;
+}
+
 .grain:after {
   @apply pointer-events-none;
   content:" ";
@@ -132,5 +139,34 @@ html {
 .cover-image {
   img {
     @apply object-cover object-center;
+  }
+}
+
+
+
+.parallax {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.parallax .scroller {
+  display: flex;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.parallax span {
+  display: block;
+}
+
+@supports  (height: 100dvh) {
+  .h-screen {
+    height: 100dvh;
+  }
+  .min-h-screen {
+    min-height: 100dvh;
   }
 }

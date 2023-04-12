@@ -8,6 +8,7 @@ import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 import SignatureIcon from "@/icons/signature.svg";
 import Image from 'next/image'
 import FilmStrip from '@/components/film-strip'
+import FilmStripTest from '@/components/film-strip-test'
 import MetaText from '@/components/meta-text'
 import Polaroid from '@/components/polaroid'
 
@@ -24,6 +25,7 @@ export default function About() {
         >
           <m.div variants={fade} className="bg-off-white">
             <main className="mb-12 md:mb-16 xl:mb-24 pt-14 lg:pt-16 overflow-hidden">
+
               <Container>
                 <div className="pt-[8vw] lg:pt-[6vw] pb-[8.5vw]">
                   <div className="w-[60px] lg:w-[6vw] mx-auto mb-5">
@@ -32,6 +34,8 @@ export default function About() {
                   <h1 className="text-[18vw] md:text-[11vw] lg:text-[9.5vw] mb-4 leading-[0.75] md:leading-[0.75] lg:leading-[0.75] text-center px-[3vw] lg:px-[10vw]">Prestige, one-of-a-kind pieces to sustainably style out your wardrobe.</h1>
                 </div>
               </Container>
+
+              {/* <FilmStripTest baseVelocity={1} image1={'/images/strip-01.jpg'} image2={'/images/strip-02.jpg'} image3={'/images/strip-03.jpg'} image4={'/images/strip-03.jpg'} /> */}
 
               <FilmStrip />
 

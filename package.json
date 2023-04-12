@@ -26,6 +26,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@motionone/utils": "^10.15.1",
     "@portabletext/react": "^2.0.1",
     "@sanity/block-content-to-react": "^3.0.0",
     "@svgr/webpack": "^6.5.1",

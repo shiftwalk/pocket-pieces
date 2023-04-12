@@ -21,7 +21,8 @@ export default function App({ Component, pageProps }) {
       
       <CartProvider>
         <CartOpenContext.Provider value={[cartIsOpenContext, setCartIsOpenContext]}>
-          <svg xmlns='http://www.w3.org/2000/svg' className="fixed inset-0 z-[1000] pointer-events-none invert w-full h-[100dvh] object-cover opacity-[0.14]">
+          <div className="grainn"></div>
+          {/* <svg xmlns='http://www.w3.org/2000/svg' className="fixed inset-0 z-[1000] pointer-events-none invert w-full h-screen object-cover opacity-[0.14]">
             <filter id='noiseFilter'>
               <feTurbulence 
                 type='fractalNoise' 
@@ -32,10 +33,10 @@ export default function App({ Component, pageProps }) {
             </filter>
             
             <rect width='100%' height='100%' filter='url(#noiseFilter)' />
-          </svg>
+          </svg> */}
 
           <div className={`${IBMPlexMono.variable} ${GrifinitoL.variable} ${FTCalhern.variable} font-mono`}>
-            <Header dark={(router.asPath.includes('/info') || router.asPath == '/' || router.asPath == '/menu') ? true : false} />
+            <Header dark={(router.asPath.includes('/info') || router.asPath == '/menu') ? true : false} />
 
             <AnimatePresence mode="wait" initial={false}>
               <Component {...pageProps} key={router.asPath} />
