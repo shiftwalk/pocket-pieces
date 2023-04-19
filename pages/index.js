@@ -1,16 +1,20 @@
 import Layout from '@/components/layout'
-import Footer from '@/components/footer'
 import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-import Image from 'next/image'
 import LogoIcon from '@/icons/logo.svg'
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import SanityPageService from '@/services/sanityPageService'
+import SanityImage from '@/components/sanity-image'
+import { homeQuery } from '@/helpers/queries'
 
-export default function Home() {
+const pageService = new SanityPageService(homeQuery)
+
+export default function Home(initialData) {
+  const { data: { home }  } = pageService.getPreviewHook(initialData)()
   const [hovering, setHovering] = useState(false)
 
   const useMousePosition = () => {
@@ -38,7 +42,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <NextSeo title="Home" />
+      <NextSeo title={home.title} />
       
       <LazyMotion features={domAnimation}>
         <m.div
@@ -107,9 +111,7 @@ export default function Home() {
                 </div>
                   
                   <Link href="/shop" className="block absolute inset-0 z-0" onMouseEnter={()=>setHovering(true)}>
-                    <div className="cover-image">
-                      <Image src="/images/home-hero-light.jpg" fill className="w-full h-full" alt="Placeholder" />
-                    </div>
+                    <SanityImage image={home.image} layout="fill" className="w-full h-full" alt="Placeholder" />
                   </Link>
                 
                   <div className="h-full w-full lg:w-8/12 max-w-[720px] pt-[130px] pb-[50px] relative z-20 mx-auto px-4 lg:px-6">
@@ -119,19 +121,24 @@ export default function Home() {
                           <LogoMarkOutlinedIcon />
                         </div>
                         
-                        <p className="block uppercase text-[11px] lg:text-[12px] leading-[1.25] text-center w-11/12 lg:w-9/12 mx-auto mb-8">one-of-a-kind, sustainably-sourced vintage pieces CURATED BY PHOEBE pocket. for all genders, sizes & occasions.</p>
+                        {home.introText && (
+                          <p className="block uppercase text-[11px] lg:text-[12px] leading-[1.25] text-center w-11/12 lg:w-9/12 mx-auto mb-8">{home.introText}</p>
+                        )}
 
-                        <video loop={true} autoPlay="autoplay" playsInline={true} muted className={`w-11/12 lg:w-9/12 h-auto max-h-[33dvh] mx-auto`}>
-                          <source src="/images/pp-home-reel.mp4" type="video/mp4" />
+                        {home.posterVideoReel?.asset && (
+                          <video loop={true} autoPlay="autoplay" playsInline={true} muted className={`w-11/12 lg:w-9/12 h-auto max-h-[33dvh] mx-auto`}>
+                            <source src={home.posterVideoReel.asset.url} type="video/mp4" />
 
-                          Sorry. Your browser does not support the video tag.
-                        </video>
+                            Sorry. Your browser does not support the video tag.
+                          </video>
+                        )}
                       </div>
                       
                       <div className="w-full mt-auto">
                         <LogoIcon className={`w-11/12 mx-auto text-black mb-5`} />
-
-                        <p className="block uppercase text-[11px] lg:text-[12px] leading-[1.25] text-center w-11/12 lg:w-9/12 mx-auto mb-0 pb-0">Sourced & curated by phoebe — a die-hard vintage lover who works on hollywood feature films and productions.</p>
+                        {home.footerText && (
+                          <p className="block uppercase text-[11px] lg:text-[12px] leading-[1.25] text-center w-11/12 lg:w-9/12 mx-auto mb-0 pb-0">{home.footerText}</p>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -143,4 +150,11 @@ export default function Home() {
       </LazyMotion>
     </Layout>
   )
+}
+
+export async function getStaticProps(context) {
+  const props = await pageService.fetchQuery(context)
+  return { 
+    props: props
+  };
 }

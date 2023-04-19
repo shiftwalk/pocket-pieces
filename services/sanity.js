@@ -2,7 +2,6 @@ import {
   groq,
   createClient,
   createImageUrlBuilder,
-  createPortableTextComponent,
   createPreviewSubscriptionHook,
   createCurrentUserHook,
 } from 'next-sanity'
@@ -11,7 +10,7 @@ class Sanity {
   config = {
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    useCdn: true,
+    useCdn: process.env.NODE_ENV === 'production',
     apiVersion: '2021-03-25',
   }
 
@@ -27,11 +26,6 @@ class Sanity {
   })
 
   urlFor = source => createImageUrlBuilder(this.config).image(source)
-  
-  // PortableText = createPortableTextComponent({
-  //   ...this.config,
-  //   serializers: {},
-  // })
   
   useCurrentUser = createCurrentUserHook(this.config)
   usePreviewSubscription = createPreviewSubscriptionHook(this.config)

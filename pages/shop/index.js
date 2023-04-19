@@ -7,17 +7,11 @@ import { getAllCollections, getAllProducts } from '@/helpers/shopify'
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 import Polaroid from '@/components/polaroid'
 import { useEffect, useRef, useState } from 'react'
-import SanityPageService from '@/helpers/sanity-page-service'
+import SanityPageService from '@/services/sanityPageService'
 import Link from 'next/link'
 import StarIcon from '@/icons/star.svg'
 
-const query = `{
-  "home": *[_type == "home"][0]{
-    title
-  },
-}`
-
-const pageService = new SanityPageService(query)
+const pageService = new SanityPageService()
 
 export default function Shop(initialData) {
   const { data: { products, collections } } = pageService.getPreviewHook(initialData)()
