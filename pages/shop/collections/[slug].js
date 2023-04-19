@@ -7,7 +7,7 @@ import { getAllCollections, getAllProductsInCollection, getCollection, getCollec
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 import Polaroid from '@/components/polaroid'
 import { useEffect, useRef, useState } from 'react'
-import SanityPageService from '@/helpers/sanity-page-service'
+import SanityPageService from '@/services/sanityPageService'
 import Link from 'next/link'
 import StarIcon from '@/icons/star.svg'
 
