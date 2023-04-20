@@ -8,12 +8,20 @@ import Image from 'next/image'
 import Polaroid from '@/components/polaroid'
 import Button from '@/components/button'
 
-export default function Credits() {
+import SanityPageService from '@/services/sanityPageService'
+import { creditsQuery } from '@/helpers/queries'
+import SanityImage from '@/components/sanity-image'
+
+const pageService = new SanityPageService(creditsQuery)
+
+export default function Credits(initialData) {
+  const { data: { credits, archives }  } = pageService.getPreviewHook(initialData)()
+
   const tickerItems = ['#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113', '#84', '#43', '#29', '#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113', '#84', '#43', '#29', '#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113' ]
 
   return (
     <Layout>
-      <NextSeo title="Credits" />
+      <NextSeo title={credits.title} />
 
       <LazyMotion features={domMax}>
         <m.div
@@ -28,15 +36,19 @@ export default function Credits() {
                 <m.div variants={fade} className="mb-[15vw] lg:mb-[10vw]">
                   <div className="flex flex-wrap mb-[20vw] lg:mb-[15vw] xl:mb-[12.5vw] relative">
                     <div className="w-full lg:w-1/2 relative z-[20] pointer-events-none">
-                      <h1 className="text-[30vw] lg:text-[20vw] mb-4 leading-[0.8] lg:leading-[0.8]">The Credits</h1>
+                      <h1 className="text-[30vw] lg:text-[20vw] mb-4 leading-[0.8] lg:leading-[0.8]">{credits.title}</h1>
 
                       <div className="content mb-[5vw]">
-                        <p className="text-base lg:text-lg w-[80%] lg:w-[70%] max-w-3xl">A celebration of Pocket Pieces in the wild. Artefacts, accessories & fashion as snapshots in time.</p>
+                        {credits.heroText && (
+                          <p className="text-base lg:text-lg w-[80%] lg:w-[70%] max-w-3xl">{credits.heroText}</p>
+                        )}
                       </div>
                     </div>
 
                     <div className="w-full lg:w-1/2">
-                      <Image src="/images/credits-hero.jpg" width={1644 } height={1794} className="block w-full" alt="placeholder" priority />
+                      <div className="aspect-[10/11] relative overflow-hidden">
+                        <SanityImage image={credits.heroBackgroundImage} className="block w-full scale-[1.015]" alt="placeholder" />
+                      </div>
                     </div>
                     
                     <m.div 
@@ -46,12 +58,10 @@ export default function Credits() {
                     >
                       <Polaroid
                         className="rotate-[13deg]"
-                        image="/images/cleopatra.jpg"
-                        imageWidth={911 }
-                        imageHeight={1266}
-                        hoverImage="/images/cleopatra.jpg"
-                        hoverImageWidth={911 }
-                        hoverImageHeight={1266}
+                        image={credits.heroPolaroids[0].images[0]}
+                        hoverImage={credits.heroPolaroids[0].images[1] ? credits.heroPolaroids[0].images[1] : credits.heroPolaroids[0].images[0]}
+                        // metaText={credits.heroPolaroids[0].text ? credits.heroPolaroids[0].text : false}
+                        sanity
                       />
                     </m.div>
 
@@ -62,12 +72,10 @@ export default function Credits() {
                     >
                       <Polaroid
                         className="rotate-[13deg]"
-                        image="/images/stitch.jpg"
-                        imageWidth={1045}
-                        imageHeight={1045}
-                        hoverImage="/images/stitch.jpg"
-                        hoverImageWidth={1045}
-                        hoverImageHeight={1045}
+                        image={credits.heroPolaroids[2].images[0]}
+                        hoverImage={credits.heroPolaroids[2].images[1] ? credits.heroPolaroids[2].images[1] : credits.heroPolaroids[2].images[0]}
+                        // metaText={credits.heroPolaroids[2].text ? credits.heroPolaroids[2].text : false}
+                        sanity
                       />
                     </m.div>
 
@@ -78,12 +86,10 @@ export default function Credits() {
                     >
                       <Polaroid
                         className="rotate-[-13deg]"
-                        image="/images/easy-rider.jpg"
-                        imageWidth={1087}
-                        imageHeight={1087}
-                        hoverImage="/images/easy-rider.jpg"
-                        hoverImageWidth={1087}
-                        hoverImageHeight={1087}
+                        image={credits.heroPolaroids[1].images[0]}
+                        hoverImage={credits.heroPolaroids[1].images[1] ? credits.heroPolaroids[1].images[1] : credits.heroPolaroids[1].images[0]}
+                        // metaText={credits.heroPolaroids[1].text ? credits.heroPolaroids[1].text : false}
+                        sanity
                       />
                     </m.div>
                   </div>
@@ -99,51 +105,78 @@ export default function Credits() {
                         className="w-full"
                       />
                     </div>
-
-                    <div className="w-full relative z-[20] mb-[10vw]">
-                      <h2 className="block text-[12vw] lg:text-[9vw] text-center leading-[0.75]">A celebration of Pocket Pieces in the wild. Artefacts, accessories & fashion as snapshots in time.</h2>
-                    </div>
+                    
+                    {credits.contentHeadingText && (
+                      <div className="w-full relative z-[20] mb-[10vw] lg:mb-[7.5vw]">
+                        <h2 className="block text-[12vw] lg:text-[9vw] text-center leading-[0.75]">{credits.contentHeadingText}</h2>
+                      </div>
+                    )}
                   </div>
                   
-                  <div className="flex flex-wrap items-start p-10">
-                    <m.div
-                      drag
-                      dragMomentum={false}
-                      className="w-[65%] lg:w-[40%] cursor-grab"
-                    >
-                      <Polaroid
-                        metaText="Pocket Piece #01"
-                        metaHeading="A Pooch In Time"
-                        image="https://placedog.net/720/720"
-                        hoverImage="https://placedog.net/700/700"
-                      />
-                    </m.div>
-
-                    <m.div
-                      drag
-                      dragMomentum={false}
-                      className="w-[65%] lg:w-[40%] ml-auto mt-[7vw] cursor-grab"
-                    >
-                      <Polaroid
-                        metaText="Pocket Piece #02"
-                        metaHeading="Easy Poocher"
-                        image="https://placedog.net/780/780"
-                        hoverImage="https://placedog.net/800/800"
+                  <div className="flex flex-wrap items-start p-[6.66vw] max-w-screen-2xl mx-auto">
+                    {credits.contentPolaroids[0] && (
+                      <m.div
+                        drag
+                        dragMomentum={false}
+                        className="w-[90%] lg:w-[45%] mb-[10vw] lg:mb-0 lg:mt-[12vw] cursor-grab rotate-[1deg]"
+                      >
+                        <Polaroid
+                          metaText="Pocket Piece #01"
+                          image={credits.contentPolaroids[0].images[0]}
+                          hoverImage={credits.contentPolaroids[0].images[1] ? credits.contentPolaroids[0].images[1] : credits.contentPolaroids[0].images[0]}
+                          metaHeading={credits.contentPolaroids[0].text ? credits.contentPolaroids[0].text : false}
+                          sanity
                         />
-                    </m.div>
+                      </m.div>
+                    )}
 
-                    <m.div 
-                      drag
-                      dragMomentum={false}
-                      className="mx-auto w-[65%] lg:w-[40%] mt-[7vw] cursor-grab"
-                    >
-                      <Polaroid
-                        metaText="Pocket Piece #03"
-                        metaHeading="The Pooch Wears Prada"
-                        image="https://placedog.net/900/900"
-                        hoverImage="https://placedog.net/920/920"
-                      />
-                    </m.div>
+                    {credits.contentPolaroids[1] && (
+                      <m.div
+                        drag
+                        dragMomentum={false}
+                        className="w-[90%] lg:w-[45%] mb-[10vw] lg:mb-0 ml-auto cursor-grab rotate-[-1deg]"
+                      >
+                        <Polaroid
+                          metaText="Pocket Piece #02"
+                          image={credits.contentPolaroids[1].images[0]}
+                          hoverImage={credits.contentPolaroids[1].images[1] ? credits.contentPolaroids[1].images[1] : credits.contentPolaroids[1].images[0]}
+                          metaHeading={credits.contentPolaroids[1].text ? credits.contentPolaroids[1].text : false}
+                          sanity
+                          />
+                      </m.div>
+                    )}
+                    
+                    {credits.contentPolaroids[2] && (
+                      <m.div 
+                        drag
+                        dragMomentum={false}
+                        className="w-[90%] lg:w-[45%] mb-[10vw] lg:mb-0 lg:mt-[12vw] cursor-grab rotate-[-1deg]"
+                      >
+                        <Polaroid
+                          metaText="Pocket Piece #03"
+                          image={credits.contentPolaroids[2].images[0]}
+                          hoverImage={credits.contentPolaroids[2].images[1] ? credits.contentPolaroids[2].images[1] : credits.contentPolaroids[2].images[0]}
+                          metaHeading={credits.contentPolaroids[2].text ? credits.contentPolaroids[2].text : false}
+                          sanity
+                        />
+                      </m.div>
+                    )}
+
+                    {credits.contentPolaroids[3] && (
+                      <m.div
+                        drag
+                        dragMomentum={false}
+                        className="w-[90%] lg:w-[45%] mb-[10vw] lg:mb-0 ml-auto lg:mt-[-4vw] cursor-grab rotate-[1deg]"
+                      >
+                        <Polaroid
+                          metaText="Pocket Piece #04"
+                          image={credits.contentPolaroids[3].images[0]}
+                          hoverImage={credits.contentPolaroids[3].images[1] ? credits.contentPolaroids[3].images[1] : credits.contentPolaroids[3].images[0]}
+                          metaHeading={credits.contentPolaroids[3].text ? credits.contentPolaroids[3].text : false}
+                          sanity
+                        />
+                      </m.div>
+                    )}
                   </div>
                 </m.div>
               </Container>
@@ -178,15 +211,15 @@ export default function Credits() {
 
                       <div className="relative flex overflow-x-hidden mb-20 md:mb-24 lg:mb-32 2xl:mb-40 overflow-y-hidden">
                         <div className="animate-marqueeSlow whitespace-nowrap will-change-transform">
-                          {Array.from(Array(6), (e, i) => {
+                          {archives.map((e, i) => {
                             return (
                               <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
-                                <span className="inline-block w-[50vw] md:w-[38vw] lg:w-[25vw] h-[66vw] md:h-[52vw] lg:h-[33vw] relative"><Image src="/images/strip-01.jpg" fill className="absolute inset-0 block w-full cover-image border-[2vw] border-white" alt="placeholder" /></span>
+                                <span className="inline-block w-[50vw] md:w-[38vw] lg:w-[25vw] relative"><SanityImage image={e.image} className="w-full " alt="placeholder" /></span>
                                 
-                                <span className="block mt-2">
-                                  <span className="block uppercase text-xs lg:text-sm">&quot;Easy Rider&quot;</span>
+                                <span className="block mt-4">
+                                  <span className="block uppercase text-xs lg:text-sm">&quot;{e.metaTitle}&quot;</span>
 
-                                  <span className="font-display text-[10vw] md:text-[6.5vw] lg:text-[4.25vw] 2xl:text-[70px] leading-[0.85] md:leading-[0.85] lg:leading-[0.85] 2xl:leading-[0.85]">1980s Pink Blazer</span>
+                                  <span className="font-display text-[10vw] md:text-[6.5vw] lg:text-[4.25vw] 2xl:text-[70px] leading-[0.95] md:leading-[0.95] lg:leading-[0.95] 2xl:leading-[0.95]">{e.title}</span>
                                 </span>
                               </span>
                             )
@@ -194,15 +227,15 @@ export default function Credits() {
                         </div>
 
                         <div className="absolute top-0 animate-marqueeSlow2 whitespace-nowrap will-change-transform">
-                          {Array.from(Array(6), (e, i) => {
+                          {archives.map((e, i) => {
                             return (
                               <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
-                                <span className="inline-block w-[50vw] md:w-[38vw] lg:w-[25vw] h-[66vw] md:h-[52vw] lg:h-[33vw] relative"><Image src="/images/strip-01.jpg" fill className="absolute inset-0 block w-full cover-image border-[2vw] border-white" alt="placeholder" /></span>
+                                <span className="inline-block w-[50vw] md:w-[38vw] lg:w-[25vw] relative"><SanityImage image={e.image} className="w-full " alt="placeholder" /></span>
                                 
-                                <span className="block mt-2">
-                                  <span className="block uppercase text-xs lg:text-sm">&quot;Easy Rider&quot;</span>
+                                <span className="block mt-4">
+                                  <span className="block uppercase text-xs lg:text-sm">&quot;{e.metaTitle}&quot;</span>
 
-                                  <span className="font-display text-[10vw] md:text-[6.5vw] lg:text-[4.25vw] 2xl:text-[70px] leading-[0.85] md:leading-[0.85] lg:leading-[0.85] 2xl:leading-[0.85]">1980s Pink Blazer</span>
+                                  <span className="font-display text-[10vw] md:text-[6.5vw] lg:text-[4.25vw] 2xl:text-[70px] leading-[0.95] md:leading-[0.95] lg:leading-[0.95] 2xl:leading-[0.95]">{e.title}</span>
                                 </span>
                               </span>
                             )
@@ -228,4 +261,11 @@ export default function Credits() {
       </LazyMotion>
     </Layout>
   )
+}
+
+export async function getStaticProps(context) {
+  const props = await pageService.fetchQuery(context)
+  return { 
+    props: props
+  };
 }

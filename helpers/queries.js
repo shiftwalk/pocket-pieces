@@ -83,6 +83,74 @@ export const aboutQuery = `{
   }
 }`
 
+export const creditsQuery = `{
+  "credits": *[_type == "credits"][0]{
+    title,
+    heroText,
+    heroBackgroundImage {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hotspot {
+        x,
+        y
+      },
+    },
+    heroPolaroids[] {
+      text,
+      images[] {
+        asset-> {
+          ...
+        },
+        caption,
+        alt,
+        hotspot {
+          x,
+          y
+        },
+      }
+    },
+    contentHeadingText,
+    contentPolaroids[] {
+      text,
+      images[] {
+        asset-> {
+          ...
+        },
+        caption,
+        alt,
+        hotspot {
+          x,
+          y
+        },
+      }
+    },
+    seo {
+      ...,
+      shareGraphic {
+        asset->
+      }
+    }
+  },
+  "archives": *[_type == "archives"]{
+    title,
+    metaTitle,
+    image {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hotspot {
+        x,
+        y
+      }
+    }
+  }
+}`
+
 export const infoQuery = `{
   "info": *[_type == "info"][0]{
     title,

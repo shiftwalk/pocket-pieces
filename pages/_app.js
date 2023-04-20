@@ -19,6 +19,8 @@ export default function App({ Component, pageProps }) {
       {/* <FPSStats bottom={10} left={10} top="auto" /> */}
       {/* <div className={`grain fixed inset-0 z-[1000] pointer-events-none mix-blend-darken`}></div> */}
       
+      { pageProps.preview && (<div className={'fixed bottom-0 left-0 w-auto px-3 py-2 bg-red-600 text-white justify-center flex z-[200] uppercase font-mono text-sm m-3'}>Preview Mode - <a className={'px-1 underline'} href={`/api/exit-preview?currentRoute=${router.route}`}>Click To Exit</a></div>)}
+
       <CartProvider>
         <CartOpenContext.Provider value={[cartIsOpenContext, setCartIsOpenContext]}>
           <div className="grainn"></div>
