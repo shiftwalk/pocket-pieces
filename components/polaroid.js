@@ -3,8 +3,9 @@ import Image from 'next/image';
 import { m } from 'framer-motion';
 import StarIcon from '@/icons/star.svg';
 import SanityImage from './sanity-image';
+import SanityImageTest from './sanity-image-test';
 
-export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin, sanity }) {
+export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin, sanity, eager }) {
 
   const imageVariants = {
     initial: { scale: 1, filter: "blur(0px)" },
@@ -68,7 +69,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
           variants={imageVariants}
         >
           {sanity ? (
-            <SanityImage image={image ? image : null} width={imageWidth ? imageWidth : 720} height={imageHeight ? imageHeight : 720} className={`block w-full relative z-[10]`} alt="placeholder" />
+            <SanityImageTest eager={eager} image={image ? image : null} width={imageWidth ? imageWidth : 720} height={imageHeight ? imageHeight : 720} className={`block w-full relative z-[10]`} alt="placeholder" />
           ) : (
             <Image src={image ? image : 'https://placedog.net/720/720'} width={imageWidth ? imageWidth : 720} height={imageHeight ? imageHeight : 720} className={`block w-full relative z-[10]`} alt="placeholder" />
           )}
@@ -92,7 +93,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
 
             <m.div variants={backImageVariants} className="absolute inset-0 object-cover object-center z-[10] opacity-0 scale-1 blur-0">
               {sanity ? (
-                <SanityImage image={hoverImage ? hoverImage : null} width={hoverImageWidth ? hoverImageWidth : 720} height={hoverImageHeight ? hoverImageHeight : 720} className={`block w-full pointer-events-none`} alt="placeholder" />
+                <SanityImageTest eager={eager} image={hoverImage ? hoverImage : null} width={hoverImageWidth ? hoverImageWidth : 720} height={hoverImageHeight ? hoverImageHeight : 720} className={`block w-full pointer-events-none`} alt="placeholder" />
               ) : (
                 <Image src={hoverImage ? hoverImage : 'https://placedog.net/720/720'} width={hoverImageWidth ? hoverImageWidth : 720} height={hoverImageHeight ? hoverImageHeight : 720} className={`block w-full pointer-events-none`} alt="placeholder" />
               )}

@@ -11,6 +11,7 @@ import Button from '@/components/button'
 import SanityPageService from '@/services/sanityPageService'
 import { creditsQuery } from '@/helpers/queries'
 import SanityImage from '@/components/sanity-image'
+import SanityImageTest from '@/components/sanity-image-test'
 
 const pageService = new SanityPageService(creditsQuery)
 
@@ -47,7 +48,7 @@ export default function Credits(initialData) {
 
                     <div className="w-full lg:w-1/2">
                       <div className="aspect-[10/11] relative overflow-hidden">
-                        <SanityImage image={credits.heroBackgroundImage} className="block w-full scale-[1.015]" alt="placeholder" />
+                        <SanityImageTest eager image={credits.heroBackgroundImage} className="block w-full scale-[1.015]" alt="placeholder" />
                       </div>
                     </div>
                     
@@ -62,6 +63,7 @@ export default function Credits(initialData) {
                         hoverImage={credits.heroPolaroids[0].images[1] ? credits.heroPolaroids[0].images[1] : credits.heroPolaroids[0].images[0]}
                         // metaText={credits.heroPolaroids[0].text ? credits.heroPolaroids[0].text : false}
                         sanity
+                        eager
                       />
                     </m.div>
 
@@ -76,6 +78,7 @@ export default function Credits(initialData) {
                         hoverImage={credits.heroPolaroids[2].images[1] ? credits.heroPolaroids[2].images[1] : credits.heroPolaroids[2].images[0]}
                         // metaText={credits.heroPolaroids[2].text ? credits.heroPolaroids[2].text : false}
                         sanity
+                        eager
                       />
                     </m.div>
 
@@ -90,6 +93,7 @@ export default function Credits(initialData) {
                         hoverImage={credits.heroPolaroids[1].images[1] ? credits.heroPolaroids[1].images[1] : credits.heroPolaroids[1].images[0]}
                         // metaText={credits.heroPolaroids[1].text ? credits.heroPolaroids[1].text : false}
                         sanity
+                        eager
                       />
                     </m.div>
                   </div>
@@ -214,7 +218,7 @@ export default function Credits(initialData) {
                           {archives.map((e, i) => {
                             return (
                               <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
-                                <span className="inline-block w-[50vw] md:w-[38vw] lg:w-[25vw] relative"><SanityImage image={e.image} className="w-full " alt="placeholder" /></span>
+                                <span className="inline-block w-[50vw] md:w-[38vw] lg:w-[25vw] relative"><SanityImageTest image={e.image} className="w-full " alt="placeholder" /></span>
                                 
                                 <span className="block mt-4">
                                   <span className="block uppercase text-xs lg:text-sm">&quot;{e.metaTitle}&quot;</span>
@@ -230,7 +234,7 @@ export default function Credits(initialData) {
                           {archives.map((e, i) => {
                             return (
                               <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
-                                <span className="inline-block w-[50vw] md:w-[38vw] lg:w-[25vw] relative"><SanityImage image={e.image} className="w-full " alt="placeholder" /></span>
+                                <span className="inline-block w-[50vw] md:w-[38vw] lg:w-[25vw] relative"><SanityImageTest image={e.image} className="w-full " alt="placeholder" /></span>
                                 
                                 <span className="block mt-4">
                                   <span className="block uppercase text-xs lg:text-sm">&quot;{e.metaTitle}&quot;</span>
