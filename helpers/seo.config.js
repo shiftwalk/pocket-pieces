@@ -1,6 +1,6 @@
 export default {
   defaultTitle: 'Vintage Pieces Curated By Phoebe Pocket | Pocket Pieces',
-  description: 'Lovingly curated vintage & designer resale from around the world 🌏 New drops weekly 💧 DM for pulls styling rental 💌 World wide shipping from UK 🇬🇧.',
+  description: 'One-of-a-kind, sustainably-sourced vintage pieces curated by phoebe pocket. For all genders, sizes & occasions.',
   titleTemplate: '%s | Pocket Pieces',
   openGraph: {
     type: 'website',
