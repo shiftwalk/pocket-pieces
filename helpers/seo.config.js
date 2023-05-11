@@ -9,7 +9,7 @@ export default {
     site_name: 'Pocket Pieces',
     images: [
       {
-        url: 'https://pocket-pieces.vercel.app/images/social.jpg',
+        url: 'https://pocket-pieces.vercel.app/images/social-share.jpg',
         width: 1200,
         height: 630,
         alt: `Pocket Pieces Logo`,
