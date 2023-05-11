@@ -13,10 +13,10 @@ export default function Footer({ noLogo, className }) {
 
         <div className="lg:ml-auto block lg:hidden mb-8 text-center mx-auto w-10/12 uppercase text-[14px] leading-[1.4]">
           <FancyLink destination="/" a11yText="Navigate to the home page" className="inline" label="Home, " />
-          <FancyLink destination="/shop" a11yText="Navigate to the shop page" className="inline" label="RE:Shop, " />
+          <FancyLink destination="/shop" a11yText="Navigate to the shop page" className="inline" label="Shop, " />
+          <FancyLink destination="/hire" a11yText="Navigate to the hire page" className="inline" label="Hire, " />
           <FancyLink destination="/about" a11yText="Navigate to the about page" className="inline" label="About, " />
-          <FancyLink destination="/credits" a11yText="Navigate to the credits page" className="inline" label="Credits, " />
-          <FancyLink destination="/info" a11yText="Navigate to the info page" className="inline" label="Info, " />
+          <FancyLink destination="/faqs" a11yText="Navigate to the faqs page" className="inline" label="FAQs, " />
           <FancyLink destination="/contact" a11yText="Navigate to the contact page" className="inline" label="Contact, " />
           <FancyLink destination="/privacy" a11yText="Navigate to the privacy page" className="inline" label="Privacy, " />
           <a href="https://www.instagram.com/_pocketpieces_" target="_blank" rel="noreferrer noopener" className="inline">Instagram</a>  

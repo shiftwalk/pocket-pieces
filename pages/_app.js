@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }) {
           </svg> */}
 
           <div className={`${IBMPlexMono.variable} ${GrifinitoL.variable} ${FTCalhern.variable} font-mono`}>
-            <Header dark={(router.asPath.includes('/info') || router.asPath == '/menu') ? true : false} />
+            <Header dark={(router.asPath.includes('/faqs') || router.asPath == '/menu') ? true : false} />
 
             <AnimatePresence mode="wait" initial={false}>
               <Component {...pageProps} key={router.asPath} />

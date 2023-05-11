@@ -10,35 +10,36 @@ import Link from 'next/link'
 import SanityPageService from '@/services/sanityPageService'
 import SanityImage from '@/components/sanity-image'
 import { homeQuery } from '@/helpers/queries'
+import Button from '@/components/button'
 
 const pageService = new SanityPageService(homeQuery)
 
 export default function Home(initialData) {
   const { data: { home }  } = pageService.getPreviewHook(initialData)()
-  const [hovering, setHovering] = useState(false)
+  // const [hovering, setHovering] = useState(false)
 
-  const useMousePosition = () => {
-    const [
-      mousePosition,
-      setMousePosition
-    ] = useState({ x: null, y: null });
+  // const useMousePosition = () => {
+  //   const [
+  //     mousePosition,
+  //     setMousePosition
+  //   ] = useState({ x: null, y: null });
   
-    useEffect(() => {
-      const updateMousePosition = ev => {
-        setMousePosition({ x: ev.clientX, y: ev.clientY });
-      };
+  //   useEffect(() => {
+  //     const updateMousePosition = ev => {
+  //       setMousePosition({ x: ev.clientX, y: ev.clientY });
+  //     };
       
-      window.addEventListener('mousemove', updateMousePosition);
+  //     window.addEventListener('mousemove', updateMousePosition);
   
-      return () => {
-        window.removeEventListener('mousemove', updateMousePosition);
-      };
-    }, []);
+  //     return () => {
+  //       window.removeEventListener('mousemove', updateMousePosition);
+  //     };
+  //   }, []);
   
-    return mousePosition;
-  };
+  //   return mousePosition;
+  // };
 
-  const mousePosition = useMousePosition();
+  // const mousePosition = useMousePosition();
 
   return (
     <Layout>
@@ -106,16 +107,13 @@ export default function Home(initialData) {
 
                   {/* <div className="fixed top-0 left-0 right-0 w-full bg-red-500 h-[65px] z-[100]"></div> */}
                   
-                  <div className={`fixed z-50 transition-opacity pointer-events-none rounded-[50%] backdrop-blur-[4px] ${hovering ? 'opacity-100' : 'opacity-0' }`} style={{ top: `${mousePosition.y - 25 }px`, left: `${mousePosition.x - 75 }px` }}>
-                    <div className="uppercase rounded-[50%] px-5 lg:px-5 py-6 lg:py-6 text-center text-sm lg:text-base leading-none lg:leading-none text-black border border-black block w-[150px]">Let&apos;s Shop!</div>
-                </div>
                   
-                  <Link href="/shop" className="block absolute inset-0 z-0" onMouseEnter={()=>setHovering(true)}>
+                  <div href="/shop" className="block absolute inset-0 z-0">
                     <SanityImage image={home.image} layout="fill" className="w-full h-full" alt="Placeholder" />
-                  </Link>
+                  </div>
                 
                   <div className="h-full w-full lg:w-8/12 max-w-[720px] pt-[130px] pb-[50px] relative z-20 mx-auto px-4 lg:px-6">
-                    <div className="w-full bg-white mx-auto p-4 lg:p-6 h-full flex flex-wrap" onMouseEnter={()=>setHovering(false)}>
+                    <div className="w-full bg-white mx-auto p-4 lg:p-6 h-full flex flex-wrap">
                       <div className="w-full">
                         <div className="w-[50px] lg:w-[50px] mx-auto mb-5">
                           <LogoMarkOutlinedIcon />
@@ -132,6 +130,10 @@ export default function Home(initialData) {
                             Sorry. Your browser does not support the video tag.
                           </video>
                         )}
+
+                        <div className="flex flex-wrap items-center justify-center space-x-4 pb-3 -mt-12 relative z-10">
+                          <Button outline href="/shop" label="Let's Shop!" />
+                        </div>
                       </div>
                       
                       <div className="w-full mt-auto">

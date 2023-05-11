@@ -62,9 +62,9 @@ export default function Header({ dark }) {
             </div>
 
             <div className="mr-auto space-x-3 items-center w-full hidden lg:flex lg:flex-1">
-              <FancyLink active={router.asPath.includes('/shop') ? true : false} nav className="flex-1" destination="/shop" a11yText="Navigate to the home page" label="RE:Shop" />
+              <FancyLink active={router.asPath.includes('/shop') ? true : false} nav className="flex-1" destination="/shop" a11yText="Navigate to the home page" label="Shop" />
+              <FancyLink active={router.asPath == '/hire' ? true : false} nav className="flex-1" destination="/hire" a11yText="Navigate to the hire page" label="Hire" />
               <FancyLink active={router.asPath == '/about' ? true : false} nav className="flex-1" destination="/about" a11yText="Navigate to the about page" label="About" />
-              <FancyLink active={router.asPath == '/credits' ? true : false} nav className="flex-1" destination="/credits" a11yText="Navigate to the credits page" label="Credits" />
             </div>
 
             <div className="flex flex-1 lg:flex-none lg:w-32">
@@ -74,7 +74,7 @@ export default function Header({ dark }) {
                     <LogoIcon className="w-full"/>
                   </div>
 
-                  <div className="w-[58px] mx-auto absolute top-0 left-0 right-0">
+                  <div className="w-[56px] mx-auto absolute top-0 left-0 right-0">
                     <div className="translate-y-[105%] lg:group-hover:translate-y-0 will-change-transform transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms]">
                       <LogoMarkOutlinedIcon className="w-full" />
                     </div>
@@ -84,7 +84,7 @@ export default function Header({ dark }) {
             </div>
 
             <div className="ml-auto space-x-3 items-center w-full hidden lg:flex lg:flex-1 justify-end">
-              <FancyLink active={router.asPath == '/info' ? true : false} nav className="flex-1 text-right justify-end" destination="/info" a11yText="Navigate to the info page" label="Info" />
+              <FancyLink active={router.asPath == '/faqs' ? true : false} nav className="flex-1 text-right justify-end" destination="/faqs" a11yText="Navigate to the faqs page" label="FAQs" />
 
               <FancyLink active={router.asPath == '/contact' ? true : false} nav className="flex-1 text-right justify-end" destination="/contact" a11yText="Navigate to the contact page" label="Contact" />
 
@@ -176,7 +176,7 @@ export default function Header({ dark }) {
                   <span className="text-base lg:text-lg uppercase leading-none lg:leading-none border-t border-b border-current py-3 flex mb-[3vh]"><span className="block">Total</span><span className="ml-auto">{ subtotal === 0 ? <>&pound;0</> : <>&pound;{subtotal}</>}</span></span>
                   
                   <div className="w-[55%] max-w-[180px] mx-auto">
-                    <a href={checkoutUrl} target="_blank" rel="noopener noreferrer" className="uppercase rounded-[50%] px-3 lg:px-5 py-6 lg:py-8 text-center lg:text-lg lg:leading-none bg-off-white text-black block">Checkout</a>
+                    <a href={checkoutUrl} target="_blank" rel="noopener noreferrer" className={`uppercase rounded-[50%] px-3 lg:px-5 py-6 lg:py-8 text-center lg:text-lg lg:leading-none  block ${ dark ? 'bg-black text-off-white' : 'bg-off-white text-black' }`}>Checkout</a>
                   </div>
                 </div>
               </m.div>

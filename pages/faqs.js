@@ -12,10 +12,11 @@ import { useState } from 'react'
 import SanityPageService from '@/services/sanityPageService'
 import { infoQuery } from '@/helpers/queries'
 import SanityImage from '@/components/sanity-image'
+import { InView } from 'react-intersection-observer';
 
 const pageService = new SanityPageService(infoQuery)
 
-export default function Info(initialData) {
+export default function FAQs(initialData) {
   const { data: { info }  } = pageService.getPreviewHook(initialData)()
   const router = useRouter()
   const [currentItem, setCurrentItem] = useState(false)
@@ -50,7 +51,7 @@ export default function Info(initialData) {
                                 <li key={i} className="block">
                                   <a
                                     href={`#${slugify(e.heading, { lower: true })}`}
-                                    className={`block ${i == 0 ? 'opacity-100' : 'opacity-30' }`}>
+                                    className={`block ${currentItem == slugify(e.heading, { lower: true }) ? 'opacity-100' : 'opacity-30' }`}>
                                       {e.heading}
                                     </a>
                                 </li>
@@ -70,7 +71,17 @@ export default function Info(initialData) {
                     <div className="content mb-4 lg:pr-[5%]">
                       {info.sections.map((e, i) => {
                         return (
-                          <AccordionItem item={e} key={i} />
+                          <InView
+                            className="scroll-mt-28"
+                            as="div"
+                            rootMargin="60px 0px 60px 0px"
+                            threshold={1}
+                            id={slugify(e.heading, { lower: true })}
+                            onChange={(inView, entry) => setCurrentItem(slugify(e.heading, { lower: true }))}
+                            key={i}
+                          >
+                            <AccordionItem item={e} />
+                          </InView>
                         )
                       })}
                     </div>

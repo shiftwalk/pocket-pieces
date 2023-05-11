@@ -127,6 +127,12 @@ export async function getAllProductsInCollection(handle) {
               ) {
                 value
               }
+              quote: metafield(
+                key:"quote",
+                namespace:"custom"
+              ) {
+                value
+              }
               images(first: 20) {
                 edges {
                   node {
@@ -232,6 +238,12 @@ export async function getProduct(handle) {
         ) {
           value
         }
+        quote: metafield(
+          key:"quote",
+          namespace:"custom"
+        ) {
+          value
+        }
         images(first: 20) {
           edges {
             node {
@@ -240,6 +252,14 @@ export async function getProduct(handle) {
               height
               width     
               altText             
+            }
+          }
+        }
+        collections(first:5) {
+          edges {
+            node {
+              title
+              handle
             }
           }
         }

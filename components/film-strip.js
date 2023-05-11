@@ -61,14 +61,14 @@ export default function FilmStrip({ images }) {
 
       <div className="w-full overflow-hidden" ref={horiScrollerWrapper}>
         <div className="whitespace-nowrap py-2 will-change-transform" ref={horiScroller}>
-          <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[45vw] mx-[5.5vw] lg:mx-[5.5vw] overflow-hidden rounded-3xl inline-block rotate-2 blur-[2px] relative will-change-transform" ref={horiScrollerItem1}>
+          <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[45vw] mx-[5.5vw] lg:mx-[5.5vw] overflow-hidden rounded-2xl inline-block rotate-2 blur-[2px] relative will-change-transform" ref={horiScrollerItem1}>
             <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
             <div ref={horiScrollerImage1} className="opacity-90 will-change-transform">
               <SanityImage image={images[0]} sizes="(min-width: 1024px) 33vw, 66vw" className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" />
             </div>
           </div>
 
-          <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[45vw] mx-[5.5vw] lg:mx-[5.5vw] overflow-hidden rounded-3xl inline-block relative group will-change-transform" ref={horiScrollerItem2}>
+          <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[45vw] mx-[5.5vw] lg:mx-[5.5vw] overflow-hidden rounded-2xl inline-block relative group will-change-transform" ref={horiScrollerItem2}>
             <div className="inner-shadow absolute inset-0 w-full h-full z-[3]"></div>
             
             <div className="absolute inset-0 transition-opacity ease-in-out duration-[330ms] z-[2]">
@@ -86,7 +86,7 @@ export default function FilmStrip({ images }) {
             </div>
           </div>
 
-          <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[45vw] mx-[5.5vw] lg:mx-[5.5vw] overflow-hidden rounded-3xl inline-block rotate-1 blur-[2px] relative will-change-transform" ref={horiScrollerItem3}>
+          <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[45vw] mx-[5.5vw] lg:mx-[5.5vw] overflow-hidden rounded-2xl inline-block rotate-1 blur-[2px] relative will-change-transform" ref={horiScrollerItem3}>
             <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
             <div ref={horiScrollerImage3} className="opacity-90 will-change-transform">
               <SanityImage image={images[2]} sizes="(min-width: 1024px) 33vw, 66vw" className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" />

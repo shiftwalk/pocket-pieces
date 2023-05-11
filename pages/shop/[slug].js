@@ -80,22 +80,31 @@ export default function ShopSlug(initialData) {
               <m.div variants={fade}>
                 <div className="w-full mb-3 lg:mb-4 flex text-xs lg:text-sm uppercase relative z-10">
                   <Link href="/shop" className="block underline">Back to shop</Link>
-                  <span className="ml-auto hidden underline lg:flex">
+                  <a href={`mailto:Pocketpiecesstore@gmail.com?subject=Hey! I have a question about ${productData.title}`} className="ml-auto hidden underline lg:flex">
                     <StarIcon className="w-6 mr-1" />
                     Got a question about this piece?
-                  </span>
+                  </a>
                 </div>
 
                 <div className="mb-8 w-full block lg:hidden">
                   <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-4">{productData.title}</h1>
-                  <span className="block text-xl lg:text-2xl font-light">{moneyUkLocale.format(productData.variants.edges[0].node.price.amount)}</span>
+                  {productData.collections?.edges.some(e => e.node.title === 'For Hire') ? (
+                    <span className="block text-xl lg:text-2xl font-light">For Hire</span>
+                  ) : (
+                    <span className="block text-xl lg:text-2xl font-light">{moneyUkLocale.format(productData.variants.edges[0].node.price.amount)}</span>
+                  )}
                 </div>
 
                 <div className="flex flex-wrap h-full lg:min-h-[calc(100dvh-150px)]">
                   <div className="w-full lg:w-7/12 lg:pr-12 order-2 lg:order-1 flex flex-wrap h-full lg:min-h-[calc(100dvh-150px)]">
                     <div className="mb-12 w-full hidden lg:block">
                       <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-4">{productData.title}</h1>
-                      <span className="block text-2xl font-light">{moneyUkLocale.format(productData.variants.edges[0].node.price.amount)}</span>
+
+                      {productData.collections?.edges.some(e => e.node.title === 'For Hire') ? (
+                        <span className="block text-2xl font-light">For Hire</span>
+                      ) : (
+                        <span className="block text-2xl font-light">{moneyUkLocale.format(productData.variants.edges[0].node.price.amount)}</span>
+                      )}
                     </div>
                     
                     <div className="w-full mt-auto">
@@ -103,21 +112,28 @@ export default function ShopSlug(initialData) {
 
                       <span className="block underline mb-8 lg:mb-10 text-sm lg:text-base">The Pocket Pieces Sizing &amp; Condition Guide</span>
 
-                      {productData.availableForSale ? (
+                      
+                      {productData.collections?.edges.some(e => e.node.title === 'For Hire') ? (
                         <div className="flex space-x-3">
-                          <button onClick={addToBag} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-off-black text-off-white border border-off-black hover:bg-transparent hover:text-off-black ${ isLoading ? 'cursor-disabled' : ''}`}>
-                            <span className="block relative">
-                              <span className={`absolute inset-0 text-center mx-auto flex items-center justify-center transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-100' : 'opacity-0'}`}><StarIcon className={`w-[50px] ${isLoading && 'animate-blink'}`} /></span>
-                              <span className={`transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-0' : 'opacity-100'}`}>Buy Piece</span>
-                            </span>
-                          </button>
-                          
-                          <a href="mailto:hello@pocketpieces.com" className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none text-off-black border border-off-black hover:bg-off-black hover:text-off-white`}>
+                          <a href={`mailto:Pocketpiecesstore@gmail.com?subject=Hey! I'd love to hire ${productData.title}`} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-off-black text-off-white border border-off-black hover:bg-transparent hover:text-off-black`}>
                             Hire Piece
                           </a>
                         </div>
                       ) : (
-                        <span className="block line-through">Sold Out</span>
+                        <>
+                          {productData.availableForSale ? (
+                            <div className="flex space-x-3">
+                              <button onClick={addToBag} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-off-black text-off-white border border-off-black hover:bg-transparent hover:text-off-black ${ isLoading ? 'cursor-disabled' : ''}`}>
+                                <span className="block relative">
+                                  <span className={`absolute inset-0 text-center mx-auto flex items-center justify-center transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-100' : 'opacity-0'}`}><StarIcon className={`w-[50px] ${isLoading && 'animate-blink'}`} /></span>
+                                  <span className={`transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-0' : 'opacity-100'}`}>Buy Piece</span>
+                                </span>
+                              </button>
+                            </div>
+                          ) : (
+                            <span className="block line-through">Sold Out</span>
+                          )}
+                        </>
                       )}
                     </div>
                   </div>
@@ -141,15 +157,18 @@ export default function ShopSlug(initialData) {
                   </div>
                 </div>
                 
-                <div className={`flex flex-wrap lg:justify-center ${productData.images.edges.length > 2 ? 'mt-[14vw] lg:mt-[15vw] mb-[5vw] lg:mb-[5vw]' : 'my-[14vw] lg:my-[15vw]' }`}>
-                  <MetaText text="Phoebe Says" className="w-full lg:text-center order-1 lg:order-1" />
-                  <blockquote className="font-display text-[15vw] md:text-[9vw] lg:text-[7.7vw] mb-[6vw] lg:mb-[4vw] leading-[0.8] md:leading-[0.8] lg:leading-[0.8] max-w-[90%] lg:max-w-[80%] lg:text-center w-full order-3 lg:order-2">“True A-lister jacket — this badboy piece will certainly draw eyes & sizzle at any party, any time.”</blockquote>
-                </div>
+                {productData.quote && (
+                  <div className={`flex flex-wrap lg:justify-center ${productData.images.edges.length > 2 ? 'mt-[14vw] lg:mt-[15vw] mb-[5vw] lg:mb-[5vw]' : 'my-[14vw] lg:my-[15vw]' }`}>
+                    <MetaText text="Phoebe Says" className="w-full lg:text-center order-1 lg:order-1" />
+                    <blockquote className="font-display text-[15vw] md:text-[9vw] lg:text-[7.7vw] mb-[6vw] lg:mb-[4vw] leading-[0.8] md:leading-[0.8] lg:leading-[0.8] max-w-[90%] lg:max-w-[80%] lg:text-center w-full order-3 lg:order-2">“{productData.quote.value}”</blockquote>
+                  </div>
+                )}
+
               </m.div>
             </Container>
             
             {productData.images.edges.length > 2 && (
-              <m.div variants={fade} className="pb-[14vw] lg:pb-[15vw]">
+              <m.div variants={fade} className={`pb-[14vw] lg:pb-[15vw] ${!productData.quote ? 'mt-[14vw] lg:mt-[15vw]' : '' }`}>
                 <div className="flex flex-wrap items-start p-10">
                   {productData.images.edges[1] && (
                     <m.div
@@ -252,6 +271,8 @@ export default function ShopSlug(initialData) {
                                     noShadow
                                     product
                                     className="w-full text-off-black"
+                                    hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
+                                    hireDark
                                     collection={e.node.collections.edges[0].node.title}
                                     metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                                     metaHeading={e.node.title}

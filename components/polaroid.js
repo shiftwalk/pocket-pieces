@@ -5,7 +5,7 @@ import StarIcon from '@/icons/star.svg';
 import SanityImage from './sanity-image';
 import SanityImageTest from './sanity-image-test';
 
-export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin, sanity, eager }) {
+export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin, sanity, eager, hire, hireDark }) {
 
   const imageVariants = {
     initial: { scale: 1, filter: "blur(0px)" },
@@ -58,6 +58,10 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
 
   return (
     <m.div initial="initial" whileHover="hover" className={`bg-white w-auto ${padding} pb-0 relative group ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`}>
+      {hire && (
+        <div className={`absolute top-[15%] right-[-15px] md:right-[-35px] lg:right-[-50px] w-[100px] md:w-[120px] lg:w-[140px] h-[100px] md:h-[120px] lg:h-[140px] rounded-full z-[30] flex items-center justify-center uppercase font-display text-[45px] md:text-[52px] lg:text-[60px] text-center leading-[0.7] md:leading-[0.7] lg:leading-[0.7] rotate-[6deg] ${hireDark ? 'bg-off-white text-off-black' : 'bg-off-black text-off-white' }`}>For<br/>Hire</div>
+      )}
+
       {collection && (
         <div className={`text-center ${thin ? 'pb-3' : 'pb-2' }`}>
           <span className={`block uppercase text-xs lg:text-sm`}>&quot;{collection}&quot;</span>        
@@ -112,8 +116,19 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
         { metaHeading && (
           <span className={`block ${product ? 'mt-1 lg:mt-0 font-display text-[10vw] md:text-[6.5vw] lg:text-[4.25vw] 2xl:text-[70px] leading-[0.85] md:leading-[0.85] lg:leading-[0.85] 2xl:leading-[0.85]' : 'uppercase text-sm md:text-base lg:text-lg' }`}>{metaHeading ? metaHeading : 'Heading'}</span>
         )}
+
         {price && (
-          <span className="block uppercase text-base lg:text-lg mt-[6px] lg:mt-[10px]">{price ? price : 'Sold Out'}</span>
+          <>
+          {hire ? (
+            <span className="block uppercase text-base lg:text-lg mt-[6px] lg:mt-[10px]">
+              For Hire
+            </span>
+          ) : (
+            <span className="block uppercase text-base lg:text-lg mt-[6px] lg:mt-[10px]">
+              {price ? price : 'Sold Out'}
+            </span>
+          )}
+          </>
         )}
       </div>
     </m.div>

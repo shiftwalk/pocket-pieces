@@ -15,7 +15,7 @@ import SanityImageTest from '@/components/sanity-image-test'
 
 const pageService = new SanityPageService(creditsQuery)
 
-export default function Credits(initialData) {
+export default function Hire(initialData) {
   const { data: { credits, archives }  } = pageService.getPreviewHook(initialData)()
 
   const tickerItems = ['#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113', '#84', '#43', '#29', '#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113', '#84', '#43', '#29', '#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113' ]

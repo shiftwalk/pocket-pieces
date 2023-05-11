@@ -27,10 +27,10 @@ export default function Info() {
                 <MetaText sm text="Where to?" className="opacity-75" />
                 <nav className="block uppercase text-[23px] font-light">
                   <FancyLink active={router.asPath == '/' ? true : false} nav className="block border-b border-current py-1" destination="/" a11yText="Navigate to the home page" label="Home" />
-                  <FancyLink active={router.asPath == '/shop' ? true : false} nav className="block border-b border-current py-1" destination="/shop" a11yText="Navigate to the shop page" label="RE:Shop" />
+                  <FancyLink active={router.asPath == '/shop' ? true : false} nav className="block border-b border-current py-1" destination="/shop" a11yText="Navigate to the shop page" label="Shop" />
+                  <FancyLink active={router.asPath == '/hire' ? true : false} nav className="block border-b border-current py-1" destination="/hire" a11yText="Navigate to the hire page" label="Hire" />
                   <FancyLink active={router.asPath == '/about' ? true : false} nav className="block border-b border-current py-1" destination="/about" a11yText="Navigate to the about page" label="About" />
-                  <FancyLink active={router.asPath == '/info' ? true : false} nav className="block border-b border-current py-1" destination="/info" a11yText="Navigate to the info page" label="Info" />
-                  <FancyLink active={router.asPath == '/credits' ? true : false} nav className="block border-b border-current py-1" destination="/credits" a11yText="Navigate to the credits page" label="Credits" />
+                  <FancyLink active={router.asPath == '/faqs' ? true : false} nav className="block border-b border-current py-1" destination="/faqs" a11yText="Navigate to the faqs page" label="FAQs" />
                   <FancyLink active={router.asPath == '/contact' ? true : false} nav className="block border-b border-current py-1" destination="/contact" a11yText="Navigate to the contact page" label="Contact" />
                 </nav>
               </Container>
