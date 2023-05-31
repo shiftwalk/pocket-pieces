@@ -31,8 +31,8 @@ export default function FAQs(initialData) {
           animate="enter"
           exit="exit"
         >
-          <m.div variants={fade} className="bg-black text-[#C1C1C1]">
-            <main className="pt-[70px] md:pt-[75px] lg:pt-[90px] lg:pb-[5vw]">
+          <m.div variants={fade}>
+            <main className="pt-[70px] md:pt-[75px] lg:pt-[90px] lg:pb-[5vw] text-[#C1C1C1]">
               <Container >
                 <div className="flex flex-wrap relative">
                   <div className="w-full lg:w-[45%]">
@@ -51,7 +51,7 @@ export default function FAQs(initialData) {
                                 <li key={i} className="block">
                                   <a
                                     href={`#${slugify(e.heading, { lower: true })}`}
-                                    className={`block ${currentItem == slugify(e.heading, { lower: true }) ? 'opacity-100' : 'opacity-30' }`}>
+                                    className={`block transition-opacity ease-in-out duration-300 ${currentItem == slugify(e.heading, { lower: true }) ? 'opacity-100' : 'opacity-30 hover:opacity-70' }`}>
                                       {e.heading}
                                     </a>
                                 </li>

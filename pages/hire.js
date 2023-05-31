@@ -37,7 +37,6 @@ export default function Hire(initialData) {
           initial="initial"
           animate="enter"
           exit="exit"
-          className="bg-off-white"
         >
           <div className="pt-[78px] lg:pt-[90px] overflow-hidden">
             <div className="fixed inset-0 pointer-events-none scale-[1.15]"></div>

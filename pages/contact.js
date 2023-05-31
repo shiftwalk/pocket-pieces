@@ -53,7 +53,15 @@ export default function Contact(initialData) {
                           return (
                             <div className="mb-6 lg:mb-10" key={i}>
                               <p>{e.title}</p>
-                              <a href={`mailto:${e.address}`} className="underline font-light">{e.address}</a>
+                              <a href={`mailto:${e.address}`} className="font-light inline-block group">
+                                <div className="relative">
+                                  <div className="w-full relative overflow-hidden">
+                                    <span className="block transition-transform ease-in-out duration-[450ms] translate-y-0 group-hover:translate-y-[-100%] group-focus:translate-y-[-100%]">{e.address}</span>
+                                    <div className="absolute inset-0 w-full transition-transform ease-in-out duration-[450ms] translate-y-full group-hover:translate-y-0 group-focus:translate-y-0">{e.address}</div>
+                                  </div>
+                                  <div className="w-full mx-auto h-px bg-black group-hover:w-1 transition-all ease-in-out duration-[450ms] mt-[2px]"></div>
+                                </div>
+                              </a>
                             </div>
                           )
                         })}
@@ -62,7 +70,15 @@ export default function Contact(initialData) {
                           <p>Social</p>
                           {contact.socials.map((e, i) => {
                             return (
-                              <a key={i} href={e.url} target="_blank" rel="noreferrer noopener" className="underline font-light block">{e.title}</a>
+                              <a key={i} href={e.url} target="_blank" rel="noreferrer noopener" className="inline-block font-light group">
+                                <div className="relative">
+                                  <div className="w-full relative overflow-hidden">
+                                    <span className="block transition-transform ease-in-out duration-[450ms] translate-y-0 group-hover:translate-y-[-100%] group-focus:translate-y-[-100%]">{e.title}</span>
+                                    <div className="absolute inset-0 w-full transition-transform ease-in-out duration-[450ms] translate-y-full group-hover:translate-y-0 group-focus:translate-y-0">{e.title}</div>
+                                  </div>
+                                  <div className="w-full mx-auto h-px bg-black group-hover:w-1 transition-all ease-in-out duration-[450ms] mt-[2px]"></div>
+                                </div>
+                              </a>
                             )
                           })}
                         </div>

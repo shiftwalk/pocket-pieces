@@ -12,6 +12,11 @@ import { useState } from 'react';
 export default function App({ Component, pageProps }) {
   const router = useRouter()
   const [cartIsOpenContext, setCartIsOpenContext] = useState(false);
+  let bgColor = 'bg-zinc-100'  
+  router.asPath == '/' && (bgColor = 'bg-zinc-100')
+  router.asPath.includes('/hire') && (bgColor = 'bg-off-white')
+  router.asPath.includes('/about') && (bgColor = 'bg-off-white')
+  router.asPath.includes('/faqs') && (bgColor = 'bg-black')
 
   return (
     <>
@@ -37,7 +42,7 @@ export default function App({ Component, pageProps }) {
             <rect width='100%' height='100%' filter='url(#noiseFilter)' />
           </svg> */}
 
-          <div className={`${IBMPlexMono.variable} ${GrifinitoL.variable} ${FTCalhern.variable} font-mono`}>
+          <div className={`${IBMPlexMono.variable} ${GrifinitoL.variable} ${FTCalhern.variable} font-mono transition-colors ease-[cubic-bezier([0.83,0,0.17,1])] duration-[500ms] ${bgColor}`}>
             <Header dark={(router.asPath.includes('/faqs') || router.asPath == '/menu') ? true : false} />
 
             <AnimatePresence mode="wait" initial={false}>

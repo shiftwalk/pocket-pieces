@@ -29,7 +29,7 @@ export default function Home(initialData) {
           animate="enter"
           exit="exit"
         >
-          <m.div variants={fade} className="bg-off-white">
+          <m.div variants={fade}>
             <main className="mb-12 md:mb-16 xl:mb-24 pt-14 lg:pt-16 overflow-hidden">
 
               <Container>

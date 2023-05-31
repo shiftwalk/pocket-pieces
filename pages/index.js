@@ -51,7 +51,7 @@ export default function Home(initialData) {
           animate="enter"
           exit="exit"
         >
-          <main className="mb-12 md:mb-16 xl:mb-24 pt-14 lg:pt-16">
+          <main className="w-full flex flex-wrap h-screen">
             <Container>
               <m.article variants={fade}>
                 {/* <div className="absolute inset-0 h-screen">
@@ -103,7 +103,7 @@ export default function Home(initialData) {
                   </div>
                 </div> */}
 
-                <div className="absolute inset-0 h-screen">
+                <m.div variants={fade} className="absolute inset-0 h-screen">
 
                   {/* <div className="fixed top-0 left-0 right-0 w-full bg-red-500 h-[65px] z-[100]"></div> */}
                   
@@ -144,7 +144,7 @@ export default function Home(initialData) {
                       </div>
                     </div>
                   </div>
-                </div>
+                </m.div>
               </m.article>
             </Container>
           </main>

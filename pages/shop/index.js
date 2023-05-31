@@ -114,11 +114,11 @@ export default function Shop(initialData) {
                 </div>
               </div> */}
 
-              <h1 className="inline-block text-[30vw] md:text-[26vw] lg:text-[24vw] xl:text-[300px] leading-[1] md:leading-[1] lg:leading-[1] xl:leading-[1] text-off-black mx-auto w-full text-center pt-[120px] lg:pt-[45px]">
-                <span className="inline-block">The Pieces</span>
+              <h1 className="inline-block text-[30vw] md:text-[26vw] lg:text-[27vw] xl:text-[350px] leading-[1] md:leading-[1] lg:leading-[1] xl:leading-[1] text-off-black mx-auto w-full text-center pt-[120px] lg:pt-[45px]">
+                <span className="inline-block">Shop Pieces</span>
               </h1>
 
-              <div className={`${viewLayoutContainer} mx-auto relative z-[50]  ${currentView == 'reel' ? 'pt-[30px] md:pt-[30px] lg:pt-[15dvh]' : 'pt-[30px] md:pt-[30px] lg:pt-[20dvh]' }`} ref={scrollWrapper}>
+              <div className={`${viewLayoutContainer} mx-auto relative z-[50]  ${currentView == 'reel' ? 'pt-[30px] md:pt-[30px] lg:pt-[8dvh]' : 'pt-[30px] md:pt-[30px] lg:pt-[20dvh]' }`} ref={scrollWrapper}>
                 {products.map((e, i) => {
                   return e.node.availableForSale && (
                     <div className={viewLayoutChildren} key={i}>

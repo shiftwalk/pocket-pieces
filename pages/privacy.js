@@ -51,7 +51,7 @@ export default function Privacy(initialData) {
                                 <li key={i} className="block">
                                   <a
                                     href={`#${slugify(e.heading, { lower: true })}`}
-                                    className={`block ${currentItem == slugify(e.heading, { lower: true }) ? 'opacity-100' : 'opacity-30' }`}>
+                                    className={`block transition-opacity ease-in-out duration-300 ${currentItem == slugify(e.heading, { lower: true }) ? 'opacity-100' : 'opacity-30 hover:opacity-50' }`}>
                                       {e.heading}
                                     </a>
                                 </li>

@@ -53,7 +53,7 @@ export default function Header({ dark }) {
     <>
       <header className={`fixed top-0 left-0 right-0 backdrop-blur-[4px] z-[500]`}>
         <Container>
-          <nav className={`flex flex-wrap space-x-3 items-center uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms] py-4 ${dark && 'text-[#C1C1C1]' } border-b ${dark ? 'border-[#C1C1C1]' : 'border-black' }`}>
+          <nav className={`flex flex-wrap space-x-3 items-center uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none transition-colors ease-[cubic-bezier([0.83,0,0.17,1])] duration-[200ms] py-4 ${dark ? 'text-[#C1C1C1]' : 'text-black'  } border-b ${dark ? 'border-[#C1C1C1]' : 'border-black' }`}>
 
             <div className="ml-auto text-base block lg:hidden w-auto">
               <Link href="/menu" aria-label="Navigate to the menu" className="block w-6">
@@ -89,7 +89,12 @@ export default function Header({ dark }) {
 
               <FancyLink onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} active={router.asPath == '/contact' ? true : false} nav className={`flex-1 text-right justify-end transition-all ease-in-out duration-[400ms] hover:blur-0 ${hovering && 'blur-[2px]'}`} destination="/contact" a11yText="Navigate to the contact page" label="Contact" />
 
-              <button onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} className={`flex-1 text-right justify-end transition-all ease-in-out duration-[400ms] hover:blur-0 ${hovering && 'blur-[2px]'}`} onClick={cartToggle} aria-label={`${cartIsOpenContext ? 'Close' : 'Open'} Bag`}>Bag({cart?.length})</button>
+              <button onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} className={`flex-1 flex group items-center text-right uppercase justify-end transition-all ease-in-out duration-[400ms] hover:blur-0 ${hovering && 'blur-[2px]'}`} onClick={cartToggle} aria-label={`${cartIsOpenContext ? 'Close' : 'Open'} Bag`}>
+                <div className="w-[10px] lg:w-[12px] mr-2 relative">
+                  <svg className={`transition-transform duration-[330ms] ease-[cubic-bezier([0.83,0,0.17,1])] group-hover:rotate-90`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 12"><path stroke="currentColor" d="M12 11.5H9M0 11.5h3M0 .5h3M.5 0v3M11.5 0v3M12 .5H9M11.5 12V9M.5 12V9"/></svg>
+                </div>
+                Bag({cart?.length})
+              </button>
             </div>
 
             <div className="ml-auto block lg:hidden w-auto leading-none text-[11px]">
@@ -138,14 +143,16 @@ export default function Header({ dark }) {
                       {cartItems.map((e, i) => {
                         return (
                           <div className="w-full flex flex-wrap mb-6 items-center" key={i}>
-                            <Link onClick={()=> setCartIsOpenContext(false)} href={`/shop/${e.productHandle}`} className="w-1/3">
-                              <Image
-                                src={e.productImage.originalSrc}
-                                alt={e.productTitle}
-                                className="w-full aspect-[10/11] object-cover object-center"
-                                height={e.productImage.height}
-                                width={e.productImage.width}
-                              />
+                            <Link onClick={()=> setCartIsOpenContext(false)} href={`/shop/${e.productHandle}`} className="w-1/3 group">
+                              <div className="relative overflow-hidden">
+                                <Image
+                                  src={e.productImage.originalSrc}
+                                  alt={e.productTitle}
+                                  className="w-full aspect-[10/11] object-cover object-center transition-transform ease-in-out duration-[400ms] group-hover:scale-[1.1]"
+                                  height={e.productImage.height}
+                                  width={e.productImage.width}
+                                />
+                              </div>
                             </Link>
                             <div className="flex-1 pl-3 translate-y-[-8px]">
                               <Link onClick={()=> setCartIsOpenContext(false)} href={`/shop/${e.productHandle}`} className="block font-display text-4xl lg:text-5xl leading-[0.75] lg:leading-[0.75] mb-2 lg:w-[80%]">{e.productTitle}</Link>
@@ -157,7 +164,7 @@ export default function Header({ dark }) {
 
                                 <button
                                   aria-label={`Remove ${e.productTitle} from your bag`}
-                                  className="block ml-auto"
+                                  className="block ml-auto hover:opacity-50 focus:opacity-60 transition-opacity ease-in-out duration-[400ms]"
                                   onClick={() => updateItem(e.variantId, 0)}
                                 >
                                   <BinIcon className="w-4" />
@@ -177,7 +184,13 @@ export default function Header({ dark }) {
                   <span className="text-base lg:text-lg uppercase leading-none lg:leading-none border-t border-b border-current py-3 flex mb-[3vh]"><span className="block">Total</span><span className="ml-auto">{ subtotal === 0 ? <>&pound;0</> : <>&pound;{subtotal}</>}</span></span>
                   
                   <div className="w-[55%] max-w-[180px] mx-auto">
-                    <a href={checkoutUrl} target="_blank" rel="noopener noreferrer" className={`uppercase rounded-[50%] px-3 lg:px-5 py-6 lg:py-8 text-center lg:text-lg lg:leading-none  block ${ dark ? 'bg-black text-off-white' : 'bg-off-white text-black' }`}>Checkout</a>
+                    <a href={checkoutUrl} target="_blank" rel="noopener noreferrer" className={`uppercase rounded-[50%] px-3 lg:px-5 py-6 lg:py-8 text-center lg:text-lg lg:leading-none group relative overflow-hidden block border ${ dark ? 'bg-black text-off-white border-black' : 'bg-off-white text-black border-off-white' }`}>
+                      <div className="relative overflow-hidden">
+                        <div className="transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-0 group-hover:translate-y-[100%] group-hover:delay-[0ms] delay-[160ms]">Checkout</div>
+                        <div className={`transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] absolute inset-0 translate-y-[100%] group-hover:translate-y-0 z-20 group-hover:delay-[160ms] ${ dark ? 'text-black' : 'text-off-white' }`}>Checkout</div>
+                      </div>
+                      <div className={`absolute inset-0 z-10 ${ dark ? 'bg-off-white' : 'bg-black' } transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-[-100%] group-hover:translate-y-0`}></div>
+                    </a>
                   </div>
                 </div>
               </m.div>
