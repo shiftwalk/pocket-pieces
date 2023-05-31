@@ -2,8 +2,11 @@ import Container from '@/components/container'
 import LogoIcon from '@/icons/logo.svg'
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 import FancyLink from '@/components/fancyLink'
+import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Footer({ noLogo, className }) {
+  const [hovering, setHovering] = useState(false);
   return (
     <footer className={`pb-3 lg:pb-4 pt-[33vw] lg:pt-[13vw] ${className} relative z-10`}>
       <Container>
@@ -26,23 +29,23 @@ export default function Footer({ noLogo, className }) {
 
         <div className="flex flex-wrap">
           <div className="mb-0 lg:mb-0 flex lg:block w-full lg:w-auto">
-            <span className="block uppercase text-xs lg:text-sm xl:text-base 2xl:text-lg leading-none lg:leading-none xl:leading-none 2xl:leading-none">&copy; <span className="hidden lg:inline">All rights reserved, </span>Pocket Pieces Ltd ({new Date().getFullYear()})</span>
+            <span className={`block uppercase text-xs lg:text-sm xl:text-base 2xl:text-lg leading-none lg:leading-none xl:leading-none 2xl:leading-none transition-all ease-in-out duration-[450ms] ${hovering && ('blur-[2px]')}`}>&copy; <span className="hidden lg:inline">All rights reserved, </span>Pocket Pieces Ltd ({new Date().getFullYear()})</span>
 
             <a href="https://shiftwalk.studio" target="_blank" rel="noreferrer noopener" className="block lg:hidden ml-auto lg:ml-0 text-right lg:text-left uppercase text-xs lg:text-sm xl:text-base 2xl:text-lg leading-none lg:leading-none xl:leading-none 2xl:leading-none">Site By ShiftWalk</a>
           </div>
 
           <div className="lg:mb-0 w-full lg:w-auto lg:ml-auto hidden lg:flex space-x-1">
-            <a href="https://www.instagram.com/_pocketpieces_" target="_blank" rel="noreferrer noopener" className="uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none">Instagram, </a>
+            <a onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} href="https://www.instagram.com/_pocketpieces_" target="_blank" rel="noreferrer noopener" className={`uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none hover:blur-[0px] transition-all ease-in-out duration-[450ms] ${hovering && ('blur-[2px]')}`}>Instagram, </a>
 
-            <a href="mailto:hello@pocketpieces.com" target="_blank" rel="noreferrer noopener" className="uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none">Email</a>
+            <a onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} href="mailto:hello@pocketpieces.com" target="_blank" rel="noreferrer noopener" className={`uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none hover:blur-[0px] transition-all ease-in-out duration-[450ms] ${hovering && ('blur-[2px]')}`}>Email</a>
           </div>
           
           <div className="lg:mb-0 w-full lg:w-auto lg:ml-auto hidden lg:block">
-            <FancyLink destination="/privacy" a11yText="Navigate to the Privacy Policy page" className="block uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none" label="Privacy Policy" />
+            <Link href="/privacy" className={`block uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none hover:blur-[0px] transition-all ease-in-out duration-[450ms] ${hovering && ('blur-[2px]')}`} onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>Privacy Policy</Link>
           </div>
 
           <div className="w-full lg:w-auto lg:ml-auto hidden lg:block">
-            <a href="https://shiftwalk.studio" target="_blank" rel="noreferrer noopener" className="block uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none">Site By ShiftWalk</a>
+            <a onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} href="https://shiftwalk.studio" target="_blank" rel="noreferrer noopener" className={`block uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none hover:blur-[0px] transition-all ease-in-out duration-[450ms] ${hovering && ('blur-[2px]')}`}>Site By ShiftWalk</a>
           </div>
         </div>
       </Container>

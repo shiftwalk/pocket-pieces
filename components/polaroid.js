@@ -53,6 +53,14 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
     }
   }
 
+  const hireVariants = {
+    initial: { rotate: 6 },
+    hover: {
+      rotate: -6,
+      transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }
+    }
+  }
+
   let padding = 'p-[9%]'
 
   if (thin) { 
@@ -70,7 +78,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
   return (
     <m.div initial="initial" whileHover="hover" className={`bg-white w-auto ${padding} pb-0 relative group ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`}>
       {hire && (
-        <div className={`absolute top-[15%] right-[-15px] md:right-[-35px] lg:right-[-50px] w-[100px] md:w-[120px] lg:w-[140px] h-[100px] md:h-[120px] lg:h-[140px] rounded-full z-[30] flex items-center justify-center uppercase font-display text-[45px] md:text-[52px] lg:text-[60px] text-center leading-[0.7] md:leading-[0.7] lg:leading-[0.7] rotate-[6deg] ${hireDark ? 'bg-off-white text-off-black' : 'bg-off-black text-off-white' }`}>For<br/>Hire</div>
+        <m.div variants={hireVariants} className={`absolute top-[15%] right-[-15px] md:right-[-35px] lg:right-[-50px] w-[100px] md:w-[120px] lg:w-[140px] h-[100px] md:h-[120px] lg:h-[140px] rounded-full z-[30] flex items-center justify-center uppercase font-display text-[45px] md:text-[52px] lg:text-[60px] text-center leading-[0.7] md:leading-[0.7] lg:leading-[0.7] ${hireDark ? 'bg-off-white text-off-black' : 'bg-off-black text-off-white' }`}>For<br/>Hire</m.div>
       )}
 
       {collection && (
