@@ -89,8 +89,10 @@ export default function FAQs(initialData) {
                 </div>
               </Container>
             </main>
-
-            <Footer />
+            
+            <div className="text-[#C1C1C1]">
+              <Footer />
+            </div>
           </m.div>
         </m.div>
       </LazyMotion>

@@ -49,10 +49,10 @@ export default function Hire(initialData) {
 
                       <div className="content mb-[5vw]">
                         {credits.heroText && (
-                          <p className="text-base lg:text-lg w-[90%] lg:w-[90%] max-w-3xl lg:text-center lg:mx-auto">{credits.heroText}</p>
+                          <p className="text-base lg:text-lg w-[90%] lg:w-[90%] max-w-3xl">{credits.heroText}</p>
                         )}
 
-                        <div className="mx-auto lg:flex lg:justify-center">
+                        <div className="mx-auto lg:flex">
                           <Button href="/shop/collections/for-hire" label="All Pieces For Hire" outline className="block lg:mx-auto" />
                         </div>
                       </div>
