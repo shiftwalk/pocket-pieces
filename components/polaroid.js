@@ -4,8 +4,19 @@ import { m } from 'framer-motion';
 import StarIcon from '@/icons/star.svg';
 import SanityImage from './sanity-image';
 import SanityImageTest from './sanity-image-test';
+import { useEffect, useState } from 'react';
 
 export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin, sanity, eager, hire, hireDark }) {
+  const [randomId, setRandomId] = useState(0)
+
+  function randomNumberInRange(min, max) {
+    // 👇️ get number between min (inclusive) and max (inclusive)
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  useEffect(() => {
+    setRandomId(randomNumberInRange(100,200))
+  }, [randomId]);
 
   const imageVariants = {
     initial: { scale: 1, filter: "blur(0px)" },
@@ -108,7 +119,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
       
       <div className={`${metaText || metaHeading ? 'py-[7.5%]' : 'py-[15%]'} text-center`}>
         {number && (
-          <span className={`block uppercase text-xs lg:text-sm`}>#{number}</span>
+          <span className={`block uppercase text-xs lg:text-sm`}>#{randomId}</span>
         )}
         {metaText && (
           <span className={`block uppercase ${bigMeta ? 'text-lg lg:text-xl' : 'text-xs lg:text-sm' }`}>&quot;{metaText ? metaText : 'Pocket Piece'}&quot;</span>

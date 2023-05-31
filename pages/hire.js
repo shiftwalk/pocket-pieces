@@ -12,13 +12,21 @@ import SanityPageService from '@/services/sanityPageService'
 import { creditsQuery } from '@/helpers/queries'
 import SanityImage from '@/components/sanity-image'
 import SanityImageTest from '@/components/sanity-image-test'
+import { getAllProductsInCollection } from '@/helpers/shopify'
+import Link from 'next/link'
 
 const pageService = new SanityPageService(creditsQuery)
 
 export default function Hire(initialData) {
-  const { data: { credits, archives }  } = pageService.getPreviewHook(initialData)()
+  const { data: { credits, archives, products }  } = pageService.getPreviewHook(initialData)()
 
   const tickerItems = ['#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113', '#84', '#43', '#29', '#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113', '#84', '#43', '#29', '#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113' ]
+
+  let moneyUkLocale = Intl.NumberFormat('en-UK', {
+    style: "currency",
+    currency: "GBP",
+    useGrouping: true,
+  });
 
   return (
     <Layout>
@@ -29,6 +37,7 @@ export default function Hire(initialData) {
           initial="initial"
           animate="enter"
           exit="exit"
+          className="bg-off-white"
         >
           <div className="pt-[78px] lg:pt-[90px] overflow-hidden">
             <div className="fixed inset-0 pointer-events-none scale-[1.15]"></div>
@@ -36,66 +45,100 @@ export default function Hire(initialData) {
               <Container>
                 <m.div variants={fade} className="mb-[15vw] lg:mb-[10vw]">
                   <div className="flex flex-wrap mb-[20vw] lg:mb-[15vw] xl:mb-[12.5vw] relative">
-                    <div className="w-full lg:w-1/2 relative z-[20] pointer-events-none">
+                    <div className="w-full lg:w-[55%] relative z-[20]">
                       <h1 className="text-[30vw] lg:text-[20vw] mb-4 leading-[0.8] lg:leading-[0.8]">{credits.title}</h1>
 
                       <div className="content mb-[5vw]">
                         {credits.heroText && (
-                          <p className="text-base lg:text-lg w-[80%] lg:w-[70%] max-w-3xl">{credits.heroText}</p>
+                          <p className="text-base lg:text-lg w-[90%] lg:w-[90%] max-w-3xl lg:text-center lg:mx-auto">{credits.heroText}</p>
                         )}
+
+                        <div className="mx-auto lg:flex lg:justify-center">
+                          <Button href="/shop/collections/for-hire" label="All Pieces For Hire" outline className="block lg:mx-auto" />
+                        </div>
                       </div>
                     </div>
 
-                    <div className="w-full lg:w-1/2">
-                      <div className="aspect-[10/11] relative overflow-hidden">
-                        <SanityImageTest eager image={credits.heroBackgroundImage} className="block w-full scale-[1.015]" alt="placeholder" />
-                      </div>
+
+                    <div className="w-full lg:w-[45%] relative z-[20]">
+                      {products.length > 0 && products[0]?.node.availableForSale && (
+                        <div className="w-[82%] lg:w-[90%] mx-auto rotate-[-4deg] mt-[15%]" >
+                          <Link href={`/shop/${products[0].node.handle}`} className="w-full max-w-[55vh] mx-auto block lg:pr-[10%]">
+                            <Polaroid
+                              noShadow
+                              thin
+                              product
+                              className="w-full"
+                              hire={true}
+                              collection={products[0].node.collections.edges[0].node.title}
+                              metaText={products[0].node.metaTitle ? products[0].node.metaTitle.value : null}
+                              metaHeading={products[0].node.title}
+                              price={moneyUkLocale.format(products[0].node.variants.edges[0].node.price.amount)}
+                              image={products[0].node.images.edges[0].node.originalSrc}
+                              imageWidth={products[0].node.images.edges[0].node.width}
+                              imageHeight={products[0].node.images.edges[0].node.height}
+                              hoverImage={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.originalSrc : products[0].node.images.edges[0].node.originalSrc}
+                              hoverImageWidth={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.width : products[0].node.images.edges[0].node.width}
+                              hoverImageHeight={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.height : products[0].node.images.edges[0].node.height}
+                            />
+                          </Link>
+                        </div>
+                       )}
                     </div>
-                    
-                    <m.div 
-                      drag
-                      dragMomentum={false}
-                      className="absolute bottom-[-22vw] left-[-15vw] w-[35vw] cursor-grab"
-                    >
-                      <Polaroid
-                        className="rotate-[13deg]"
-                        image={credits.heroPolaroids[0].images[0]}
-                        hoverImage={credits.heroPolaroids[0].images[1] ? credits.heroPolaroids[0].images[1] : credits.heroPolaroids[0].images[0]}
-                        // metaText={credits.heroPolaroids[0].text ? credits.heroPolaroids[0].text : false}
-                        sanity
-                        eager
-                      />
-                    </m.div>
+                  </div>
 
-                    <m.div 
-                      drag
-                      dragMomentum={false}
-                      className="absolute bottom-[-15vw] lg:bottom-auto lg:top-[8vw] right-[-12vw] w-[33vw] lg:w-[20vw] cursor-grab"
-                    >
-                      <Polaroid
-                        className="rotate-[13deg]"
-                        image={credits.heroPolaroids[2].images[0]}
-                        hoverImage={credits.heroPolaroids[2].images[1] ? credits.heroPolaroids[2].images[1] : credits.heroPolaroids[2].images[0]}
-                        // metaText={credits.heroPolaroids[2].text ? credits.heroPolaroids[2].text : false}
-                        sanity
-                        eager
-                      />
-                    </m.div>
+                  <div className="flex flex-wrap mb-[20vw] lg:mb-[15vw] xl:mb-[12.5vw] relative">
+                    <div className="w-full lg:w-[50%] relative z-[20] lg:mt-[-13%] 2xl:mt-[-18%]">
+                      {products.length > 0 && products[1]?.node.availableForSale && (
+                        <div className="w-[85%] lg:w-[75%] mx-auto rotate-[3deg]">
+                          <Link href={`/shop/${products[1].node.handle}`} className="w-full max-w-[55vh] mx-auto block">
+                            <Polaroid
+                              noShadow
+                              thin
+                              product
+                              className="w-full"
+                              hire={true}
+                              collection={products[1].node.collections.edges[0].node.title}
+                              metaText={products[1].node.metaTitle ? products[1].node.metaTitle.value : null}
+                              metaHeading={products[1].node.title}
+                              price={moneyUkLocale.format(products[1].node.variants.edges[0].node.price.amount)}
+                              image={products[1].node.images.edges[0].node.originalSrc}
+                              imageWidth={products[1].node.images.edges[0].node.width}
+                              imageHeight={products[1].node.images.edges[0].node.height}
+                              hoverImage={products[1].node.images.edges[1] ? products[1].node.images.edges[1].node.originalSrc : products[1].node.images.edges[0].node.originalSrc}
+                              hoverImageWidth={products[1].node.images.edges[1] ? products[1].node.images.edges[1].node.width : products[1].node.images.edges[0].node.width}
+                              hoverImageHeight={products[1].node.images.edges[1] ? products[1].node.images.edges[1].node.height : products[1].node.images.edges[0].node.height}
+                            />
+                          </Link>
+                        </div>
+                      )}
+                    </div>
 
-                    <m.div 
-                      drag
-                      dragMomentum={false}
-                      className="absolute bottom-[-12vw] lg:bottom-auto lg:top-[22vw] right-[33vw] lg:right-[40vw] w-[25vw] cursor-grab"
-                    >
-                      <Polaroid
-                        className="rotate-[-13deg]"
-                        image={credits.heroPolaroids[1].images[0]}
-                        hoverImage={credits.heroPolaroids[1].images[1] ? credits.heroPolaroids[1].images[1] : credits.heroPolaroids[1].images[0]}
-                        // metaText={credits.heroPolaroids[1].text ? credits.heroPolaroids[1].text : false}
-                        sanity
-                        eager
-                      />
-                    </m.div>
+                    <div className="w-full lg:w-[50%] relative z-[20] mt-[20%] lg:mt-0">
+                      {products.length > 0 && products[2]?.node.availableForSale && (
+                        <div className="w-[85%] lg:w-[70%] mx-auto rotate-[-1deg]">
+                          <Link href={`/shop/${products[2].node.handle}`} className="w-full max-w-[55vh] mx-auto block">
+                            <Polaroid
+                              noShadow
+                              thin
+                              product
+                              className="w-full"
+                              hire={true}
+                              collection={products[2].node.collections.edges[0].node.title}
+                              metaText={products[2].node.metaTitle ? products[2].node.metaTitle.value : null}
+                              metaHeading={products[2].node.title}
+                              price={moneyUkLocale.format(products[2].node.variants.edges[0].node.price.amount)}
+                              image={products[2].node.images.edges[0].node.originalSrc}
+                              imageWidth={products[2].node.images.edges[0].node.width}
+                              imageHeight={products[2].node.images.edges[0].node.height}
+                              hoverImage={products[2].node.images.edges[1] ? products[2].node.images.edges[1].node.originalSrc : products[2].node.images.edges[0].node.originalSrc}
+                              hoverImageWidth={products[2].node.images.edges[1] ? products[2].node.images.edges[1].node.width : products[2].node.images.edges[0].node.width}
+                              hoverImageHeight={products[2].node.images.edges[1] ? products[2].node.images.edges[1].node.height : products[2].node.images.edges[0].node.height}
+                            />
+                          </Link>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   <div className="flex flex-wrap justify-center">
@@ -116,71 +159,29 @@ export default function Hire(initialData) {
                       </div>
                     )}
                   </div>
-                  
-                  <div className="flex flex-wrap items-start p-[6.66vw] max-w-screen-2xl mx-auto">
-                    {credits.contentPolaroids[0] && (
-                      <m.div
-                        drag
-                        dragMomentum={false}
-                        className="w-[90%] lg:w-[45%] mb-[10vw] lg:mb-0 lg:mt-[12vw] cursor-grab rotate-[1deg]"
-                      >
-                        <Polaroid
-                          metaText="Pocket Piece #01"
-                          image={credits.contentPolaroids[0].images[0]}
-                          hoverImage={credits.contentPolaroids[0].images[1] ? credits.contentPolaroids[0].images[1] : credits.contentPolaroids[0].images[0]}
-                          metaHeading={credits.contentPolaroids[0].text ? credits.contentPolaroids[0].text : false}
-                          sanity
-                        />
-                      </m.div>
-                    )}
 
-                    {credits.contentPolaroids[1] && (
-                      <m.div
-                        drag
-                        dragMomentum={false}
-                        className="w-[90%] lg:w-[45%] mb-[10vw] lg:mb-0 ml-auto cursor-grab rotate-[-1deg]"
-                      >
-                        <Polaroid
-                          metaText="Pocket Piece #02"
-                          image={credits.contentPolaroids[1].images[0]}
-                          hoverImage={credits.contentPolaroids[1].images[1] ? credits.contentPolaroids[1].images[1] : credits.contentPolaroids[1].images[0]}
-                          metaHeading={credits.contentPolaroids[1].text ? credits.contentPolaroids[1].text : false}
-                          sanity
-                          />
-                      </m.div>
-                    )}
-                    
-                    {credits.contentPolaroids[2] && (
-                      <m.div 
-                        drag
-                        dragMomentum={false}
-                        className="w-[90%] lg:w-[45%] mb-[10vw] lg:mb-0 lg:mt-[12vw] cursor-grab rotate-[-1deg]"
-                      >
-                        <Polaroid
-                          metaText="Pocket Piece #03"
-                          image={credits.contentPolaroids[2].images[0]}
-                          hoverImage={credits.contentPolaroids[2].images[1] ? credits.contentPolaroids[2].images[1] : credits.contentPolaroids[2].images[0]}
-                          metaHeading={credits.contentPolaroids[2].text ? credits.contentPolaroids[2].text : false}
-                          sanity
-                        />
-                      </m.div>
-                    )}
-
-                    {credits.contentPolaroids[3] && (
-                      <m.div
-                        drag
-                        dragMomentum={false}
-                        className="w-[90%] lg:w-[45%] mb-[10vw] lg:mb-0 ml-auto lg:mt-[-4vw] cursor-grab rotate-[1deg]"
-                      >
-                        <Polaroid
-                          metaText="Pocket Piece #04"
-                          image={credits.contentPolaroids[3].images[0]}
-                          hoverImage={credits.contentPolaroids[3].images[1] ? credits.contentPolaroids[3].images[1] : credits.contentPolaroids[3].images[0]}
-                          metaHeading={credits.contentPolaroids[3].text ? credits.contentPolaroids[3].text : false}
-                          sanity
-                        />
-                      </m.div>
-                    )}
+                  <div className="flex flex-wrap pt-[12vw] lg:pt-[8vw] 2xl:pt-40">
+                    <div className="w-full lg:w-[45%] lg:text-center">
+                      <h2 className="text-[48px] lg:text-[58px] leading-none lg:leading-none mb-8 lg:mb-12">How Hiring Works</h2>
+                    </div>
+                    <div className="w-full lg:w-[55%] pt-6">
+                      <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]">
+                        <h3 className="font-normal text-lg leading-none block mb-6">What is Pocket Pieces?</h3>
+                        <div className="font-light content"><p>POCKET PIECES brings you prestige, one-of-a-kind pieces to sustainably kit out your wardrobe. All pieces are sourced from around the globe by Phoebe Pocket - a die- hard vintage lover who works on Hollywood feature films. POCKET PIECES brings you prestige, one-of-a-kind pieces to sustainably kit out your wardrobe. All pieces are sourced from around the globe by Phoebe Pocket - a die- hard vintage lover who works on Hollywood feature films.</p></div>
+                      </div>
+                      <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]">
+                        <h3 className="font-normal text-lg leading-none block mb-6">How long can i hire an item for?</h3>
+                        <div className="font-light content"><p>LOREM IPSUM dolor sit amet, consectetur adipiscing elit. Phasellus a libero in lacus fermentum porttitor non eget magna. Phasellus non porttitor diam. Nullam euismod volutpat turpis, venenatis lobortis ex hendrerit sed. Nam fermentum est mauris, dignissim feugiat ante congue ac. Suspendisse feugiat nisi vel rhoncus tempor.</p></div>
+                      </div>
+                      <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]">
+                        <h3 className="font-normal text-lg leading-none block mb-6">How do i return an item?</h3>
+                        <div className="font-light content"><p>POCKET PIECES brings you prestige, one-of-a-kind pieces to sustainably kit out your wardrobe. All pieces are sourced from around the globe by Phoebe Pocket - a die- hard vintage lover who works on Hollywood feature films. POCKET PIECES brings you prestige, one-of-a-kind pieces to sustainably kit out your wardrobe. All pieces are sourced from around the globe by Phoebe Pocket - a die- hard vintage lover who works on Hollywood feature films.</p></div>
+                      </div>
+                      <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]">
+                        <h3 className="font-normal text-lg leading-none block mb-6">What is Pocket Pieces?</h3>
+                        <div className="font-light content"><p>LOREM IPSUM dolor sit amet, consectetur adipiscing elit. Phasellus a libero in lacus fermentum porttitor non eget magna. Phasellus non porttitor diam. Nullam euismod volutpat turpis, venenatis lobortis ex hendrerit sed. Nam fermentum est mauris, dignissim feugiat ante congue ac. Suspendisse feugiat nisi vel rhoncus tempor.</p></div>
+                      </div>
+                    </div>
                   </div>
                 </m.div>
               </Container>
@@ -268,8 +269,10 @@ export default function Hire(initialData) {
 }
 
 export async function getStaticProps(context) {
-  const props = await pageService.fetchQuery(context)
-  return { 
-    props: props
+  const cms = await pageService.fetchQuery(context)
+  const products = await getAllProductsInCollection('for-hire')
+
+  return {
+    props: { ...cms, products }
   };
 }

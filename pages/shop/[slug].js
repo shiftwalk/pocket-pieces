@@ -5,7 +5,7 @@ import { fade } from '@/helpers/transitions'
 import { getProductSlugs, getProduct, getAllProducts } from '@/helpers/shopify'
 import { LazyMotion, domMax, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import SanityPageService from '@/services/sanityPageService'
 import { useAddToCartContext, useCartContext } from '@/context/store'
 import { CartOpenContext } from '@/context/cart'
@@ -35,7 +35,7 @@ export default function ShopSlug(initialData) {
   const addToCart = useAddToCartContext()
 
   async function handleAddToCart() {
-    const varId = variant.node.id
+    const varId = variant.node.id    
     
     // update store context
     if (quantity !== '') {
@@ -145,7 +145,7 @@ export default function ShopSlug(initialData) {
                       product
                       metaText={productData.metaTitle ? productData.metaTitle.value : null}
                       bigMeta
-                      number={232}
+                      number
                       image={productData.images.edges[0].node.originalSrc}
                       imageWidth={productData.images.edges[0].node.width}
                       imageHeight={productData.images.edges[0].node.height}

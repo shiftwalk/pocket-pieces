@@ -112,7 +112,7 @@ export default function Home(initialData) {
                     <SanityImage image={home.image} layout="fill" className="w-full h-full" alt="Placeholder" />
                   </div>
                 
-                  <div className="h-full w-full lg:w-8/12 max-w-[720px] pt-[130px] pb-[50px] relative z-20 mx-auto px-4 lg:px-6">
+                  <div className="h-full w-full lg:w-8/12 max-w-[65vh] 2xl:max-w-[720px] pt-[130px] pb-[50px] relative z-20 mx-auto px-4 lg:px-6">
                     <div className="w-full bg-white mx-auto p-4 lg:p-6 h-full flex flex-wrap">
                       <div className="w-full">
                         <div className="w-[50px] lg:w-[50px] mx-auto mb-5">
@@ -120,7 +120,7 @@ export default function Home(initialData) {
                         </div>
                         
                         {home.introText && (
-                          <p className="block uppercase text-[11px] lg:text-[12px] leading-[1.25] text-center w-11/12 lg:w-9/12 mx-auto mb-8">{home.introText}</p>
+                          <p className="block uppercase text-[11px] lg:text-[12px] leading-[1.25] text-center w-11/12 xl:w-9/12 mx-auto mb-8">{home.introText}</p>
                         )}
 
                         {home.posterVideoReel?.asset && (
@@ -137,7 +137,7 @@ export default function Home(initialData) {
                       </div>
                       
                       <div className="w-full mt-auto">
-                        <LogoIcon className={`w-11/12 mx-auto text-black mb-5`} />
+                        <LogoIcon className={`w-9/12 2xl:w-11/12 mx-auto text-black mb-5`} />
                         {home.footerText && (
                           <p className="block uppercase text-[11px] lg:text-[12px] leading-[1.25] text-center w-11/12 lg:w-9/12 mx-auto mb-0 pb-0">{home.footerText}</p>
                         )}
