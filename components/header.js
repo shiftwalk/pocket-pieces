@@ -119,7 +119,7 @@ export default function Header({ dark }) {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.66, ease: [0.83, 0, 0.17, 1] }}
                 onClick={() => setCartIsOpenContext(false)}
-                className="fixed w-full h-screen bg-black/60 z-[400] block"
+                className="fixed w-full h-screen bg-black/40 z-[500] block backdrop-blur-[7.5px]"
                 aria-label="Close Bag"
               >  
               </m.button>

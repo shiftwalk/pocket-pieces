@@ -42,7 +42,7 @@ export default function App({ Component, pageProps }) {
             <rect width='100%' height='100%' filter='url(#noiseFilter)' />
           </svg> */}
 
-          <div className={`${IBMPlexMono.variable} ${GrifinitoL.variable} ${FTCalhern.variable} font-mono transition-colors ease-[cubic-bezier([0.83,0,0.17,1])] duration-[1300ms] ${bgColor}`}>
+          <div className={`${IBMPlexMono.variable} ${GrifinitoL.variable} ${FTCalhern.variable} font-mono transition-colors ease-[cubic-bezier([0.83,0,0.17,1])] duration-[1000ms] ${bgColor}`}>
             <Header dark={(router.asPath.includes('/faqs') || router.asPath == '/menu') ? true : false} />
 
             <AnimatePresence mode="wait" initial={false}>

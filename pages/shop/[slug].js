@@ -79,10 +79,25 @@ export default function ShopSlug(initialData) {
             <Container>
               <m.div variants={fade}>
                 <div className="w-full mb-3 lg:mb-4 flex text-xs lg:text-sm uppercase relative z-10">
-                  <Link href="/shop" className="block underline">Back to shop</Link>
-                  <a href={`mailto:Pocketpiecesstore@gmail.com?subject=Hey! I have a question about ${productData.title}`} className="ml-auto hidden underline lg:flex">
+                  <Link href="/shop" className="block group">
+                    <div className="relative">
+                      <div className="w-full relative overflow-hidden">
+                        <span className="block transition-transform ease-in-out duration-[450ms] translate-y-0 group-hover:translate-y-[-100%] group-focus:translate-y-[-100%]">Back to shop</span>
+                        <div className="absolute inset-0 w-full transition-transform ease-in-out duration-[450ms] translate-y-full group-hover:translate-y-0 group-focus:translate-y-0">Back to shop</div>
+                      </div>
+                      <div className="w-full mx-auto h-px bg-black group-hover:w-1 transition-all ease-in-out duration-[450ms] mt-[2px]"></div>
+                    </div>
+                  </Link>
+
+                  <a href={`mailto:Pocketpiecesstore@gmail.com?subject=Hey! I have a question about ${productData.title}`} className="ml-auto hidden lg:flex group">
                     <StarIcon className="w-6 mr-1" />
-                    Got a question about this piece?
+                    <div className="relative">
+                      <div className="w-full relative overflow-hidden">
+                        <span className="block transition-transform ease-in-out duration-[450ms] translate-y-0 group-hover:translate-y-[-100%] group-focus:translate-y-[-100%]">Got a question about this piece?</span>
+                        <div className="absolute inset-0 w-full transition-transform ease-in-out duration-[450ms] translate-y-full group-hover:translate-y-0 group-focus:translate-y-0">Got a question about this piece?</div>
+                      </div>
+                      <div className="w-full mx-auto h-px bg-black group-hover:w-1 transition-all ease-in-out duration-[450ms] mt-[2px]"></div>
+                    </div>
                   </a>
                 </div>
 
@@ -110,24 +125,40 @@ export default function ShopSlug(initialData) {
                     <div className="w-full mt-auto">
                       <div className="content max-w-3xl mb-5 text-sm lg:text-base" dangerouslySetInnerHTML={{ __html: productData.descriptionHtml }}></div>
 
-                      <span className="block underline mb-8 lg:mb-10 text-sm lg:text-base">The Pocket Pieces Sizing &amp; Condition Guide</span>
+                      <a href="#" className="inline-block mb-8 lg:mb-10 text-sm lg:text-base group">
+                        <div className="relative">
+                          <div className="w-full relative overflow-hidden">
+                            <span className="block transition-transform ease-in-out duration-[450ms] translate-y-0 group-hover:translate-y-[-100%] group-focus:translate-y-[-100%]">The Pocket Pieces Sizing &amp; Condition Guide</span>
+                            <div className="absolute inset-0 w-full transition-transform ease-in-out duration-[450ms] translate-y-full group-hover:translate-y-0 group-focus:translate-y-0">The Pocket Pieces Sizing &amp; Condition Guide</div>
+                          </div>
+                          <div className="w-full mx-auto h-px bg-black group-hover:w-1 transition-all ease-in-out duration-[450ms] mt-[2px]"></div>
+                        </div>
+                      </a>
 
                       
                       {productData.collections?.edges.some(e => e.node.title === 'For Hire') ? (
                         <div className="flex space-x-3">
-                          <a href={`mailto:Pocketpiecesstore@gmail.com?subject=Hey! I'd love to hire ${productData.title}`} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-off-black text-off-white border border-off-black hover:bg-transparent hover:text-off-black`}>
-                            Hire Piece
+                          <a href={`mailto:Pocketpiecesstore@gmail.com?subject=Hey! I'd love to hire ${productData.title}`} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-black text-off-white border border-black relative overflow-hidden group`}>
+                            <div className="relative overflow-hidden">
+                              <div className="transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-0 group-hover:translate-y-[100%] group-hover:delay-[0ms] delay-[160ms]">Hire piece</div>
+                              <div className={`transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] absolute inset-0 translate-y-[100%] group-hover:translate-y-0 z-20 group-hover:delay-[160ms] text-black`}>Hire piece</div>
+                            </div>
+                            <div className={`absolute inset-0 z-10 bg-zinc-100 transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-[-100%] group-hover:translate-y-0`}></div>
                           </a>
                         </div>
                       ) : (
                         <>
                           {productData.availableForSale ? (
                             <div className="flex space-x-3">
-                              <button onClick={addToBag} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-off-black text-off-white border border-off-black hover:bg-transparent hover:text-off-black ${ isLoading ? 'cursor-disabled' : ''}`}>
-                                <span className="block relative">
+                              <button onClick={addToBag} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-black text-off-white border border-black ${ isLoading ? 'cursor-disabled' : ''} relative overflow-hidden group`}>
+
+                                <div className="relative overflow-hidden">
+                                  <div className="transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-0 group-hover:translate-y-[100%] group-hover:delay-[0ms] delay-[160ms]"><span className={`absolute inset-0 text-center mx-auto flex items-center justify-center transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-100' : 'opacity-0'}`}><StarIcon className={`w-[50px] ${isLoading && 'animate-blink'}`} /></span><span className={`transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-0' : 'opacity-100'}`}>Buy Piece</span></div>
+                                  <div className={`transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] absolute inset-0 translate-y-[100%] group-hover:translate-y-0 z-20 group-hover:delay-[160ms] text-black`}>
                                   <span className={`absolute inset-0 text-center mx-auto flex items-center justify-center transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-100' : 'opacity-0'}`}><StarIcon className={`w-[50px] ${isLoading && 'animate-blink'}`} /></span>
-                                  <span className={`transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-0' : 'opacity-100'}`}>Buy Piece</span>
-                                </span>
+                                  <span className={`transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-0' : 'opacity-100'}`}>Buy Piece</span></div>
+                                </div>
+                                <div className={`absolute inset-0 z-10 bg-zinc-100 transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-[-100%] group-hover:translate-y-0`}></div>
                               </button>
                             </div>
                           ) : (
@@ -232,7 +263,7 @@ export default function ShopSlug(initialData) {
             
             {/* SECOND LOOK SECTION */}
             <m.div variants={fade}>
-              <div className="bg-off-black text-off-white">
+              <div className={`bg-off-black text-off-white ${(!productData.quote && productData.images.edges.length < 2) && 'mt-[10vw]'}`}>
                 <div className="relative flex overflow-x-hidden opacity-100 text-sm leading-none">
                   <div className="animate-marquee whitespace-nowrap py-2 will-change-transform">
                     {Array.from(Array(40), (e, i) => {

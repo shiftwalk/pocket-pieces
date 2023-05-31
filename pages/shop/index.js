@@ -59,13 +59,13 @@ export default function Shop(initialData) {
           exit="exit"
         >
           <main className="pb-[10vw]">
-            <m.div variants={fade}>
+            <div>
               <div className="fixed top-0 left-0 pt-[70px] lg:pt-[85px] px-4 lg:px-6 z-[100]">
-                <span className="mb-2 relative z-10 hidden lg:block">
+                <m.span variants={fade} className="mb-2 relative z-10 hidden lg:block">
                   <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'reel' && 'line-through'}`} onClick={()=> setCurrentView('reel')}>Reel</button> / <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'gallery' && 'line-through'}`} onClick={()=> setCurrentView('gallery')}>Gallery</button>
-                </span>
+                </m.span>
 
-                <span className="text-5xl lg:text-[5vw] font-display leading-[0.65] lg:leading-[0.65] flex">
+                <m.span variants={fade} className="text-5xl lg:text-[5vw] font-display leading-[0.65] lg:leading-[0.65] flex">
                   <span className="block tabular-nums">
                     <span className="block overflow-hidden relative">
                       <span className="opacity-0">01</span>
@@ -79,13 +79,13 @@ export default function Shop(initialData) {
                     </span>
                   </span>
                   <span className="block">/0{products.length}</span>
-                </span>
+                </m.span>
               </div>
 
               <div className="fixed top-0 right-0 pt-[70px] lg:pt-[85px] px-4 lg:px-6 z-[100]">
-                <div className="w-[55px] lg:w-[6vw] max-w-[80px] mx-auto mb-5">
+                <m.div variants={fade} className="w-[55px] lg:w-[6vw] max-w-[80px] mx-auto mb-5">
                   <LogoMarkOutlinedIcon />
-                </div>
+                </m.div>
               </div>
               
               {/* <div className="fixed inset-0 flex md:items-center justify-center mt-40 lg:mt-0">
@@ -114,11 +114,11 @@ export default function Shop(initialData) {
                 </div>
               </div> */}
 
-              <h1 className="inline-block text-[30vw] md:text-[26vw] lg:text-[27vw] xl:text-[350px] leading-[1] md:leading-[1] lg:leading-[1] xl:leading-[1] text-off-black mx-auto w-full text-center pt-[120px] lg:pt-[45px]">
+              <m.h1 variants={fade} className="inline-block text-[30vw] md:text-[26vw] lg:text-[27vw] xl:text-[350px] leading-[1] md:leading-[1] lg:leading-[1] xl:leading-[1] text-off-black mx-auto w-full text-center pt-[120px] lg:pt-[45px]">
                 <span className="inline-block">Shop Pieces</span>
-              </h1>
+              </m.h1>
 
-              <div className={`${viewLayoutContainer} mx-auto relative z-[50]  ${currentView == 'reel' ? 'pt-[30px] md:pt-[30px] lg:pt-[8dvh]' : 'pt-[30px] md:pt-[30px] lg:pt-[20dvh]' }`} ref={scrollWrapper}>
+              <m.div variants={fade} className={`${viewLayoutContainer} mx-auto relative z-[50]  ${currentView == 'reel' ? 'pt-[30px] md:pt-[30px] lg:pt-[8dvh]' : 'pt-[30px] md:pt-[30px] lg:pt-[20dvh]' }`} ref={scrollWrapper}>
                 {products.map((e, i) => {
                   return e.node.availableForSale && (
                     <div className={viewLayoutChildren} key={i}>
@@ -144,10 +144,10 @@ export default function Shop(initialData) {
                     </div>
                   )
                 })}
-              </div>
+              </m.div>
 
               <div className={`fixed bottom-0 w-full z-[51] hidden lg:flex justify-center transition-opacity ease-in-out duration-[250ms] ${filtersHidden ? 'opacity-0' : 'opacity-100' }`}>
-                <div className="mx-auto w-auto relative inline-block pt-16 lg:pt-16 p-3 lg:p-6">
+                <m.div variants={fade} className="mx-auto w-auto relative inline-block pt-16 lg:pt-16 p-3 lg:p-6">
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-100 via-zinc-100 to-transparent z-[20]"></div>
                   <span className="text-[12vw] lg:text-[6.25vw] 2xl:text-[100px] font-display leading-[0.65] lg:leading-[0.65] flex justify-center relative z-[21]">
                     <Link href="/shop" className={`block`}><span className="line-through">All</span>,&nbsp;</Link>
@@ -157,9 +157,9 @@ export default function Shop(initialData) {
                       )
                     })}
                   </span>
-                </div>
+                </m.div>
               </div>
-            </m.div>
+            </div>
           </main>
 
           <m.div variants={fade}>
