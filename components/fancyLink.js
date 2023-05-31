@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
-export default function FancyLink( {destination, a11yText, ariaCurrent, label, className, active, nav} ) {
+export default function FancyLink( {destination, a11yText, ariaCurrent, label, className, active, nav, onMouseEnter, onMouseLeave} ) {
   return (
     <Link href={destination} legacyBehavior>
-      <a className={`${nav && 'flex items-center'} ${className} group`} aria-label={a11yText} aria-current={active}>
+      <a className={`${nav && 'flex items-center'} ${className} group`} aria-label={a11yText} aria-current={active} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         { nav && (
           <div className="w-[10px] lg:w-[12px] mr-2 relative">
             <div className={`absolute inset-0 w-full h-full scale-[0.6] ${active ? 'bg-current' : 'bg-opacity-0' }`}></div>

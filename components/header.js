@@ -18,6 +18,7 @@ export default function Header({ dark }) {
   const router = useRouter()
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false)
   const [cartIsOpenContext, setCartIsOpenContext] = useContext(CartOpenContext);
+  const [hovering, setHovering] = useState(false);
 
   // Cart Stuff
   const [cart, checkoutUrl] = useCartContext()
@@ -62,14 +63,14 @@ export default function Header({ dark }) {
             </div>
 
             <div className="mr-auto space-x-3 items-center w-full hidden lg:flex lg:flex-1">
-              <FancyLink active={router.asPath.includes('/shop') ? true : false} nav className="flex-1" destination="/shop" a11yText="Navigate to the home page" label="Shop" />
-              <FancyLink active={router.asPath == '/hire' ? true : false} nav className="flex-1" destination="/hire" a11yText="Navigate to the hire page" label="Hire" />
-              <FancyLink active={router.asPath == '/about' ? true : false} nav className="flex-1" destination="/about" a11yText="Navigate to the about page" label="About" />
+              <FancyLink onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} active={router.asPath.includes('/shop') ? true : false} nav className={`flex-1 transition-all ease-in-out duration-[400ms] hover:blur-0 ${hovering && 'blur-[2px]'}`} destination="/shop" a11yText="Navigate to the home page" label="Shop" />
+              <FancyLink onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} active={router.asPath == '/hire' ? true : false} nav className={`flex-1 transition-all ease-in-out duration-[400ms] hover:blur-0 ${hovering && 'blur-[2px]'}`} destination="/hire" a11yText="Navigate to the hire page" label="Hire" />
+              <FancyLink onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} active={router.asPath == '/about' ? true : false} nav className={`flex-1 transition-all ease-in-out duration-[400ms] hover:blur-0 ${hovering && 'blur-[2px]'}`} destination="/about" a11yText="Navigate to the about page" label="About" />
             </div>
 
             <div className="flex flex-1 lg:flex-none lg:w-32">
               <Link href="/" legacyBehavior>
-                <a className="w-24 lg:w-full mx-auto relative overflow-hidden group" aria-label="Navigate to the home page" aria-current={router.asPath == '/' ? true : false}>
+                <a onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} className="w-24 lg:w-full mx-auto relative overflow-hidden group" aria-label="Navigate to the home page" aria-current={router.asPath == '/' ? true : false}>
                   <div className="lg:group-hover:translate-y-[-103%] will-change-transform transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms]">
                     <LogoIcon className="w-full"/>
                   </div>
@@ -84,11 +85,11 @@ export default function Header({ dark }) {
             </div>
 
             <div className="ml-auto space-x-3 items-center w-full hidden lg:flex lg:flex-1 justify-end">
-              <FancyLink active={router.asPath == '/faqs' ? true : false} nav className="flex-1 text-right justify-end" destination="/faqs" a11yText="Navigate to the faqs page" label="FAQs" />
+              <FancyLink onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} active={router.asPath == '/faqs' ? true : false} nav className={`flex-1 text-right justify-end transition-all ease-in-out duration-[400ms] hover:blur-0 ${hovering && 'blur-[2px]'}`} destination="/faqs" a11yText="Navigate to the faqs page" label="FAQs" />
 
-              <FancyLink active={router.asPath == '/contact' ? true : false} nav className="flex-1 text-right justify-end" destination="/contact" a11yText="Navigate to the contact page" label="Contact" />
+              <FancyLink onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} active={router.asPath == '/contact' ? true : false} nav className={`flex-1 text-right justify-end transition-all ease-in-out duration-[400ms] hover:blur-0 ${hovering && 'blur-[2px]'}`} destination="/contact" a11yText="Navigate to the contact page" label="Contact" />
 
-              <button className="flex-1 text-right justify-end" onClick={cartToggle} aria-label={`${cartIsOpenContext ? 'Close' : 'Open'} Bag`}>Bag({cart?.length})</button>
+              <button onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} className={`flex-1 text-right justify-end transition-all ease-in-out duration-[400ms] hover:blur-0 ${hovering && 'blur-[2px]'}`} onClick={cartToggle} aria-label={`${cartIsOpenContext ? 'Close' : 'Open'} Bag`}>Bag({cart?.length})</button>
             </div>
 
             <div className="ml-auto block lg:hidden w-auto leading-none text-[11px]">
