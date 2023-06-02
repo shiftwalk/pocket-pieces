@@ -31,7 +31,7 @@ export default function Home(initialData) {
           exit="exit"
         >
           <m.div variants={fade}>
-            <main className="mb-12 md:mb-16 xl:mb-24 pt-14 lg:pt-16 overflow-hidden">
+            <main className="mb-8 md:mb-12 xl:mb-16 pt-14 lg:pt-16 overflow-hidden">
 
               <Container>
                 <div className="pt-[8vw] lg:pt-[6vw] pb-[8.5vw]">
