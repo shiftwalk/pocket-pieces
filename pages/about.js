@@ -14,6 +14,7 @@ import {PortableText} from '@portabletext/react'
 import SanityPageService from '@/services/sanityPageService'
 import { aboutQuery } from '@/helpers/queries'
 import SanityImage from '@/components/sanity-image'
+import TestimonialRoller from '@/components/testimonial-roller'
 
 const pageService = new SanityPageService(aboutQuery)
 
@@ -119,28 +120,7 @@ export default function Home(initialData) {
               </div>
 
               <Container className="mt-[12vw] lg:mt-[10.25vw]">
-                <div className="flex flex-wrap lg:justify-center">
-                  <MetaText text="Kind Words" className="w-full lg:text-center order-1 lg:order-1" />
-                  <blockquote className="font-display text-[15vw] md:text-[9vw] lg:text-[7.7vw] mb-[6vw] lg:mb-[4vw] leading-[0.8] md:leading-[0.8] lg:leading-[0.8] max-w-[90%] lg:max-w-[80%] lg:text-center w-full order-3 lg:order-2">“{about.testimonials[0].text}”</blockquote>
-
-                  <div className="bg-black w-full max-w-[70%] lg:max-w-[75%] p-[3vw] mb-[6vw] lg:mb-[2vw] order-2 lg:order-3">
-                    <div className="flex space-x-[3vw]">
-                      {about.testimonials[0].images.map((e, i) => {
-                        return (
-                          <div className={`w-full lg:w-1/3 ${i == 0 ? 'block' : 'hidden lg:block' }`} key={i}>
-                            <SanityImage image={e} alt="Placeholder" className="w-full" sizes="(min-width: 1024px) 33vw, 66vw" />
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
-                  
-                  <div className="w-full lg:text-center order-4 lg:order-4">
-                    {about.testimonials[0].instagramHandle && (
-                      <p>{about.testimonials[0].instagramHandle}</p>
-                    )}
-                  </div>
-                </div>
+                <TestimonialRoller items={about.testimonials} />
               </Container>
             </main>
 

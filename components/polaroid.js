@@ -9,14 +9,11 @@ import { useEffect, useState } from 'react';
 export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin, sanity, eager, hire, hireDark }) {
   const [randomId, setRandomId] = useState(0)
 
-  function randomNumberInRange(min, max) {
-    // 👇️ get number between min (inclusive) and max (inclusive)
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
   useEffect(() => {
-    setRandomId(randomNumberInRange(100,200))
-  }, [randomId]);
+    if (number) {
+      setRandomId(Math.floor(Math.random() * (200 - 100 + 1)) + 100)
+    }
+  },[randomId]);
 
   const imageVariants = {
     initial: { scale: 1, filter: "blur(0px)" },

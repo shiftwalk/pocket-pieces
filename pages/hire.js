@@ -40,7 +40,7 @@ export default function Hire(initialData) {
         >
           <div className="pt-[78px] lg:pt-[90px] overflow-hidden">
             <div className="fixed inset-0 pointer-events-none scale-[1.15]"></div>
-            <main className="mb-12 md:mb-16 xl:mb-24 relative z-[20]">
+            <main className="relative z-[20]">
               <Container>
                 <m.div variants={fade} className="mb-[15vw] lg:mb-[10vw]">
                   <div className="flex flex-wrap mb-[20vw] lg:mb-[15vw] xl:mb-[12.5vw] relative">
@@ -257,7 +257,7 @@ export default function Hire(initialData) {
               </m.div>
             </main>
 
-            <m.div variants={fade}>
+            <m.div variants={fade} className="bg-off-black text-off-white">
               <Footer />
             </m.div>
           </div>
