@@ -21,8 +21,8 @@ export default function Info() {
           animate="enter"
           exit="exit"
         >
-          <m.div variants={fade} className="bg-black text-[#C1C1C1] h-screen">
-            <main className="flex flex-wrap items-center justify-center h-full">
+          <m.div variants={fade} className="h-screen">
+            <main className="flex flex-wrap items-center justify-center h-full text-[#C1C1C1]">
               <Container className="mt-auto w-full">
                 <MetaText sm text="Where to?" className="opacity-75" />
                 <nav className="block uppercase text-[23px] font-light">
@@ -35,7 +35,7 @@ export default function Info() {
                 </nav>
               </Container>
 
-              <Container className="mt-auto w-full text-right py-3 flex items-end">
+              <Container className="mt-auto w-full text-right py-3 flex items-end text-[#C1C1C1]">
                 <div className="w-[70px]">
                   <LogoMarkOutlinedIcon />
                 </div>

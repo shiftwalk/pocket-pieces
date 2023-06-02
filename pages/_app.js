@@ -17,6 +17,7 @@ export default function App({ Component, pageProps }) {
   router.asPath.includes('/hire') && (bgColor = 'bg-off-white')
   router.asPath.includes('/about') && (bgColor = 'bg-off-white')
   router.asPath.includes('/faqs') && (bgColor = 'bg-black')
+  router.asPath.includes('/menu') && (bgColor = 'bg-black')
 
   return (
     <>
