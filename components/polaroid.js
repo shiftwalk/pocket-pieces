@@ -13,7 +13,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
     if (number) {
       setRandomId(Math.floor(Math.random() * (200 - 100 + 1)) + 100)
     }
-  },[randomId]);
+  });
 
   const imageVariants = {
     initial: { scale: 1, filter: "blur(0px)" },

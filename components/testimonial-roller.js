@@ -36,7 +36,7 @@ export default function TestimonialRoller({ items }) {
       <div className="relative w-full flex flex-wrap lg:justify-center">
         {items.map((e, i) => {
           return (
-            <div className={`transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[1300ms] flex flex-wrap lg:block lg:pb-12 ${i == currentItem ? 'opacity-100 blur-0 delay-[400ms]' : 'opacity-0 blur-[70px]' } w-full ${i == 0 ? 'relative' : 'absolute top-0 left-0' }`}>
+            <div className={`transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[1300ms] flex flex-wrap lg:block lg:pb-12 ${i == currentItem ? 'opacity-100 blur-0 delay-[400ms]' : 'opacity-0 blur-[70px]' } w-full ${i == 0 ? 'relative' : 'absolute top-0 left-0' }`} key={i}>
               <blockquote className="font-display text-[15vw] md:text-[9vw] lg:text-[7.7vw] mb-[6vw] lg:mb-[4vw] leading-[0.8] md:leading-[0.8] lg:leading-[0.8] max-w-[90%] lg:max-w-[80%] lg:text-center w-full order-3 lg:order-2 lg:mx-auto">“{e.text}”</blockquote>
 
               {e.images?.length && (
