@@ -149,11 +149,13 @@ export default function Shop(initialData) {
 
               <div className={`fixed bottom-0 w-full z-[51] hidden lg:flex justify-center transition-opacity ease-in-out duration-[250ms] ${filtersHidden ? 'opacity-0 pointer-events-none' : 'opacity-100' }`}>
                 <m.div variants={fade} className="mx-auto w-auto relative inline-block pt-16 lg:pt-16 p-3 lg:p-6">
-                  <StrikeIcon className="w-full absolute bottom-[28%] left-0 right-0 z-[30]" />
-
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-100 via-zinc-100 to-transparent z-[20]"></div>
                   <span className="text-[12vw] lg:text-[6.25vw] 2xl:text-[100px] font-display leading-[0.65] lg:leading-[0.65] flex justify-center relative z-[50]">
-                    <Link href="/shop" className={`block bg-zinc-100 pl-1`}><span>All</span>,&nbsp;</Link>
+                    <Link href="/shop" className={`block bg-zinc-100 relative`}>
+                      <span>All</span>,&nbsp;
+
+                      <StrikeIcon className="w-full absolute bottom-[-15%] left-0 right-0 scale-y-[1200%] rotate-[-2deg]" />
+                    </Link>
                     {collections.map((e, i) => {
                       return (
                         <Link href={`/shop/collections/${e.node.handle}`} className={`block`} key={i}>{e.node.title}{(i+1) !== collections.length ? ',' : ''}&nbsp;</Link>
