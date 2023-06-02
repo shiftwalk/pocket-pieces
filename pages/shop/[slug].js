@@ -15,6 +15,7 @@ import MetaText from '@/components/meta-text'
 import Link from 'next/link'
 import Button from '@/components/button'
 import StarIcon from '@/icons/star.svg'
+import RelatedRoller from '@/components/related-roller'
 
 const query = `{
   "musicVideos": *[_type == "musicVideos"] | order(date desc) {
@@ -35,7 +36,7 @@ export default function ShopSlug(initialData) {
   const addToCart = useAddToCartContext()
 
   async function handleAddToCart() {
-    const varId = variant.node.id    
+    const varId = variant.node.id
     
     // update store context
     if (quantity !== '') {
@@ -63,6 +64,9 @@ export default function ShopSlug(initialData) {
     currency: "GBP",
     useGrouping: true,
   });
+
+  const relatedOne = products.slice(0, Math.floor(products.length / 2));
+  const relatedTwo = products.slice(Math.floor(products.length / 2), products.length);
 
   return (
     <Layout>
@@ -263,7 +267,7 @@ export default function ShopSlug(initialData) {
             
             {/* SECOND LOOK SECTION */}
             <m.div variants={fade}>
-              <div className={`bg-off-black text-off-white ${(!productData.quote && productData.images.edges.length < 2) && 'mt-[10vw]'}`}>
+              <div className={`bg-off-black text-off-white ${(!productData.quote && productData.images.edges.length < 3) && 'mt-[10vw]'}`}>
                 <div className="relative flex overflow-x-hidden opacity-100 text-sm leading-none">
                   <div className="animate-marquee whitespace-nowrap py-2 will-change-transform">
                     {Array.from(Array(40), (e, i) => {
@@ -282,74 +286,16 @@ export default function ShopSlug(initialData) {
                   </div>
                 </div>
                 
-                <div className="py-[16vw] lg:py-[12vw] 2xl:py-40">
+                <div className="pt-[16vw] pb-[6vw] lg:py-[12vw] 2xl:py-40 2xl:pb-32">
                   <Container>
-                    <div className="mb-20 md:mb-24 lg:mb-32 2xl:mb-48">
+                    <div className="">
                       <h2 className="text-[22vw] lg:text-[17vw] mb-4 leading-[0.8] lg:leading-[0.8] text-center mx-auto">Second Look</h2>
                       <p className="w-10/12 lg:w-1/2 max-w-[620px] mx-auto text-center text-base lg:text-lg">Lorem ipsum dolor sit amet consectetuer adipicising elit aram et al lorem ipsum dolor sit amet.</p>
                     </div>
                   </Container>
 
-                    <div className="relative flex overflow-x-hidden mb-16 md:mb-20 lg:mb-24 2xl:mb-32 overflow-y-hidden">
-                      <div className="animate-marqueeSlow whitespace-nowrap will-change-transform">
-                        {products.map((e, i) => {
-                          return (
-                            <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
-                              <span className="inline-block w-[80vw] md:w-[45vw] lg:w-[36vw] relative">
-                                <Link href={`/shop/${e.node.handle}`} className="w-full mx-auto block">
-                                  <Polaroid
-                                    thin
-                                    noShadow
-                                    product
-                                    className="w-full text-off-black"
-                                    hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
-                                    hireDark
-                                    collection={e.node.collections.edges[0].node.title}
-                                    metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
-                                    metaHeading={e.node.title}
-                                    price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
-                                    image={e.node.images.edges[0].node.originalSrc}
-                                    imageWidth={e.node.images.edges[0].node.width}
-                                    imageHeight={e.node.images.edges[0].node.height}
-                                    hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0].node.originalSrc}
-                                    hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0].node.width}
-                                    hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0].node.height}
-                                  />
-                                </Link>
-                              </span>
-                            </span>
-                          )
-                        })}
-                      </div>
-
-                      <div className="absolute top-0 animate-marqueeSlow2 whitespace-nowrap will-change-transform">
-                        {products.map((e, i) => {
-                          return (
-                            <span className="inline-block mx-4 md:mx-8 2xl:mx-12" key={i}>
-                              <span className="inline-block w-[80vw] md:w-[45vw] lg:w-[36vw] relative">
-                                <Link href={`/shop/${e.node.handle}`} className="w-full mx-auto block">
-                                  <Polaroid
-                                    thin
-                                    noShadow
-                                    product
-                                    className="w-full text-off-black"
-                                    collection={e.node.collections.edges[0].node.title}
-                                    metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
-                                    metaHeading={e.node.title}
-                                    price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
-                                    image={e.node.images.edges[0].node.originalSrc}
-                                    imageWidth={e.node.images.edges[0].node.width}
-                                    imageHeight={e.node.images.edges[0].node.height}
-                                    hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0].node.originalSrc}
-                                    hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0].node.width}
-                                    hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0].node.height}
-                                  />
-                                </Link>
-                              </span>
-                            </span>
-                          )
-                        })}
-                      </div>
+                    <div className="relative">
+                      <RelatedRoller items={products} itemsOne={relatedOne} itemsTwo={relatedTwo} />
                     </div>
 
                     <Container>
