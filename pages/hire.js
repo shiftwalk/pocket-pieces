@@ -15,6 +15,8 @@ import SanityImageTest from '@/components/sanity-image-test'
 import { getAllProductsInCollection } from '@/helpers/shopify'
 import Link from 'next/link'
 
+import StrikeIcon from '@/icons/strike.svg'
+
 const pageService = new SanityPageService(creditsQuery)
 
 export default function Hire(initialData) {
@@ -208,7 +210,12 @@ export default function Hire(initialData) {
                   <div className="py-[16vw] lg:py-[12vw] 2xl:py-48">
                     <Container>
                       <div className="mb-20 md:mb-24 lg:mb-32 2xl:mb-48">
-                        <h2 className="text-[22vw] lg:text-[17vw] mb-4 leading-[0.8] lg:leading-[0.8] text-center mx-auto">The Archives</h2>
+                        <h2 className="text-[22vw] lg:text-[17vw] mb-4 leading-[0.8] lg:leading-[0.8] text-center mx-auto relative">
+                          <span className="relative inline-block">
+                            The Archives
+                            <StrikeIcon className="w-full absolute bottom-[35%] lg:bottom-[40%] left-0 right-0 rotate-[-4.5deg] lg:rotate-[-3.3deg] lg:scale-y-[2] scale-x-[1.025]" />
+                          </span>
+                        </h2>
                         <p className="w-10/12 lg:w-1/2 max-w-[620px] mx-auto text-center text-base lg:text-lg">Previous Pocket Pieces from the history books that have since moved on to new owners. 2019 —</p>
                       </div>
                     </Container>
