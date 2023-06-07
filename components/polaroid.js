@@ -1,13 +1,21 @@
 import CrosshairIcon from '@/icons/crosshair.svg'
 import Image from 'next/image';
-import { m } from 'framer-motion';
+import { m, useScroll, useTransform } from 'framer-motion';
 import StarIcon from '@/icons/star.svg';
 import SanityImage from './sanity-image';
 import SanityImageTest from './sanity-image-test';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin, sanity, eager, hire, hireDark, matchHeight, smallText }) {
   const [randomId, setRandomId] = useState(0)
+  const ref = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  })
+  
+  const scale = useTransform(scrollYProgress,[0, 1],[1.175, 1],{ clamp: false })
 
   useEffect(() => {
     if (number) {
@@ -82,7 +90,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
   }
 
   return (
-    <m.div initial="initial" whileHover="hover" className={`bg-white w-auto ${padding} pb-0 relative group ${matchHeight && 'h-full'} ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`}>
+    <m.div initial="initial" whileHover="hover" className={`bg-white w-auto ${padding} pb-0 relative group ${matchHeight && 'h-full'} ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`} ref={ref}>
       {hire && (
         <m.div variants={hireVariants} className={`absolute top-[15%] right-[-15px] md:right-[-35px] lg:right-[-50px] w-[100px] md:w-[120px] lg:w-[140px] h-[100px] md:h-[120px] lg:h-[140px] rounded-full z-[30] flex items-center justify-center uppercase font-display text-[45px] md:text-[52px] lg:text-[60px] text-center leading-[0.7] md:leading-[0.7] lg:leading-[0.7] ${hireDark ? 'bg-off-white text-off-black' : 'bg-off-black text-off-white' }`}>For<br/>Hire</m.div>
       )}
@@ -93,15 +101,17 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
         </div>
       )}
       <div className="block relative aspect-square overflow-hidden">
-        <m.div
-          className="w-full h-full scale-1 blur-0"
-          variants={imageVariants}
-        >
-          {sanity ? (
-            <SanityImageTest eager={eager} image={image ? image : null} width={imageWidth ? imageWidth : 720} height={imageHeight ? imageHeight : 720} className={`block w-full relative z-[10]`} alt="placeholder" />
-          ) : (
-            <Image src={image ? image : 'https://placedog.net/720/720'} width={imageWidth ? imageWidth : 720} height={imageHeight ? imageHeight : 720} className={`block w-full relative z-[10]`} alt="placeholder" />
-          )}
+        <m.div style={{ scale: scale }}>
+          <m.div
+            className="w-full h-full scale-1 blur-0"
+            variants={imageVariants}
+          >
+            {sanity ? (
+              <SanityImageTest eager={eager} image={image ? image : null} width={imageWidth ? imageWidth : 720} height={imageHeight ? imageHeight : 720} className={`block w-full relative z-[10]`} alt="placeholder" />
+            ) : (
+              <Image src={image ? image : 'https://placedog.net/720/720'} width={imageWidth ? imageWidth : 720} height={imageHeight ? imageHeight : 720} className={`block w-full relative z-[10]`} alt="placeholder" />
+            )}
+          </m.div>
         </m.div>
 
         {hoverImage && (

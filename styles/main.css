@@ -13,12 +13,8 @@
 body {
   @apply font-sans antialiased text-off-black selection:bg-off-black selection:text-white;
   overscroll-behavior: none!important;
-  overflow-y:scroll !important;
 }
 
-html {
-  @apply scroll-smooth !important;
-}
 
 .bg-off-white {
   @apply selection:bg-off-black selection:text-off-white;
@@ -178,4 +174,25 @@ img {
   max-width: 100%;
   width: 100%;
   height: auto;
+}
+
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+   pointer-events: none;
 }
