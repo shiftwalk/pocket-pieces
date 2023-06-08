@@ -46,8 +46,8 @@ export default function App({ Component, pageProps }) {
 
   const introBackdrop = {
     visible: {
-      backdropFilter: "blur(0px)",
-      opacity: 0
+      backdropFilter: "blur(40px)",
+      opacity: 1
     },
     hidden: {
       backdropFilter: ["blur(40px)","blur(10px)","blur(20px)","blur(0px)", "blur(0px)"],
@@ -82,14 +82,14 @@ export default function App({ Component, pageProps }) {
                         animate="hidden"
                         variants={introBackdrop}
                         transition={{ duration: 2.5, ease: [0.83, 0, 0.17, 1] }}
-                        className="bg-black bg-opacity-80 text-white fixed inset-0 z-[999] pointer-events-none w-full h-screen"
+                        className="bg-zinc-100 bg-opacity-50 text-black fixed inset-0 z-[9999] pointer-events-none w-full h-screen"
                       ></m.div>
                       <m.div 
                         initial="visible"
                         animate="hidden"
                         variants={introFullEnd}
                         transition={{ delay: 2, duration: 0.5, ease: [0.83, 0, 0.17, 1] }}
-                        className="w-full h-full cursor-wait absolute inset-0 flex items-center justify-center z-[1000]"
+                        className="w-full h-full cursor-wait absolute inset-0 flex items-center justify-center z-[9999]"
                       >
                         <m.div 
                           initial="visible"
@@ -102,9 +102,9 @@ export default function App({ Component, pageProps }) {
                             <div className="w-full mx-auto p-4 lg:p-6 h-full flex flex-wrap">
                               <div className="w-full">
                                 <div className="mx-auto relative h-full">
-                                  <div className="absolute inset-0 border-white border flex items-center justify-center z-[20]">
+                                  <div className="absolute inset-0 border-black border flex items-center justify-center z-[20]">
 
-                                      <div className="absolute top-0 left-0 text-white py-3 px-3 leading-none z-[20]" >
+                                      <div className="absolute top-0 left-0 text-black py-3 px-3 leading-none z-[20]" >
                                         <div className="relative overflow-hidden">
                                         <m.span 
                                           initial="visible"
@@ -118,7 +118,7 @@ export default function App({ Component, pageProps }) {
                                         </div>
                                       </div>
 
-                                      <div className="block absolute top-0 right-0 text-sm uppercase text-white py-2 px-3 leading-none z-[20]" >
+                                      <div className="block absolute top-0 right-0 text-sm uppercase text-black py-2 px-3 leading-none z-[20]" >
                                         <div className="relative overflow-hidden">
                                           <m.span 
                                           initial="visible"
@@ -129,12 +129,12 @@ export default function App({ Component, pageProps }) {
                                         </div>
                                       </div>
 
-                                      <div className="w-full flex flex-wrap justify-center text-white">
+                                      <div className="w-full flex flex-wrap justify-center text-black">
                                         <m.div initial="visible"
                                           animate="hidden"
                                           variants={introEnd}
                                           transition={{ delay: 0.99, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
-                                          className="w-[20%] lg:w-[10%] text-white max-w-[55px]"
+                                          className="w-[20%] lg:w-[10%] text-black max-w-[55px]"
                                         >
                                           <CrosshairIcon className={`w-full pointer-events-none animate-blink--delay`} />
                                         </m.div>
@@ -150,7 +150,7 @@ export default function App({ Component, pageProps }) {
                                       </div>
                                       
 
-                                      <div className="block absolute bottom-0 left-0 text-sm uppercase text-white py-2 px-3 leading-none z-[20]" >
+                                      <div className="block absolute bottom-0 left-0 text-sm uppercase text-black py-2 px-3 leading-none z-[20]" >
                                         <div className="relative overflow-hidden">
                                           <m.span 
                                           initial="visible"
@@ -161,7 +161,7 @@ export default function App({ Component, pageProps }) {
                                         </div>
                                       </div>
 
-                                      <div className="block absolute bottom-0 right-0 text-sm uppercase text-white py-3 px-3 leading-none z-[20]" >
+                                      <div className="block absolute bottom-0 right-0 text-sm uppercase text-black py-3 px-3 leading-none z-[20]" >
                                         <div className="overflow-hidden relative">
                                           <m.span 
                                             initial="visible"
