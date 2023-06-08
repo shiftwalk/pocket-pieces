@@ -15,11 +15,18 @@ import SanityPageService from '@/services/sanityPageService'
 import { aboutQuery } from '@/helpers/queries'
 import SanityImage from '@/components/sanity-image'
 import TestimonialRoller from '@/components/testimonial-roller'
+import { useContext, useEffect } from 'react'
+import { IntroContext } from '@/context/intro'
 
 const pageService = new SanityPageService(aboutQuery)
 
 export default function Home(initialData) {
   const { data: { about }  } = pageService.getPreviewHook(initialData)()
+  const [introContext, setIntroContext] = useContext(IntroContext);
+
+  useEffect(() => {
+    setIntroContext(true)
+  },[]);
   return (
     <Layout>
       <NextSeo title={about.title} />

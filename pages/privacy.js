@@ -8,11 +8,12 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import AccordionItem from '@/components/accordion-item'
 import slugify from "slugify"
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import SanityPageService from '@/services/sanityPageService'
 import { privacyQuery } from '@/helpers/queries'
 import SanityImage from '@/components/sanity-image'
 import { InView } from 'react-intersection-observer';
+import { IntroContext } from '@/context/intro'
 
 const pageService = new SanityPageService(privacyQuery)
 
@@ -20,6 +21,11 @@ export default function Privacy(initialData) {
   const { data: { privacy }  } = pageService.getPreviewHook(initialData)()
   const router = useRouter()
   const [currentItem, setCurrentItem] = useState(false)
+  const [introContext, setIntroContext] = useContext(IntroContext);
+
+  useEffect(() => {
+    setIntroContext(true)
+  },[]);
 
   return (
     <Layout>

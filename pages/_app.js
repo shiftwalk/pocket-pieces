@@ -73,7 +73,7 @@ export default function App({ Component, pageProps }) {
               <CartOpenContext.Provider value={[cartIsOpenContext, setCartIsOpenContext]}>
 
                 <LazyMotion features={domAnimation}>
-                  { !introContext && (
+                  { !introContext && router.asPath == '/' && (
                     <>
                       <m.div 
                         initial="visible"

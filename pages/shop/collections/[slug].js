@@ -1,7 +1,7 @@
 import Layout from '@/components/layout'
 import Footer from '@/components/footer'
 import { fade } from '@/helpers/transitions'
-import { LazyMotion, domAnimation, m, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion'
+import { LazyMotion, domAnimation, m, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import { getAllCollections, getAllProductsInCollection, getCollection, getCollectionSlugs, getProductSlugs } from '@/helpers/shopify'
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
@@ -12,6 +12,9 @@ import Link from 'next/link'
 import StarIcon from '@/icons/star.svg'
 import StrikeIcon from '@/icons/strike.svg'
 import { ViewContext } from '@/context/view'
+import { IntroContext } from '@/context/intro'
+import Roller from '@/components/roller'
+import { useLenis } from '@studio-freight/react-lenis'
 
 const query = `{
   "home": *[_type == "home"][0]{
@@ -24,18 +27,22 @@ const pageService = new SanityPageService(query)
 export default function CollectionSlug(initialData) {
   const { data: { collectionData, collections, products } } = pageService.getPreviewHook(initialData)()
   const scrollWrapper = useRef(null)
-  const textRoller = useRef(null)
+  const lenis = useLenis();
   const [filtersHidden, setFiltersHidden] = useState(false)
   const [currentView, setCurrentView] = useContext(ViewContext);
-  const { scrollYProgress } = useScroll()
-  
-  useEffect(() => {
-    textRoller.current.style.transform = `translateY(0)`
-  });
+  const [introContext, setIntroContext] = useContext(IntroContext);
+  const headingRef = useRef(null)
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    textRoller.current.style.transform = `translateY(-${(latest * ((products.length - 1) * 100))}%)`;
+  const { scrollYProgress } = useScroll({
+    target: headingRef,
+    offset: ["0%", "200%"]
   })
+
+  useEffect(() => {
+    setIntroContext(true)
+  },[]);
+
+  const moveY = useTransform(scrollYProgress,[0, 1],['0', '-100%'],{ clamp: true })
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     setFiltersHidden(latest > 0.975)
@@ -66,22 +73,10 @@ export default function CollectionSlug(initialData) {
             <div>
               <div className="fixed top-0 left-0 pt-[70px] lg:pt-[85px] px-4 lg:px-6 z-[100]">
                 <m.span variants={fade} className="mb-2 relative z-10 hidden lg:block">
-                  <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'reel' && 'line-through'}`} onClick={()=> setCurrentView('reel')}>Reel</button> / <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'gallery' && 'line-through'}`} onClick={()=> setCurrentView('gallery')}>Gallery</button>
+                  <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'reel' && 'line-through'}`} onClick={()=> updateView('reel')}>Reel</button> / <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'gallery' && 'line-through'}`} onClick={()=> updateView('gallery')}>Gallery</button>
                 </m.span>
                 <m.span variants={fade} className="text-5xl lg:text-[5vw] font-display leading-[0.65] lg:leading-[0.65] flex">
-                  <span className="block tabular-nums">
-                    <span className="block overflow-hidden relative">
-                      <span className="opacity-0">01</span>
-                      <span className="block absolute inset-0" ref={textRoller}>
-                        {products.map((e, i) => {
-                          return (
-                            <span key={i} className="block">{i+1 < 10 ? '0' : ''}{i + 1}</span>
-                          )
-                        })}
-                      </span>
-                    </span>
-                  </span>
-                  <span className="block">/0{products.length}</span>
+                  <Roller items={products} />
                 </m.span>
               </div>
 
@@ -116,8 +111,8 @@ export default function CollectionSlug(initialData) {
                   </div>
                 </div>
               </div> */}
-
-              <m.h1 variants={fade} className="inline-block text-[30vw] md:text-[26vw] lg:text-[27vw] xl:text-[350px] leading-[1] md:leading-[1] lg:leading-[1] xl:leading-[1] text-off-black mx-auto w-full text-center pt-[120px] lg:pt-[45px]">
+              
+              <m.h1 ref={headingRef} variants={fade} className="inline-block text-[25vw] md:text-[26vw] lg:text-[27vw] xl:text-[340px] leading-[1] md:leading-[1] lg:leading-[1] xl:leading-[1] text-off-black mx-auto w-full text-center pt-[100px] md:pt-[40px] lg:pt-[40px] fixed top-0 left-0 right-0" style={{ y: moveY}}>
                 <span className="inline-block">{collectionData.title}</span>
               </m.h1>
 
@@ -128,7 +123,7 @@ export default function CollectionSlug(initialData) {
                     animate={{ filter: "blur(0px)", opacity: 1, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
                     exit={{ filter: "blur(50px)", opacity: 0, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
                     variants={fade}
-                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50]  ${currentView == 'reel' ? 'pt-[30px] md:pt-[30px] lg:pt-[8dvh]' : 'pt-[30px] md:pt-[30px] lg:pt-[20dvh]' }`}
+                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50]  ${currentView == 'reel' ? 'pt-[280px] md:pt-[40vw] lg:pt-[38vw] xl:pt-[450px]' : 'pt-[30px] md:pt-[30px] lg:pt-[20dvh]' }`}
                     ref={scrollWrapper}
                     key="reel"
                   >
@@ -164,7 +159,7 @@ export default function CollectionSlug(initialData) {
                     animate={{ filter: "blur(0px)", opacity: 1, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
                     exit={{ filter: "blur(50px)", opacity: 0, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
                     variants={fade}
-                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] xl:max-w-[100%] xl:w-10/12 flex flex-wrap justify-center items-start mx-auto relative z-[50] pt-[30px] md:pt-[30px] lg:pt-[8dvh] xl:pt-[15dvh]`}
+                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] xl:max-w-[100%] xl:w-10/12 flex flex-wrap justify-center items-start mx-auto relative z-[50] pt-[33dvh] md:pt-[35dvh] lg:pt-[35dvh] xl:pt-[40dvh]`}
                     ref={scrollWrapper}
                     key="gallery"
                   >

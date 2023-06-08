@@ -8,12 +8,19 @@ import { NextSeo } from 'next-seo'
 import SanityPageService from '@/services/sanityPageService'
 import { contactQuery } from '@/helpers/queries'
 import SanityImage from '@/components/sanity-image'
+import { IntroContext } from '@/context/intro';
+import { useContext, useEffect } from 'react';
 
 const pageService = new SanityPageService(contactQuery)
 
 export default function Contact(initialData) {
   const { data: { contact }  } = pageService.getPreviewHook(initialData)()
+  const [introContext, setIntroContext] = useContext(IntroContext);
 
+  useEffect(() => {
+    setIntroContext(true)
+  },[]);
+  
   return (
     <Layout>
       <NextSeo title={contact.title} />

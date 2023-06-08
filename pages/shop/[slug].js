@@ -16,6 +16,7 @@ import Link from 'next/link'
 import Button from '@/components/button'
 import StarIcon from '@/icons/star.svg'
 import RelatedRoller from '@/components/related-roller'
+import { IntroContext } from '@/context/intro'
 
 const query = `{
   "musicVideos": *[_type == "musicVideos"] | order(date desc) {
@@ -32,8 +33,14 @@ export default function ShopSlug(initialData) {
   const [quantity, setQuantity] = useState(1)
   const [variantId, setVariantId] = useState(productData.variants.edges[0].node.id)
   const [variant, setVariant] = useState(productData.variants.edges[0])
+  const [introContext, setIntroContext] = useContext(IntroContext);
+
   const isLoading = useCartContext()[2]
   const addToCart = useAddToCartContext()
+
+  useEffect(() => {
+    setIntroContext(true)
+  },[]);
 
   async function handleAddToCart() {
     const varId = variant.node.id

@@ -7,9 +7,17 @@ import { useRouter } from 'next/router'
 import FancyLink from '@/components/fancyLink'
 import MetaText from '@/components/meta-text'
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
+import { useContext, useEffect } from 'react'
+import { IntroContext } from '@/context/intro'
 
 export default function Info() {
   const router = useRouter()
+
+  const [introContext, setIntroContext] = useContext(IntroContext);
+
+  useEffect(() => {
+    setIntroContext(true)
+  },[]);
 
   return (
     <Layout>
