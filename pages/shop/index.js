@@ -1,16 +1,18 @@
 import Layout from '@/components/layout'
 import Footer from '@/components/footer'
 import { fade } from '@/helpers/transitions'
-import { LazyMotion, domAnimation, m, useScroll, useMotionValueEvent } from 'framer-motion'
+import { LazyMotion, domAnimation, m, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import { getAllCollections, getAllProducts } from '@/helpers/shopify'
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 import Polaroid from '@/components/polaroid'
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import SanityPageService from '@/services/sanityPageService'
 import Link from 'next/link'
 import StarIcon from '@/icons/star.svg'
 import StrikeIcon from '@/icons/strike.svg'
+import { useLenis } from '@studio-freight/react-lenis'
+import { ViewContext } from '@/context/view'
 
 const pageService = new SanityPageService()
 
@@ -18,7 +20,8 @@ export default function Shop(initialData) {
   const { data: { products, collections } } = pageService.getPreviewHook(initialData)()
   const scrollWrapper = useRef(null)
   const textRoller = useRef(null)
-  const [currentView, setCurrentView] = useState('reel')
+  const lenis = useLenis();
+  const [currentView, setCurrentView] = useContext(ViewContext);
   const [filtersHidden, setFiltersHidden] = useState(false)
 
   const { scrollYProgress } = useScroll()
@@ -35,19 +38,16 @@ export default function Shop(initialData) {
     setFiltersHidden(latest > 0.975)
   })
 
+  function updateView(view) {
+    lenis.scrollTo(0)
+    setCurrentView(view)
+  }
+
   let moneyUkLocale = Intl.NumberFormat('en-UK', {
     style: "currency",
     currency: "GBP",
     useGrouping: true,
   });
-
-  let viewLayoutContainer = 'w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px]' 
-  let viewLayoutChildren = 'flex items-center pb-16 md:pb-20 lg:pb-32' 
-
-  if (currentView == 'gallery') {
-    viewLayoutContainer = 'w-11/12 md:w-11/12 lg:w-11/12 flex flex-wrap justify-center items-start' 
-    viewLayoutChildren = 'flex items-center w-full lg:w-1/3 pb-[8vw] px-[2vw]'
-  }
 
   return (
     <Layout>
@@ -62,8 +62,8 @@ export default function Shop(initialData) {
           <main className="pb-[10vw]">
             <div>
               <div className="fixed top-0 left-0 pt-[70px] lg:pt-[85px] px-4 lg:px-6 z-[100]">
-                <m.span variants={fade} className="mb-2 relative z-10 hidden lg:block">
-                  <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'reel' && 'line-through'}`} onClick={()=> setCurrentView('reel')}>Reel</button> / <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'gallery' && 'line-through'}`} onClick={()=> setCurrentView('gallery')}>Gallery</button>
+                <m.span variants={fade} className="mb-2 relative z-10 hidden xl:block">
+                  <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'reel' && 'line-through'}`} onClick={()=> updateView('reel')}>Reel</button> / <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'gallery' && 'line-through'}`} onClick={()=> updateView('gallery')}>Gallery</button>
                 </m.span>
 
                 <m.span variants={fade} className="text-5xl lg:text-[5vw] font-display leading-[0.65] lg:leading-[0.65] flex">
@@ -119,39 +119,89 @@ export default function Shop(initialData) {
                 <span className="inline-block">Shop Pieces</span>
               </m.h1>
 
-              <m.div variants={fade} className={`${viewLayoutContainer} mx-auto relative z-[50]  ${currentView == 'reel' ? 'pt-[30px] md:pt-[30px] lg:pt-[8dvh]' : 'pt-[30px] md:pt-[30px] lg:pt-[20dvh]' }`} ref={scrollWrapper}>
-                {products.map((e, i) => {
-                  return e.node.availableForSale && (
-                    <div className={viewLayoutChildren} key={i}>
-                      <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
-                        <Polaroid
-                          noShadow
-                          thin
-                          product
-                          className="w-full"
-                          hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
-                          collection={e.node.collections.edges[0].node.title}
-                          metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
-                          metaHeading={e.node.title}
-                          price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
-                          image={e.node.images.edges[0].node.originalSrc}
-                          imageWidth={e.node.images.edges[0].node.width}
-                          imageHeight={e.node.images.edges[0].node.height}
-                          hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0].node.originalSrc}
-                          hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0].node.width}
-                          hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0].node.height}
-                        />
-                      </Link>
-                    </div>
-                  )
-                })}
-              </m.div>
+              <AnimatePresence mode="wait">
+                { currentView == 'reel' ? (
+                  <m.div
+                    initial={{ filter: "blur(50px)", opacity: 0 }}
+                    animate={{ filter: "blur(0px)", opacity: 1, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
+                    exit={{ filter: "blur(50px)", opacity: 0, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
+                    variants={fade}
+                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50]  ${currentView == 'reel' ? 'pt-[30px] md:pt-[30px] lg:pt-[8dvh]' : 'pt-[30px] md:pt-[30px] lg:pt-[20dvh]' }`}
+                    ref={scrollWrapper}
+                    key="reel"
+                  >
+                    {products.map((e, i) => {
+                      return e.node.availableForSale && (
+                        <div className={"flex items-center pb-16 md:pb-20 lg:pb-32"} key={i}>
+                          <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
+                            <Polaroid
+                              noShadow
+                              thin
+                              product
+                              className="w-full"
+                              hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
+                              collection={e.node.collections.edges[0].node.title}
+                              metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
+                              metaHeading={e.node.title}
+                              price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
+                              image={e.node.images.edges[0].node.originalSrc}
+                              imageWidth={e.node.images.edges[0].node.width}
+                              imageHeight={e.node.images.edges[0].node.height}
+                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0].node.originalSrc}
+                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0].node.width}
+                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0].node.height}
+                            />
+                          </Link>
+                        </div>
+                      )
+                    })}
+                  </m.div>
+                ) : (
+                  <m.div
+                    initial={{ filter: "blur(50px)", opacity: 0 }}
+                    animate={{ filter: "blur(0px)", opacity: 1, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
+                    exit={{ filter: "blur(50px)", opacity: 0, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
+                    variants={fade}
+                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] xl:max-w-[100%] xl:w-10/12 flex flex-wrap justify-center items-start mx-auto relative z-[50] pt-[30px] md:pt-[30px] lg:pt-[8dvh] xl:pt-[15dvh]`}
+                    ref={scrollWrapper}
+                    key="gallery"
+                  >
+                    {products.map((e, i) => {
+                      return e.node.availableForSale && (
+                        <div className={"flex items-center w-full xl:w-1/3 pb-16 md:pb-20 lg:pb-32 xl:pb-[8vw] xl:px-[1.5vw]"} key={i}>
+                          <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
+                            <Polaroid
+                              noShadow
+                              thin
+                              product
+                              smallText
+                              matchHeight
+                              className="w-full"
+                              hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
+                              collection={e.node.collections.edges[0].node.title}
+                              metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
+                              metaHeading={e.node.title}
+                              price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
+                              image={e.node.images.edges[0].node.originalSrc}
+                              imageWidth={e.node.images.edges[0].node.width}
+                              imageHeight={e.node.images.edges[0].node.height}
+                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0].node.originalSrc}
+                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0].node.width}
+                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0].node.height}
+                            />
+                          </Link>
+                        </div>
+                      )
+                    })}
+                  </m.div>
+                )}
+              </AnimatePresence>
 
               <div className={`fixed bottom-0 w-full z-[51] hidden lg:flex justify-center transition-opacity ease-in-out duration-[250ms] ${filtersHidden ? 'opacity-0 pointer-events-none' : 'opacity-100' }`}>
-                <m.div variants={fade} className="mx-auto w-auto relative inline-block pt-16 lg:pt-16 p-3 lg:p-6">
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-100 via-zinc-100 to-transparent z-[20]"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-100 via-zinc-100 to-transparent z-[20]"></div>
+                <m.div variants={fade} className="mx-auto w-auto inline-block pt-16 lg:pt-16 p-3 lg:p-6 relative z-[30]">
                   <span className="text-[12vw] lg:text-[6.25vw] 2xl:text-[100px] font-display leading-[0.65] lg:leading-[0.65] flex justify-center relative z-[50]">
-                    <Link href="/shop" className={`block bg-zinc-100 relative`}>
+                    <Link href="/shop" className={`block  relative`}>
                       <span>All</span>,&nbsp;
 
                       <StrikeIcon className="w-full absolute bottom-[-15%] left-0 right-0 scale-y-[1200%] rotate-[-2deg]" />

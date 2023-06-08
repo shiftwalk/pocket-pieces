@@ -6,7 +6,7 @@ import SanityImage from './sanity-image';
 import SanityImageTest from './sanity-image-test';
 import { useEffect, useRef, useState } from 'react';
 
-export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin, sanity, eager, hire, hireDark, matchHeight, smallText }) {
+export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin, sanity, eager, hire, hireDark, matchHeight, smallText, smallTextDesktop }) {
   const [randomId, setRandomId] = useState(0)
   const ref = useRef(null)
 
@@ -87,6 +87,10 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
 
   if (product && smallText) {
     headingSize = 'text-[9vw] md:text-[4.5vw] lg:text-[3.8vw] 2xl:text-[52px] leading-[0.85] md:leading-[0.85] lg:leading-[0.85] 2xl:leading-[0.85]'
+  }
+
+  if (product && smallText && smallTextDesktop) {
+    headingSize = 'text-[10vw] md:text-[6.5vw] lg:text-[4.25vw] xl:text-[3.4vw] 2xl:text-[52px] leading-[0.85] md:leading-[0.85] lg:leading-[0.85] 2xl:leading-[0.85]'
   }
 
   return (
