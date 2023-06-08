@@ -46,12 +46,12 @@ export default function App({ Component, pageProps }) {
 
   const introBackdrop = {
     visible: {
-      backdropFilter: "blur(50px)",
+      backdropFilter: "blur(0px)",
       opacity: 0
     },
     hidden: {
-      backdropFilter: ["blur(30px)","blur(5px)","blur(25px)", "blur(40px)","blur(0px)","blur(0px)"],
-      opacity: [1,1,1,1,1,0]
+      backdropFilter: ["blur(40px)","blur(10px)","blur(20px)","blur(0px)", "blur(0px)"],
+      opacity: [1,1,1,1,0]
     }
   }
 
@@ -81,88 +81,102 @@ export default function App({ Component, pageProps }) {
                         initial="visible"
                         animate="hidden"
                         variants={introBackdrop}
-                        transition={{ duration: 3, ease: [0.83, 0, 0.17, 1] }}
+                        transition={{ duration: 2.5, ease: [0.83, 0, 0.17, 1] }}
                         className="bg-black bg-opacity-80 text-white fixed inset-0 z-[999] pointer-events-none w-full h-screen"
                       ></m.div>
                       <m.div 
                         initial="visible"
                         animate="hidden"
                         variants={introFullEnd}
-                        transition={{ delay: 2.5, duration: 0.5, ease: [0.83, 0, 0.17, 1] }}
+                        transition={{ delay: 2, duration: 0.5, ease: [0.83, 0, 0.17, 1] }}
                         className="w-full h-full cursor-wait absolute inset-0 flex items-center justify-center z-[1000]"
                       >
                         <m.div 
                           initial="visible"
                           animate="hidden"
                           variants={introEnd}
-                          transition={{ delay: 1.5, duration: 0.5, ease: [0.83, 0, 0.17, 1] }}
+                          transition={{ delay: 1, duration: 1, ease: [0.83, 0, 0.17, 1] }}
                           className="absolute inset-0"
                         >
-                          <div className="w-full">
-                            <div className="mx-auto max-w-[700px]">
-                              <div className="absolute inset-y-[20%] inset-x-[10%] border-white border flex items-center justify-center z-[20]">
-                                <div className="absolute top-0 left-0 text-white py-3 px-3 leading-none z-[20]" >
-                                  <div className="relative overflow-hidden">
-                                  <m.span 
-                                    initial="visible"
-                                    animate="hidden"
-                                    variants={revealUp}
-                                    transition={{ delay: 1.5, duration: 0.5, ease: [0.83, 0, 0.17, 1] }}
-                                    className={`block uppercase text-sm`}
-                                  >
-                                      <LogoMarkIcon className="w-[30px]" />
-                                    </m.span>
-                                  </div>
-                                </div>
+                          <div className="h-full w-full lg:w-8/12 max-w-[65vh] 2xl:max-w-[720px] pt-[130px] pb-[50px] relative z-20 mx-auto px-4 lg:px-6">
+                            <div className="w-full mx-auto p-4 lg:p-6 h-full flex flex-wrap">
+                              <div className="w-full">
+                                <div className="mx-auto relative h-full">
+                                  <div className="absolute inset-0 border-white border flex items-center justify-center z-[20]">
 
-                                <div className="block absolute top-0 right-0 text-sm uppercase text-white py-2 px-3 leading-none z-[20]" >
-                                  <div className="relative overflow-hidden">
-                                    <m.span 
-                                    initial="visible"
-                                    animate="hidden"
-                                    variants={revealUp}
-                                    transition={{ delay: 1.5, duration: 0.5, ease: [0.83, 0, 0.17, 1] }}
-                                    className={`block uppercase text-sm`}>LOADING_SITE</m.span>
-                                  </div>
-                                </div>
+                                      <div className="absolute top-0 left-0 text-white py-3 px-3 leading-none z-[20]" >
+                                        <div className="relative overflow-hidden">
+                                        <m.span 
+                                          initial="visible"
+                                          animate="hidden"
+                                          variants={revealUp}
+                                          transition={{ delay: 1.2, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
+                                          className={`block uppercase text-sm`}
+                                        >
+                                            <LogoMarkIcon className="w-[30px]" />
+                                          </m.span>
+                                        </div>
+                                      </div>
 
-                                <div className="w-[20%] lg:w-[10%] text-white max-w-[55px]">
-                                  <CrosshairIcon className={`w-full pointer-events-none animate-blink`} />
-                                </div>
+                                      <div className="block absolute top-0 right-0 text-sm uppercase text-white py-2 px-3 leading-none z-[20]" >
+                                        <div className="relative overflow-hidden">
+                                          <m.span 
+                                          initial="visible"
+                                          animate="hidden"
+                                          variants={revealUp}
+                                          transition={{ delay: 1.2, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
+                                          className={`block uppercase text-sm`}>LOADING_SITE</m.span>
+                                        </div>
+                                      </div>
 
-                                <div className="block absolute bottom-0 left-0 text-sm uppercase text-white py-2 px-3 leading-none z-[20]" >
-                                  <div className="relative overflow-hidden">
-                                    <m.span 
-                                    initial="visible"
-                                    animate="hidden"
-                                    variants={revealDown}
-                                    transition={{ delay: 1.5, duration: 0.5, ease: [0.83, 0, 0.17, 1] }}
-                                    className={`block uppercase text-sm`}>P_P_001</m.span>
-                                  </div>
-                                </div>
+                                      <div className="w-full flex flex-wrap justify-center text-white">
+                                        <m.div initial="visible"
+                                          animate="hidden"
+                                          variants={introEnd}
+                                          transition={{ delay: 0.99, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
+                                          className="w-[20%] lg:w-[10%] text-white max-w-[55px]"
+                                        >
+                                          <CrosshairIcon className={`w-full pointer-events-none animate-blink--delay`} />
+                                        </m.div>
+                                        <div className="overflow-hidden relative w-full mt-4">
+                                          <m.span 
+                                            initial="hidden"
+                                            animate="visible"
+                                            variants={revealDown}
+                                            transition={{ delay: 0.3, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
+                                            className={`block uppercase text-sm text-center`}
+                                          >P_P_READY</m.span>
+                                        </div>
+                                      </div>
+                                      
 
-                                <div className="block absolute bottom-0 right-0 text-sm uppercase text-white py-3 px-3 leading-none z-[20]" >
-                                  <div className="overflow-hidden relative">
-                                    <m.span 
-                                      initial="visible"
-                                      animate="hidden"
-                                      variants={revealDown}
-                                      transition={{ delay: 1.5, duration: 0.5, ease: [0.83, 0, 0.17, 1] }}
-                                      className={`block uppercase text-sm`}
-                                    >
-                                      <StarIcon className={`w-10`} />
-                                    </m.span>
-                                  </div>
+                                      <div className="block absolute bottom-0 left-0 text-sm uppercase text-white py-2 px-3 leading-none z-[20]" >
+                                        <div className="relative overflow-hidden">
+                                          <m.span 
+                                          initial="visible"
+                                          animate="hidden"
+                                          variants={revealDown}
+                                          transition={{ delay: 1.2, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
+                                          className={`block uppercase text-sm`}>P_P_001</m.span>
+                                        </div>
+                                      </div>
+
+                                      <div className="block absolute bottom-0 right-0 text-sm uppercase text-white py-3 px-3 leading-none z-[20]" >
+                                        <div className="overflow-hidden relative">
+                                          <m.span 
+                                            initial="visible"
+                                            animate="hidden"
+                                            variants={revealDown}
+                                            transition={{ delay: 1.2, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
+                                            className={`block uppercase text-sm`}
+                                          >
+                                            <StarIcon className={`w-10`} />
+                                          </m.span>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </div>
                               </div>
-                              {/* <div className="w-9/12 lg:w-10/12 mx-auto">
-                                <LogoMarkOutlinedIcon className={`w-[75px] lg:w-[100px] mb-8 mx-auto text-zinc-100`} />
-                                <LogoIcon className={`w-full mb-8 text-zinc-100`} />
-                              </div>
-
-                              <div className="w-10/12 lg:w-10/12 mx-auto">
-                                <p className="text-base lg:text-lg xl:text-xl text-zinc-100 text-center">Prestige, one-of-a-kind pieces to sustainably style out your wardrobe.</p>
-                              </div> */}
                             </div>
                           </div>
                         </m.div>

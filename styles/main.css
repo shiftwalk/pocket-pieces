@@ -127,6 +127,11 @@ body {
   animation: opacityDouble 0.65s steps(1) infinite;
 }
 
+.animate-blink--delay {
+  animation: opacityDouble 0.5s steps(1) infinite;
+  animation-delay:  0.35s !important;
+}
+
 @keyframes opacityDouble {
   0% {@apply opacity-100;}
   25% {@apply opacity-0;}
