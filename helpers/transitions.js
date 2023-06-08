@@ -3,11 +3,11 @@ export const fade = {
   enter: { 
     opacity: 1,
     filter: 'blur(0px)',
-    transition: { duration: 0.7, ease: [0.83, 0, 0.17, 1] }
+    transition: { duration: 0.55, ease: [0.83, 0, 0.17, 1] }
   },
 	exit: {
     opacity: 0,
     filter: 'blur(70px)',
-		transition: { duration: 0.7, ease: [0.83, 0, 0.17, 1] }
+		transition: { duration: 0.55, ease: [0.83, 0, 0.17, 1] }
 	}
 }

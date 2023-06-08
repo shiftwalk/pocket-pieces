@@ -47,11 +47,9 @@ export default function App({ Component, pageProps }) {
   const introBackdrop = {
     visible: {
       backdropFilter: "blur(40px)",
-      opacity: 1
     },
     hidden: {
-      backdropFilter: ["blur(40px)","blur(10px)","blur(20px)","blur(0px)", "blur(0px)"],
-      opacity: [1,1,1,1,0]
+      backdropFilter: ["blur(40px)","blur(10px)","blur(25px)","blur(0px)"],
     }
   }
 
@@ -81,21 +79,21 @@ export default function App({ Component, pageProps }) {
                         initial="visible"
                         animate="hidden"
                         variants={introBackdrop}
-                        transition={{ duration: 2.5, ease: [0.83, 0, 0.17, 1] }}
-                        className="bg-zinc-100 bg-opacity-50 text-black fixed inset-0 z-[9999] pointer-events-none w-full h-screen"
+                        transition={{ duration: 2, ease: [0.83, 0, 0.17, 1] }}
+                        className="bg-zinc-100 bg-opacity-0 text-black fixed inset-0 z-[9999] pointer-events-none w-full h-screen"
                       ></m.div>
                       <m.div 
                         initial="visible"
                         animate="hidden"
                         variants={introFullEnd}
-                        transition={{ delay: 2, duration: 0.5, ease: [0.83, 0, 0.17, 1] }}
+                        transition={{ delay: 1.75, duration: 0.5, ease: [0.83, 0, 0.17, 1] }}
                         className="w-full h-full cursor-wait absolute inset-0 flex items-center justify-center z-[9999]"
                       >
                         <m.div 
                           initial="visible"
                           animate="hidden"
                           variants={introEnd}
-                          transition={{ delay: 1, duration: 1, ease: [0.83, 0, 0.17, 1] }}
+                          transition={{ delay: 1.33, duration: 0.5, ease: [0.83, 0, 0.17, 1] }}
                           className="absolute inset-0"
                         >
                           <div className="h-full w-full lg:w-8/12 max-w-[65vh] 2xl:max-w-[720px] pt-[130px] pb-[50px] relative z-20 mx-auto px-4 lg:px-6">
@@ -110,7 +108,7 @@ export default function App({ Component, pageProps }) {
                                           initial="visible"
                                           animate="hidden"
                                           variants={revealUp}
-                                          transition={{ delay: 1.2, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
+                                          transition={{ delay: 1.33, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
                                           className={`block uppercase text-sm`}
                                         >
                                             <LogoMarkIcon className="w-[30px]" />
@@ -124,7 +122,7 @@ export default function App({ Component, pageProps }) {
                                           initial="visible"
                                           animate="hidden"
                                           variants={revealUp}
-                                          transition={{ delay: 1.2, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
+                                          transition={{ delay: 1.33, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
                                           className={`block uppercase text-sm`}>LOADING_SITE</m.span>
                                         </div>
                                       </div>
@@ -134,7 +132,7 @@ export default function App({ Component, pageProps }) {
                                           animate="hidden"
                                           variants={introEnd}
                                           transition={{ delay: 0.99, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
-                                          className="w-[20%] lg:w-[10%] text-black max-w-[55px]"
+                                          className="w-[20%] lg:w-[10%] text-black max-w-[40px]"
                                         >
                                           <CrosshairIcon className={`w-full pointer-events-none animate-blink--delay`} />
                                         </m.div>
@@ -156,7 +154,7 @@ export default function App({ Component, pageProps }) {
                                           initial="visible"
                                           animate="hidden"
                                           variants={revealDown}
-                                          transition={{ delay: 1.2, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
+                                          transition={{ delay: 1.33, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
                                           className={`block uppercase text-sm`}>P_P_001</m.span>
                                         </div>
                                       </div>
@@ -167,7 +165,7 @@ export default function App({ Component, pageProps }) {
                                             initial="visible"
                                             animate="hidden"
                                             variants={revealDown}
-                                            transition={{ delay: 1.2, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
+                                            transition={{ delay: 1.33, duration: 0.33, ease: [0.83, 0, 0.17, 1] }}
                                             className={`block uppercase text-sm`}
                                           >
                                             <StarIcon className={`w-10`} />

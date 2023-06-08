@@ -44,6 +44,7 @@
     "react-dom": "^18.2.0",
     "react-fps-stats": "^0.3.1",
     "react-intersection-observer": "^9.4.3",
+    "react-just-parallax": "^3.1.16",
     "sanity-image": "^0.1.5",
     "slugify": "^1.6.6"
   },
