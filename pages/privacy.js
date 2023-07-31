@@ -4,18 +4,8 @@ import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-import { useContext, useEffect, useState } from 'react'
-import { IntroContext } from '@/context/intro'
-
-const pageService = new SanityPageService(privacyQuery)
 
 export default function Privacy() {
-  const [currentItem, setCurrentItem] = useState(false)
-  const [introContext, setIntroContext] = useContext(IntroContext);
-
-  useEffect(() => {
-    setIntroContext(true)
-  },[]);
 
   return (
     <Layout>
