@@ -7,20 +7,25 @@ import { NextSeo } from 'next-seo'
 import Image from 'next/image'
 import Polaroid from '@/components/polaroid'
 import Button from '@/components/button'
-
 import SanityPageService from '@/services/sanityPageService'
 import { creditsQuery } from '@/helpers/queries'
-import SanityImage from '@/components/sanity-image'
 import SanityImageTest from '@/components/sanity-image-test'
 import { getAllProductsInCollection } from '@/helpers/shopify'
 import Link from 'next/link'
-
 import StrikeIcon from '@/icons/strike.svg'
+import { IntroContext } from '@/context/intro'
+import { useContext, useEffect } from 'react'
 
 const pageService = new SanityPageService(creditsQuery)
 
 export default function Hire(initialData) {
-  const { data: { credits, archives, products }  } = pageService.getPreviewHook(initialData)()
+  const { data: { credits, archives, products }} = pageService.getPreviewHook(initialData)()
+
+  const [introContext, setIntroContext] = useContext(IntroContext);
+
+  useEffect(() => {
+    setIntroContext(true)
+  },[]);
 
   const tickerItems = ['#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113', '#84', '#43', '#29', '#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113', '#84', '#43', '#29', '#223', '#113', '#19', '#94', '#211', '#65', '#3', '#122', '#10', '#113' ]
 

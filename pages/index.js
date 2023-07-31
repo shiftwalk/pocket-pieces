@@ -1,6 +1,6 @@
 import Layout from '@/components/layout'
 import { fade } from '@/helpers/transitions'
-import { LazyMotion, domAnimation, m, AnimatePresence } from 'framer-motion'
+import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import LogoIcon from '@/icons/logo.svg'
 import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";

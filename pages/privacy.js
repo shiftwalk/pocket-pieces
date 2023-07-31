@@ -4,8 +4,6 @@ import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
 import AccordionItem from '@/components/accordion-item'
 import slugify from "slugify"
 import { useContext, useEffect, useState } from 'react'
@@ -19,7 +17,6 @@ const pageService = new SanityPageService(privacyQuery)
 
 export default function Privacy(initialData) {
   const { data: { privacy }  } = pageService.getPreviewHook(initialData)()
-  const router = useRouter()
   const [currentItem, setCurrentItem] = useState(false)
   const [introContext, setIntroContext] = useContext(IntroContext);
 
