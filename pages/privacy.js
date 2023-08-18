@@ -35,7 +35,7 @@ export default function Privacy() {
                         </div>
                       </div>
 
-                      <h1 className="text-[25vw] md:text-[22.5vw] lg:text-[20vw] mb-4 leading-[0.6] md:leading-[0.6] lg:leading-[0.6] hidden lg:block w-full mt-auto">Privacy Policy</h1>
+                      <h1 className="text-[25vw] md:text-[22.5vw] lg:text-[20vw] mb-4 leading-[0.65] md:leading-[0.65] lg:leading-[0.65] hidden lg:block w-full mt-auto">Privacy Policy</h1>
                     </div>
                   </div>
 

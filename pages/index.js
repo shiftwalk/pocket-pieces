@@ -7,6 +7,7 @@ import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 import Button from '@/components/button'
 import { MouseParallax } from 'react-just-parallax'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -46,22 +47,18 @@ export default function Home() {
                     <div className="w-full mb-auto">
                       <h1 className="block text-[16vw] lg:text-[5.8vw] leading-[0.75] text-center mb-8">Our online store hits screens very soon. Sign up to get notified of our opening drop.</h1>
 
-                      <form className="w-full lg:w-10/12 mx-auto block relative">
-                        <input type="email" placeholder="Email Address" className="border-b border-black w-full appearance-none uppercase text-black placeholder:text-black font-mono text-sm py-2 focus:outline-none focus:border-opacity-50" />
-
-                        <button type="submit" className="absolute bottom-0 right-0 w-6 py-3">
-                          <svg className="w-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 28 10"><path fill="#242B2D" d="M27.94 5.46c-1.894.906-3.654 2.346-5.28 4.32h-1.4c.4-.854.8-1.6 1.2-2.24.373-.64.746-1.174 1.12-1.6H.26V4.26h23.32c-.374-.454-.747-1-1.12-1.64-.4-.64-.8-1.374-1.2-2.2h1.4c1.626 1.946 3.386 3.386 5.28 4.32v.72Z"/></svg>
-                        </button>
-                      </form>
+                      <div className="w-full relative flex justify-center">
+                        <a href="https://airtable.com/appuLPhVa54ngPG2E/shrD5KibqtaWYWWQm" target="_blank" rel="noopener noreferrer" className="border-b border-black appearance-none uppercase text-black border-opacity-30 font-mono text-sm py-2 focus:border-opacity-100 hover:border-opacity-100 transition-colors ease-in-out duration-[330ms] inline w-auto text-center">Sign Up To Our Newsletter</a>
+                      </div>
                     </div>
 
-                    <span className="bg-black rounded-full w-full flex flex-wrap justify-center lg:justify-start text-off-white text-xs py-[13px] px-4 lg:px-5">
+                    {/* <span className="bg-black rounded-full w-full flex flex-wrap justify-center lg:justify-start text-off-white text-xs py-[13px] px-4 lg:px-5">
                       <span className="block text-center mb-3 lg:mb-0">This site uses cookies to improve your visiting experience</span>
                       <span className="flex space-x-3 ml-auto justify-center w-full lg:w-auto">
-                        <span className="block">Read More</span>
-                        <span className="block">Okay</span>
+                        <Link href="/privacy" className="block underline">Read More</Link>
+                        <span className="block underline">Okay</span>
                       </span>
-                    </span>
+                    </span> */}
                   </div>
                 </m.div>
               </m.article>
