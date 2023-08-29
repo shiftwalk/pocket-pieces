@@ -25,11 +25,9 @@ export default function Home() {
               <m.article variants={fade} className="w-full h-full">
                 <m.div variants={fade} className="h-full w-full flex flex-col lg:flex-wrap">  
                   <div className="w-full lg:w-[45%] relative overflow-hidden h-[65vh] lg:h-full">
-                    <MouseParallax isAbsolutelyPositioned enableOnTouchDevice={false} lerpEase={0.25} strength={0.0144} zIndex={0}>
                       <div className="block absolute inset-0 z-0 ">
-                        <Image src="/images/landing-new.jpg" fill className="w-full h-full scale-[1.03] object-center object-cover" alt="Placeholder" />
+                        <Image src="/images/landing-new.jpg" fill className="w-full h-full scale-[1] object-center object-cover" alt="Placeholder" />
                       </div>
-                    </MouseParallax>
                     <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black to-transparent opacity-30"></div>
 
                     <div className="absolute bottom-0 left-0 right-0 w-full">
