@@ -1,6 +1,6 @@
 export default {
-  defaultTitle: 'Vintage Pieces Curated By Phoebe Pocket | Pocket Pieces',
-  description: 'One-of-a-kind, sustainably-sourced vintage pieces curated by phoebe pocket. For all genders, sizes & occasions.',
+  defaultTitle: 'One-of-a-kind, sustainably-sourced, vintage pieces | Pocket Pieces',
+  description: 'One-of-a-kind, sustainably-sourced, vintage pieces, curated by us for your scene-stealing looks. For all genders, sizes and occasions.',
   titleTemplate: '%s | Pocket Pieces',
   openGraph: {
     type: 'website',
