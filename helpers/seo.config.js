@@ -5,11 +5,11 @@ export default {
   openGraph: {
     type: 'website',
     locale: 'en_GB',
-    url: 'https://pocket-pieces.vercel.app/',
+    url: 'https://pocketpieces.co.uk',
     site_name: 'Pocket Pieces',
     images: [
       {
-        url: 'https://pocket-pieces.vercel.app/images/social-share.jpg',
+        url: 'pocketpieces.co.uk/images/social-share.jpg',
         width: 1200,
         height: 630,
         alt: `Pocket Pieces Logo`,
