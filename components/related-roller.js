@@ -52,16 +52,16 @@ export default function RelatedRoller({ items, itemsOne, itemsTwo }) {
                     hire={itemsOne[i].node.collections.edges.some(e => e.node.title === 'For Hire')}
                     hireDark
                     smallText
-                    collection={itemsOne[i].node.collections.edges[0].node.title}
+                    collection={itemsOne[i].node.collections.edges[0]?.node.title}
                     metaText={itemsOne[i].node.metaTitle ? itemsOne[i].node.metaTitle.value : null}
                     metaHeading={itemsOne[i].node.title}
-                    price={moneyUkLocale.format(itemsOne[i].node.variants.edges[0].node.price.amount)}
-                    image={itemsOne[i].node.images.edges[0].node.originalSrc}
-                    imageWidth={itemsOne[i].node.images.edges[0].node.width}
-                    imageHeight={itemsOne[i].node.images.edges[0].node.height}
-                    hoverImage={itemsOne[i].node.images.edges[1] ? itemsOne[i].node.images.edges[1].node.originalSrc : itemsOne[i].node.images.edges[0].node.originalSrc}
-                    hoverImageWidth={itemsOne[i].node.images.edges[1] ? itemsOne[i].node.images.edges[1].node.width : itemsOne[i].node.images.edges[0].node.width}
-                    hoverImageHeight={itemsOne[i].node.images.edges[1] ? itemsOne[i].node.images.edges[1].node.height : itemsOne[i].node.images.edges[0].node.height}
+                    price={moneyUkLocale.format(itemsOne[i].node.variants.edges[0]?.node.price.amount)}
+                    image={itemsOne[i].node.images.edges[0]?.node.originalSrc}
+                    imageWidth={itemsOne[i].node.images.edges[0]?.node.width}
+                    imageHeight={itemsOne[i].node.images.edges[0]?.node.height}
+                    hoverImage={itemsOne[i].node.images.edges[1] ? itemsOne[i].node.images.edges[1].node.originalSrc : itemsOne[i].node.images.edges[0]?.node.originalSrc}
+                    hoverImageWidth={itemsOne[i].node.images.edges[1] ? itemsOne[i].node.images.edges[1].node.width : itemsOne[i].node.images.edges[0]?.node.width}
+                    hoverImageHeight={itemsOne[i].node.images.edges[1] ? itemsOne[i].node.images.edges[1].node.height : itemsOne[i].node.images.edges[0]?.node.height}
                   />
                 </Link>
               </div>
@@ -78,16 +78,16 @@ export default function RelatedRoller({ items, itemsOne, itemsTwo }) {
                   hire={itemsTwo[i].node.collections.edges.some(e => e.node.title === 'For Hire')}
                   hireDark
                   smallText
-                  collection={itemsTwo[i].node.collections.edges[0].node.title}
+                  collection={itemsTwo[i].node.collections.edges[0]?.node.title}
                   metaText={itemsTwo[i].node.metaTitle ? itemsTwo[i].node.metaTitle.value : null}
                   metaHeading={itemsTwo[i].node.title}
-                  price={moneyUkLocale.format(itemsTwo[i].node.variants.edges[0].node.price.amount)}
-                  image={itemsTwo[i].node.images.edges[0].node.originalSrc}
-                  imageWidth={itemsTwo[i].node.images.edges[0].node.width}
-                  imageHeight={itemsTwo[i].node.images.edges[0].node.height}
-                  hoverImage={itemsTwo[i].node.images.edges[1] ? itemsTwo[i].node.images.edges[1].node.originalSrc : itemsTwo[i].node.images.edges[0].node.originalSrc}
-                  hoverImageWidth={itemsTwo[i].node.images.edges[1] ? itemsTwo[i].node.images.edges[1].node.width : itemsTwo[i].node.images.edges[0].node.width}
-                  hoverImageHeight={itemsTwo[i].node.images.edges[1] ? itemsTwo[i].node.images.edges[1].node.height : itemsTwo[i].node.images.edges[0].node.height}
+                  price={moneyUkLocale.format(itemsTwo[i].node.variants.edges[0]?.node.price.amount)}
+                  image={itemsTwo[i].node.images.edges[0]?.node.originalSrc}
+                  imageWidth={itemsTwo[i].node.images.edges[0]?.node.width}
+                  imageHeight={itemsTwo[i].node.images.edges[0]?.node.height}
+                  hoverImage={itemsTwo[i].node.images.edges[1] ? itemsTwo[i].node.images.edges[1].node.originalSrc : itemsTwo[i].node.images.edges[0]?.node.originalSrc}
+                  hoverImageWidth={itemsTwo[i].node.images.edges[1] ? itemsTwo[i].node.images.edges[1].node.width : itemsTwo[i].node.images.edges[0]?.node.width}
+                  hoverImageHeight={itemsTwo[i].node.images.edges[1] ? itemsTwo[i].node.images.edges[1].node.height : itemsTwo[i].node.images.edges[0]?.node.height}
                 />
               </Link>
             </div>

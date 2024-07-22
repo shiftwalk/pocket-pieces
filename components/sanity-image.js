@@ -13,7 +13,7 @@ export default function SanityImage({ image, layout, widthOverride, focalPoint, 
       .fit('clip')
   };
   
-	const imageProps = useNextSanityImage(sanity.config, image.asset, { imageBuilder: myCustomImageBuilder });
+	const imageProps = useNextSanityImage(sanity.config, image?.asset, { imageBuilder: myCustomImageBuilder });
   const attributes = {};
 
   if (focalPoint?.x && focalPoint?.y) {
@@ -21,7 +21,7 @@ export default function SanityImage({ image, layout, widthOverride, focalPoint, 
     attributes.objectPosition = `${x * 100}% ${y * 100}%`;
   }
 
-  if (image.alt) { attributes.alt = image.alt } else { attributes.alt = 'MISSING ALT TEXT' }
+  if (image?.alt) { attributes.alt = image.alt } else { attributes.alt = 'MISSING ALT TEXT' }
   if (layout) { attributes.layout = layout } else { attributes.layout = 'responsive' }
   if (priority) { attributes.priority = true } else { attributes.priority = false }
   if (sizes) { attributes.sizes = sizes }

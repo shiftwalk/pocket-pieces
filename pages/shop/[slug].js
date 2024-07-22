@@ -29,9 +29,9 @@ const pageService = new SanityPageService(query)
 export default function ShopSlug(initialData) {
   const { data: { productData, products } } = pageService.getPreviewHook(initialData)()
   const [cartIsOpenContext, setCartIsOpenContext] = useContext(CartOpenContext);
-  const [variantPrice, setVariantPrice] = useState(productData.variants.edges[0].node.price.amount)
+  const [variantPrice, setVariantPrice] = useState(productData.variants.edges[0]?.node.price.amount)
   const [quantity, setQuantity] = useState(1)
-  const [variantId, setVariantId] = useState(productData.variants.edges[0].node.id)
+  const [variantId, setVariantId] = useState(productData.variants.edges[0]?.node.id)
   const [variant, setVariant] = useState(productData.variants.edges[0])
   const [introContext, setIntroContext] = useContext(IntroContext);
 
@@ -188,12 +188,12 @@ export default function ShopSlug(initialData) {
                       metaText={productData.metaTitle ? productData.metaTitle.value : null}
                       bigMeta
                       number
-                      image={productData.images.edges[0].node.originalSrc}
-                      imageWidth={productData.images.edges[0].node.width}
-                      imageHeight={productData.images.edges[0].node.height}
-                      hoverImage={productData.images.edges[1] ? productData.images.edges[1].node.originalSrc : productData.images.edges[0].node.originalSrc}
-                      hoverImageWidth={productData.images.edges[1] ? productData.images.edges[1].node.width : productData.images.edges[0].node.width}
-                      hoverImageHeight={productData.images.edges[1] ? productData.images.edges[1].node.height : productData.images.edges[0].node.height}
+                      image={productData.images.edges[0]?.node.originalSrc}
+                      imageWidth={productData.images.edges[0]?.node.width}
+                      imageHeight={productData.images.edges[0]?.node.height}
+                      hoverImage={productData.images.edges[1] ? productData.images.edges[1].node.originalSrc : productData.images.edges[0]?.node.originalSrc}
+                      hoverImageWidth={productData.images.edges[1] ? productData.images.edges[1].node.width : productData.images.edges[0]?.node.width}
+                      hoverImageHeight={productData.images.edges[1] ? productData.images.edges[1].node.height : productData.images.edges[0]?.node.height}
                     />
                     {/* <span className="block lg:hidden text-xs uppercase pt-5 underline">Got a question about this piece?</span> */}
                   </div>

@@ -107,13 +107,13 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
       <div className="block relative aspect-square overflow-hidden">
         <m.div style={{ scale: scale }}>
           <m.div
-            className="w-full h-full scale-1 blur-0"
+            className="w-full h-full scale-1 blur-0 relative aspect-square"
             variants={imageVariants}
           >
             {sanity ? (
-              <SanityImageTest eager={eager} image={image ? image : null} width={imageWidth ? imageWidth : 720} height={imageHeight ? imageHeight : 720} className={`block w-full relative z-[10]`} alt="placeholder" />
+              <SanityImageTest eager={eager} image={image ? image : null} fill className={`block  z-[10] object-cover object-center aspect-square absolute inset-0 w-full h-full`} alt="placeholder" />
             ) : (
-              <Image src={image ? image : 'https://placedog.net/720/720'} width={imageWidth ? imageWidth : 720} height={imageHeight ? imageHeight : 720} className={`block w-full relative z-[10]`} alt="placeholder" />
+              <Image src={image ? image : 'https://placedog.net/720/720'} fill className={`block  z-[10] object-cover object-center aspect-square absolute inset-0 w-full h-full`} alt="placeholder" />
             )}
           </m.div>
         </m.div>
@@ -136,9 +136,9 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
 
             <m.div variants={backImageVariants} className="absolute inset-0 object-cover object-center z-[10] opacity-0 scale-1 blur-0">
               {sanity ? (
-                <SanityImageTest eager={eager} image={hoverImage ? hoverImage : null} width={hoverImageWidth ? hoverImageWidth : 720} height={hoverImageHeight ? hoverImageHeight : 720} className={`block w-full pointer-events-none`} alt="placeholder" />
+                <SanityImageTest eager={eager} image={hoverImage ? hoverImage : null} fill className={`block  z-[10] object-cover object-center aspect-square absolute inset-0 w-full h-full pointer-events-none`} alt="placeholder" />
               ) : (
-                <Image src={hoverImage ? hoverImage : 'https://placedog.net/720/720'} width={hoverImageWidth ? hoverImageWidth : 720} height={hoverImageHeight ? hoverImageHeight : 720} className={`block w-full pointer-events-none`} alt="placeholder" />
+                <Image src={hoverImage ? hoverImage : 'https://placedog.net/720/720'} fill className={`block  z-[10] object-cover object-center aspect-square absolute inset-0 w-full h-full pointer-events-none`} alt="placeholder" />
               )}
             </m.div>
           </div>

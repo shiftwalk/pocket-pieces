@@ -146,6 +146,12 @@ body {
   }
 }
 
+.cover-image--top {
+  img {
+    @apply object-cover object-top;
+  }
+}
+
 
 
 .parallax {
@@ -202,4 +208,10 @@ html.lenis {
 
 .lenis.lenis-scrolling iframe {
    pointer-events: none;
+}
+
+.fill {
+  & > img {
+    @apply object-center;
+  }
 }

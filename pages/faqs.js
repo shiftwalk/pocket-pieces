@@ -43,8 +43,8 @@ export default function FAQs(initialData) {
                       <h1 className="text-[30vw] md:text-[22.5vw] lg:text-[20vw] mb-2 leading-none md:leading-none lg:leading-none block md:hidden">{info.title}</h1>
 
                       <div className="flex flex-wrap w-full">
-                        <div className="w-full md:w-[70%] lg:w-[63%] pb-4 md:pb-0 md:pr-3 md:max-w-[45vh]">
-                          <SanityImage image={info.heroImage} className="block w-full" alt="placeholder" />
+                        <div className="w-full md:w-[70%] lg:w-[63%] pb-4 md:pb-0 md:pr-3 md:max-w-[45vh] h-[50vh] relative overflow-hidden">
+                          <SanityImage layout="fill" image={info.heroImage} className="block w-full absolute inset-0 h-full object-cover object-center cover-image--top" alt="placeholder" />
                         </div>
 
                         <div className="w-full md:flex-1 flex flex-wrap">

@@ -131,16 +131,16 @@ export default function Shop(initialData) {
                               product
                               className="w-full"
                               hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
-                              collection={e.node.collections.edges[0].node.title}
+                              collection={e.node.collections.edges[0]?.node.title}
                               metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                               metaHeading={e.node.title}
-                              price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
-                              image={e.node.images.edges[0].node.originalSrc}
-                              imageWidth={e.node.images.edges[0].node.width}
-                              imageHeight={e.node.images.edges[0].node.height}
-                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0].node.originalSrc}
-                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0].node.width}
-                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0].node.height}
+                              price={moneyUkLocale.format(e.node.variants.edges[0]?.node.price.amount)}
+                              image={e.node.images.edges[0]?.node.originalSrc}
+                              imageWidth={e.node.images.edges[0]?.node.width}
+                              imageHeight={e.node.images.edges[0]?.node.height}
+                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
+                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
+                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
                             />
                           </Link>
                         </div>
@@ -169,16 +169,16 @@ export default function Shop(initialData) {
                               matchHeight
                               className="w-full"
                               hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
-                              collection={e.node.collections.edges[0].node.title}
+                              collection={e.node.collections.edges[0]?.node.title}
                               metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                               metaHeading={e.node.title}
-                              price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
-                              image={e.node.images.edges[0].node.originalSrc}
-                              imageWidth={e.node.images.edges[0].node.width}
-                              imageHeight={e.node.images.edges[0].node.height}
-                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0].node.originalSrc}
-                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0].node.width}
-                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0].node.height}
+                              price={moneyUkLocale.format(e.node.variants.edges[0]?.node.price.amount)}
+                              image={e.node.images.edges[0]?.node.originalSrc}
+                              imageWidth={e.node.images.edges[0]?.node.width}
+                              imageHeight={e.node.images.edges[0]?.node.height}
+                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
+                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
+                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
                             />
                           </Link>
                         </div>
