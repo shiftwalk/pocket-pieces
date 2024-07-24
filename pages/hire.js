@@ -177,7 +177,7 @@ export default function Hire(initialData) {
                       </div>
                       <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]">
                         <h3 className="font-normal text-lg leading-none block mb-6">How long can i hire an item for?</h3>
-                        <div className="font-light content"><p>We offer a range of hire periods, depending on the piece itself, with pricing calculated to reflect the piece's retail price and time with you.</p></div>
+                        <div className="font-light content"><p>We offer a range of hire periods, depending on the piece itself, with pricing calculated to reflect the piece&apos;s retail price and time with you.</p></div>
                       </div>
                       <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]">
                         <h3 className="font-normal text-lg leading-none block mb-6">Who can hire via Pocket Pieces?</h3>
