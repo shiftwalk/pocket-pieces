@@ -159,11 +159,11 @@ export default function Shop(initialData) {
                   >
                     {products.map((e, i) => {
                       return e.node.availableForSale && (
-                        <div className={"flex items-center w-full xl:w-1/3 pb-16 md:pb-20 lg:pb-32 xl:pb-[8vw] xl:px-[1.5vw]"} key={i}>
+                        <div className={"flex items-center w-full xl:w-1/3 pb-8 md:pb-12 lg:pb-12 xl:pb-[4vw] xl:px-[1.5vw]"} key={i}>
                           <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
                             <Polaroid
                               noShadow
-                              thin
+                              noPadding
                               product
                               smallText
                               matchHeight

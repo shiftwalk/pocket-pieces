@@ -15,6 +15,7 @@ import { aboutQuery } from '@/helpers/queries'
 import TestimonialRoller from '@/components/testimonial-roller'
 import { useContext, useEffect } from 'react'
 import { IntroContext } from '@/context/intro'
+import Image from 'next/image'
 
 const pageService = new SanityPageService(aboutQuery)
 
@@ -66,44 +67,48 @@ export default function Home(initialData) {
                       <m.div 
                         drag
                         dragMomentum={false}
-                        className="absolute top-[-25%] lg:top-[-20%] left-[-33%] w-[55%] lg:w-[45%] cursor-grab z-[5]"
+                        className="absolute top-[-25%] lg:top-[-20%] left-[-14%] w-[55%] lg:w-[45%] cursor-grab z-[5]"
                       >
                         <Polaroid
                           className="rotate-[-13deg] lg:rotate-[9deg]"
-                          image={about.polaroids[0].images[0]}
-                          hoverImage={about.polaroids[0].images[1] ? about.polaroids[0].images[1] : about.polaroids[0].images[0]}
+                          image={about.polaroids[0]?.images[0]}
+                          hoverImage={about.polaroids[0]?.images[1] ? about.polaroids[0]?.images[1] : about.polaroids[0]?.images[0]}
                           // metaText={about.polaroids[0].text ? about.polaroids[0].text : false}
                           sanity
                         />
                       </m.div>
+                      
+                      {about.polaroids[1] && (
+                        <m.div 
+                          drag
+                          dragMomentum={false}
+                          className="absolute top-[-20%] lg:top-[0%] left-[65%] lg:left-[27%] w-[65%] lg:w-[45%] cursor-grab z-[4]"
+                        >
+                          <Polaroid
+                            className="rotate-[9deg] lg:rotate-[-7deg]"
+                            image={about.polaroids[1]?.images[0]}
+                            hoverImage={about.polaroids[1]?.images[1] ? about.polaroids[1]?.images[1] : about.polaroids[1]?.images[0]}
+                            // metaText={about.polaroids[1].text ? about.polaroids[1].text : false}
+                            sanity
+                          />
+                        </m.div>
+                      )}
 
-                      <m.div 
-                        drag
-                        dragMomentum={false}
-                        className="absolute top-[-20%] lg:top-[0%] left-[65%] lg:left-[27%] w-[65%] lg:w-[45%] cursor-grab z-[4]"
-                      >
-                        <Polaroid
-                          className="rotate-[9deg] lg:rotate-[-7deg]"
-                          image={about.polaroids[1].images[0]}
-                          hoverImage={about.polaroids[1].images[1] ? about.polaroids[1].images[1] : about.polaroids[1].images[0]}
-                          // metaText={about.polaroids[1].text ? about.polaroids[1].text : false}
-                          sanity
-                        />
-                      </m.div>
-
-                      <m.div 
-                        drag
-                        dragMomentum={false}
-                        className="absolute top-[7%] left-[35%] w-[45%] cursor-grab z-[3] hidden lg:block"
-                      >
-                        <Polaroid
-                          className="rotate-[2deg]"
-                          image={about.polaroids[2].images[0]}
-                          hoverImage={about.polaroids[2].images[1] ? about.polaroids[2].images[1] : about.polaroids[2].images[0]}
-                          // metaText={about.polaroids[2].text ? about.polaroids[2].text : false}
-                          sanity
-                        />
-                      </m.div>
+                      { about.polaroids[2] && (
+                        <m.div 
+                          drag
+                          dragMomentum={false}
+                          className="absolute top-[7%] left-[35%] w-[45%] cursor-grab z-[3] hidden lg:block"
+                        >
+                          <Polaroid
+                            className="rotate-[2deg]"
+                            image={about.polaroids[2]?.images[0]}
+                            hoverImage={about.polaroids[2]?.images[1] ? about.polaroids[2]?.images[1] : about.polaroids[2]?.images[0]}
+                            // metaText={about.polaroids[2].text ? about.polaroids[2].text : false}
+                            sanity
+                          />
+                        </m.div>
+                      )}
                     </div>
 
                     <div className="w-full lg:w-5/12 px-4 lg:px-6 max-w-[800px] lg:mx-auto">
@@ -113,8 +118,8 @@ export default function Home(initialData) {
                           <PortableText value={about.bioText} />
                         )}
                         
-                        <span className="block w-4/12 max-w-[200px] mb-6">
-                          <SignatureIcon />
+                        <span className="block w-5/12 max-w-[240px] mb-6 bg-off-white">
+                          <Image src="/images/sig.png" alt="Phoebe Signature" width={424} height={132} className="mix-blend-darken" />
                         </span>
 
                         <p className="text-sm lg:text-base">Phoebe Pocket<br/>Founder</p>

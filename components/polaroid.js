@@ -6,7 +6,7 @@ import SanityImage from './sanity-image';
 import SanityImageTest from './sanity-image-test';
 import { useEffect, useRef, useState } from 'react';
 
-export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin, sanity, eager, hire, hireDark, matchHeight, smallText, smallTextDesktop }) {
+export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin, sanity, eager, hire, hireDark, matchHeight, smallText, smallTextDesktop, noPadding }) {
   const [randomId, setRandomId] = useState(0)
   const ref = useRef(null)
 
@@ -81,6 +81,10 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
     padding = 'pt-3 p-[9%]'
   }
 
+  if (noPadding) { 
+    padding = 'p-0'
+  }
+
   if (product) {
     headingSize = 'text-[10vw] md:text-[6.5vw] lg:text-[4.25vw] 2xl:text-[70px] leading-[0.85] md:leading-[0.85] lg:leading-[0.85] 2xl:leading-[0.85]'
   }
@@ -94,7 +98,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
   }
 
   return (
-    <m.div initial="initial" whileHover="hover" className={`bg-white w-auto ${padding} pb-0 relative group ${matchHeight && 'h-full'} ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`} ref={ref}>
+    <m.div initial="initial" whileHover="hover" className={`${noPadding ? '' : 'bg-white' } w-auto ${padding} pb-0 relative group ${matchHeight && 'h-full'} ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`} ref={ref}>
       {hire && (
         <m.div variants={hireVariants} className={`absolute top-[15%] right-[-15px] md:right-[-35px] lg:right-[-50px] w-[100px] md:w-[120px] lg:w-[140px] h-[100px] md:h-[120px] lg:h-[140px] rounded-full z-[30] flex items-center justify-center uppercase font-display text-[45px] md:text-[52px] lg:text-[60px] text-center leading-[0.7] md:leading-[0.7] lg:leading-[0.7] ${hireDark ? 'bg-off-white text-off-black' : 'bg-off-black text-off-white' }`}>For<br/>Hire</m.div>
       )}

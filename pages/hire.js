@@ -10,7 +10,7 @@ import Button from '@/components/button'
 import SanityPageService from '@/services/sanityPageService'
 import { creditsQuery } from '@/helpers/queries'
 import SanityImageTest from '@/components/sanity-image-test'
-import { getAllProductsInCollection } from '@/helpers/shopify'
+// import { getAllProductsInCollection } from '@/helpers/shopify'
 import Link from 'next/link'
 import StrikeIcon from '@/icons/strike.svg'
 import { IntroContext } from '@/context/intro'
@@ -19,7 +19,7 @@ import { useContext, useEffect } from 'react'
 const pageService = new SanityPageService(creditsQuery)
 
 export default function Hire(initialData) {
-  const { data: { credits, archives, products }} = pageService.getPreviewHook(initialData)()
+  const { data: { credits, archives }} = pageService.getPreviewHook(initialData)()
 
   const [introContext, setIntroContext] = useContext(IntroContext);
 
@@ -60,13 +60,13 @@ export default function Hire(initialData) {
                         )}
 
                         <div className="mx-auto lg:flex">
-                          <Button href="/shop/collections/for-hire" label="All Pieces For Hire" outline className="block lg:mx-auto" />
+                          <Button href="mailto:pocketpiecesstore@gmail.com?subject=Hire Enquiry" label="Enquire to hire" outline className="block lg:mx-auto" />
                         </div>
                       </div>
                     </div>
 
 
-                    <div className="w-full lg:w-[45%] relative z-[20]">
+                    {/* <div className="w-full lg:w-[45%] relative z-[20]">
                       {products.length > 0 && products[0]?.node.availableForSale && (
                         <div className="w-[82%] lg:w-[90%] mx-auto rotate-[-4deg] mt-[15%]" >
                           <Link href={`/shop/${products[0].node.handle}`} className="w-full max-w-[55vh] mx-auto block lg:pr-[10%]">
@@ -90,11 +90,11 @@ export default function Hire(initialData) {
                           </Link>
                         </div>
                        )}
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="flex flex-wrap mb-[20vw] lg:mb-[15vw] xl:mb-[12.5vw] relative">
-                    <div className="w-full lg:w-[50%] relative z-[20] lg:mt-[-13%] 2xl:mt-[-18%]">
+                    {/* <div className="w-full lg:w-[50%] relative z-[20] lg:mt-[-13%] 2xl:mt-[-18%]">
                       {products.length > 0 && products[1]?.node.availableForSale && (
                         <div className="w-[85%] lg:w-[75%] mx-auto rotate-[3deg]">
                           <Link href={`/shop/${products[1].node.handle}`} className="w-full max-w-[55vh] mx-auto block">
@@ -118,9 +118,9 @@ export default function Hire(initialData) {
                           </Link>
                         </div>
                       )}
-                    </div>
+                    </div> */}
 
-                    <div className="w-full lg:w-[50%] relative z-[20] mt-[20%] lg:mt-0">
+                    {/* <div className="w-full lg:w-[50%] relative z-[20] mt-[20%] lg:mt-0">
                       {products.length > 0 && products[2]?.node.availableForSale && (
                         <div className="w-[85%] lg:w-[70%] mx-auto rotate-[-1deg]">
                           <Link href={`/shop/${products[2].node.handle}`} className="w-full max-w-[55vh] mx-auto block">
@@ -144,7 +144,7 @@ export default function Hire(initialData) {
                           </Link>
                         </div>
                       )}
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="flex flex-wrap justify-center">
@@ -172,20 +172,16 @@ export default function Hire(initialData) {
                     </div>
                     <div className="w-full lg:w-[55%] pt-6">
                       <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]">
-                        <h3 className="font-normal text-lg leading-none block mb-6">What is Pocket Pieces?</h3>
-                        <div className="font-light content"><p>POCKET PIECES brings you prestige, one-of-a-kind pieces to sustainably kit out your wardrobe. All pieces are sourced from around the globe by Phoebe Pocket - a die- hard vintage lover who works on Hollywood feature films. POCKET PIECES brings you prestige, one-of-a-kind pieces to sustainably kit out your wardrobe. All pieces are sourced from around the globe by Phoebe Pocket - a die- hard vintage lover who works on Hollywood feature films.</p></div>
+                        <h3 className="font-normal text-lg leading-none block mb-6">How Do I Hire a Piece?</h3>
+                        <div className="font-light content"><p>Pocket Pieces offers a Hire service for select professional opportunities. We want to help stylists, costume designers and costume houses sustainably kit out wardrobes with special pieces for TV and film productions. Our North London studio is open by appointment for pulls. Please get in touch <a href="mailto:pocketpiecesstore@gmail.com">pocketpiecesstore@gmail.com</a> if you are interested in our hire service or to book an appointment. Send details of your request along with items and styles you might be looking for.</p></div>
                       </div>
                       <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]">
                         <h3 className="font-normal text-lg leading-none block mb-6">How long can i hire an item for?</h3>
-                        <div className="font-light content"><p>LOREM IPSUM dolor sit amet, consectetur adipiscing elit. Phasellus a libero in lacus fermentum porttitor non eget magna. Phasellus non porttitor diam. Nullam euismod volutpat turpis, venenatis lobortis ex hendrerit sed. Nam fermentum est mauris, dignissim feugiat ante congue ac. Suspendisse feugiat nisi vel rhoncus tempor.</p></div>
+                        <div className="font-light content"><p>We offer a range of hire periods, depending on the piece itself, with pricing calculated to reflect the piece's retail price and time with you.</p></div>
                       </div>
                       <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]">
-                        <h3 className="font-normal text-lg leading-none block mb-6">How do i return an item?</h3>
-                        <div className="font-light content"><p>POCKET PIECES brings you prestige, one-of-a-kind pieces to sustainably kit out your wardrobe. All pieces are sourced from around the globe by Phoebe Pocket - a die- hard vintage lover who works on Hollywood feature films. POCKET PIECES brings you prestige, one-of-a-kind pieces to sustainably kit out your wardrobe. All pieces are sourced from around the globe by Phoebe Pocket - a die- hard vintage lover who works on Hollywood feature films.</p></div>
-                      </div>
-                      <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]">
-                        <h3 className="font-normal text-lg leading-none block mb-6">What is Pocket Pieces?</h3>
-                        <div className="font-light content"><p>LOREM IPSUM dolor sit amet, consectetur adipiscing elit. Phasellus a libero in lacus fermentum porttitor non eget magna. Phasellus non porttitor diam. Nullam euismod volutpat turpis, venenatis lobortis ex hendrerit sed. Nam fermentum est mauris, dignissim feugiat ante congue ac. Suspendisse feugiat nisi vel rhoncus tempor.</p></div>
+                        <h3 className="font-normal text-lg leading-none block mb-6">Who can hire via Pocket Pieces?</h3>
+                        <div className="font-light content"><p>At present, we are only offering our Hire service to UK-registered professional stylists and costume designers to supply clothing and accessories for select opportunities. Sign up to our newsletter to be the first to hear when this changes.</p></div>
                       </div>
                     </div>
                   </div>
@@ -221,7 +217,7 @@ export default function Hire(initialData) {
                             <StrikeIcon className="w-full absolute bottom-[35%] lg:bottom-[40%] left-0 right-0 rotate-[-4.5deg] lg:rotate-[-3.3deg] lg:scale-y-[2] scale-x-[1.025]" />
                           </span>
                         </h2>
-                        <p className="w-10/12 lg:w-1/2 max-w-[620px] mx-auto text-center text-base lg:text-lg">Previous Pocket Pieces from the history books that have since moved on to new owners. 2019 —</p>
+                        <p className="w-10/12 lg:w-1/2 max-w-[620px] mx-auto text-center text-base lg:text-lg">Previous Pocket Pieces from the history books that have since moved on to new owners.</p>
                       </div>
                     </Container>
 
@@ -261,7 +257,7 @@ export default function Hire(initialData) {
 
                       <Container>
                       <div className="flex justify-center">
-                        <Button href="/shop" label="See latest pieces" outlineWhite className="block" />
+                        <Button href="/shop" label="Shop latest pieces" outlineWhite className="block" />
                       </div>
                     </Container>
                   </div>
@@ -281,9 +277,9 @@ export default function Hire(initialData) {
 
 export async function getStaticProps(context) {
   const cms = await pageService.fetchQuery(context)
-  const products = await getAllProductsInCollection('for-hire')
+  // const products = await getAllProductsInCollection('for-hire')
 
   return {
-    props: { ...cms, products }
+    props: { ...cms }
   };
 }
