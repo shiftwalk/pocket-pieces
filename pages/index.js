@@ -1,4 +1,5 @@
 import Layout from '@/components/layout'
+import ImageTicker from '@/components/image-ticker'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
@@ -53,18 +54,22 @@ export default function Home(initialData) {
                         </div>
                         
                         {home.introText && (
-                          <p className="block uppercase text-[11px] lg:text-[12px] leading-[1.25] text-center w-11/12 xl:w-9/12 mx-auto mb-8">{home.introText}</p>
+                          <p className="block uppercase text-[11px] lg:text-[12px] leading-[1.25] text-center w-11/12 xl:w-9/12 mx-auto mb-4 md:mb-6">{home.introText}</p>
+                        )}
+                        
+                        {home.posterReelImages && (
+                          <ImageTicker images={home.posterReelImages} />
                         )}
 
-                        {home.posterVideoReel?.asset && (
+                        {/* {home.posterVideoReel?.asset && (
                           <video loop={true} autoPlay="autoplay" playsInline={true} muted className={`w-11/12 lg:w-9/12 h-auto max-h-[33dvh] mx-auto`}>
                             <source src={home.posterVideoReel.asset.url} type="video/mp4" />
 
                             Sorry. Your browser does not support the video tag.
                           </video>
-                        )}
+                        )} */}
 
-                        <div className="flex flex-wrap items-center justify-center space-x-4 pb-3 -mt-12 relative z-10">
+                        <div className="flex flex-wrap items-center justify-center space-x-4 pb-3 mt-3 md:mt-5 relative z-10">
                           <Button outline href="/shop" label="Let's Shop!" />
                         </div>
                       </div>
@@ -72,7 +77,7 @@ export default function Home(initialData) {
                       <div className="w-full mt-auto">
                         <LogoIcon className={`w-9/12 2xl:w-11/12 mx-auto text-black mb-5`} />
                         {home.footerText && (
-                          <p className="block uppercase text-[11px] lg:text-[12px] leading-[1.25] text-center w-11/12 lg:w-9/12 mx-auto mb-0 pb-0">{home.footerText}</p>
+                          <p className="block uppercase text-[11px] lg:text-[12px] leading-[1.25] text-center w-11/12 lg:w-10/12 mx-auto mb-0 pb-0">{home.footerText}</p>
                         )}
                       </div>
                     </div>

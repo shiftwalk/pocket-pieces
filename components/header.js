@@ -56,7 +56,7 @@ export default function Header({ dark }) {
           <nav className={`flex flex-wrap space-x-3 items-center uppercase text-sm lg:text-base xl:text-lg leading-none lg:leading-none xl:leading-none transition-colors ease-[cubic-bezier([0.83,0,0.17,1])] duration-[200ms] py-4 ${dark ? 'text-[#C1C1C1]' : 'text-black'  } border-b ${dark ? 'border-[#C1C1C1]' : 'border-black' }`}>
 
             <div className="ml-auto text-base block lg:hidden w-auto">
-              <Link href="/menu" aria-label="Navigate to the menu" className="block w-6">
+              <Link href={`${router.asPath == '/menu' ? '/' : '/menu'}`} aria-label="Navigate to the menu" className="block w-6">
                 <span className="block w-full h-[2px] mb-[3px] bg-current"></span>
                 <span className="block w-full h-[2px] bg-current"></span>
               </Link>

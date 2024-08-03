@@ -10,7 +10,7 @@ import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
 import { useContext, useEffect } from 'react'
 import { IntroContext } from '@/context/intro'
 
-export default function Info() {
+export default function Menu() {
   const router = useRouter()
 
   const [introContext, setIntroContext] = useContext(IntroContext);

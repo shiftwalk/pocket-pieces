@@ -2,8 +2,8 @@ import Layout from '@/components/layout'
 import Footer from '@/components/footer'
 import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
-import { getProductSlugs, getProduct, getAllProducts } from '@/helpers/shopify'
-import { LazyMotion, domMax, m } from 'framer-motion'
+import { getProductSlugs, getProduct, getAllProductsRelated } from '@/helpers/shopify'
+import { AnimatePresence, LazyMotion, domMax, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import { useContext, useEffect, useState } from 'react'
 import SanityPageService from '@/services/sanityPageService'
@@ -17,20 +17,86 @@ import Button from '@/components/button'
 import StarIcon from '@/icons/star.svg'
 import RelatedRoller from '@/components/related-roller'
 import { IntroContext } from '@/context/intro'
+import LogoMarkOutlinedIcon from "@/icons/logomark-outlined.svg";
+import Image from 'next/image'
+import SanityImageTest from '@/components/sanity-image-test'
 
 const query = `{
-  "musicVideos": *[_type == "musicVideos"] | order(date desc) {
+  "globals": *[_type == "globals"][0] {
     title,
+    sizeGuideClothingDesktopImage {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hostpot {
+        x,
+        y
+      }
+    },
+    sizeGuideClothingMobileImage {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hostpot {
+        x,
+        y
+      }
+    },
+    sizeGuideShoesDesktopImage {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hostpot {
+        x,
+        y
+      }
+    },
+    sizeGuideShoesMobileImage {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hostpot {
+        x,
+        y
+      }
+    },
+    conditionGuideText,
+    conditions[] {
+      heading,
+      text,
+      stars
+    },
+    conditionGuideImage {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hostpot {
+        x,
+        y
+      }
+    },
   }
 }`
 
 const pageService = new SanityPageService(query)
 
 export default function ShopSlug(initialData) {
-  const { data: { productData, products } } = pageService.getPreviewHook(initialData)()
+  const { data: { productData, products, cms } } = pageService.getPreviewHook(initialData)()
   const [cartIsOpenContext, setCartIsOpenContext] = useContext(CartOpenContext);
   const [variantPrice, setVariantPrice] = useState(productData.variants.edges[0]?.node.price.amount)
   const [quantity, setQuantity] = useState(1)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalMode, setModalMode] = useState('size')
   const [variantId, setVariantId] = useState(productData.variants.edges[0]?.node.id)
   const [variant, setVariant] = useState(productData.variants.edges[0])
   const [introContext, setIntroContext] = useContext(IntroContext);
@@ -86,7 +152,6 @@ export default function ShopSlug(initialData) {
           exit="exit"
         >
           <main className="pt-[70px] lg:pt-[85px]">
-            {/* {JSON.stringify(productData)} */}
             <Container>
               <m.div variants={fade}>
                 <div className="w-full mb-3 lg:mb-4 flex text-xs lg:text-sm uppercase relative z-10">
@@ -136,7 +201,7 @@ export default function ShopSlug(initialData) {
                     <div className="w-full mt-auto">
                       <div className="content max-w-3xl mb-5 text-sm lg:text-base" dangerouslySetInnerHTML={{ __html: productData.descriptionHtml }}></div>
 
-                      <a href="#" className="inline-block mb-8 lg:mb-10 text-sm lg:text-base group">
+                      <button onClick={()=>setModalOpen(true)} className="inline-block mb-8 lg:mb-10 text-sm lg:text-base group">
                         <div className="relative">
                           <div className="w-full relative overflow-hidden">
                             <span className="block transition-transform ease-in-out duration-[450ms] translate-y-0 group-hover:translate-y-[-100%] group-focus:translate-y-[-100%]">The Pocket Pieces Sizing &amp; Condition Guide</span>
@@ -144,8 +209,7 @@ export default function ShopSlug(initialData) {
                           </div>
                           <div className="w-full mx-auto h-px bg-black group-hover:w-1 transition-all ease-in-out duration-[450ms] mt-[2px]"></div>
                         </div>
-                      </a>
-
+                      </button>
                       
                       {productData.collections?.edges.some(e => e.node.title === 'For Hire') ? (
                         <div className="flex space-x-3">
@@ -187,6 +251,7 @@ export default function ShopSlug(initialData) {
                       product
                       metaText={productData.metaTitle ? productData.metaTitle.value : null}
                       bigMeta
+                      barcode={productData.variants.edges[0].node.barcode}
                       number
                       image={productData.images.edges[0]?.node.originalSrc}
                       imageWidth={productData.images.edges[0]?.node.width}
@@ -211,63 +276,27 @@ export default function ShopSlug(initialData) {
             
             {productData.images.edges.length > 2 && (
               <m.div variants={fade} className={`pb-[14vw] lg:pb-[15vw] ${!productData.quote ? 'mt-[14vw] lg:mt-[15vw]' : '' }`}>
-                <div className="flex flex-wrap items-start p-10">
-                  {productData.images.edges[1] && (
-                    <m.div
-                      drag
-                      dragMomentum={false}
-                      className="w-[85%] lg:w-[40%] cursor-grab lg:mt-[7vw]"
-                    >
-                      <Polaroid
-                        thin
-                        noShadow
-                        image={productData.images.edges[1].node.originalSrc}
-                        imageWidth={productData.images.edges[1].node.width}
-                        imageHeight={productData.images.edges[1].node.height}
-                        hoverImage={productData.images.edges[1].node.originalSrc}
-                        hoverImageWidth={productData.images.edges[1].node.width}
-                        hoverImageHeight={productData.images.edges[1].node.height}
-                      />
-                    </m.div>
-                  )}
-                  
-                  {productData.images.edges[1] && (
-                    <m.div
-                      drag
-                      dragMomentum={false}
-                      className="w-[85%] lg:w-[50%] ml-auto mt-16 lg:mt-[3vw] cursor-grab"
-                    >
-                      <Polaroid
-                        thin
-                        noShadow
-                        image={productData.images.edges[2].node.originalSrc}
-                        imageWidth={productData.images.edges[2].node.width}
-                        imageHeight={productData.images.edges[2].node.height}
-                        hoverImage={productData.images.edges[2].node.originalSrc}
-                        hoverImageWidth={productData.images.edges[2].node.width}
-                        hoverImageHeight={productData.images.edges[2].node.height}
-                      />
-                    </m.div>
-                  )}
-
-                  {productData.images.edges[3] && (
-                    <m.div 
-                      drag
-                      dragMomentum={false}
-                      className="mx-auto w-[85%] lg:w-[40%] mt-16 lg:mt-[3vw] cursor-grab"
-                    >
-                      <Polaroid
-                        thin
-                        noShadow
-                        image={productData.images.edges[3].node.originalSrc}
-                        imageWidth={productData.images.edges[3].node.width}
-                        imageHeight={productData.images.edges[3].node.height}
-                        hoverImage={productData.images.edges[3].node.originalSrc}
-                        hoverImageWidth={productData.images.edges[3].node.width}
-                        hoverImageHeight={productData.images.edges[3].node.height}
-                      />
-                    </m.div>
-                  )}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start p-6 md:p-10 gap-6 md:gap-10 justify-center">
+                  {productData.images.edges.map((e, i ) => {
+                    return (
+                      <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                        <Polaroid
+                          thin
+                          noShadow
+                          noText
+                          noPadding
+                          noHover
+                          key={i}
+                          image={e.node.originalSrc}
+                          imageWidth={e.node.width}
+                          imageHeight={e.node.height}
+                          hoverImage={e.node.originalSrc}
+                          hoverImageWidth={e.node.width}
+                          hoverImageHeight={e.node.height}
+                        />
+                      </div>
+                    )
+                  })}
                 </div>
               </m.div>
             )}
@@ -296,8 +325,8 @@ export default function ShopSlug(initialData) {
                 <div className="pt-[16vw] pb-[6vw] lg:py-[12vw] 2xl:py-40 2xl:pb-32">
                   <Container>
                     <div className="">
-                      <h2 className="text-[22vw] lg:text-[17vw] mb-4 leading-[0.8] lg:leading-[0.8] text-center mx-auto">Second Look</h2>
-                      <p className="w-10/12 lg:w-1/2 max-w-[620px] mx-auto text-center text-base lg:text-lg">Lorem ipsum dolor sit amet consectetuer adipicising elit aram et al lorem ipsum dolor sit amet.</p>
+                      <h2 className="text-[22vw] lg:text-[17vw] leading-[0.8] lg:leading-[0.8] text-center mx-auto">Second Look</h2>
+                      <p className="w-10/12 lg:w-1/2 max-w-[620px] mx-auto text-center text-base lg:text-lg">Pieces to pique your interest.</p>
                     </div>
                   </Container>
 
@@ -314,6 +343,91 @@ export default function ShopSlug(initialData) {
               </div>
             </m.div>
           </main>
+          
+          <AnimatePresence>
+            {modalOpen && (
+              <m.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 w-full h-full flex flex-col items-center justify-center z-[100000]" data-lenis-prevent
+              >
+                <button className="inset-0 absolute bg-black/90" onClick={()=> setModalOpen(false)}></button>
+
+                <div className="w-[88vw] h-auto max-h-[84.5dvh] bg-white max-w-[1280px] p-5 relative overflow-y-scroll">
+                  <h2 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] 2xl:text-[165px] max-w-[90%] lg:max-w-[90%] mb-3 md:mb-10">Size &amp; Condition Guide</h2>
+
+                  <div className="flex space-x-2 uppercase text-sm mb-8">
+                    <button onClick={()=> setModalMode('size')} className={`uppercase text-sm border-b leading-none tracking-tight ${modalMode == 'size' ? 'border-black' : 'border-transparent' }`}>
+                      Size Guide
+                    </button>
+                    <span className="block">/</span>
+                    <button onClick={()=> setModalMode('condition')} className={`uppercase text-sm border-b leading-none tracking-tight  ${modalMode == 'condition' ? 'border-black' : 'border-transparent'}`}>
+                      Condition Guide
+                    </button>
+                  </div>
+
+                  {modalMode == 'size' ? (
+                    <div className="w-full">
+                      <div className="mb-5 md:mb-8 xl:mb-12">
+                        <h3 className="font-display text-5xl md:text-6xl xl:text-7xl mb-2">Clothing</h3>
+                        <SanityImageTest image={cms.globals.sizeGuideClothingDesktopImage ? cms.globals.sizeGuideClothingDesktopImage : null} className={`hidden md:block w-full`} alt="size guide" />
+
+                        <SanityImageTest image={cms.globals.sizeGuideClothingMobileImage ? cms.globals.sizeGuideClothingMobileImage : null} className={`block md:hidden w-full`} alt="size guide" />
+                      </div>
+
+                      <div className="">
+                        <h3 className="font-display text-5xl md:text-6xl xl:text-7xl mb-2">Shoes</h3>
+
+                        <SanityImageTest image={cms.globals.sizeGuideShoesDesktopImage ? cms.globals.sizeGuideShoesDesktopImage : null} className={`hidden md:block w-full`} alt="size guide" />
+
+                        <SanityImageTest image={cms.globals.sizeGuideShoesMobileImage ? cms.globals.sizeGuideShoesMobileImage : null} className={`block md:hidden w-full`} alt="size guide" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="md:w-[85%]">
+                      {cms.globals.conditionGuideText && (
+                        <p className="text-sm md:text-base mb-6">{cms.globals.conditionGuideText}</p>
+                      )}
+
+                      <div className="w-full flex flex-wrap">
+                        <div className="w-[37%] hidden xl:block">
+                          <div className="w-full aspect-square bg-black/10 relative overflow-hidden">
+                            <SanityImageTest eager={false} image={cms.globals.conditionGuideImage ? cms.globals.conditionGuideImage : null} fill className={`block  z-[10] object-cover object-center aspect-square absolute inset-0 w-full h-full`} alt="placeholder" />
+                          </div>
+                        </div>
+
+                        <div className="flex-1 xl:pl-8">
+                          {cms.globals.conditions.map((e, i) => {
+                            return (
+                              <div className={`mb-4 last-of-type:mb-0`} key={i}>
+                                <h3 className="font-display text-4xl xl:text-5xl mb-2">{e.heading}</h3>
+                                
+                                <div className="flex space-x-1.5 mb-2">
+                                  {Array.from(Array(Number(e.stars)), (e, i) => {
+                                    return (
+                                      <LogoMarkOutlinedIcon className="w-9" key={i} />
+                                    )
+                                  })}
+                                </div>
+
+                                <p className={`text-xs md:text-sm ${cms.globals.conditions.length == i + 1 ? '' : 'mb-6' }`}>{e.text}</p>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                    
+                    
+                  <button onClick={()=> setModalOpen(false)} className="w-7 md:w-10 xl:w-12 h-7 md:h-10 xl:h-12 bg-black rounded-full flex items-center justify-center absolute top-2 right-2 md:top-4 md:right-4 group" aria-label="Close Modal">
+                    <svg className="w-[55%] group-hover:w-[65%] transition-all ease-in-out duration-300" viewBox="0 0 27 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="m0 15.152 25.98-15 1 1.732-25.98 15z"/><path fill="#fff" d="m1 0 25.98 15-1 1.732L0 1.732z"/></svg>
+                  </button>
+                </div>
+              </m.div>
+            )}
+          </AnimatePresence>
 
           <m.div variants={fade} className="bg-off-black text-off-white">
             <Footer />
@@ -343,11 +457,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  // const cms = await pageService.fetchQuery(context)
+  const cms = await pageService.fetchQuery(context)
   const productData = await getProduct(context.params.slug)
-  const products = await getAllProducts()
+  const products = await getAllProductsRelated()
 
   return {
-    props: { productData, products }
+    props: { productData, products, cms }
   }
 }

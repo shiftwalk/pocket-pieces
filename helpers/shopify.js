@@ -29,7 +29,7 @@ async function callShopify(query) {
 export async function getAllProducts() {
   const query =
     `{
-      products (first: 50) {
+      products (first: 100) {
         edges {
           node {
             id
@@ -86,6 +86,66 @@ export async function getAllProducts() {
   return allProducts;
 }
 
+export async function getAllProductsRelated() {
+  const query =
+    `{
+      products (first: 100) {
+        edges {
+          node {
+            id
+            availableForSale
+            handle
+            title
+            description
+            metaTitle: metafield(
+              key:"meta_title",
+              namespace:"custom"
+            ) {
+              value
+            }
+            images(first: 20) {
+              edges {
+                node {
+                  id
+                  originalSrc
+                  height
+                  width     
+                  altText             
+                }
+              }
+            }
+            collections(first:5) {
+              edges {
+                node {
+                  title
+                  handle
+                }
+              }
+            }
+            variants(first: 1) {
+              edges {
+                node {
+                  price {
+                    amount
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }`
+  ;
+
+  const response = await callShopify(query);
+
+  const allProductsRelated = response.data?.products.edges
+    ? response.data.products.edges
+    : [];
+
+  return allProductsRelated;
+}
+
 export async function getAllCollections() {
   const query =
     `{
@@ -113,7 +173,7 @@ export async function getAllProductsInCollection(handle) {
   const query =
     `{
       collection(handle: "${handle}") {
-        products (first: 50) {
+        products (first: 100) {
           edges {
             node {
               id
@@ -155,6 +215,7 @@ export async function getAllProductsInCollection(handle) {
               variants(first: 1) {
                 edges {
                   node {
+                    barcode
                     price {
                       amount
                     }
@@ -266,6 +327,7 @@ export async function getProduct(handle) {
         variants(first: 20) {
           edges {
             node {
+              barcode
               id
               availableForSale
               title

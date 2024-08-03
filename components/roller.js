@@ -27,7 +27,7 @@ export default function Roller({ items }) {
           </span>
         </span>
       </span>
-      <span className="block">/0{items.length}</span>
+      <span className="block">/{items.length < 10 ? '0' : ''}{items.length}</span>
     </>
   )
 }

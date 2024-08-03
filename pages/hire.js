@@ -15,6 +15,8 @@ import Link from 'next/link'
 import StrikeIcon from '@/icons/strike.svg'
 import { IntroContext } from '@/context/intro'
 import { useContext, useEffect } from 'react'
+import AccordionItem from '@/components/accordion-item'
+import { PortableText } from '@portabletext/react'
 
 const pageService = new SanityPageService(creditsQuery)
 
@@ -66,85 +68,67 @@ export default function Hire(initialData) {
                     </div>
 
 
-                    {/* <div className="w-full lg:w-[45%] relative z-[20]">
-                      {products.length > 0 && products[0]?.node.availableForSale && (
+                    <div className="w-full lg:w-[45%] relative z-[20]">
+                      {credits.heroImages[0] && (
                         <div className="w-[82%] lg:w-[90%] mx-auto rotate-[-4deg] mt-[15%]" >
-                          <Link href={`/shop/${products[0].node.handle}`} className="w-full max-w-[55vh] mx-auto block lg:pr-[10%]">
+                          <div className="w-full max-w-[55vh] mx-auto block lg:pr-[10%]">
                             <Polaroid
                               noShadow
                               thin
+                              sanity
                               product
                               className="w-full"
-                              hire={true}
-                              collection={products[0].node.collections.edges[0].node.title}
-                              metaText={products[0].node.metaTitle ? products[0].node.metaTitle.value : null}
-                              metaHeading={products[0].node.title}
-                              price={moneyUkLocale.format(products[0].node.variants.edges[0].node.price.amount)}
-                              image={products[0].node.images.edges[0].node.originalSrc}
-                              imageWidth={products[0].node.images.edges[0].node.width}
-                              imageHeight={products[0].node.images.edges[0].node.height}
-                              hoverImage={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.originalSrc : products[0].node.images.edges[0].node.originalSrc}
-                              hoverImageWidth={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.width : products[0].node.images.edges[0].node.width}
-                              hoverImageHeight={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.height : products[0].node.images.edges[0].node.height}
+                              image={credits.heroImages[0]}
+                              noHover
+                              imageWidth={740}
+                              imageHeight={740}
                             />
-                          </Link>
+                          </div>
                         </div>
                        )}
-                    </div> */}
+                    </div>
                   </div>
 
                   <div className="flex flex-wrap mb-[20vw] lg:mb-[15vw] xl:mb-[12.5vw] relative">
-                    {/* <div className="w-full lg:w-[50%] relative z-[20] lg:mt-[-13%] 2xl:mt-[-18%]">
-                      {products.length > 0 && products[1]?.node.availableForSale && (
+                    <div className="w-full lg:w-[50%] relative z-[20] lg:mt-[-13%] 2xl:mt-[-18%]">
+                      {credits.heroImages[1] && (
                         <div className="w-[85%] lg:w-[75%] mx-auto rotate-[3deg]">
-                          <Link href={`/shop/${products[1].node.handle}`} className="w-full max-w-[55vh] mx-auto block">
+                          <div className="w-full max-w-[55vh] mx-auto block">
                             <Polaroid
                               noShadow
                               thin
+                              sanity
                               product
                               className="w-full"
-                              hire={true}
-                              collection={products[1].node.collections.edges[0].node.title}
-                              metaText={products[1].node.metaTitle ? products[1].node.metaTitle.value : null}
-                              metaHeading={products[1].node.title}
-                              price={moneyUkLocale.format(products[1].node.variants.edges[0].node.price.amount)}
-                              image={products[1].node.images.edges[0].node.originalSrc}
-                              imageWidth={products[1].node.images.edges[0].node.width}
-                              imageHeight={products[1].node.images.edges[0].node.height}
-                              hoverImage={products[1].node.images.edges[1] ? products[1].node.images.edges[1].node.originalSrc : products[1].node.images.edges[0].node.originalSrc}
-                              hoverImageWidth={products[1].node.images.edges[1] ? products[1].node.images.edges[1].node.width : products[1].node.images.edges[0].node.width}
-                              hoverImageHeight={products[1].node.images.edges[1] ? products[1].node.images.edges[1].node.height : products[1].node.images.edges[0].node.height}
+                              image={credits.heroImages[1]}
+                              noHover
+                              imageWidth={740}
+                              imageHeight={740}
                             />
-                          </Link>
+                          </div>
                         </div>
                       )}
-                    </div> */}
+                    </div>
 
-                    {/* <div className="w-full lg:w-[50%] relative z-[20] mt-[20%] lg:mt-0">
-                      {products.length > 0 && products[2]?.node.availableForSale && (
+                    <div className="w-full lg:w-[50%] relative z-[20] mt-[20%] lg:mt-0">
+                      {credits.heroImages[2] && (
                         <div className="w-[85%] lg:w-[70%] mx-auto rotate-[-1deg]">
-                          <Link href={`/shop/${products[2].node.handle}`} className="w-full max-w-[55vh] mx-auto block">
+                          <div className="w-full max-w-[55vh] mx-auto block">
                             <Polaroid
                               noShadow
                               thin
+                              sanity
                               product
                               className="w-full"
-                              hire={true}
-                              collection={products[2].node.collections.edges[0].node.title}
-                              metaText={products[2].node.metaTitle ? products[2].node.metaTitle.value : null}
-                              metaHeading={products[2].node.title}
-                              price={moneyUkLocale.format(products[2].node.variants.edges[0].node.price.amount)}
-                              image={products[2].node.images.edges[0].node.originalSrc}
-                              imageWidth={products[2].node.images.edges[0].node.width}
-                              imageHeight={products[2].node.images.edges[0].node.height}
-                              hoverImage={products[2].node.images.edges[1] ? products[2].node.images.edges[1].node.originalSrc : products[2].node.images.edges[0].node.originalSrc}
-                              hoverImageWidth={products[2].node.images.edges[1] ? products[2].node.images.edges[1].node.width : products[2].node.images.edges[0].node.width}
-                              hoverImageHeight={products[2].node.images.edges[1] ? products[2].node.images.edges[1].node.height : products[2].node.images.edges[0].node.height}
+                              image={credits.heroImages[2]}
+                              noHover
+                              imageWidth={740}
+                              imageHeight={740}
                             />
-                          </Link>
+                          </div>
                         </div>
                       )}
-                    </div> */}
+                    </div>
                   </div>
 
                   <div className="flex flex-wrap justify-center">
@@ -166,25 +150,23 @@ export default function Hire(initialData) {
                     )}
                   </div>
 
-                  <div className="flex flex-wrap pt-[12vw] lg:pt-[8vw] 2xl:pt-40">
-                    <div className="w-full lg:w-[45%] lg:text-center">
-                      <h2 className="text-[48px] lg:text-[58px] leading-none lg:leading-none mb-8 lg:mb-12">How Hiring Works</h2>
-                    </div>
-                    <div className="w-full lg:w-[55%] pt-6">
-                      <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]">
-                        <h3 className="font-normal text-lg leading-none block mb-6">How Do I Hire a Piece?</h3>
-                        <div className="font-light content"><p>Pocket Pieces offers a Hire service for select professional opportunities. We want to help stylists, costume designers and costume houses sustainably kit out wardrobes with special pieces for TV and film productions. Our North London studio is open by appointment for pulls. Please get in touch <a href="mailto:pocketpiecesstore@gmail.com">pocketpiecesstore@gmail.com</a> if you are interested in our hire service or to book an appointment. Send details of your request along with items and styles you might be looking for.</p></div>
+                  {credits.questions && (
+                    <div className="flex flex-wrap pt-[12vw] lg:pt-[8vw] 2xl:pt-40">
+                      <div className="w-full lg:w-[45%] lg:text-center">
+                        <h2 className="text-[48px] lg:text-[58px] leading-none lg:leading-none mb-8 lg:mb-12">How Hiring Works</h2>
                       </div>
-                      <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]">
-                        <h3 className="font-normal text-lg leading-none block mb-6">How long can i hire an item for?</h3>
-                        <div className="font-light content"><p>We offer a range of hire periods, depending on the piece itself, with pricing calculated to reflect the piece&apos;s retail price and time with you.</p></div>
-                      </div>
-                      <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]">
-                        <h3 className="font-normal text-lg leading-none block mb-6">Who can hire via Pocket Pieces?</h3>
-                        <div className="font-light content"><p>At present, we are only offering our Hire service to UK-registered professional stylists and costume designers to supply clothing and accessories for select opportunities. Sign up to our newsletter to be the first to hear when this changes.</p></div>
+                      <div className="w-full lg:w-[55%] pt-6">
+                        {credits.questions.map((e,i) => {
+                          return (
+                            <div className="mb-16 xl:mb-20 max-w-screen-lg w-[95%] lg:w-[85%]" key={i}>
+                            <h3 className="font-normal text-lg leading-none block mb-6">{e.question}</h3>
+                            <div className="font-light content"><PortableText value={e.answer} /></div>
+                          </div>
+                          )
+                        })}
                       </div>
                     </div>
-                  </div>
+                  )}
                 </m.div>
               </Container>
 

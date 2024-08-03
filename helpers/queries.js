@@ -14,6 +14,17 @@ export const homeQuery = `{
         y
       },
     },
+    posterReelImages[] {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hotspot {
+        x,
+        y
+      },
+    },
     posterVideoReel {
       asset-> {
         ...
@@ -97,6 +108,21 @@ export const creditsQuery = `{
         x,
         y
       },
+    },
+    heroImages[] {
+      asset-> {
+        ...
+      },
+      caption,
+      alt,
+      hotspot {
+        x,
+        y
+      },
+    },
+    questions[] {
+      question,
+      answer
     },
     heroPolaroids[] {
       text,

@@ -31,7 +31,7 @@ export default function Footer({ noLogo, className }) {
           <div className="mb-0 lg:mb-0 flex lg:block w-full lg:w-auto">
             <span className={`block uppercase text-xs lg:text-sm xl:text-base 2xl:text-lg leading-none lg:leading-none xl:leading-none 2xl:leading-none transition-all ease-in-out duration-[450ms] ${hovering && ('blur-[2px]')}`}>&copy; <span className="hidden lg:inline">All rights reserved, </span>Pocket Pieces Ltd ({new Date().getFullYear()})</span>
 
-            <a href="https://shiftwalk.studio" target="_blank" rel="noreferrer noopener" className="block lg:hidden ml-auto lg:ml-0 text-right lg:text-left uppercase text-xs lg:text-sm xl:text-base 2xl:text-lg leading-none lg:leading-none xl:leading-none 2xl:leading-none">Site By ShiftWalk</a>
+            {/* <a href="https://shiftwalk.studio" target="_blank" rel="noreferrer noopener" className="block lg:hidden ml-auto lg:ml-0 text-right lg:text-left uppercase text-xs lg:text-sm xl:text-base 2xl:text-lg leading-none lg:leading-none xl:leading-none 2xl:leading-none">Site By ShiftWalk</a> */}
           </div>
 
           <div className="lg:mb-0 w-full lg:w-auto lg:ml-auto hidden lg:flex space-x-1">
@@ -44,9 +44,9 @@ export default function Footer({ noLogo, className }) {
             <Link href="/privacy" className={`block uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none hover:blur-[0px] transition-all ease-in-out duration-[450ms] ${hovering && ('blur-[2px]')}`} onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>Privacy Policy</Link>
           </div>
 
-          <div className="w-full lg:w-auto lg:ml-auto hidden lg:block">
+          {/* <div className="w-full lg:w-auto lg:ml-auto hidden lg:block">
             <a onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} href="https://shiftwalk.studio" target="_blank" rel="noreferrer noopener" className={`block uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none hover:blur-[0px] transition-all ease-in-out duration-[450ms] ${hovering && ('blur-[2px]')}`}>Site By ShiftWalk</a>
-          </div>
+          </div> */}
         </div>
       </Container>
     </footer>

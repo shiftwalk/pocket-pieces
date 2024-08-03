@@ -39,7 +39,7 @@ export default function RelatedRoller({ items, itemsOne, itemsTwo }) {
 
       {Array.from(Array(Math.floor(items.length / 2)), (e, i) => {
         return (
-          <div className={`w-full lg:w-9/12 max-w-[1200px] mx-auto flex flex-wrap justify-center transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[900ms] py-20 md:pt-24 md:pb-16 lg:pt-32 lg:pb-28 2xl:pt-40 2xl:pb-32 ${i == currentItem ? 'opacity-100 blur-0 delay-[300ms]' : 'opacity-0 blur-[70px] pointer-events-none' } ${i == 0 ? 'relative' : 'absolute top-0 left-0 right-0 mx-auto' }`} key={i}>
+          <div className={`w-full lg:w-9/12 max-w-[1200px] mx-auto flex flex-wrap justify-center transition-all ease-[cubic-bezier([0.83,0,0.17,1])] duration-[900ms] py-8 md:pt-10 md:pb-10 lg:pt-12 lg:pb-12 2xl:pt-20 2xl:pb-20 ${i == currentItem ? 'opacity-100 blur-0 delay-[300ms]' : 'opacity-0 blur-[70px] pointer-events-none' } ${i == 0 ? 'relative' : 'absolute top-0 left-0 right-0 mx-auto' }`} key={i}>
             {itemsOne[i] && (
               <div className="w-[65%] md:w-[35%] lg:w-[45%] md:mx-3 lg:mx-4">
                 <Link href={`/shop/${itemsOne[i].node.handle}`} className="block w-full relative h-full">

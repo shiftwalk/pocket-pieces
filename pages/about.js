@@ -63,11 +63,11 @@ export default function Home(initialData) {
                   </Container>
 
                   <div className="flex flex-wrap mt-[12vw] lg:mt-[7.5vw]">
-                    <div className="w-full lg:w-7/12 relative min-h-[70vw] lg:min-h-0">
+                    <div className="w-full lg:w-7/12 relative min-h-[70vw] lg:min-h-0 hidden lg:block">
                       <m.div 
                         drag
                         dragMomentum={false}
-                        className="absolute top-[-25%] lg:top-[-20%] left-[-14%] w-[55%] lg:w-[45%] cursor-grab z-[5]"
+                        className="absolute top-[0%] lg:top-[20%] left-[-14%] w-[55%] lg:w-[45%] cursor-grab z-[5]"
                       >
                         <Polaroid
                           className="rotate-[-13deg] lg:rotate-[9deg]"
@@ -99,6 +99,48 @@ export default function Home(initialData) {
                           drag
                           dragMomentum={false}
                           className="absolute top-[7%] left-[35%] w-[45%] cursor-grab z-[3] hidden lg:block"
+                        >
+                          <Polaroid
+                            className="rotate-[2deg]"
+                            image={about.polaroids[2]?.images[0]}
+                            hoverImage={about.polaroids[2]?.images[1] ? about.polaroids[2]?.images[1] : about.polaroids[2]?.images[0]}
+                            // metaText={about.polaroids[2].text ? about.polaroids[2].text : false}
+                            sanity
+                          />
+                        </m.div>
+                      )}
+                    </div>
+
+                    <div className="w-full lg:w-7/12 relative min-h-[70vw] lg:min-h-0 block lg:hidden">
+                      <m.div 
+                        className="absolute top-[0%] lg:top-[20%] left-[-14%] w-[55%] lg:w-[45%]  z-[5]"
+                      >
+                        <Polaroid
+                          className="rotate-[-13deg] lg:rotate-[9deg]"
+                          image={about.polaroids[0]?.images[0]}
+                          hoverImage={about.polaroids[0]?.images[1] ? about.polaroids[0]?.images[1] : about.polaroids[0]?.images[0]}
+                          // metaText={about.polaroids[0].text ? about.polaroids[0].text : false}
+                          sanity
+                        />
+                      </m.div>
+                      
+                      {about.polaroids[1] && (
+                        <m.div 
+                          className="absolute top-[-20%] lg:top-[0%] left-[65%] lg:left-[27%] w-[65%] lg:w-[45%]  z-[4]"
+                        >
+                          <Polaroid
+                            className="rotate-[9deg] lg:rotate-[-7deg]"
+                            image={about.polaroids[1]?.images[0]}
+                            hoverImage={about.polaroids[1]?.images[1] ? about.polaroids[1]?.images[1] : about.polaroids[1]?.images[0]}
+                            // metaText={about.polaroids[1].text ? about.polaroids[1].text : false}
+                            sanity
+                          />
+                        </m.div>
+                      )}
+
+                      { about.polaroids[2] && (
+                        <m.div 
+                          className="absolute top-[7%] left-[35%] w-[45%]  z-[3] hidden lg:block"
                         >
                           <Polaroid
                             className="rotate-[2deg]"

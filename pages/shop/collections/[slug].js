@@ -44,7 +44,7 @@ export default function CollectionSlug(initialData) {
   const moveY = useTransform(scrollYProgress,[0, 1],['0', '-100%'],{ clamp: true })
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setFiltersHidden(latest > 0.975)
+    setFiltersHidden(latest > 0.025)
   })
 
   let moneyUkLocale = Intl.NumberFormat('en-UK', {
@@ -72,7 +72,7 @@ export default function CollectionSlug(initialData) {
             <div>
               <div className="fixed top-0 left-0 pt-[70px] lg:pt-[85px] px-4 lg:px-6 z-[100]">
                 <m.span variants={fade} className="mb-2 relative z-10 hidden lg:block">
-                  <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'reel' && 'line-through'}`} onClick={()=> updateView('reel')}>Reel</button> / <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'gallery' && 'line-through'}`} onClick={()=> updateView('gallery')}>Gallery</button>
+                   <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'gallery' && 'line-through'}`} onClick={()=> updateView('gallery')}>Gallery</button> / <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'reel' && 'line-through'}`} onClick={()=> updateView('reel')}>Reel</button>
                 </m.span>
                 <m.span variants={fade} className="text-5xl lg:text-[5vw] font-display leading-[0.65] lg:leading-[0.65] flex">
                   <Roller items={products} />
@@ -111,9 +111,9 @@ export default function CollectionSlug(initialData) {
                 </div>
               </div> */}
               
-              <m.h1 ref={headingRef} variants={fade} className="inline-block text-[25vw] md:text-[26vw] lg:text-[27vw] xl:text-[340px] leading-[1] md:leading-[1] lg:leading-[1] xl:leading-[1] text-off-black mx-auto w-full text-center pt-[100px] md:pt-[40px] lg:pt-[40px] fixed top-0 left-0 right-0" style={{ y: moveY}}>
+              {/* <m.h1 ref={headingRef} variants={fade} className="inline-block text-[25vw] md:text-[26vw] lg:text-[27vw] xl:text-[340px] leading-[1] md:leading-[1] lg:leading-[1] xl:leading-[1] text-off-black mx-auto w-full text-center pt-[100px] md:pt-[40px] lg:pt-[40px] fixed top-0 left-0 right-0" style={{ y: moveY}}>
                 <span className="inline-block">{collectionData.title}</span>
-              </m.h1>
+              </m.h1> */}
 
               <AnimatePresence mode="wait">
                 { currentView == 'reel' ? (
@@ -122,18 +122,19 @@ export default function CollectionSlug(initialData) {
                     animate={{ filter: "blur(0px)", opacity: 1, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
                     exit={{ filter: "blur(50px)", opacity: 0, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
                     variants={fade}
-                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50]  ${currentView == 'reel' ? 'pt-[280px] md:pt-[40vw] lg:pt-[38vw] xl:pt-[450px]' : 'pt-[30px] md:pt-[30px] lg:pt-[20dvh]' }`}
+                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50]  ${currentView == 'reel' ? 'pt-[125px] md:pt-[75px] lg:pt-[90px]' : 'pt-[30px] md:pt-[30px] lg:pt-[20dvh]' }`}
                     ref={scrollWrapper}
                     key="reel"
                   >
                     {products.map((e, i) => {
-                      return e.node.availableForSale && (
+                      return e.node.availableForSale ? (
                         <div className={"flex items-center pb-16 md:pb-20 lg:pb-32"} key={i}>
                           <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
                             <Polaroid
                               noShadow
                               thin
                               product
+                              barcode={e.node.variants.edges[0].node.barcode}
                               className="w-full"
                               hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
                               collection={e.node.collections.edges[0].node.title}
@@ -149,6 +150,30 @@ export default function CollectionSlug(initialData) {
                             />
                           </Link>
                         </div>
+                      ) : (
+                        <div className={"flex items-center pb-16 md:pb-20 lg:pb-32 cursor-not-allowed"} key={i}>
+                        
+                          <div className="w-full max-w-[55vh] mx-auto block">
+                            <Polaroid
+                              noShadow
+                              thin
+                              grayscale
+                              product
+                              barcode={e.node.variants.edges[0].node.barcode}
+                              className="w-full"
+                              collection={"Sold Out"}
+                              metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
+                              metaHeading={e.node.title}
+                              price={"Sold Out"}
+                              image={e.node.images.edges[0]?.node.originalSrc}
+                              imageWidth={e.node.images.edges[0]?.node.width}
+                              imageHeight={e.node.images.edges[0]?.node.height}
+                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
+                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
+                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
+                            />
+                          </div>
+                        </div>
                       )
                     })}
                   </m.div>
@@ -158,20 +183,20 @@ export default function CollectionSlug(initialData) {
                     animate={{ filter: "blur(0px)", opacity: 1, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
                     exit={{ filter: "blur(50px)", opacity: 0, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
                     variants={fade}
-                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] xl:max-w-[100%] xl:w-10/12 flex flex-wrap justify-center items-start mx-auto relative z-[50] pt-[33dvh] md:pt-[35dvh] lg:pt-[35dvh] xl:pt-[40dvh]`}
+                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] xl:max-w-[100%] xl:w-[81%] flex flex-wrap justify-center items-start mx-auto relative z-[50] pt-[120px] md:pt-[120px] lg:pt-[120px] xl:pt-[200px]`}
                     ref={scrollWrapper}
                     key="gallery"
                   >
                     {products.map((e, i) => {
-                      return e.node.availableForSale && (
-                        <div className={"flex items-center w-full xl:w-1/3 pb-16 md:pb-20 lg:pb-32 xl:pb-[8vw] xl:px-[1.5vw]"} key={i}>
+                      return e.node.availableForSale ? (
+                        <div className={"flex items-center w-full xl:w-1/3 pb-2 md:pb-7 lg:pb-10 xl:pb-[4vw] xl:px-[1.5vw]"} key={i}>
                           <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
                             <Polaroid
                               noShadow
-                              thin
+                              noPadding
                               product
                               smallText
-                              smallTextDesktop
+                              barcode={e.node.variants.edges[0].node.barcode}
                               matchHeight
                               className="w-full"
                               hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
@@ -188,6 +213,32 @@ export default function CollectionSlug(initialData) {
                             />
                           </Link>
                         </div>
+                      ) : (
+                        <div className={"flex items-center w-full xl:w-1/3 pb-8 md:pb-12 lg:pb-12 xl:pb-[4vw] xl:px-[1.5vw]"} key={i}>
+                          <div className="w-full max-w-[55vh] mx-auto block cursor-not-allowed">
+                            <Polaroid
+                              noShadow
+                              noPadding
+                              product
+                              grayscale
+                              smallText
+                              matchHeight
+                              barcode={e.node.variants.edges[0].node.barcode}
+                              className="w-full"
+                              hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
+                              collection={"Sold Out"}
+                              metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
+                              metaHeading={e.node.title}
+                              price={"Sold Out"}
+                              image={e.node.images.edges[0]?.node.originalSrc}
+                              imageWidth={e.node.images.edges[0]?.node.width}
+                              imageHeight={e.node.images.edges[0]?.node.height}
+                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
+                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
+                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
+                            />
+                          </div>
+                        </div>
                       )
                     })}
                   </m.div>
@@ -200,9 +251,9 @@ export default function CollectionSlug(initialData) {
                   <span className="text-[12vw] lg:text-[6.25vw] 2xl:text-[100px] font-display leading-[0.65] lg:leading-[0.65] flex justify-center relative z-[40]">
                     <Link href="/shop" className={`block`}>All,&nbsp;</Link>
                     {collections.map((e, i) => {
-                      return (
+                      return e.node.title !== 'All' && (
                         <Link href={`/shop/collections/${e.node.handle}`} className={`block relative`} key={i}>
-                          <span className={`${collectionData.handle == e.node.handle ? ' to-transparent' : '' }`}>{e.node.title}</span>{(i+1) !== collections.length ? ',' : ''}&nbsp;
+                          <span className={`${collectionData.handle == e.node.handle ? ' to-transparent' : '' }`}>{e.node.title}</span>{(i+2) !== collections.length ? ',' : ''}&nbsp;
 
                           {collectionData.handle == e.node.handle && (
                             <StrikeIcon className="w-full absolute bottom-[-15%] left-0 right-0 scale-y-[350%] rotate-[-1.4deg]" />

@@ -6,7 +6,7 @@ import SanityImage from './sanity-image';
 import SanityImageTest from './sanity-image-test';
 import { useEffect, useRef, useState } from 'react';
 
-export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin, sanity, eager, hire, hireDark, matchHeight, smallText, smallTextDesktop, noPadding }) {
+export default function Polaroid({ className, image, imageWidth, imageHeight, hoverImage, hoverImageWidth, hoverImageHeight, metaHeading, metaText, bigMeta, number, noShadow, product, price, collection, thin, sanity, eager, hire, hireDark, matchHeight, smallText, smallTextDesktop, noPadding, grayscale, noHover, barcode, noText }) {
   const [randomId, setRandomId] = useState(0)
   const ref = useRef(null)
 
@@ -98,7 +98,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
   }
 
   return (
-    <m.div initial="initial" whileHover="hover" className={`${noPadding ? '' : 'bg-white' } w-auto ${padding} pb-0 relative group ${matchHeight && 'h-full'} ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`} ref={ref}>
+    <m.div initial="initial" whileHover={noHover ? null : "hover"} className={`${noPadding ? '' : 'bg-white' } w-auto ${padding} pb-0 relative ${noHover ? '' : 'group' } ${matchHeight && 'h-full'} ${className} ${!noShadow ? 'shadow-lg shadow-black/01' : ''}`} ref={ref}>
       {hire && (
         <m.div variants={hireVariants} className={`absolute top-[15%] right-[-15px] md:right-[-35px] lg:right-[-50px] w-[100px] md:w-[120px] lg:w-[140px] h-[100px] md:h-[120px] lg:h-[140px] rounded-full z-[30] flex items-center justify-center uppercase font-display text-[45px] md:text-[52px] lg:text-[60px] text-center leading-[0.7] md:leading-[0.7] lg:leading-[0.7] ${hireDark ? 'bg-off-white text-off-black' : 'bg-off-black text-off-white' }`}>For<br/>Hire</m.div>
       )}
@@ -108,16 +108,16 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
           <span className={`block uppercase text-xs lg:text-sm`}>&quot;{collection}&quot;</span>        
         </div>
       )}
-      <div className="block relative aspect-square overflow-hidden">
+      <div className={`block relative aspect-square overflow-hidden ${grayscale ? 'grayscale' : '' }`}>
         <m.div style={{ scale: scale }}>
           <m.div
-            className="w-full h-full scale-1 blur-0 relative aspect-square"
+            className={`w-full h-full scale-1 blur-0 relative aspect-square bg-black/10`}
             variants={imageVariants}
           >
             {sanity ? (
               <SanityImageTest eager={eager} image={image ? image : null} fill className={`block  z-[10] object-cover object-center aspect-square absolute inset-0 w-full h-full`} alt="placeholder" />
             ) : (
-              <Image src={image ? image : 'https://placedog.net/720/720'} fill className={`block  z-[10] object-cover object-center aspect-square absolute inset-0 w-full h-full`} alt="placeholder" />
+              <Image src={image ? image : ''} fill className={`block  z-[10] object-cover object-center aspect-square absolute inset-0 w-full h-full`} alt="placeholder" />
             )}
           </m.div>
         </m.div>
@@ -130,7 +130,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
               </div>
 
               <m.div className="block absolute bottom-0 left-0 text-sm uppercase text-white py-2 px-3 leading-none z-[20]" variants={blinkVariants}>
-                <span className={`uppercase text-sm`}>P_P_001</span>
+                <span className={`uppercase text-sm`}>P_P_{barcode ? barcode : '1001'}</span>
               </m.div>
 
               <m.div className="block absolute bottom-0 right-0 text-sm uppercase text-white py-2 px-3 leading-none z-[20]" variants={blinkVariants}>
@@ -142,38 +142,40 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
               {sanity ? (
                 <SanityImageTest eager={eager} image={hoverImage ? hoverImage : null} fill className={`block  z-[10] object-cover object-center aspect-square absolute inset-0 w-full h-full pointer-events-none`} alt="placeholder" />
               ) : (
-                <Image src={hoverImage ? hoverImage : 'https://placedog.net/720/720'} fill className={`block  z-[10] object-cover object-center aspect-square absolute inset-0 w-full h-full pointer-events-none`} alt="placeholder" />
+                <Image src={hoverImage ? hoverImage : ''} fill className={`block  z-[10] object-cover object-center aspect-square absolute inset-0 w-full h-full pointer-events-none`} alt="placeholder" />
               )}
             </m.div>
           </div>
         )}
       </div>
       
-      <div className={`${metaText || metaHeading ? 'py-[7.5%]' : 'py-[15%]'} text-center`}>
-        {number && (
-          <span className={`block uppercase text-xs lg:text-sm`}>#{randomId}</span>
-        )}
-        {metaText && (
-          <span className={`block uppercase ${bigMeta ? 'text-lg lg:text-xl' : 'text-xs lg:text-sm' }`}>&quot;{metaText ? metaText : 'Pocket Piece'}&quot;</span>
-        )}
-        { metaHeading && (
-          <span className={`block ${headingSize} ${product ? 'mt-1 lg:mt-0 font-display ' : 'uppercase' }`}>{metaHeading ? metaHeading : 'Heading'}</span>
-        )}
-
-        {price && (
-          <>
-          {hire ? (
-            <span className="block uppercase text-base lg:text-lg mt-[6px] lg:mt-[10px]">
-              For Hire
-            </span>
-          ) : (
-            <span className="block uppercase text-base lg:text-lg mt-[6px] lg:mt-[10px]">
-              {price ? price : 'Sold Out'}
-            </span>
+      {!noText && (
+        <div className={`${metaText || metaHeading ? 'py-[7.5%]' : 'py-[15%]'} text-center`}>
+          {number && (
+            <span className={`block uppercase text-xs lg:text-sm`}>#{randomId}</span>
           )}
-          </>
-        )}
-      </div>
+          {metaText && (
+            <span className={`block uppercase ${bigMeta ? 'text-lg lg:text-xl' : 'text-xs lg:text-sm' }`}>&quot;{metaText ? metaText : 'Pocket Piece'}&quot;</span>
+          )}
+          { metaHeading && (
+            <span className={`block ${headingSize} ${product ? 'mt-1 lg:mt-0 font-display ' : 'uppercase' }`}>{metaHeading ? metaHeading : 'Heading'}</span>
+          )}
+
+          {price && (
+            <>
+            {hire ? (
+              <span className="block uppercase text-base lg:text-lg mt-[6px] lg:mt-[10px]">
+                For Hire
+              </span>
+            ) : (
+              <span className="block uppercase text-base lg:text-lg mt-[6px] lg:mt-[10px]">
+                {price ? price : 'Sold Out'}
+              </span>
+            )}
+            </>
+          )}
+        </div>
+      )}
     </m.div>
   )
 }

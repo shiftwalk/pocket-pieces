@@ -11,7 +11,7 @@
 
 /* Simple defaults */
 body {
-  @apply font-sans antialiased text-off-black selection:bg-off-black selection:text-white;
+  @apply font-sans antialiased text-off-black selection:bg-off-black selection:text-white scroll-smooth;
   overscroll-behavior: none!important;
   overflow-y: scroll; /* Show scrollbars */
 
