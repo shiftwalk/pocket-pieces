@@ -279,7 +279,7 @@ export default function ShopSlug(initialData) {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start p-6 md:p-10 gap-6 md:gap-10 justify-center">
                   {productData.images.edges.map((e, i ) => {
                     return (
-                      <div className="col-span-3 md:col-span-1 lg:col-span-1">
+                      <div className="col-span-3 md:col-span-1 lg:col-span-1" key={i}>
                         <Polaroid
                           thin
                           noShadow
