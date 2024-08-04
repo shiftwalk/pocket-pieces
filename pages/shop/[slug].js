@@ -280,7 +280,9 @@ export default function ShopSlug(initialData) {
                   {productData.images.edges.map((e, i ) => {
                     return (
                       <div className="col-span-3 md:col-span-1 lg:col-span-1" key={i}>
-                        <Polaroid
+                        <Image src={e.node.originalSrc} width={e.node.width / 5} height={e.node.height / 5} className={`w-full`} alt="placeholder" />
+
+                        {/* <Polaroid
                           thin
                           noShadow
                           noText
@@ -293,7 +295,7 @@ export default function ShopSlug(initialData) {
                           hoverImage={e.node.originalSrc}
                           hoverImageWidth={e.node.width}
                           hoverImageHeight={e.node.height}
-                        />
+                        /> */}
                       </div>
                     )
                   })}
