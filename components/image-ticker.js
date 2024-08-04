@@ -24,7 +24,7 @@ export default function ImageTicker({ images }) {
   },[currentImage]);
 
   return(
-    <div className="relative overflow-hidden w-4/12 lg:w-4/12 mx-auto">
+    <div className="relative overflow-hidden w-6/12 lg:w-4/12 mx-auto">
       {images.map((e, i) => {
         return (
           <div className={`block w-full ${i == 0 ? 'relative' : 'absolute inset-0' } ${i == currentImage ? 'z-[10]' : 'z-[1] opacity-0' }`} ref={ref} key={i}>

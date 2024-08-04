@@ -2,7 +2,7 @@ import Layout from '@/components/layout'
 import Footer from '@/components/footer'
 import Container from '@/components/container'
 import { fade } from '@/helpers/transitions'
-import { LazyMotion, domAnimation, m } from 'framer-motion'
+import { LazyMotion, domAnimation, m, useMotionValueEvent, useScroll } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import AccordionItem from '@/components/accordion-item'
 import slugify from "slugify"
@@ -17,8 +17,15 @@ const pageService = new SanityPageService(infoQuery)
 
 export default function FAQs(initialData) {
   const { data: { info }  } = pageService.getPreviewHook(initialData)()
-  const [currentItem, setCurrentItem] = useState(false)
+  const [currentItem, setCurrentItem] = useState('general')
+  const [scrolled, setScrolled] = useState(false)
   const [introContext, setIntroContext] = useContext(IntroContext);
+
+  const { scrollYProgress } = useScroll()
+  
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setScrolled(latest > 0.01)
+  })
 
   useEffect(() => {
     setIntroContext(true)
@@ -62,25 +69,24 @@ export default function FAQs(initialData) {
                             })}
                           </ul>
 
-                          <h1 className="text-[25vw] md:text-[22.5vw] lg:text-[20vw] leading-[0.65] md:leading-[0.65] lg:leading-[0.65] hidden md:block lg:hidden mt-auto w-full">{info.title}</h1>
+                          <h1 className="text-[25vw] md:text-[20vw] lg:text-[20vw] leading-[0.65] md:leading-[0.65] lg:leading-[0.65] hidden md:block lg:hidden mt-auto w-full">{info.title}</h1>
                         </div>
                       </div>
 
-                      <h1 className="text-[25vw] md:text-[22.5vw] lg:text-[20vw] mb-4 leading-[0.6] md:leading-[0.6] lg:leading-[0.6] hidden lg:block w-full mt-auto">{info.title}</h1>
+                      <h1 className="text-[25vw] md:text-[19w] lg:text-[16vw] mb-4 leading-[0.6] md:leading-[0.6] lg:leading-[0.6] hidden lg:block w-full mt-auto">{info.title}</h1>
                     </div>
                   </div>
 
-                  <div className="w-full lg:w-[53.5%] pt-[16vw] md:pt-[8vw] lg:pt-[25vw] lg:ml-auto lg:pb-[20vw]">
+                  <div className="w-full lg:w-[53.5%] pt-[16vw] md:pt-[8vw] lg:pt-[17vw] lg:ml-auto lg:pb-[20vw]">
                     <div className="content mb-4 lg:pr-[5%]">
                       {info.sections.map((e, i) => {
                         return (
                           <InView
                             className="scroll-mt-28"
                             as="div"
-                            rootMargin="60px 0px 60px 0px"
-                            threshold={1}
+                            threshold={0.8}
                             id={slugify(e.heading, { lower: true })}
-                            onChange={(inView, entry) => setCurrentItem(slugify(e.heading, { lower: true }))}
+                            onChange={(inView, entry) => scrolled && setCurrentItem(slugify(e.heading, { lower: true }))}
                             key={i}
                           >
                             <AccordionItem item={e} />

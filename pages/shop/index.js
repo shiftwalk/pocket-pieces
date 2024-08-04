@@ -69,12 +69,12 @@ export default function Shop(initialData) {
                   <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'gallery' && 'line-through'}`} onClick={()=> updateView('gallery')}>Gallery</button> / <button className={`uppercase text-xs md:text-sm leading-none md:leading-none ${currentView == 'reel' && 'line-through'}`} onClick={()=> updateView('reel')}>Reel</button>
                 </m.span>
 
-                <m.span variants={fade} className="text-5xl lg:text-[5vw] font-display leading-[0.65] lg:leading-[0.65] flex">
+                <m.span variants={fade} className="text-5xl lg:text-[5vw] font-display leading-[0.65] lg:leading-[0.65] hidden lg:flex">
                   <Roller items={products} />
                 </m.span>
               </div>
 
-              <div className="fixed top-0 right-0 pt-[70px] lg:pt-[85px] px-4 lg:px-6 z-[100]">
+              <div className="fixed top-0 right-0 pt-[70px] lg:pt-[85px] px-4 lg:px-6 z-[100] hidden lg:block">
                 <m.div variants={fade} className="w-[55px] lg:w-[6vw] max-w-[80px] mx-auto mb-5">
                   <LogoMarkOutlinedIcon />
                 </m.div>
@@ -179,7 +179,7 @@ export default function Shop(initialData) {
                     animate={{ filter: "blur(0px)", opacity: 1, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
                     exit={{ filter: "blur(50px)", opacity: 0, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
                     variants={fade}
-                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] xl:max-w-[100%] xl:w-[81%] flex flex-wrap justify-center items-start mx-auto relative z-[50] pt-[120px] md:pt-[120px] lg:pt-[120px] xl:pt-[200px]`}
+                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] xl:max-w-[100%] xl:w-[81%] flex flex-wrap justify-center items-start mx-auto relative z-[50] pt-[80px] md:pt-[90px] lg:pt-[120px] xl:pt-[200px]`}
                     ref={scrollWrapper}
                     key="gallery"
                   >
@@ -241,10 +241,10 @@ export default function Shop(initialData) {
                 )}
               </AnimatePresence>
 
-              <div className={`fixed bottom-0 w-full z-[51] hidden lg:flex justify-center transition-opacity ease-in-out duration-[250ms] ${filtersHidden ? 'opacity-0 pointer-events-none' : 'opacity-100' }`}>
+              <div className={`fixed bottom-0 w-full z-[51] flex justify-center transition-opacity ease-in-out duration-[250ms] ${filtersHidden ? 'opacity-0 pointer-events-none' : 'opacity-100' }`}>
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-100 via-zinc-100 to-transparent z-[20]"></div>
                 <m.div variants={fade} className="mx-auto w-auto inline-block pt-16 lg:pt-16 p-3 lg:p-6 relative z-[30]">
-                  <span className="text-[12vw] lg:text-[6.25vw] 2xl:text-[100px] font-display leading-[0.65] lg:leading-[0.65] flex justify-center relative z-[50]">
+                  <span className="text-[42px] lg:text-[6.25vw] 2xl:text-[100px] font-display leading-[0.65] lg:leading-[0.65] flex justify-center relative z-[50]">
                     <Link href="/shop" className={`block  relative`}>
                       <span>All</span>,&nbsp;
 

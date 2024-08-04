@@ -155,7 +155,7 @@ export default function Home(initialData) {
 
                     <div className="w-full lg:w-5/12 px-4 lg:px-6 max-w-[800px] lg:mx-auto">
                       <MetaText text="Bio" />
-                      <div className="content lg:text-xl w-11/12 lg:w-10/12">
+                      <div className="content lg:text-base w-11/12 lg:w-10/12">
                         {about.bioText && (
                           <PortableText value={about.bioText} />
                         )}

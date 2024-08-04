@@ -90,7 +90,7 @@ export default function Polaroid({ className, image, imageWidth, imageHeight, ho
   }
 
   if (product && smallText) {
-    headingSize = 'text-[9vw] md:text-[4.5vw] lg:text-[3.8vw] 2xl:text-[52px] leading-[0.85] md:leading-[0.85] lg:leading-[0.85] 2xl:leading-[0.85]'
+    headingSize = 'text-[13vw] md:text-[7.5vw] lg:text-[5.25vw] xl:text-[50px] 2xl:text-[52px] leading-[0.85] md:leading-[0.85] lg:leading-[0.85] 2xl:leading-[0.85]'
   }
 
   if (product && smallText && smallTextDesktop) {

@@ -70,7 +70,7 @@ export default function Header({ dark }) {
 
             <div className="flex flex-1 lg:flex-none lg:w-32">
               <Link href="/" legacyBehavior>
-                <a onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} className="w-24 lg:w-full mx-auto relative overflow-hidden group" aria-label="Navigate to the home page" aria-current={router.asPath == '/' ? true : false}>
+                <a onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} className="w-[100px] lg:w-full mx-auto relative overflow-hidden group" aria-label="Navigate to the home page" aria-current={router.asPath == '/' ? true : false}>
                   <div className="lg:group-hover:translate-y-[-103%] will-change-transform transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[330ms]">
                     <LogoIcon className="w-full"/>
                   </div>
@@ -128,7 +128,7 @@ export default function Header({ dark }) {
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ duration: 0.66, ease: [0.83, 0, 0.17, 1] }}
-                className={`fixed w-[90%] md:max-w-[45vw] lg:w-[550px] h-screen top-0 right-0 bottom-0 z-[500] flex flex-col p-4 lg:p-6 will-change-transform ${dark ? 'bg-off-white text-off-black' : 'bg-black text-[#C1C1C1]' }`}
+                className={`fixed w-[90%] md:max-w-[45vw] lg:w-[550px] h-screen top-0 right-0 bottom-0 z-[500000] flex flex-col p-4 lg:p-6 will-change-transform ${dark ? 'bg-off-white text-off-black' : 'bg-black text-[#C1C1C1]' }`}
               >
                 <div className="">
                   <span className="h2 block text-[22vw] md:text-[15vw] lg:text-[10vw] uppercase leading-[0.8] md:leading-[0.8] lg:leading-[0.8] text-center py-[3vh]">Bag</span>

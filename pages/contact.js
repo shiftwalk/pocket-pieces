@@ -38,7 +38,7 @@ export default function Contact(initialData) {
                   <div className="w-full lg:w-[45%]">
                     <div className="lg:sticky lg:top-[90px] lg:min-h-[calc(100dvh-113px)] lg:flex lg:flex-wrap">
                       <div className="flex flex-wrap w-full">
-                        <h1 className="text-[25vw] md:text-[22.5vw] lg:text-[20vw] mb-5 leading-[0.6] md:leading-[0.6] lg:leading-[0.6] block lg:hidden w-full mt-auto">{contact.title}</h1>
+                        <h1 className="text-[30vw] md:text-[22.5vw] lg:text-[20vw] mb-5 leading-[0.6] md:leading-[0.6] lg:leading-[0.6] block lg:hidden w-full mt-auto">{contact.title}</h1>
 
                         <div className="w-full lg:w-[63%] pb-4 lg:pb-0 lg:pr-3 lg:max-w-[45vh] lg:mt-auto">
                           <SanityImage image={contact.heroImage} className="block w-full" alt="placeholder" />
@@ -53,14 +53,14 @@ export default function Contact(initialData) {
                         <h1 className="text-[25vw] md:text-[22.5vw] lg:text-[20vw] mb-32 leading-[0.6] md:leading-[0.6] lg:leading-[0.6] hidden lg:block w-full mt-auto">{contact.title}</h1>
                         
                         {contact.introText && (
-                          <p className="font-light mb-6 lg:mb-10 max-w-[740px]">{contact.introText}</p>
+                          <p className="font-light mb-6 lg:mb-10 max-w-[740px] text-sm md:text-base">{contact.introText}</p>
                         )}
 
                         {contact.emails.map((e, i) => {
                           return (
                             <div className="mb-6 lg:mb-10" key={i}>
-                              <p>{e.title}</p>
-                              <a href={`mailto:${e.address}`} className="font-light inline-block group">
+                              <p className="mb-1 md:mb-0">{e.title}</p>
+                              <a href={`mailto:${e.address}`} className="font-light inline-block group text-sm md:text-base">
                                 <div className="relative">
                                   <div className="w-full relative overflow-hidden">
                                     <span className="block transition-transform ease-in-out duration-[450ms] translate-y-0 group-hover:translate-y-[-100%] group-focus:translate-y-[-100%]">{e.address}</span>
@@ -79,7 +79,7 @@ export default function Contact(initialData) {
                             return (
                               <a key={i} href={e.url} target="_blank" rel="noreferrer noopener" className="inline-block font-light group">
                                 <div className="relative">
-                                  <div className="w-full relative overflow-hidden">
+                                  <div className="w-full relative overflow-hidden text-sm md:text-base">
                                     <span className="block transition-transform ease-in-out duration-[450ms] translate-y-0 group-hover:translate-y-[-100%] group-focus:translate-y-[-100%]">{e.title}</span>
                                     <div className="absolute inset-0 w-full transition-transform ease-in-out duration-[450ms] translate-y-full group-hover:translate-y-0 group-focus:translate-y-0">{e.title}</div>
                                   </div>
@@ -91,7 +91,7 @@ export default function Contact(initialData) {
                         </div>
                       </div>
 
-                      <div className="w-[60px] lg:w-[75px] mt-auto">
+                      <div className="w-[60px] lg:w-[75px] mt-auto hidden lg:block">
                         <LogoMarkOutlinedIcon />
                       </div>
                     </div>

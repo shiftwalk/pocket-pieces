@@ -58,7 +58,7 @@ export default function Hire(initialData) {
 
                       <div className="content mb-[5vw]">
                         {credits.heroText && (
-                          <p className="text-base lg:text-lg w-[90%] lg:w-[90%] max-w-3xl">{credits.heroText}</p>
+                          <p className="text-base lg:text-base w-[90%] lg:w-[90%] max-w-3xl">{credits.heroText}</p>
                         )}
 
                         <div className="mx-auto lg:flex">
@@ -144,7 +144,7 @@ export default function Hire(initialData) {
                     </div>
                     
                     {credits.contentHeadingText && (
-                      <div className="w-full relative z-[20] mb-[10vw] lg:mb-[7.5vw]">
+                      <div className="w-full relative z-[20] mb-[7vw] lg:mb-[4.5vw]">
                         <h2 className="block text-[12vw] lg:text-[9vw] text-center leading-[0.75]">{credits.contentHeadingText}</h2>
                       </div>
                     )}

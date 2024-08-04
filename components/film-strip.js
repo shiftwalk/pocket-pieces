@@ -23,9 +23,9 @@ export default function FilmStrip({ images }) {
   })
   
   useEffect(() => {
-    horiScroller.current.style.transform = `translateX(-${(16) + scrollYProgress * 10}vw)`
-    horiScrollerMeta.current.style.transform = `translateX(-${(-2) + scrollYProgress * 10}vw)`
-    horiScrollerMeta2.current.style.transform = `translateX(-${(-2) + scrollYProgress * 10}vw)`
+    horiScroller.current.style.transform = `translateX(-${(16) + scrollYProgress * 15}vw)`
+    horiScrollerMeta.current.style.transform = `translateX(-${(-2) + scrollYProgress * 15}vw)`
+    horiScrollerMeta2.current.style.transform = `translateX(-${(-2) + scrollYProgress * 15}vw)`
 
     horiScrollerImage1.current.style.transform = `translateX(${(-3) + scrollYProgress * 3}vw) scale(1.125)`
     horiScrollerImage2.current.style.transform = `translateX(${(-3) + scrollYProgress * 3}vw) scale(1.125)`
@@ -33,9 +33,9 @@ export default function FilmStrip({ images }) {
   });
   
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    horiScroller.current.style.transform = `translateX(-${(16) + latest * 10}vw)`;
-    horiScrollerMeta.current.style.transform = `translateX(-${ (-2) + latest * 10}vw)`;
-    horiScrollerMeta2.current.style.transform = `translateX(-${ (-2) + latest * 10}vw)`;
+    horiScroller.current.style.transform = `translateX(-${(16) + latest * 15}vw)`;
+    horiScrollerMeta.current.style.transform = `translateX(-${ (-2) + latest * 15}vw)`;
+    horiScrollerMeta2.current.style.transform = `translateX(-${ (-2) + latest * 15}vw)`;
 
     horiScrollerImage1.current.style.transform = `translateX(${(-3) + latest * 3}vw) scale(1.125)`;
     horiScrollerItem1.current.style.transform = `rotate(${(latest - 100) / 1000}deg), translateY(-20px)`;
@@ -64,7 +64,7 @@ export default function FilmStrip({ images }) {
           <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[45vw] mx-[5.5vw] lg:mx-[5.5vw] overflow-hidden rounded-2xl inline-block rotate-2 blur-[2px] relative will-change-transform" ref={horiScrollerItem1}>
             <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
             <div ref={horiScrollerImage1} className="opacity-90 will-change-transform absolute inset-0">
-              <SanityImage layout="fill" image={images[0]} sizes="(min-width: 1024px) 33vw, 66vw" className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" />
+              <SanityImage layout="fill" image={images[0]} sizes="(min-width: 1024px) 65vw, 66vw" className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" />
             </div>
           </div>
 
@@ -80,7 +80,7 @@ export default function FilmStrip({ images }) {
 
               <div className="absolute inset-0 z-[1]">
                 <div ref={horiScrollerImage2} className="opacity-90 will-change-transform absolute inset-0 z-[1]">
-                  <SanityImage layout="fill" image={images[1]} sizes="(min-width: 1024px) 33vw, 66vw" className="block w-full h-full pointer-events-none object-cover object-center absolute inset-0" alt="placeholder" />
+                  <SanityImage layout="fill" image={images[1]} sizes="(min-width: 1024px) 65vw, 66vw" className="block w-full h-full pointer-events-none object-cover object-center absolute inset-0" alt="placeholder" />
                 </div>
               </div>
             </div>
@@ -89,7 +89,7 @@ export default function FilmStrip({ images }) {
           <div className="w-[45vw] lg:w-[35vw] h-[63vw] lg:h-[45vw] mx-[5.5vw] lg:mx-[5.5vw] overflow-hidden rounded-2xl inline-block rotate-1 blur-[2px] relative will-change-transform" ref={horiScrollerItem3}>
             <div className="inner-shadow absolute inset-0 w-full h-full z-[1]"></div>
             <div ref={horiScrollerImage3} className="opacity-90 will-change-transform absolute inset-0">
-              <SanityImage layout="fill" image={images[2]} sizes="(min-width: 1024px) 33vw, 66vw" className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" />
+              <SanityImage layout="fill" image={images[2]} sizes="(min-width: 1024px) 65vw, 66vw" className="block absolute inset-0 w-full h-full object-cover object-center z-[-1]" alt="placeholder" />
             </div>
           </div>
         </div>
