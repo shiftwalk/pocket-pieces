@@ -244,8 +244,10 @@ export default function ShopSlug(initialData) {
                     </div>
                   </div>
 
-                  <div className="w-full lg:w-5/12 2 order-1 lg:order-2 mb-8 lg:mb-0 mt-auto">
-                    <Polaroid
+                  <div className="w-full lg:w-5/12 2 order-1 lg:order-2 mb-8 lg:mb-0 mt-auto relative overflow-hidden h-[calc(100dvh-170px)]">
+                    <Image src={productData.images.edges[0]?.node.originalSrc} fill sizes="(min-width: 1024px) 75vw, 90vw" className={`w-full absolute inset-0 object-cover object-center`} alt="placeholder" />
+
+                    {/* <Polaroid
                       noShadow
                       thin
                       product
@@ -259,7 +261,7 @@ export default function ShopSlug(initialData) {
                       hoverImage={productData.images.edges[1] ? productData.images.edges[1].node.originalSrc : productData.images.edges[0]?.node.originalSrc}
                       hoverImageWidth={productData.images.edges[1] ? productData.images.edges[1].node.width : productData.images.edges[0]?.node.width}
                       hoverImageHeight={productData.images.edges[1] ? productData.images.edges[1].node.height : productData.images.edges[0]?.node.height}
-                    />
+                    /> */}
                     {/* <span className="block lg:hidden text-xs uppercase pt-5 underline">Got a question about this piece?</span> */}
                   </div>
                 </div>

@@ -98,7 +98,7 @@ export default function Home(initialData) {
                         <m.div 
                           drag
                           dragMomentum={false}
-                          className="absolute top-[7%] left-[35%] w-[45%] cursor-grab z-[3] hidden lg:block"
+                          className="absolute top-[20%] left-[40%] w-[45%] cursor-grab z-[3] hidden lg:block"
                         >
                           <Polaroid
                             className="rotate-[2deg]"
