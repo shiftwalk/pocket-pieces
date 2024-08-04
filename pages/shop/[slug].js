@@ -154,7 +154,7 @@ export default function ShopSlug(initialData) {
           <main className="pt-[70px] lg:pt-[85px]">
             <Container>
               <m.div variants={fade}>
-                <div className="w-full mb-3 lg:mb-4 flex text-xs lg:text-sm uppercase relative z-10">
+                <div className="w-full mb-3 lg:mb-4 flex text-xs lg:text-sm tracking-tighter uppercase relative z-10 lg:justify-end">
                   <Link href="/shop" className="block group">
                     <div className="relative">
                       <div className="w-full relative overflow-hidden">
@@ -165,7 +165,7 @@ export default function ShopSlug(initialData) {
                     </div>
                   </Link>
 
-                  <a href={`mailto:Pocketpiecesstore@gmail.com?subject=Hey! I have a question about ${productData.title}`} className="ml-auto hidden lg:flex group">
+                  <a href={`mailto:Pocketpiecesstore@gmail.com?subject=Hey! I have a question about ${productData.title}`} className="ml-2 hidden lg:flex group">
                     <StarIcon className="w-6 mr-1" />
                     <div className="relative">
                       <div className="w-full relative overflow-hidden">
@@ -178,7 +178,7 @@ export default function ShopSlug(initialData) {
                 </div>
 
                 <div className="mb-8 w-full block lg:hidden">
-                  <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-4">{productData.title}</h1>
+                  <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-1 lg:mb-4">{productData.title}</h1>
                   {productData.collections?.edges.some(e => e.node.title === 'For Hire') ? (
                     <span className="block text-xl lg:text-2xl font-light">For Hire</span>
                   ) : (
@@ -187,9 +187,9 @@ export default function ShopSlug(initialData) {
                 </div>
 
                 <div className="flex flex-wrap h-full lg:min-h-[calc(100dvh-150px)]">
-                  <div className="w-full lg:w-7/12 lg:pr-12 order-2 lg:order-1 flex flex-wrap h-full lg:min-h-[calc(100dvh-150px)]">
+                  <div className="w-full lg:w-7/12 lg:pr-6 order-2 lg:order-1 flex flex-wrap h-full lg:min-h-[calc(100dvh-150px)]">
                     <div className="mb-12 w-full hidden lg:block">
-                      <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-4">{productData.title}</h1>
+                      <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-4 lg:-mt-10">{productData.title}</h1>
 
                       {productData.collections?.edges.some(e => e.node.title === 'For Hire') ? (
                         <span className="block text-2xl font-light">For Hire</span>
@@ -199,52 +199,56 @@ export default function ShopSlug(initialData) {
                     </div>
                     
                     <div className="w-full mt-auto">
-                      <div className="content max-w-3xl mb-5 text-sm lg:text-base" dangerouslySetInnerHTML={{ __html: productData.descriptionHtml }}></div>
-
-                      <button onClick={()=>setModalOpen(true)} className="inline-block mb-8 lg:mb-10 text-sm lg:text-base group">
-                        <div className="relative">
-                          <div className="w-full relative overflow-hidden">
-                            <span className="block transition-transform ease-in-out duration-[450ms] translate-y-0 group-hover:translate-y-[-100%] group-focus:translate-y-[-100%]">The Pocket Pieces Sizing &amp; Condition Guide</span>
-                            <div className="absolute inset-0 w-full transition-transform ease-in-out duration-[450ms] translate-y-full group-hover:translate-y-0 group-focus:translate-y-0">The Pocket Pieces Sizing &amp; Condition Guide</div>
-                          </div>
-                          <div className="w-full mx-auto h-px bg-black group-hover:w-1 transition-all ease-in-out duration-[450ms] mt-[2px]"></div>
-                        </div>
-                      </button>
+                      <div className="content max-w-3xl mb-6 text-sm lg:text-base" dangerouslySetInnerHTML={{ __html: productData.descriptionHtml }}></div>
                       
-                      {productData.collections?.edges.some(e => e.node.title === 'For Hire') ? (
-                        <div className="flex space-x-3">
-                          <a href={`mailto:Pocketpiecesstore@gmail.com?subject=Hey! I'd love to hire ${productData.title}`} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-black text-off-white border border-black relative overflow-hidden group`}>
-                            <div className="relative overflow-hidden">
-                              <div className="transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-0 group-hover:translate-y-[100%] group-hover:delay-[0ms] delay-[160ms]">Hire piece</div>
-                              <div className={`transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] absolute inset-0 translate-y-[100%] group-hover:translate-y-0 z-20 group-hover:delay-[160ms] text-black`}>Hire piece</div>
-                            </div>
-                            <div className={`absolute inset-0 z-10 bg-zinc-100 transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-[-100%] group-hover:translate-y-0`}></div>
-                          </a>
-                        </div>
-                      ) : (
-                        <>
-                          {productData.availableForSale ? (
-                            <div className="flex space-x-3">
-                              <button onClick={addToBag} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-black text-off-white border border-black ${ isLoading ? 'cursor-disabled' : ''} relative overflow-hidden group`}>
+                      <div className="flex space-x-2 items-center lg:items-end">
+                        {productData.collections?.edges.some(e => e.node.title === 'For Hire') ? (
+                          <div className="flex space-x-3">
+                            <a href={`mailto:Pocketpiecesstore@gmail.com?subject=Hey! I'd love to hire ${productData.title}`} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-black text-off-white border border-black relative overflow-hidden group`}>
+                              <div className="relative overflow-hidden">
+                                <div className="transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-0 group-hover:translate-y-[100%] group-hover:delay-[0ms] delay-[160ms]">Hire piece</div>
+                                <div className={`transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] absolute inset-0 translate-y-[100%] group-hover:translate-y-0 z-20 group-hover:delay-[160ms] text-black`}>Hire piece</div>
+                              </div>
+                              <div className={`absolute inset-0 z-10 bg-zinc-100 transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-[-100%] group-hover:translate-y-0`}></div>
+                            </a>
+                          </div>
+                        ) : (
+                          <>
+                            {productData.availableForSale ? (
+                              <div className="flex space-x-3">
+                                <button onClick={addToBag} className={`block uppercase rounded-[50%] px-4 lg:px-8 py-4 lg:py-6 text-center lg:text-lg lg:leading-none bg-black text-off-white border border-black ${ isLoading ? 'cursor-disabled' : ''} relative overflow-hidden group`}>
 
-                                <div className="relative overflow-hidden">
-                                  <div className="transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-0 group-hover:translate-y-[100%] group-hover:delay-[0ms] delay-[160ms]"><span className={`absolute inset-0 text-center mx-auto flex items-center justify-center transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-100' : 'opacity-0'}`}><StarIcon className={`w-[50px] ${isLoading && 'animate-blink'}`} /></span><span className={`transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-0' : 'opacity-100'}`}>Buy Piece</span></div>
-                                  <div className={`transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] absolute inset-0 translate-y-[100%] group-hover:translate-y-0 z-20 group-hover:delay-[160ms] text-black`}>
-                                  <span className={`absolute inset-0 text-center mx-auto flex items-center justify-center transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-100' : 'opacity-0'}`}><StarIcon className={`w-[50px] ${isLoading && 'animate-blink'}`} /></span>
-                                  <span className={`transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-0' : 'opacity-100'}`}>Buy Piece</span></div>
-                                </div>
-                                <div className={`absolute inset-0 z-10 bg-zinc-100 transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-[-100%] group-hover:translate-y-0`}></div>
-                              </button>
+                                  <div className="relative overflow-hidden">
+                                    <div className="transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-0 group-hover:translate-y-[100%] group-hover:delay-[0ms] delay-[160ms]"><span className={`absolute inset-0 text-center mx-auto flex items-center justify-center transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-100' : 'opacity-0'}`}><StarIcon className={`w-[50px] ${isLoading && 'animate-blink'}`} /></span><span className={`transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-0' : 'opacity-100'}`}>Buy Piece</span></div>
+                                    <div className={`transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] absolute inset-0 translate-y-[100%] group-hover:translate-y-0 z-20 group-hover:delay-[160ms] text-black`}>
+                                    <span className={`absolute inset-0 text-center mx-auto flex items-center justify-center transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-100' : 'opacity-0'}`}><StarIcon className={`w-[50px] ${isLoading && 'animate-blink'}`} /></span>
+                                    <span className={`transition-opacity ease-in-out duration-[200ms] ${isLoading ? 'opacity-0' : 'opacity-100'}`}>Buy Piece</span></div>
+                                  </div>
+                                  <div className={`absolute inset-0 z-10 bg-zinc-100 transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-[-100%] group-hover:translate-y-0`}></div>
+                                </button>
+                              </div>
+                            ) : (
+                              <span className="block line-through">Sold Out</span>
+                            )}
+                          </>
+                        )}
+                        
+                        <div className="ml-auto flex-1">
+                          <button onClick={()=>setModalOpen(true)} className="block ml-auto mr-0 group justify-self-end">
+                            <div className="relative">
+                              <div className="w-full relative overflow-hidden text-xs lg:text-sm tracking-tight uppercase">
+                                <span className="block transition-transform ease-in-out duration-[450ms] translate-y-0 group-hover:translate-y-[-100%] group-focus:translate-y-[-100%]">Sizing &amp; Condition Guide</span>
+                                <div className="absolute inset-0 w-full transition-transform ease-in-out duration-[450ms] translate-y-full group-hover:translate-y-0 group-focus:translate-y-0">Sizing &amp; Condition Guide</div>
+                              </div>
+                              <div className="w-full mx-auto h-px bg-black group-hover:w-1 transition-all ease-in-out duration-[450ms] mt-[2px]"></div>
                             </div>
-                          ) : (
-                            <span className="block line-through">Sold Out</span>
-                          )}
-                        </>
-                      )}
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="w-full lg:w-5/12 2 order-1 lg:order-2 mb-8 lg:mb-0 mt-auto relative overflow-hidden h-[calc(100dvh-170px)]">
+                  <div className="w-full lg:w-5/12 2 order-1 lg:order-2 mb-4 lg:mb-0 mt-auto relative overflow-hidden h-[75dvh] lg:h-[calc(100dvh-160px)]">
                     <Image src={productData.images.edges[0]?.node.originalSrc} fill sizes="(min-width: 1024px) 75vw, 90vw" className={`w-full absolute inset-0 object-cover object-center`} alt="placeholder" />
 
                     {/* <Polaroid
