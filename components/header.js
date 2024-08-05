@@ -133,7 +133,7 @@ export default function Header({ dark }) {
                 <div className="">
                   <span className="h2 block text-[22vw] md:text-[15vw] lg:text-[10vw] uppercase leading-[0.8] md:leading-[0.8] lg:leading-[0.8] text-center py-[3vh]">Bag</span>
 
-                  <span className="block text-xs uppercase leading-none border-b border-current py-[10px]">{cartItems.length} Items &bull; Free Delivery</span>
+                  <span className="block text-xs uppercase leading-none border-b border-current py-[10px]">{cartItems.length} Items</span>
                 </div>
 
                 <div className="flex-1 overflow-y-scroll my-4 lg:my-6">

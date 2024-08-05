@@ -37,7 +37,7 @@ export default function Footer({ noLogo, className }) {
           <div className="lg:mb-0 w-full lg:w-auto lg:ml-auto hidden lg:flex space-x-1">
             <a onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} href="https://www.instagram.com/_pocketpieces_" target="_blank" rel="noreferrer noopener" className={`uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none hover:blur-[0px] transition-all ease-in-out duration-[450ms] ${hovering && ('blur-[2px]')}`}>Instagram, </a>
 
-            <a onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} href="mailto:hello@pocketpieces.com" target="_blank" rel="noreferrer noopener" className={`uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none hover:blur-[0px] transition-all ease-in-out duration-[450ms] ${hovering && ('blur-[2px]')}`}>Email</a>
+            <a onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)} href="mailto:pocketpiecesstore@gmail.com" target="_blank" rel="noreferrer noopener" className={`uppercase text-sm xl:text-base 2xl:text-lg leading-none xl:leading-none 2xl:leading-none hover:blur-[0px] transition-all ease-in-out duration-[450ms] ${hovering && ('blur-[2px]')}`}>Email</a>
           </div>
           
           <div className="lg:mb-0 w-full lg:w-auto lg:ml-auto hidden lg:block">
