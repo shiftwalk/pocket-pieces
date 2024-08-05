@@ -18,7 +18,7 @@ import StarIcon from '@/icons/star.svg';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter()
-  const [cartIsOpenContext, setCartIsOpenContext] = useState(false);
+  const [cartIsOpenContext, setCartIsOpenContext] = useState(false); 
   const [currentView, setCurrentView] = useState('gallery');
   const [introContext, setIntroContext] = useState(false);
 
