@@ -127,8 +127,9 @@ export default function CollectionSlug(initialData) {
                     key="reel"
                   >
                     {products.map((e, i) => {
-                      return e.node.availableForSale ? (
+                      return e.node.availableForSale && (
                         <div className={"flex items-center pb-16 md:pb-20 lg:pb-32"} key={i}>
+                        
                           <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
                             <Polaroid
                               noShadow
@@ -137,20 +138,24 @@ export default function CollectionSlug(initialData) {
                               barcode={e.node.variants.edges[0].node.barcode}
                               className="w-full"
                               hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
-                              collection={e.node.collections.edges[0].node.title}
+                              collection={e.node.collections.edges[0]?.node.title}
                               metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                               metaHeading={e.node.title}
-                              price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
-                              image={e.node.images.edges[0].node.originalSrc}
-                              imageWidth={e.node.images.edges[0].node.width}
-                              imageHeight={e.node.images.edges[0].node.height}
-                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0].node.originalSrc}
-                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0].node.width}
-                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0].node.height}
+                              price={moneyUkLocale.format(e.node.variants.edges[0]?.node.price.amount)}
+                              image={e.node.images.edges[0]?.node.originalSrc}
+                              imageWidth={e.node.images.edges[0]?.node.width}
+                              imageHeight={e.node.images.edges[0]?.node.height}
+                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
+                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
+                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
                             />
                           </Link>
                         </div>
-                      ) : (
+                      )
+                    })}
+
+                    {products.map((e, i) => {
+                      return !e.node.availableForSale && (
                         <div className={"flex items-center pb-16 md:pb-20 lg:pb-32 cursor-not-allowed"} key={i}>
                         
                           <div className="w-full max-w-[55vh] mx-auto block">
@@ -174,7 +179,7 @@ export default function CollectionSlug(initialData) {
                             />
                           </div>
                         </div>
-                      )
+                    )
                     })}
                   </m.div>
                 ) : (
@@ -188,7 +193,7 @@ export default function CollectionSlug(initialData) {
                     key="gallery"
                   >
                     {products.map((e, i) => {
-                      return e.node.availableForSale ? (
+                      return e.node.availableForSale && (
                         <div className={"flex items-center w-full xl:w-1/3 pb-2 md:pb-7 lg:pb-10 xl:pb-[4vw] xl:px-[1.5vw]"} key={i}>
                           <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
                             <Polaroid
@@ -200,20 +205,23 @@ export default function CollectionSlug(initialData) {
                               matchHeight
                               className="w-full"
                               hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
-                              collection={e.node.collections.edges[0].node.title}
+                              collection={e.node.collections.edges[0]?.node.title}
                               metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                               metaHeading={e.node.title}
-                              price={moneyUkLocale.format(e.node.variants.edges[0].node.price.amount)}
-                              image={e.node.images.edges[0].node.originalSrc}
-                              imageWidth={e.node.images.edges[0].node.width}
-                              imageHeight={e.node.images.edges[0].node.height}
-                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0].node.originalSrc}
-                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0].node.width}
-                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0].node.height}
+                              price={moneyUkLocale.format(e.node.variants.edges[0]?.node.price.amount)}
+                              image={e.node.images.edges[0]?.node.originalSrc}
+                              imageWidth={e.node.images.edges[0]?.node.width}
+                              imageHeight={e.node.images.edges[0]?.node.height}
+                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
+                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
+                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
                             />
                           </Link>
                         </div>
-                      ) : (
+                      )
+                    })}
+                    {products.map((e, i) => {
+                      return !e.node.availableForSale && (
                         <div className={"flex items-center w-full xl:w-1/3 pb-8 md:pb-12 lg:pb-12 xl:pb-[4vw] xl:px-[1.5vw]"} key={i}>
                           <div className="w-full max-w-[55vh] mx-auto block cursor-not-allowed">
                             <Polaroid

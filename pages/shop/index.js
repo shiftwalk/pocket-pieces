@@ -122,7 +122,7 @@ export default function Shop(initialData) {
                     key="reel"
                   >
                     {products.map((e, i) => {
-                      return e.node.availableForSale ? (
+                      return e.node.availableForSale && (
                         <div className={"flex items-center pb-16 md:pb-20 lg:pb-32"} key={i}>
                         
                           <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
@@ -146,7 +146,11 @@ export default function Shop(initialData) {
                             />
                           </Link>
                         </div>
-                      ) : (
+                      )
+                    })}
+
+                    {products.map((e, i) => {
+                      return !e.node.availableForSale && (
                         <div className={"flex items-center pb-16 md:pb-20 lg:pb-32 cursor-not-allowed"} key={i}>
                         
                           <div className="w-full max-w-[55vh] mx-auto block">
@@ -170,7 +174,7 @@ export default function Shop(initialData) {
                             />
                           </div>
                         </div>
-                      )
+                    )
                     })}
                   </m.div>
                 ) : (
@@ -184,7 +188,7 @@ export default function Shop(initialData) {
                     key="gallery"
                   >
                     {products.map((e, i) => {
-                      return e.node.availableForSale ? (
+                      return e.node.availableForSale && (
                         <div className={"flex items-center w-full xl:w-1/3 pb-2 md:pb-7 lg:pb-10 xl:pb-[4vw] xl:px-[1.5vw]"} key={i}>
                           <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
                             <Polaroid
@@ -209,7 +213,10 @@ export default function Shop(initialData) {
                             />
                           </Link>
                         </div>
-                      ) : (
+                      )
+                    })}
+                    {products.map((e, i) => {
+                      return !e.node.availableForSale && (
                         <div className={"flex items-center w-full xl:w-1/3 pb-8 md:pb-12 lg:pb-12 xl:pb-[4vw] xl:px-[1.5vw]"} key={i}>
                           <div className="w-full max-w-[55vh] mx-auto block cursor-not-allowed">
                             <Polaroid
