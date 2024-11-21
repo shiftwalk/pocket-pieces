@@ -242,7 +242,7 @@ export async function getAllProductsInCollection(handle) {
 export async function getProductSlugs() {
   const query =
     `{
-      products(first: 50) {
+      products(first: 250) {
         edges {
           node {
             handle              
@@ -264,7 +264,7 @@ export async function getProductSlugs() {
 export async function getCollectionSlugs() {
   const query =
     `{
-      collections(first: 50) {
+      collections(first: 150) {
         edges {
           node {
             handle              
