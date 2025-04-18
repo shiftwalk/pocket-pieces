@@ -259,7 +259,7 @@ export default function Shop(initialData) {
                     </Link>
                     {collections.map((e, i) => {
                       return e.node.title !== 'All' && (
-                        <Link href={`/shop/collections/${e.node.handle}`} className={`block`} key={i}>{e.node.title}{(i+2) !== collections.length ? ',' : ''}&nbsp;</Link>
+                        <Link href={`/shop/collections/${e.node.handle}`} className={`block`} key={i}>{e.node.title}{(i+1) !== collections.length ? ',' : ''}&nbsp;</Link>
                       )
                     })}
                   </span>
