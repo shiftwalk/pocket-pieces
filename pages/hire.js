@@ -159,7 +159,7 @@ export default function Hire(initialData) {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap justify-center">
+                  {/* <div className="flex flex-wrap justify-center">
                     <div className="w-[15vw] lg:w-[6vw] mb-6 lg:mb-10">
                       <Image
                         priority
@@ -176,12 +176,12 @@ export default function Hire(initialData) {
                         <h2 className="block text-[12vw] lg:text-[9vw] text-center leading-[0.75]">{cms.credits.contentHeadingText}</h2>
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
 
                   {/* NEW */}
 
-                  <div className="mt-[12vw] lg:mt-[12.5vw]">
+                  <div className="mt-[10vw] lg:mt-[10.5vw]">
                     <div className="">
                       <Container className="relative z-[10]">
                         <MetaText text="Collabs" />
@@ -284,15 +284,15 @@ export default function Hire(initialData) {
                             
                             <div className="grid grid-cols-2 mt-12 md:mt-16 lg:mt-12">
                               <div className="col-span-1 flex flex-col">
-                                <span className="block w-10/12 max-w-[240px] mb-3 bg-off-white">
+                                <span className="block w-10/12 max-w-[160px] translate-y-3 mb-3 bg-off-white">
                                   <Image src="/images/sig.png" alt="Phoebe Signature" width={424} height={132} className="mix-blend-darken" />
                                 </span>
 
                                 <p className="text-sm lg:text-base mt-auto">Phoebe Pocket</p>
                               </div>
                               <div className="col-span-1 flex flex-col">
-                                <span className="block w-10/12 max-w-[240px] mb-3 bg-off-white">
-                                  <Image src="/images/sig-jess.png" alt="Phoebe Signature" width={293} height={119} />
+                                <span className="block w-10/12 max-w-[120px] mb-3 bg-off-white">
+                                  <Image src="/images/sig-jess.png" alt="Phoebe Signature" width={156} height={119} />
                                 </span>
 
                                 <p className="text-sm lg:text-base">Jessica de Lotz</p>
