@@ -141,7 +141,7 @@ export default function CollectionSlug(initialData) {
                               collection={e.node.collections.edges[0]?.node.title}
                               metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                               metaHeading={e.node.title}
-                              price={moneyUkLocale.format(e.node.variants.edges[0]?.node.price.amount)}
+                              price={e.node.collections.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Collabs') ? "For Hire" : moneyUkLocale.format(e.node.variants.edges[0]?.node.price.amount)}
                               image={e.node.images.edges[0]?.node.originalSrc}
                               imageWidth={e.node.images.edges[0]?.node.width}
                               imageHeight={e.node.images.edges[0]?.node.height}
@@ -208,7 +208,7 @@ export default function CollectionSlug(initialData) {
                               collection={e.node.collections.edges[0]?.node.title}
                               metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                               metaHeading={e.node.title}
-                              price={moneyUkLocale.format(e.node.variants.edges[0]?.node.price.amount)}
+                              price={e.node.collections.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Collabs') ? "For Hire" : moneyUkLocale.format(e.node.variants.edges[0]?.node.price.amount)}
                               image={e.node.images.edges[0]?.node.originalSrc}
                               imageWidth={e.node.images.edges[0]?.node.width}
                               imageHeight={e.node.images.edges[0]?.node.height}

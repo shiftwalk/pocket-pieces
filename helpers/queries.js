@@ -120,6 +120,22 @@ export const creditsQuery = `{
         y
       },
     },
+    collabsHeadingText,
+    polaroids[] {
+      text,
+      images[] {
+        asset-> {
+          ...
+        },
+        caption,
+        alt,
+        hotspot {
+          x,
+          y
+        },
+      }
+    },
+    collabsText,
     questions[] {
       question,
       answer
