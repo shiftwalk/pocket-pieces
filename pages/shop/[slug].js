@@ -191,7 +191,7 @@ export default function ShopSlug(initialData) {
                     <div className="mb-12 w-full hidden lg:block">
                       <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-4 lg:-mt-10">{productData.title}</h1>
 
-                      {productData.collections?.edges.some(e => e.node.title === 'For Hire') ? (
+                      {productData.collections?.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Collabs') ? (
                         <span className="block text-2xl font-light">For Hire</span>
                       ) : (
                         <span className="block text-2xl font-light">{moneyUkLocale.format(productData.variants.edges[0].node.price.amount)}</span>
@@ -248,7 +248,7 @@ export default function ShopSlug(initialData) {
                     </div>
                   </div>
 
-                  <div className="w-full lg:w-5/12 2 order-1 lg:order-2 mb-4 lg:mb-0 mt-auto relative overflow-hidden h-[75dvh] lg:h-[calc(100dvh-160px)]">
+                  <div className={`w-full lg:w-5/12 2 order-1 lg:order-2 mb-4 lg:mb-0 mt-auto relative overflow-hidden ${productData.collections?.edges.some(e => e.node.title === 'Collabs') ? 'h-[75dvh] lg:h-[calc(100dvh-160px)]' : 'h-[75dvh] lg:h-[calc(100dvh-160px)]'}`}>
                     <Image src={productData.images.edges[0]?.node.originalSrc} fill sizes="(min-width: 1024px) 75vw, 90vw" className={`w-full absolute inset-0 object-cover object-center`} alt="placeholder" />
 
                     {/* <Polaroid
@@ -284,7 +284,7 @@ export default function ShopSlug(initialData) {
               <m.div variants={fade} className={`pb-[14vw] lg:pb-[15vw] ${!productData.quote ? 'mt-[14vw] lg:mt-[15vw]' : '' }`}>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start p-6 md:p-10 gap-6 md:gap-10 justify-center">
                   {productData.images.edges.map((e, i ) => {
-                    return (
+                    return i !== 0 && (
                       <div className="col-span-3 md:col-span-1 lg:col-span-1" key={i}>
                         <Image src={e.node.originalSrc} width={e.node.width / 5} height={e.node.height / 5} className={`w-full`} alt="placeholder" />
 

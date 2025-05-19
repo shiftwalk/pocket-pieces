@@ -15,7 +15,6 @@ import Link from 'next/link'
 import StrikeIcon from '@/icons/strike.svg'
 import { IntroContext } from '@/context/intro'
 import { useContext, useEffect } from 'react'
-import AccordionItem from '@/components/accordion-item'
 import { PortableText } from '@portabletext/react'
 import MetaText from '@/components/meta-text'
 
@@ -84,13 +83,13 @@ export default function Hire(initialData) {
                                 collection={products[0].node.collections.edges[0]?.node.title}
                                 metaText={products[0].node.metaTitle ? products[0].node.metaTitle.value : null}
                                 metaHeading={products[0].node.title}
-                                price={moneyUkLocale.format(products[0].node.variants.edges[0]?.node.price.amount)}
-                                image={products[0].node.images.edges[0]?.node.originalSrc}
-                                imageWidth={products[0].node.images.edges[0]?.node.width}
-                                imageHeight={products[0].node.images.edges[0]?.node.height}
-                                hoverImage={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.originalSrc : products[0].node.images.edges[0]?.node.originalSrc}
-                                hoverImageWidth={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.width : products[0].node.images.edges[0]?.node.width}
-                                hoverImageHeight={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.height : products[0].node.images.edges[0]?.node.height}
+                                price={"For Hire"}
+                                image={products[0].node.images.edges[1]?.node.originalSrc}
+                                imageWidth={products[0].node.images.edges[1]?.node.width}
+                                imageHeight={products[0].node.images.edges[1]?.node.height}
+                                hoverImage={products[0].node.images.edges[2] ? products[0].node.images.edges[2].node.originalSrc : products[0].node.images.edges[1]?.node.originalSrc}
+                                hoverImageWidth={products[0].node.images.edges[2] ? products[0].node.images.edges[2].node.width : products[0].node.images.edges[1]?.node.width}
+                                hoverImageHeight={products[0].node.images.edges[2] ? products[0].node.images.edges[2].node.height : products[0].node.images.edges[1]?.node.height}
                               />
                             </Link>
                           </div>
@@ -115,13 +114,13 @@ export default function Hire(initialData) {
                                 collection={products[1].node.collections.edges[0]?.node.title}
                                 metaText={products[1].node.metaTitle ? products[1].node.metaTitle.value : null}
                                 metaHeading={products[1].node.title}
-                                price={moneyUkLocale.format(products[1].node.variants.edges[0]?.node.price.amount)}
-                                image={products[1].node.images.edges[0]?.node.originalSrc}
-                                imageWidth={products[1].node.images.edges[0]?.node.width}
-                                imageHeight={products[1].node.images.edges[0]?.node.height}
-                                hoverImage={products[1].node.images.edges[1] ? products[1].node.images.edges[1].node.originalSrc : products[1].node.images.edges[0]?.node.originalSrc}
-                                hoverImageWidth={products[1].node.images.edges[1] ? products[1].node.images.edges[1].node.width : products[1].node.images.edges[0]?.node.width}
-                                hoverImageHeight={products[1].node.images.edges[1] ? products[1].node.images.edges[1].node.height : products[1].node.images.edges[0]?.node.height}
+                                price={"For Hire"}
+                                image={products[1].node.images.edges[1]?.node.originalSrc}
+                                imageWidth={products[1].node.images.edges[1]?.node.width}
+                                imageHeight={products[1].node.images.edges[1]?.node.height}
+                                hoverImage={products[1].node.images.edges[2] ? products[1].node.images.edges[2].node.originalSrc : products[1].node.images.edges[1]?.node.originalSrc}
+                                hoverImageWidth={products[1].node.images.edges[2] ? products[1].node.images.edges[2].node.width : products[1].node.images.edges[1]?.node.width}
+                                hoverImageHeight={products[1].node.images.edges[2] ? products[1].node.images.edges[2].node.height : products[1].node.images.edges[1]?.node.height}
                               />
                             </Link>
                           </div>
@@ -144,13 +143,13 @@ export default function Hire(initialData) {
                                 collection={products[2].node.collections.edges[0]?.node.title}
                                 metaText={products[2].node.metaTitle ? products[2].node.metaTitle.value : null}
                                 metaHeading={products[2].node.title}
-                                price={moneyUkLocale.format(products[2].node.variants.edges[0]?.node.price.amount)}
-                                image={products[2].node.images.edges[0]?.node.originalSrc}
-                                imageWidth={products[2].node.images.edges[0]?.node.width}
-                                imageHeight={products[2].node.images.edges[0]?.node.height}
-                                hoverImage={products[2].node.images.edges[1] ? products[2].node.images.edges[1].node.originalSrc : products[2].node.images.edges[0]?.node.originalSrc}
-                                hoverImageWidth={products[2].node.images.edges[1] ? products[2].node.images.edges[1].node.width : products[2].node.images.edges[0]?.node.width}
-                                hoverImageHeight={products[2].node.images.edges[1] ? products[2].node.images.edges[1].node.height : products[2].node.images.edges[0]?.node.height}
+                                price={"For Hire"}
+                                image={products[2].node.images.edges[1]?.node.originalSrc}
+                                imageWidth={products[2].node.images.edges[1]?.node.width}
+                                imageHeight={products[2].node.images.edges[1]?.node.height}
+                                hoverImage={products[2].node.images.edges[2] ? products[2].node.images.edges[2].node.originalSrc : products[2].node.images.edges[1]?.node.originalSrc}
+                                hoverImageWidth={products[2].node.images.edges[2] ? products[2].node.images.edges[2].node.width : products[2].node.images.edges[1]?.node.width}
+                                hoverImageHeight={products[2].node.images.edges[2] ? products[2].node.images.edges[2].node.height : products[2].node.images.edges[1]?.node.height}
                               />
                             </Link>
                           </div>
