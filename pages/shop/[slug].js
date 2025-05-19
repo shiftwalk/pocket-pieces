@@ -179,7 +179,7 @@ export default function ShopSlug(initialData) {
 
                 <div className="mb-8 w-full block lg:hidden">
                   <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-1 lg:mb-4">{productData.title}</h1>
-                  {productData.collections?.edges.some(e => e.node.title === 'For Hire') ? (
+                  {productData.collections?.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Collabs') ? (
                     <span className="block text-xl lg:text-2xl font-light">For Hire</span>
                   ) : (
                     <span className="block text-xl lg:text-2xl font-light">{moneyUkLocale.format(productData.variants.edges[0].node.price.amount)}</span>
@@ -202,7 +202,7 @@ export default function ShopSlug(initialData) {
                       <div className="content max-w-3xl mb-6 text-sm lg:text-base" dangerouslySetInnerHTML={{ __html: productData.descriptionHtml }}></div>
                       
                       <div className="flex space-x-2 items-center lg:items-end">
-                        {productData.collections?.edges.some(e => e.node.title === 'For Hire') ? (
+                        {productData.collections?.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Collabs') ? (
                           <div className="flex space-x-3">
                             <a href={`mailto:Pocketpiecesstore@gmail.com?subject=Hey! I'd love to hire ${productData.title}`} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-black text-off-white border border-black relative overflow-hidden group`}>
                               <div className="relative overflow-hidden">

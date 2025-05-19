@@ -63,7 +63,7 @@ export default function Hire(initialData) {
                         )}
 
                         <div className="mx-auto lg:flex">
-                          <Button href="/shop/collections/for-hire" label="See hire selects" outline className="block lg:mx-auto" />
+                          <Button href="/shop/collections/collabs" label="See hire selects" outline className="block lg:mx-auto" />
                         </div>
                       </div>
                     </div>
@@ -224,7 +224,7 @@ export default function Hire(initialData) {
                             <m.div 
                               drag
                               dragMomentum={false}
-                              className="absolute top-[20%] left-[40%] w-[45%] cursor-grab z-[3] hidden lg:block"
+                              className="absolute top-[33%] left-[40%] w-[45%] cursor-grab z-[10] hidden lg:block"
                             >
                               <Polaroid
                                 className="rotate-[2deg]"
@@ -418,7 +418,7 @@ export default function Hire(initialData) {
 
 export async function getStaticProps(context) {
   const cms = await pageService.fetchQuery(context)
-  const products = await getAllProductsInCollection('showstoppers')
+  const products = await getAllProductsInCollection('collabs')
 
   return {
     props: { products, cms }

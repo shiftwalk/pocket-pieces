@@ -14,6 +14,8 @@ import { ViewContext } from '@/context/view'
 import { IntroContext } from '@/context/intro'
 import Roller from '@/components/roller'
 import { useLenis } from '@studio-freight/react-lenis'
+import slugify from "slugify"
+import Image from 'next/image';
 
 const query = `{
   "home": *[_type == "home"][0]{
@@ -114,143 +116,226 @@ export default function CollectionSlug(initialData) {
               {/* <m.h1 ref={headingRef} variants={fade} className="inline-block text-[25vw] md:text-[26vw] lg:text-[27vw] xl:text-[340px] leading-[1] md:leading-[1] lg:leading-[1] xl:leading-[1] text-off-black mx-auto w-full text-center pt-[100px] md:pt-[40px] lg:pt-[40px] fixed top-0 left-0 right-0" style={{ y: moveY}}>
                 <span className="inline-block">{collectionData.title}</span>
               </m.h1> */}
-
+            
               <AnimatePresence mode="wait">
-                { currentView == 'reel' ? (
-                  <m.div
-                    initial={{ filter: "blur(50px)", opacity: 0 }}
-                    animate={{ filter: "blur(0px)", opacity: 1, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
-                    exit={{ filter: "blur(50px)", opacity: 0, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
-                    variants={fade}
-                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50]  ${currentView == 'reel' ? 'pt-[125px] md:pt-[75px] lg:pt-[90px]' : 'pt-[30px] md:pt-[30px] lg:pt-[20dvh]' }`}
-                    ref={scrollWrapper}
-                    key="reel"
-                  >
-                    {products.map((e, i) => {
-                      return e.node.availableForSale && (
-                        <div className={"flex items-center pb-16 md:pb-20 lg:pb-32"} key={i}>
-                        
-                          <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
-                            <Polaroid
-                              noShadow
-                              thin
-                              product
-                              barcode={e.node.variants.edges[0].node.barcode}
-                              className="w-full"
-                              hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
-                              collection={e.node.collections.edges[0]?.node.title}
-                              metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
-                              metaHeading={e.node.title}
-                              price={moneyUkLocale.format(e.node.variants.edges[0]?.node.price.amount)}
-                              image={e.node.images.edges[0]?.node.originalSrc}
-                              imageWidth={e.node.images.edges[0]?.node.width}
-                              imageHeight={e.node.images.edges[0]?.node.height}
-                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
-                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
-                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
-                            />
-                          </Link>
-                        </div>
-                      )
-                    })}
+              {/* NEW START HERE */}
+              {collectionData.handle == 'collabs' || collectionData.handle == 'for-hire' || collectionData.handle == 'clothing' ? (
+                <m.div
+                  initial={{ filter: "blur(50px)", opacity: 0 }}
+                  animate={{ filter: "blur(0px)", opacity: 1, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
+                  exit={{ filter: "blur(50px)", opacity: 0, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
+                  variants={fade}
+                  className={`w-10/12 md:w-9/12 lg:w-9/12 lg:max-w-[100%] xl:max-w-[100%] xl:w-[81%] flex flex-wrap justify-center items-start mx-auto relative z-[50] pt-[80px] md:pt-[90px] lg:pt-[120px] xl:pt-[200px]`}
+                >
+                  {products.map((e, i) => {
+                    return e.node.availableForSale && (
+                      <div className={"flex items-center w-full lg:w-1/3 pb-2 md:pb-7 lg:pb-[4vw] lg:px-2"} key={i}>
+                        <Link href={`/shop/${e.node.handle}`} className="w-full mx-auto flex flex-wrap justify-center">
+                          <div className="text-center pb-3 w-full">
+                            <span className={`block uppercase text-xs lg:text-sm`}>&quot;{e.node.collections.edges[0]?.node.title}&quot;</span>        
+                          </div>
+                          
+                          <div className="w-full pb-3">
+                            <div className="aspect-[16/11.1] relative block">
+                              <Image src={e.node.images.edges[0]?.node.originalSrc} fill className={`block z-[10] object-cover object-center absolute inset-0 w-full h-full`} alt="placeholder" />
+                            </div>
+                          </div>
+                          <div className="w-full text-center">
+                            <h2 className="text-[10vw] md:text-[6.5vw] lg:text-[4.25vw] 2xl:text-[70px] leading-[0.85] md:leading-[0.85] lg:leading-[0.85] 2xl:leading-[0.85] mb-3">{e.node.title}</h2>
 
-                    {products.map((e, i) => {
-                      return !e.node.availableForSale && (
-                        <div className={"flex items-center pb-16 md:pb-20 lg:pb-32 cursor-not-allowed"} key={i}>
-                        
-                          <div className="w-full max-w-[55vh] mx-auto block">
-                            <Polaroid
-                              noShadow
-                              thin
-                              grayscale
-                              product
-                              barcode={e.node.variants.edges[0].node.barcode}
-                              className="w-full"
-                              collection={"Sold Out"}
-                              metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
-                              metaHeading={e.node.title}
-                              price={"Sold Out"}
-                              image={e.node.images.edges[0]?.node.originalSrc}
-                              imageWidth={e.node.images.edges[0]?.node.width}
-                              imageHeight={e.node.images.edges[0]?.node.height}
-                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
-                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
-                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
-                            />
+                            {e.node.metaTitle && (
+                              <span className={`block uppercase text-xs lg:text-sm`}>&quot;{e.node.metaTitle.value}&quot;</span>
+                            )}
+
+                            <span className="block uppercase text-base lg:text-lg mt-[6px] lg:mt-[10px]">
+                              For Hire
+                            </span>
                           </div>
-                        </div>
+
+                          {/* <div className="w-full">
+                            collection: {e.node.collections.edges[0]?.node.title}<br/>
+                            metaText: {e.node.metaTitle ? e.node.metaTitle.value : null}<br/>
+                            metaHeading: {e.node.title}<br/>
+                            price: {moneyUkLocale.format(e.node.variants.edges[0]?.node.price.amount)}<br/>
+                            image={e.node.images.edges[0]?.node.originalSrc}<br/>
+                            imageWidth: {e.node.images.edges[0]?.node.width}<br/>
+                            imageHeight: {e.node.images.edges[0]?.node.height}<br/>
+                            hoverImage: {e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}<br/>
+                            hoverImageWidth: {e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
+                          </div> */}
+                        </Link>
+                      </div>
                     )
-                    })}
-                  </m.div>
-                ) : (
-                  <m.div
-                    initial={{ filter: "blur(50px)", opacity: 0 }}
-                    animate={{ filter: "blur(0px)", opacity: 1, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
-                    exit={{ filter: "blur(50px)", opacity: 0, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
-                    variants={fade}
-                    className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] xl:max-w-[100%] xl:w-[81%] flex flex-wrap justify-center items-start mx-auto relative z-[50] pt-[80px] md:pt-[90px] lg:pt-[120px] xl:pt-[200px]`}
-                    ref={scrollWrapper}
-                    key="gallery"
-                  >
-                    {products.map((e, i) => {
-                      return e.node.availableForSale && (
-                        <div className={"flex items-center w-full xl:w-1/3 pb-2 md:pb-7 lg:pb-10 xl:pb-[4vw] xl:px-[1.5vw]"} key={i}>
-                          <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
-                            <Polaroid
-                              noShadow
-                              noPadding
-                              product
-                              smallText
-                              barcode={e.node.variants.edges[0].node.barcode}
-                              matchHeight
-                              className="w-full"
-                              hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
-                              collection={e.node.collections.edges[0]?.node.title}
-                              metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
-                              metaHeading={e.node.title}
-                              price={moneyUkLocale.format(e.node.variants.edges[0]?.node.price.amount)}
-                              image={e.node.images.edges[0]?.node.originalSrc}
-                              imageWidth={e.node.images.edges[0]?.node.width}
-                              imageHeight={e.node.images.edges[0]?.node.height}
-                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
-                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
-                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
-                            />
-                          </Link>
+                  })}
+                  {products.map((e, i) => {
+                    return !e.node.availableForSale && (
+                      <div className={"flex items-center w-full xl:w-1/3 pb-8 md:pb-12 lg:pb-12 xl:pb-[4vw] xl:px-[1.5vw]"} key={i}>
+                        <div className="w-full max-w-[55vh] mx-auto block cursor-not-allowed">
+                          <Polaroid
+                            noShadow
+                            noPadding
+                            product
+                            grayscale
+                            smallText
+                            matchHeight
+                            barcode={e.node.variants.edges[0].node.barcode}
+                            className="w-full"
+                            hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
+                            collection={"Sold Out"}
+                            metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
+                            metaHeading={e.node.title}
+                            price={"Sold Out"}
+                            image={e.node.images.edges[0]?.node.originalSrc}
+                            imageWidth={e.node.images.edges[0]?.node.width}
+                            imageHeight={e.node.images.edges[0]?.node.height}
+                            hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
+                            hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
+                            hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
+                          />
                         </div>
-                      )
-                    })}
-                    {products.map((e, i) => {
-                      return !e.node.availableForSale && (
-                        <div className={"flex items-center w-full xl:w-1/3 pb-8 md:pb-12 lg:pb-12 xl:pb-[4vw] xl:px-[1.5vw]"} key={i}>
-                          <div className="w-full max-w-[55vh] mx-auto block cursor-not-allowed">
-                            <Polaroid
-                              noShadow
-                              noPadding
-                              product
-                              grayscale
-                              smallText
-                              matchHeight
-                              barcode={e.node.variants.edges[0].node.barcode}
-                              className="w-full"
-                              hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
-                              collection={"Sold Out"}
-                              metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
-                              metaHeading={e.node.title}
-                              price={"Sold Out"}
-                              image={e.node.images.edges[0]?.node.originalSrc}
-                              imageWidth={e.node.images.edges[0]?.node.width}
-                              imageHeight={e.node.images.edges[0]?.node.height}
-                              hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
-                              hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
-                              hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
-                            />
+                      </div>
+                    )
+                  })}
+                </m.div>
+              ) : (
+                <AnimatePresence mode="wait">
+                  { currentView == 'reel' ? (
+                    <m.div
+                      initial={{ filter: "blur(50px)", opacity: 0 }}
+                      animate={{ filter: "blur(0px)", opacity: 1, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
+                      exit={{ filter: "blur(50px)", opacity: 0, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
+                      variants={fade}
+                      className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] mx-auto relative z-[50]  ${currentView == 'reel' ? 'pt-[125px] md:pt-[75px] lg:pt-[90px]' : 'pt-[30px] md:pt-[30px] lg:pt-[20dvh]' }`}
+                      ref={scrollWrapper}
+                      key="reel"
+                    >
+                      {products.map((e, i) => {
+                        return e.node.availableForSale && (
+                          <div className={"flex items-center pb-16 md:pb-20 lg:pb-32"} key={i}>
+                          
+                            <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
+                              <Polaroid
+                                noShadow
+                                thin
+                                product
+                                barcode={e.node.variants.edges[0].node.barcode}
+                                className="w-full"
+                                hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
+                                collection={e.node.collections.edges[0]?.node.title}
+                                metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
+                                metaHeading={e.node.title}
+                                price={moneyUkLocale.format(e.node.variants.edges[0]?.node.price.amount)}
+                                image={e.node.images.edges[0]?.node.originalSrc}
+                                imageWidth={e.node.images.edges[0]?.node.width}
+                                imageHeight={e.node.images.edges[0]?.node.height}
+                                hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
+                                hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
+                                hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
+                              />
+                            </Link>
                           </div>
-                        </div>
+                        )
+                      })}
+
+                      {products.map((e, i) => {
+                        return !e.node.availableForSale && (
+                          <div className={"flex items-center pb-16 md:pb-20 lg:pb-32 cursor-not-allowed"} key={i}>
+                          
+                            <div className="w-full max-w-[55vh] mx-auto block">
+                              <Polaroid
+                                noShadow
+                                thin
+                                grayscale
+                                product
+                                barcode={e.node.variants.edges[0].node.barcode}
+                                className="w-full"
+                                collection={"Sold Out"}
+                                metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
+                                metaHeading={e.node.title}
+                                price={"Sold Out"}
+                                image={e.node.images.edges[0]?.node.originalSrc}
+                                imageWidth={e.node.images.edges[0]?.node.width}
+                                imageHeight={e.node.images.edges[0]?.node.height}
+                                hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
+                                hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
+                                hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
+                              />
+                            </div>
+                          </div>
                       )
-                    })}
-                  </m.div>
-                )}
+                      })}
+                    </m.div>
+                  ) : (
+                    <m.div
+                      initial={{ filter: "blur(50px)", opacity: 0 }}
+                      animate={{ filter: "blur(0px)", opacity: 1, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
+                      exit={{ filter: "blur(50px)", opacity: 0, transition: { duration: 0.6, ease: [0.83, 0, 0.17, 1] }}}
+                      variants={fade}
+                      className={`w-10/12 md:w-7/12 lg:w-5/12 lg:max-w-[650px] xl:max-w-[100%] xl:w-[81%] flex flex-wrap justify-center items-start mx-auto relative z-[50] pt-[80px] md:pt-[90px] lg:pt-[120px] xl:pt-[200px]`}
+                      ref={scrollWrapper}
+                      key="gallery"
+                    >
+                      {products.map((e, i) => {
+                        return e.node.availableForSale && (
+                          <div className={"flex items-center w-full xl:w-1/3 pb-2 md:pb-7 lg:pb-10 xl:pb-[4vw] xl:px-[1.5vw]"} key={i}>
+                            <Link href={`/shop/${e.node.handle}`} className="w-full max-w-[55vh] mx-auto block">
+                              <Polaroid
+                                noShadow
+                                noPadding
+                                product
+                                smallText
+                                barcode={e.node.variants.edges[0].node.barcode}
+                                matchHeight
+                                className="w-full"
+                                hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
+                                collection={e.node.collections.edges[0]?.node.title}
+                                metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
+                                metaHeading={e.node.title}
+                                price={moneyUkLocale.format(e.node.variants.edges[0]?.node.price.amount)}
+                                image={e.node.images.edges[0]?.node.originalSrc}
+                                imageWidth={e.node.images.edges[0]?.node.width}
+                                imageHeight={e.node.images.edges[0]?.node.height}
+                                hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
+                                hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
+                                hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
+                              />
+                            </Link>
+                          </div>
+                        )
+                      })}
+                      {products.map((e, i) => {
+                        return !e.node.availableForSale && (
+                          <div className={"flex items-center w-full xl:w-1/3 pb-8 md:pb-12 lg:pb-12 xl:pb-[4vw] xl:px-[1.5vw]"} key={i}>
+                            <div className="w-full max-w-[55vh] mx-auto block cursor-not-allowed">
+                              <Polaroid
+                                noShadow
+                                noPadding
+                                product
+                                grayscale
+                                smallText
+                                matchHeight
+                                barcode={e.node.variants.edges[0].node.barcode}
+                                className="w-full"
+                                hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
+                                collection={"Sold Out"}
+                                metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
+                                metaHeading={e.node.title}
+                                price={"Sold Out"}
+                                image={e.node.images.edges[0]?.node.originalSrc}
+                                imageWidth={e.node.images.edges[0]?.node.width}
+                                imageHeight={e.node.images.edges[0]?.node.height}
+                                hoverImage={e.node.images.edges[1] ? e.node.images.edges[1].node.originalSrc : e.node.images.edges[0]?.node.originalSrc}
+                                hoverImageWidth={e.node.images.edges[1] ? e.node.images.edges[1].node.width : e.node.images.edges[0]?.node.width}
+                                hoverImageHeight={e.node.images.edges[1] ? e.node.images.edges[1].node.height : e.node.images.edges[0]?.node.height}
+                              />
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </m.div>
+                  )}
+                </AnimatePresence>
+              )}
               </AnimatePresence>
 
               <div className={`fixed bottom-0 w-full z-[51] flex justify-center transition-opacity ease-in-out duration-[250ms] ${filtersHidden ? 'opacity-0' : 'opacity-100' }`}>
@@ -261,7 +346,7 @@ export default function CollectionSlug(initialData) {
                     {collections.map((e, i) => {
                       return e.node.title !== 'All' && (
                         <Link href={`/shop/collections/${e.node.handle}`} className={`block relative`} key={i}>
-                          <span className={`${collectionData.handle == e.node.handle ? ' to-transparent' : '' }`}>{e.node.title}</span>{(i+2) !== collections.length ? ',' : ''}&nbsp;
+                          <span className={`${collectionData.handle == e.node.handle ? ' to-transparent' : '' }`}>{e.node.title}</span>{(i+1) !== collections.length ? ',' : ''}&nbsp;
 
                           {collectionData.handle == e.node.handle && (
                             <StrikeIcon className="w-full absolute bottom-[-15%] left-0 right-0 scale-y-[350%] rotate-[-1.4deg]" />
