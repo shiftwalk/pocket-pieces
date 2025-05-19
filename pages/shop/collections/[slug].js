@@ -137,7 +137,7 @@ export default function CollectionSlug(initialData) {
                               product
                               barcode={e.node.variants.edges[0].node.barcode}
                               className="w-full"
-                              hire={e.node.collections.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Collabs')}
+                              hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
                               collection={e.node.collections.edges[0]?.node.title}
                               metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                               metaHeading={e.node.title}
@@ -204,7 +204,7 @@ export default function CollectionSlug(initialData) {
                               barcode={e.node.variants.edges[0].node.barcode}
                               matchHeight
                               className="w-full"
-                              hire={e.node.collections.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Collabs')}
+                              hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
                               collection={e.node.collections.edges[0]?.node.title}
                               metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                               metaHeading={e.node.title}
@@ -233,7 +233,7 @@ export default function CollectionSlug(initialData) {
                               matchHeight
                               barcode={e.node.variants.edges[0].node.barcode}
                               className="w-full"
-                              hire={e.node.collections.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Collabs')}
+                              hire={e.node.collections.edges.some(e => e.node.title === 'For Hire')}
                               collection={"Sold Out"}
                               metaText={e.node.metaTitle ? e.node.metaTitle.value : null}
                               metaHeading={e.node.title}
