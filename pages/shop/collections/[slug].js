@@ -261,7 +261,7 @@ export default function CollectionSlug(initialData) {
                     {collections.map((e, i) => {
                       return e.node.title !== 'All' && (
                         <Link href={`/shop/collections/${e.node.handle}`} className={`block relative`} key={i}>
-                          <span className={`${collectionData.handle == e.node.handle ? ' to-transparent' : '' }`}>{e.node.title}</span>{(i+2) !== collections.length ? ',' : ''}&nbsp;
+                          <span className={`${collectionData.handle == e.node.handle ? ' to-transparent' : '' }`}>{e.node.title}</span>{(i+1) !== collections.length ? ',' : ''}&nbsp;
 
                           {collectionData.handle == e.node.handle && (
                             <StrikeIcon className="w-full absolute bottom-[-15%] left-0 right-0 scale-y-[350%] rotate-[-1.4deg]" />
