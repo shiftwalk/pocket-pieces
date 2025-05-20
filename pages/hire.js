@@ -62,7 +62,7 @@ export default function Hire(initialData) {
                         )}
 
                         <div className="mx-auto lg:flex">
-                          <Button href="/shop/collections/collabs" label="See hire selects" outline className="block lg:mx-auto" />
+                          <Button href="/shop/collections/hire" label="See hire selects" outline className="block lg:mx-auto" />
                         </div>
                       </div>
                     </div>
@@ -84,12 +84,12 @@ export default function Hire(initialData) {
                                 metaText={products[0].node.metaTitle ? products[0].node.metaTitle.value : null}
                                 metaHeading={products[0].node.title}
                                 price={"For Hire"}
-                                image={products[0].node.images.edges[1]?.node.originalSrc}
-                                imageWidth={products[0].node.images.edges[1]?.node.width}
-                                imageHeight={products[0].node.images.edges[1]?.node.height}
-                                hoverImage={products[0].node.images.edges[2] ? products[0].node.images.edges[2].node.originalSrc : products[0].node.images.edges[1]?.node.originalSrc}
-                                hoverImageWidth={products[0].node.images.edges[2] ? products[0].node.images.edges[2].node.width : products[0].node.images.edges[1]?.node.width}
-                                hoverImageHeight={products[0].node.images.edges[2] ? products[0].node.images.edges[2].node.height : products[0].node.images.edges[1]?.node.height}
+                                image={products[0].node.images.edges[0]?.node.originalSrc}
+                                imageWidth={products[0].node.images.edges[0]?.node.width}
+                                imageHeight={products[0].node.images.edges[0]?.node.height}
+                                hoverImage={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.originalSrc : products[0].node.images.edges[0]?.node.originalSrc}
+                                hoverImageWidth={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.width : products[0].node.images.edges[0]?.node.width}
+                                hoverImageHeight={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.height : products[0].node.images.edges[0]?.node.height}
                               />
                             </Link>
                           </div>
@@ -223,7 +223,7 @@ export default function Hire(initialData) {
                             <m.div 
                               drag
                               dragMomentum={false}
-                              className="absolute top-[33%] left-[40%] w-[45%] cursor-grab z-[10] hidden lg:block"
+                              className="absolute top-[38%] left-[45%] w-[45%] cursor-grab z-[1] hidden lg:block"
                             >
                               <Polaroid
                                 className="rotate-[2deg]"
@@ -300,7 +300,7 @@ export default function Hire(initialData) {
                           </div>
                           
                           <div className="w-full mt-12">
-                            <Button href="/shop/collections/collabs" label="Shop the collab" outline className="block" />
+                            <Button href="/shop/collections/hire" label="Shop the collab" outline className="block" />
                           </div>
                         </div>
                       </div>
@@ -417,7 +417,7 @@ export default function Hire(initialData) {
 
 export async function getStaticProps(context) {
   const cms = await pageService.fetchQuery(context)
-  const products = await getAllProductsInCollection('collabs')
+  const products = await getAllProductsInCollection('hire')
 
   return {
     props: { products, cms }

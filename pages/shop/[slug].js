@@ -165,7 +165,7 @@ export default function ShopSlug(initialData) {
                     </div>
                   </Link>
 
-                  <a href={`mailto:Pocketpiecesstore@gmail.com?subject=Hey! I have a question about ${productData.title}`} className="ml-2 hidden lg:flex group">
+                  <a href={`mailto:onscreenlovers@gmail.com?subject=Hey! I have a question about ${productData.title}`} className="ml-2 hidden lg:flex group">
                     <StarIcon className="w-6 mr-1" />
                     <div className="relative">
                       <div className="w-full relative overflow-hidden">
@@ -179,7 +179,7 @@ export default function ShopSlug(initialData) {
 
                 <div className="mb-8 w-full block lg:hidden">
                   <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-1 lg:mb-4">{productData.title}</h1>
-                  {productData.collections?.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Collabs') ? (
+                  {productData.collections?.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Hire') ? (
                     <span className="block text-xl lg:text-2xl font-light">For Hire</span>
                   ) : (
                     <span className="block text-xl lg:text-2xl font-light">{moneyUkLocale.format(productData.variants.edges[0].node.price.amount)}</span>
@@ -191,7 +191,7 @@ export default function ShopSlug(initialData) {
                     <div className="mb-12 w-full hidden lg:block">
                       <h1 className="text-[17vw] md:text-[12.5vw] lg:text-[10vw] leading-[0.76] md:leading-[0.7] lg:leading-[0.7] 2xl:leading-[0.7] max-w-[90%] lg:max-w-[90%] mb-4 lg:-mt-10">{productData.title}</h1>
 
-                      {productData.collections?.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Collabs') ? (
+                      {productData.collections?.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Hire') ? (
                         <span className="block text-2xl font-light">For Hire</span>
                       ) : (
                         <span className="block text-2xl font-light">{moneyUkLocale.format(productData.variants.edges[0].node.price.amount)}</span>
@@ -202,9 +202,9 @@ export default function ShopSlug(initialData) {
                       <div className="content max-w-3xl mb-6 text-sm lg:text-base" dangerouslySetInnerHTML={{ __html: productData.descriptionHtml }}></div>
                       
                       <div className="flex space-x-2 items-center lg:items-end">
-                        {productData.collections?.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Collabs') ? (
+                        {productData.collections?.edges.some(e => e.node.title === 'For Hire' || e.node.title === 'Hire') ? (
                           <div className="flex space-x-3">
-                            <a href={`mailto:Pocketpiecesstore@gmail.com?subject=Hey! I'd love to hire ${productData.title}`} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-black text-off-white border border-black relative overflow-hidden group`}>
+                            <a href={`mailto:onscreenlovers@gmail.com?subject=Hey! I'd love to hire ${productData.title}`} className={`block uppercase rounded-[50%] px-8 lg:px-8 py-6 lg:py-6 text-center lg:text-lg lg:leading-none bg-black text-off-white border border-black relative overflow-hidden group`}>
                               <div className="relative overflow-hidden">
                                 <div className="transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] translate-y-0 group-hover:translate-y-[100%] group-hover:delay-[0ms] delay-[160ms]">Hire piece</div>
                                 <div className={`transition-transform ease-[cubic-bezier([0.83,0,0.17,1])] duration-[400ms] absolute inset-0 translate-y-[100%] group-hover:translate-y-0 z-20 group-hover:delay-[160ms] text-black`}>Hire piece</div>
@@ -248,7 +248,7 @@ export default function ShopSlug(initialData) {
                     </div>
                   </div>
 
-                  <div className={`w-full lg:w-5/12 2 order-1 lg:order-2 mb-4 lg:mb-0 mt-auto relative overflow-hidden ${productData.collections?.edges.some(e => e.node.title === 'Collabs') ? 'h-[75dvh] lg:h-[calc(100dvh-160px)]' : 'h-[75dvh] lg:h-[calc(100dvh-160px)]'}`}>
+                  <div className={`w-full lg:w-5/12 2 order-1 lg:order-2 mb-4 lg:mb-0 mt-auto relative overflow-hidden ${productData.collections?.edges.some(e => e.node.title === 'Hire') ? 'h-[75dvh] lg:h-[calc(100dvh-160px)]' : 'h-[75dvh] lg:h-[calc(100dvh-160px)]'}`}>
                     <Image src={productData.images.edges[0]?.node.originalSrc} fill sizes="(min-width: 1024px) 75vw, 90vw" className={`w-full absolute inset-0 object-cover object-center`} alt="placeholder" />
 
                     {/* <Polaroid
