@@ -84,12 +84,12 @@ export default function Hire(initialData) {
                                 metaText={products[0].node.metaTitle ? products[0].node.metaTitle.value : null}
                                 metaHeading={products[0].node.title}
                                 price={"For Hire"}
-                                image={products[0].node.images.edges[0]?.node.originalSrc}
-                                imageWidth={products[0].node.images.edges[0]?.node.width}
-                                imageHeight={products[0].node.images.edges[0]?.node.height}
-                                hoverImage={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.originalSrc : products[0].node.images.edges[0]?.node.originalSrc}
-                                hoverImageWidth={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.width : products[0].node.images.edges[0]?.node.width}
-                                hoverImageHeight={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.height : products[0].node.images.edges[0]?.node.height}
+                                image={products[0].node.images.edges[1]?.node.originalSrc}
+                                imageWidth={products[0].node.images.edges[1]?.node.width}
+                                imageHeight={products[0].node.images.edges[1]?.node.height}
+                                hoverImage={products[0].node.images.edges[2] ? products[0].node.images.edges[2].node.originalSrc : products[0].node.images.edges[0]?.node.originalSrc}
+                                hoverImageWidth={products[0].node.images.edges[2] ? products[0].node.images.edges[2].node.width : products[0].node.images.edges[0]?.node.width}
+                                hoverImageHeight={products[0].node.images.edges[2] ? products[0].node.images.edges[2].node.height : products[0].node.images.edges[0]?.node.height}
                               />
                             </Link>
                           </div>
@@ -287,7 +287,7 @@ export default function Hire(initialData) {
                                   <Image src="/images/sig.png" alt="Phoebe Signature" width={424} height={132} className="mix-blend-darken" />
                                 </span>
 
-                                <p className="text-sm lg:text-base mt-auto">Phoebe Pocket</p>
+                                <p className="text-sm lg:text-base mt-auto">Phoebe Vale Markham</p>
                               </div>
                               <div className="col-span-1 flex flex-col">
                                 <span className="block w-10/12 max-w-[120px] mb-3 bg-off-white">
