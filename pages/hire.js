@@ -84,12 +84,12 @@ export default function Hire(initialData) {
                                 metaText={products[0].node.metaTitle ? products[0].node.metaTitle.value : null}
                                 metaHeading={products[0].node.title}
                                 price={"For Hire"}
-                                image={products[0].node.images.edges[1]?.node.originalSrc}
-                                imageWidth={products[0].node.images.edges[1]?.node.width}
-                                imageHeight={products[0].node.images.edges[1]?.node.height}
-                                hoverImage={products[0].node.images.edges[2] ? products[0].node.images.edges[2].node.originalSrc : products[0].node.images.edges[0]?.node.originalSrc}
-                                hoverImageWidth={products[0].node.images.edges[2] ? products[0].node.images.edges[2].node.width : products[0].node.images.edges[0]?.node.width}
-                                hoverImageHeight={products[0].node.images.edges[2] ? products[0].node.images.edges[2].node.height : products[0].node.images.edges[0]?.node.height}
+                                image={products[0].node.images.edges[0]?.node.originalSrc}
+                                imageWidth={products[0].node.images.edges[0]?.node.width}
+                                imageHeight={products[0].node.images.edges[0]?.node.height}
+                                hoverImage={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.originalSrc : products[0].node.images.edges[0]?.node.originalSrc}
+                                hoverImageWidth={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.width : products[0].node.images.edges[0]?.node.width}
+                                hoverImageHeight={products[0].node.images.edges[1] ? products[0].node.images.edges[1].node.height : products[0].node.images.edges[0]?.node.height}
                               />
                             </Link>
                           </div>
@@ -115,12 +115,12 @@ export default function Hire(initialData) {
                                 metaText={products[1].node.metaTitle ? products[1].node.metaTitle.value : null}
                                 metaHeading={products[1].node.title}
                                 price={"For Hire"}
-                                image={products[1].node.images.edges[1]?.node.originalSrc}
-                                imageWidth={products[1].node.images.edges[1]?.node.width}
-                                imageHeight={products[1].node.images.edges[1]?.node.height}
-                                hoverImage={products[1].node.images.edges[2] ? products[1].node.images.edges[2].node.originalSrc : products[1].node.images.edges[1]?.node.originalSrc}
-                                hoverImageWidth={products[1].node.images.edges[2] ? products[1].node.images.edges[2].node.width : products[1].node.images.edges[1]?.node.width}
-                                hoverImageHeight={products[1].node.images.edges[2] ? products[1].node.images.edges[2].node.height : products[1].node.images.edges[1]?.node.height}
+                                image={products[1].node.images.edges[0]?.node.originalSrc}
+                                imageWidth={products[1].node.images.edges[0]?.node.width}
+                                imageHeight={products[1].node.images.edges[0]?.node.height}
+                                hoverImage={products[1].node.images.edges[1] ? products[1].node.images.edges[1].node.originalSrc : products[1].node.images.edges[0]?.node.originalSrc}
+                                hoverImageWidth={products[1].node.images.edges[1] ? products[1].node.images.edges[1].node.width : products[1].node.images.edges[0]?.node.width}
+                                hoverImageHeight={products[1].node.images.edges[1] ? products[1].node.images.edges[1].node.height : products[1].node.images.edges[0]?.node.height}
                               />
                             </Link>
                           </div>
@@ -144,12 +144,12 @@ export default function Hire(initialData) {
                                 metaText={products[2].node.metaTitle ? products[2].node.metaTitle.value : null}
                                 metaHeading={products[2].node.title}
                                 price={"For Hire"}
-                                image={products[2].node.images.edges[1]?.node.originalSrc}
-                                imageWidth={products[2].node.images.edges[1]?.node.width}
-                                imageHeight={products[2].node.images.edges[1]?.node.height}
-                                hoverImage={products[2].node.images.edges[2] ? products[2].node.images.edges[2].node.originalSrc : products[2].node.images.edges[1]?.node.originalSrc}
-                                hoverImageWidth={products[2].node.images.edges[2] ? products[2].node.images.edges[2].node.width : products[2].node.images.edges[1]?.node.width}
-                                hoverImageHeight={products[2].node.images.edges[2] ? products[2].node.images.edges[2].node.height : products[2].node.images.edges[1]?.node.height}
+                                image={products[2].node.images.edges[0]?.node.originalSrc}
+                                imageWidth={products[2].node.images.edges[0]?.node.width}
+                                imageHeight={products[2].node.images.edges[0]?.node.height}
+                                hoverImage={products[2].node.images.edges[1] ? products[2].node.images.edges[1].node.originalSrc : products[2].node.images.edges[0]?.node.originalSrc}
+                                hoverImageWidth={products[2].node.images.edges[1] ? products[2].node.images.edges[1].node.width : products[2].node.images.edges[0]?.node.width}
+                                hoverImageHeight={products[2].node.images.edges[1] ? products[2].node.images.edges[1].node.height : products[2].node.images.edges[0]?.node.height}
                               />
                             </Link>
                           </div>
