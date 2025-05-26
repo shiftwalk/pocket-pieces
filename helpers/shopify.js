@@ -254,7 +254,7 @@ export async function getProductSlugs() {
 
   const response = await callShopify(query);
 
-  const slugs = response.data.products.edges
+  const slugs = response.data?.products.edges
     ? response.data.products.edges
     : [];
 
@@ -276,7 +276,7 @@ export async function getCollectionSlugs() {
 
   const response = await callShopify(query);
 
-  const slugs = response.data.collections.edges
+  const slugs = response.data?.collections.edges
     ? response.data.collections.edges
     : [];
 
@@ -343,7 +343,7 @@ export async function getProduct(handle) {
 
   const response = await callShopify(query);
 
-  const product = response.data.product
+  const product = response.data?.product
     ? response.data.product
     : [];
 
@@ -363,7 +363,7 @@ export async function getCollection(handle) {
 
   const response = await callShopify(query);
 
-  const product = response.data.collection
+  const product = response.data?.collection
     ? response.data.collection
     : [];
 
@@ -397,7 +397,7 @@ export async function createCheckout(id, quantity) {
 
   const response = await callShopify(query);
 
-  const checkout = response.data.checkoutCreate.checkout
+  const checkout = response.data?.checkoutCreate?.checkout
     ? response.data.checkoutCreate.checkout
     : [];
 
@@ -436,7 +436,7 @@ export async function updateCheckout(id, lineItems) {
 
   const response = await callShopify(query);
 
-  const checkout = response.data.checkoutLineItemsReplace.checkout
+  const checkout = response.data?.checkoutLineItemsReplace.checkout
     ? response.data.checkoutLineItemsReplace.checkout
     : [];
 
