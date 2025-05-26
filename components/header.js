@@ -183,6 +183,9 @@ export default function Header({ dark }) {
                 <div className="">
                   <span className="text-base lg:text-lg uppercase leading-none lg:leading-none border-t border-b border-current py-3 flex mb-[3vh]"><span className="block">Total</span><span className="ml-auto">{ subtotal === 0 ? <>&pound;0</> : <>&pound;{subtotal}</>}</span></span>
                   
+                  somethin: {JSON.stringify(checkoutUrl)}
+                  {/* somethin: {JSON.stringify(cart)} */}
+                  
                   <div className="w-[55%] max-w-[180px] mx-auto">
                     <a href={checkoutUrl} target="_blank" rel="noopener noreferrer" className={`uppercase rounded-[50%] px-3 lg:px-5 py-6 lg:py-8 text-center lg:text-lg lg:leading-none group relative overflow-hidden block border ${ dark ? 'bg-black text-off-white border-black' : 'bg-off-white text-black border-off-white' }`}>
                       <div className="relative overflow-hidden">

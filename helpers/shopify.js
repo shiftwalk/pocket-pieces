@@ -3,7 +3,7 @@ const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STORE_FRONT_ACCESS
 const collection = 'frontpage'
 
 async function callShopify(query) {
-  const fetchUrl = `https://${domain}/api/2023-04/graphql.json`;
+  const fetchUrl = `https://${domain}/api/2024-04/graphql.json`;
 
   const fetchOptions = {
     endpoint: fetchUrl,
@@ -374,21 +374,24 @@ export async function createCheckout(id, quantity) {
   const query =
     `mutation 
       {
-        checkoutCreate(input: {
-          lineItems: [{ variantId: "${id}", quantity: 1 }]
+        cartCreate(input: {
+          lines: [{ merchandiseId: "${id}", quantity: 1 }]
         }) {
-          checkout {
-             id
-             webUrl
-             lineItems(first: 50) {
-               edges {
-                 node {
-                   id
-                   title
-                   quantity
-                 }
-               }
-             }
+          cart {
+            id
+            checkoutUrl
+            lines(first: 5) {
+              edges {
+                node {
+                  merchandise {
+                  ... on ProductVariant {
+                      title
+                    }
+                  }
+                  quantity
+                }
+              }
+            }
           }
         }
       }      
@@ -397,17 +400,20 @@ export async function createCheckout(id, quantity) {
 
   const response = await callShopify(query);
 
-  const checkout = response.data?.checkoutCreate?.checkout
-    ? response.data.checkoutCreate.checkout
+  console.log('response', response)
+
+  const checkout = response.data?.cartCreate?.cart
+    ? response.data.cartCreate.cart
     : [];
 
   return checkout;
 }
 
+
 export async function updateCheckout(id, lineItems) {  
   const formattedLineItems = lineItems.map(item => {
     return `{
-      variantId: "${item.variantId}",
+      merchandiseId: "${item.variantId}",
       quantity: 1
     }`
   })
@@ -415,20 +421,23 @@ export async function updateCheckout(id, lineItems) {
   const query =
     `mutation 
       {
-        checkoutLineItemsReplace(lineItems: [${formattedLineItems}], checkoutId: "${id}") {
-          checkout {
+        cartLinesUpdate(lines: [${formattedLineItems}], checkoutId: "${id}") {
+          cart {
              id
-             webUrl
-             lineItems(first: 50) {
+             checkoutUrl
+             lines(first: 50) {
                edges {
                  node {
-                   id
-                   title
-                   quantity
+                   merchandise {
+                    ... on ProductVariant {
+                        title
+                      }
+                    }
+                    quantity
                  }
                }
              }
-          }
+          }§
         }
       }      
     `
@@ -453,6 +462,7 @@ function getLocalData() {
 
 export function setLocalData(setCart, setCheckoutId, setCheckoutUrl) {
   const localData = getLocalData()
+  console.log('localData', localData)
 
   if (localData) {
     if (Array.isArray(localData[0])) {
@@ -472,13 +482,13 @@ export async function createShopifyCheckout(newItem) {
 }
 
 export async function updateShopifyCheckout(updatedCart, checkoutId) {
-  const lineItems = updatedCart.map(item => {
+  const lines = updatedCart.map(item => {
     return {
       variantId: item['variantId'],
       quantity: 1
     }
   })
-  await updateCheckout(checkoutId, lineItems)
+  await updateCheckout(checkoutId, lines)
 }
 
 export function getCartSubTotal(cart) {
