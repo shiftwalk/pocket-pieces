@@ -1,0 +1,151 @@
+fragment CartFragment on Cart {
+  id
+  createdAt
+  updatedAt
+  lines(first: 250) {
+    edges {
+      node {
+        id
+        quantity
+        cost {
+          amountPerQuantity {
+            amount
+            currencyCode
+          }
+          compareAtAmountPerQuantity {
+            amount
+            currencyCode
+          }
+          subtotalAmount {
+            amount
+            currencyCode
+          }
+          totalAmount {
+            amount
+            currencyCode
+          }
+        }
+        merchandise {
+          ...VariantFragment
+        }
+        attributes {
+          key
+          value
+        }
+      }
+    }
+  }
+  attributes {
+    key
+    value
+  }
+  cost {
+    totalAmount {
+      amount
+      currencyCode
+    }
+    subtotalAmount {
+      amount
+      currencyCode
+    }
+    totalTaxAmount {
+      amount
+      currencyCode
+    }
+    totalDutyAmount {
+      amount
+      currencyCode
+    }
+  }
+  totalQuantity
+  checkoutUrl
+}
+
+fragment VariantFragment on ProductVariant {
+  id
+  title
+  sku
+  availableForSale
+  currentlyNotInStock
+  quantityAvailable
+  price {
+    amount
+    currencyCode
+  }
+  compareAtPrice {
+    amount
+    currencyCode
+  }
+  selectedOptions {
+    name
+    value
+  }
+  product {
+    id
+    title
+    productType
+    vendor
+    handle
+    images(first: 25) {
+      edges {
+        node {
+          id
+          altText
+          url
+          width
+          height
+        }
+      }
+    }
+  }
+  image {
+    url
+  }
+}
+
+mutation SendCartCreate($input: CartInput!, $country: CountryCode)
+@inContext(country: $country) {
+  cartCreate(input: $input) {
+    cart {
+      ...CartFragment
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
+
+mutation SendCartLinesAdd(
+  $cartId: ID!
+  $lines: [CartLineInput!]!
+  $country: CountryCode
+) @inContext(country: $country) {
+  cartLinesAdd(cartId: $cartId, lines: $lines) {
+    cart {
+      ...CartFragment
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
+
+query GetCart($id: ID!) {
+  cart(id: $id) {
+    ...CartFragment
+  }
+}
+
+mutation SendCartLinesUpdate(
+  $cartId: ID!
+  $lines: [CartLineUpdateInput!]!
+  $country: CountryCode
+) @inContext(country: $country) {
+  cartLinesUpdate(cartId: $cartId, lines: $lines) {
+    cart {
+      ...CartFragment
+    }
+  }
+}

@@ -1,0 +1,18 @@
+overwrite: true
+schema:
+  - https://${NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/api/2024-07/graphql.json:
+      headers:
+        X-Shopify-Storefront-Access-Token: ${NEXT_PUBLIC_SHOPIFY_STORE_FRONT_ACCESS_TOKEN}
+documents: gql/shopifygen/queries.gql
+generates:
+  gql/shopifygen/codegen.ts:
+    config:
+      maybeValue: T | null | undefined
+      clientPath: ../apolloClient
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typed-document-node"
+  gql/shopifygen/schema.json:
+    plugins:
+      - "introspection"

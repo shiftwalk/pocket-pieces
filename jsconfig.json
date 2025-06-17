@@ -9,6 +9,8 @@
       "@/services/*": ["services/*"],
       "@/public/*": ["public/*"],
       "@/icons/*": ["public/icons/*"],
+      "@/gql/*": ["gql/*"],
+      "@/hooks/*": ["hooks/*"]
     }
   }
 }

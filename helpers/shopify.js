@@ -1,6 +1,7 @@
-const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN
-const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STORE_FRONT_ACCESS_TOKEN
-const collection = 'frontpage'
+const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
+const storefrontAccessToken =
+  process.env.NEXT_PUBLIC_SHOPIFY_STORE_FRONT_ACCESS_TOKEN;
+const collection = "frontpage";
 
 async function callShopify(query) {
   const fetchUrl = `https://${domain}/api/2024-04/graphql.json`;
@@ -10,7 +11,7 @@ async function callShopify(query) {
     method: "POST",
     headers: {
       "X-Shopify-Storefront-Access-Token": storefrontAccessToken,
-      "Accept": "application/json",
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ query }),
@@ -18,7 +19,7 @@ async function callShopify(query) {
 
   try {
     const data = await fetch(fetchUrl, fetchOptions).then((response) =>
-      response.json(),
+      response.json()
     );
     return data;
   } catch (error) {
@@ -27,8 +28,7 @@ async function callShopify(query) {
 }
 
 export async function getAllProducts() {
-  const query =
-    `{
+  const query = `{
       products (first: 100) {
         edges {
           node {
@@ -74,9 +74,7 @@ export async function getAllProducts() {
           }
         }
       }
-    }`
-  ;
-
+    }`;
   const response = await callShopify(query);
 
   const allProducts = response.data?.products.edges
@@ -87,8 +85,7 @@ export async function getAllProducts() {
 }
 
 export async function getAllProductsRelated() {
-  const query =
-    `{
+  const query = `{
       products (first: 100) {
         edges {
           node {
@@ -134,9 +131,7 @@ export async function getAllProductsRelated() {
           }
         }
       }
-    }`
-  ;
-
+    }`;
   const response = await callShopify(query);
 
   const allProductsRelated = response.data?.products.edges
@@ -147,8 +142,7 @@ export async function getAllProductsRelated() {
 }
 
 export async function getAllCollections() {
-  const query =
-    `{
+  const query = `{
       collections(first: 50) {
         edges {
           node {
@@ -157,9 +151,7 @@ export async function getAllCollections() {
           }
         }
       }
-    }`
-  ;
-
+    }`;
   const response = await callShopify(query);
 
   const allCollections = response.data?.collections.edges
@@ -170,8 +162,7 @@ export async function getAllCollections() {
 }
 
 export async function getAllProductsInCollection(handle) {
-  const query =
-    `{
+  const query = `{
       collection(handle: "${handle}") {
         products (first: 100) {
           edges {
@@ -226,9 +217,7 @@ export async function getAllProductsInCollection(handle) {
           }
         }
       }
-    }`
-  ;
-
+    }`;
   const response = await callShopify(query);
 
   const allProducts = response.data?.collection.products.edges
@@ -238,10 +227,8 @@ export async function getAllProductsInCollection(handle) {
   return allProducts;
 }
 
-
 export async function getProductSlugs() {
-  const query =
-    `{
+  const query = `{
       products(first: 250) {
         edges {
           node {
@@ -249,9 +236,7 @@ export async function getProductSlugs() {
           }
         }
       }
-    }`
-  ;
-
+    }`;
   const response = await callShopify(query);
 
   const slugs = response.data?.products.edges
@@ -262,8 +247,7 @@ export async function getProductSlugs() {
 }
 
 export async function getCollectionSlugs() {
-  const query =
-    `{
+  const query = `{
       collections(first: 150) {
         edges {
           node {
@@ -271,9 +255,7 @@ export async function getCollectionSlugs() {
           }
         }
       }
-    }`
-  ;
-
+    }`;
   const response = await callShopify(query);
 
   const slugs = response.data?.collections.edges
@@ -284,8 +266,7 @@ export async function getCollectionSlugs() {
 }
 
 export async function getProduct(handle) {
-  const query =
-    `{
+  const query = `{
       product(handle: "${handle}") {
         id
         title
@@ -333,46 +314,37 @@ export async function getProduct(handle) {
               title
               price {
                 amount
-              }             
+              }
+              quantityAvailable
             }
           }
         }
       }
-    }`
-  ;
-
+    }`;
   const response = await callShopify(query);
 
-  const product = response.data?.product
-    ? response.data.product
-    : [];
+  const product = response.data?.product ? response.data.product : [];
 
   return product;
 }
 
 export async function getCollection(handle) {
-  const query =
-    `{
+  const query = `{
       collection(handle: "${handle}") {
         id
         title
         handle
       }
-    }`
-  ;
-
+    }`;
   const response = await callShopify(query);
 
-  const product = response.data?.collection
-    ? response.data.collection
-    : [];
+  const product = response.data?.collection ? response.data.collection : [];
 
   return product;
 }
 
 export async function createCheckout(id, quantity) {
-  const query =
-    `mutation 
+  const query = `mutation 
       {
         cartCreate(input: {
           lines: [{ merchandiseId: "${id}", quantity: 1 }]
@@ -395,12 +367,10 @@ export async function createCheckout(id, quantity) {
           }
         }
       }      
-    `
-  ;
-
+    `;
   const response = await callShopify(query);
 
-  console.log('response', response)
+  console.log("response", response);
 
   const checkout = response.data?.cartCreate?.cart
     ? response.data.cartCreate.cart
@@ -409,17 +379,15 @@ export async function createCheckout(id, quantity) {
   return checkout;
 }
 
-
-export async function updateCheckout(lineItems, checkoutId, checkoutUrl) {  
-  const formattedLineItems = lineItems.map(item => {
+export async function updateCheckout(lineItems, checkoutId, checkoutUrl) {
+  const formattedLineItems = lineItems.map((item) => {
     return `{
       merchandiseId: "${item.variantId}"
       quantity: 1
-    }`
-  })
+    }`;
+  });
 
-  const query =
-    `mutation 
+  const query = `mutation 
       {
         cartLinesAdd(
           cartId: "${checkoutId}",
@@ -445,11 +413,9 @@ export async function updateCheckout(lineItems, checkoutId, checkoutUrl) {
           }
         }
       }      
-    `
-  ;
-
+    `;
   const response = await callShopify(query);
-  console.log('response', response)
+  console.log("response", response);
   const checkout = response.data?.cartLinesAdd.cart
     ? response.data.cartLinesAdd.cart
     : [];
@@ -458,52 +424,64 @@ export async function updateCheckout(lineItems, checkoutId, checkoutUrl) {
 }
 
 export function saveLocalData(cart, checkoutId, checkoutUrl) {
-  localStorage.setItem(process.env.NEXT_PUBLIC_LOCAL_STORAGE_NAME, JSON.stringify([cart, checkoutId, checkoutUrl]))
+  localStorage.setItem(
+    process.env.NEXT_PUBLIC_LOCAL_STORAGE_NAME,
+    JSON.stringify([cart, checkoutId, checkoutUrl])
+  );
 }
 
 function getLocalData() {
-  return JSON.parse(localStorage.getItem(process.env.NEXT_PUBLIC_LOCAL_STORAGE_NAME))
+  return JSON.parse(
+    localStorage.getItem(process.env.NEXT_PUBLIC_LOCAL_STORAGE_NAME)
+  );
 }
 
 export function setLocalData(setCart, setCheckoutId, setCheckoutUrl) {
-  const localData = getLocalData()
-  console.log('localData', localData)
+  const localData = getLocalData();
+  console.log("localData", localData);
 
   if (localData) {
     if (Array.isArray(localData[0])) {
-      setCart([...localData[0]])
+      setCart([...localData[0]]);
+    } else {
+      setCart([localData[0]]);
     }
-    else {
-      setCart([localData[0]])
-    }
-    setCheckoutId(localData[1])
-    setCheckoutUrl(localData[2])
+    setCheckoutId(localData[1]);
+    setCheckoutUrl(localData[2]);
   }
 }
 
 export async function createShopifyCheckout(newItem) {
-  const data = await createCheckout( newItem['variantId'], newItem['variantQuantity'])  
-  return data
+  const data = await createCheckout(
+    newItem["variantId"],
+    newItem["variantQuantity"]
+  );
+  return data;
 }
 
-export async function updateShopifyCheckout(updatedCart, checkoutId, checkoutUrl) {
-  const lines = updatedCart.map(item => {    
+export async function updateShopifyCheckout(
+  updatedCart,
+  checkoutId,
+  checkoutUrl
+) {
+  const lines = updatedCart.map((item) => {
     return {
-      variantId: item['variantId'],
+      variantId: item["variantId"],
       quantity: 1,
-    }
-  })
-  const data = await updateCheckout(lines, checkoutId, checkoutUrl)
-  return data
+    };
+  });
+  const data = await updateCheckout(lines, checkoutId, checkoutUrl);
+  return data;
 }
 
 export function getCartSubTotal(cart) {
   if (cart.length === 0) {
-    return 0
-  }
-  else {
-    let totalPrice = 0
-    cart.forEach(item => totalPrice += parseInt(1) * parseFloat(item.variantPrice))
-    return Math.round(totalPrice * 100) / 100
+    return 0;
+  } else {
+    let totalPrice = 0;
+    cart.forEach(
+      (item) => (totalPrice += parseInt(1) * parseFloat(item.variantPrice))
+    );
+    return Math.round(totalPrice * 100) / 100;
   }
 }
