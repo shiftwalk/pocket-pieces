@@ -183,7 +183,7 @@ export default function Header({ dark }) {
                 <div className="">
                   <span className="text-base lg:text-lg uppercase leading-none lg:leading-none border-t border-b border-current py-3 flex mb-[3vh]"><span className="block">Total</span><span className="ml-auto">{ subtotal === 0 ? <>&pound;0</> : <>&pound;{subtotal}</>}</span></span>
                   
-                  {/* somethin: {JSON.stringify(checkoutUrl)} */}
+                  somethin: {JSON.stringify(checkoutUrl)}
                   {/* somethin: {JSON.stringify(cart)} */}
                   
                   <div className="w-[55%] max-w-[180px] mx-auto">

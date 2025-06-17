@@ -410,10 +410,10 @@ export async function createCheckout(id, quantity) {
 }
 
 
-export async function updateCheckout(id, lineItems) {  
+export async function updateCheckout(lineItems, checkoutId, checkoutUrl) {  
   const formattedLineItems = lineItems.map(item => {
     return `{
-      merchandiseId: "${item.variantId}",
+      merchandiseId: "${item.variantId}"
       quantity: 1
     }`
   })
@@ -421,32 +421,37 @@ export async function updateCheckout(id, lineItems) {
   const query =
     `mutation 
       {
-        cartLinesUpdate(lines: [${formattedLineItems}], checkoutId: "${id}") {
+        cartLinesAdd(
+          cartId: "${checkoutId}",
+          lines: [${formattedLineItems}],
+        ) {
           cart {
              id
              checkoutUrl
              lines(first: 50) {
                edges {
                  node {
-                   merchandise {
+                  id
+                  quantity
+                  merchandise {
                     ... on ProductVariant {
+                        id
                         title
                       }
                     }
-                    quantity
                  }
                }
              }
-          }§
+          }
         }
       }      
     `
   ;
 
   const response = await callShopify(query);
-
-  const checkout = response.data?.checkoutLineItemsReplace.checkout
-    ? response.data.checkoutLineItemsReplace.checkout
+  console.log('response', response)
+  const checkout = response.data?.cartLinesAdd.cart
+    ? response.data.cartLinesAdd.cart
     : [];
 
   return checkout;
@@ -481,14 +486,15 @@ export async function createShopifyCheckout(newItem) {
   return data
 }
 
-export async function updateShopifyCheckout(updatedCart, checkoutId) {
-  const lines = updatedCart.map(item => {
+export async function updateShopifyCheckout(updatedCart, checkoutId, checkoutUrl) {
+  const lines = updatedCart.map(item => {    
     return {
       variantId: item['variantId'],
-      quantity: 1
+      quantity: 1,
     }
   })
-  await updateCheckout(checkoutId, lines)
+  const data = await updateCheckout(lines, checkoutId, checkoutUrl)
+  return data
 }
 
 export function getCartSubTotal(cart) {

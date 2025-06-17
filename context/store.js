@@ -75,10 +75,15 @@ export function CartProvider({ children }) {
         // if its a new item than add it to the end
         newCartWithItem = [...newCart, newItem]
       }
+      setCart(newCartWithItem) 
+      console.log('checkoutId', checkoutId)
+      
+      const newResponse = await updateShopifyCheckout(newCartWithItem, checkoutId, checkoutUrl)
 
-      setCart(newCartWithItem)
-      await updateShopifyCheckout(newCartWithItem, checkoutId)
-      saveLocalData(newCartWithItem, checkoutId, checkoutUrl)
+      console.log('newresponse', newResponse)
+      saveLocalData(newCartWithItem, newResponse.id, newResponse.checkoutUrl)
+
+      // saveLocalData(newCartWithItem, checkoutId, checkoutUrl)
     }
     setisLoading(false)
   }
