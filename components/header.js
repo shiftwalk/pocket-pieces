@@ -258,7 +258,7 @@ export default function Header({ dark }) {
                               href={`/shop/${item?.node?.merchandise?.product?.handle}`}
                               className="w-1/3 group"
                             >
-                              <div className="relative overflow-hidden">
+                              <div className="relative overflow-hidden bg-white/20">
                                 <Image
                                   src={
                                     item?.node?.attributes.find(
@@ -270,9 +270,9 @@ export default function Header({ dark }) {
                                       (attr) => attr.key === "_title"
                                     ).value
                                   }
-                                  className="w-full aspect-[10/11] object-cover object-center transition-transform ease-in-out duration-[400ms] group-hover:scale-[1.1]"
-                                  height={100}
-                                  width={100} // @TODO - add the actual image width and height here.
+                                  className="w-full aspect-square object-cover object-center transition-transform ease-in-out duration-[400ms] group-hover:scale-[1.1]"
+                                  height={300}
+                                  width={300} // @TODO - add the actual image width and height here.
                                 />
                               </div>
                             </Link>
@@ -290,9 +290,9 @@ export default function Header({ dark }) {
                               </Link>
 
                               {/* INTEGRATE */}
-                              <span className="block mb-1 text-sm font-light opacity-80">
+                              {/* <span className="block mb-1 text-sm font-light opacity-80">
                                 Size 38 (UK10)
-                              </span>
+                              </span> */}
                               <div className="flex w-full space-x-3">
                                 <span className="flex-1 block mr-auto">
                                   {moneyUkLocale.format(
@@ -350,7 +350,7 @@ export default function Header({ dark }) {
                   <span className="text-base lg:text-lg uppercase leading-none lg:leading-none border-t border-b border-current py-3 flex mb-[3vh]">
                     <span className="block">Total</span>
                     <span className="ml-auto">
-                      &pound;{`${cart?.cost?.totalAmount.amount}`}
+                      &pound;{`${Math.ceil(cart?.cost?.totalAmount.amount)}`}
                     </span>
                   </span>
                   <div className="w-[55%] max-w-[180px] mx-auto">
